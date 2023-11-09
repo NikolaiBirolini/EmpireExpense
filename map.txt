@@ -1,3 +1,4 @@
 2 10 thyma 1.000000 1.000000 -1.000000 908.785156 0 0 209 civil thyma thyma none none todo 0 [] [epee 1 Protections_de_cuir 1 fruit 1] none 0 0 [] 3 0
 1 999999 none 7.000000 9.000000 -1.000000 908.785156 278 0 34 flag_zone flag_zone thyma none none todo 0 [] [] none 0 0 [] 1 0
 0 10 none 7.00000 5.000000 -1.000000 908.785156 0 0 209 civil bob bob none none todo 0 [] [epee 1 Protections_de_cuir 1 fruit 1] none 0 0 [] 3 0
+3 10 niko 4.000000 4.000000 -1.000000 908.785156 0 0 209 civil niko niko none none todo 0 [] [epee 1 Protections_de_cuir 1 fruit 1] none 0 0 [] 3 0
