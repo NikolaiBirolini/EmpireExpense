@@ -1,0 +1,21 @@
+#include "btree.h"
+
+struct node *append_node(struct node *roote, char *nom, char *father)
+{
+    if (father == NULL)
+    {
+	struct node *ret = malloc(sizeof(struct node));
+	strcat(ret->nom, nom);
+	return ret;
+    }
+    if (roote != NULL)
+    {
+        if (strcmp(roote->nom, father) == 0)
+	{
+	    struct node *n = malloc(sizeof(struct node));
+	    strcat(n->nom, nom);
+	    if (
+	}
+    }
+    return NULL;
+}

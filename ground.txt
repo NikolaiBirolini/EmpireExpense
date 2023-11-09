@@ -1,0 +1,22 @@
+12 21
+he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 ea1 0 ea1 0
+he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 ea1 0 ea1 0
+he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 ea1 0 ea1 0
+he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 ea1 0 ea1 0
+he1 5 he1 5 he1 5 sa1 50 sa1 50 he1 5 he1 5 he1 5 he1 5 he1 5 ea1 0 ea1 0
+he1 5 he1 5 he1 5 sa1 50 sa1 50 he1 5 he1 5 he1 5 he1 5 he1 5 ea1 0 ea1 0
+he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 ea1 0 ea1 0
+he1 5 he1 5 he1 5 ne1 5 ne1 5 he1 5 he1 5 he1 5 he1 5 he1 5 ea1 0 ea1 0
+he1 5 he1 5 he1 5 ne1 5 ne1 5 he1 5 he1 5 he1 5 he1 5 he1 5 ea1 0 ea1 0
+he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 ea1 0 ea1 0
+he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 ea1 0 ea1 0
+ea1 0 ea1 0 ea1 0 ea1 0 gr1 0 gr1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0
+he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 ea1 0 ea1 0
+he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 ea1 0 ea1 0
+he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 ea1 0 ea1 0
+he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 he1 5 ea1 0 ea1 0
+he1 5 he1 5 he1 5 he1 5 he1 10 he1 10 he1 5 he1 5 he1 5 he1 5 ea1 0 ea1 0
+he1 5 he1 5 he1 5 he1 10 he1 15 he1 15 he1 10 he1 5 he1 5 he1 5 ea1 0 ea1 0
+he1 5 he1 5 he1 10 he1 15 he1 20 he1 20 he1 15 he1 10 he1 5 he1 5 ea1 0 ea1 0
+he1 5 he1 10 he1 15 he1 20 he1 25 he1 25 he1 20 he1 15 he1 10 he1 5 ea1 0 ea1 0
+he1 10 he1 15 he1 20 he1 25 he1 30 he1 30 he1 25 he1 20 he1 15 he1 10 ea1 0 ea1 0
