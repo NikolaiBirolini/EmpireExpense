@@ -113,35 +113,25 @@ void gui_event(struct personnages *perso, struct linked_list *list)
 		blit_text(position, txt, 90);
 	}
 	//bulle de dialogues
+	const int nb_word_per_line = 30;
+	
 	for (struct linked_list *p = list; p != NULL; p = p->next)
 	{
+		int nb_of_line = strlen(p->p->speak)/nb_word_per_line;
+
 		if (p->p->speak[0] != 0)
 		{
-			int s = strlen(p->p->speak);
 			if (p->p == perso)
 			{
-				if (s > 60)
-				{	    
-					position.y = p->p->y + 460 - perso->y;
-					position.x = p->p->x + 600 - 225 - perso->x;
-				}
-				else if (s > 30)
-				{
-					position.y = p->p->y + 480 - perso->y;
-					position.x = p->p->x + 600 - 225 - perso->x;
-				}
-				else
-				{
-					position.y = p->p->y + 500 - perso->y;
-					position.x = p->p->x + 600 - (s * 7.5) - perso->x;
-				}
+				position.y = perso->y + 415 - nb_of_line * 25;
+				position.x = perso->x + 480;
 			}
 			else
 			{
 				SDL_Texture *affiche = select_good_img(p->p);
 				SDL_QueryTexture(affiche, NULL, NULL, &position.w, &position.h);
-				position.x = (p->p->x - perso->x) * cos(perso->angle) + (p->p->y - perso->y) * sin(perso->angle) + 540 - position.w / 2;
-				position.y = (p->p->y - perso->y) * cos(perso->angle) - (p->p->x - perso->x) * sin(perso->angle) + 500 - position.h / 2;
+				position.x = (/*p->p->x -*/perso->x) * cos(perso->angle) + (/*p->p->y - */perso->y) * sin(perso->angle) + 540 - position.w / 2;
+				position.y = (/*p->p->y -*/perso->y) * cos(perso->angle) - (/*p->p->x - */perso->x) * sin(perso->angle) + 500 - position.h / 2;
 
 			}
 			blit_text(position, p->p->speak, 30);    
@@ -962,11 +952,13 @@ void talk(struct speak *speak_s, struct personnages *moi)
 	if (lettres->esc == 1)
 		speak_s->on = 0;
 	SDL_Rect position1 = {50, 50, 558, 70};
+	//printf("JE SUIS LA");
 	text_input(speak_s->speak, 90);
 	SDL_RenderCopy(renderer, img->g->selTextInput, NULL, &position1);
 	blit_text(position1, speak_s->speak, 30);
 	if (lettres->enter == 1)
 	{
+		printf("ENTER");
 		moi->speak_timer = 250;
 		sprintf (ordre + strlen(ordre), "%d 20 [%s] ", moi->id, speak_s->speak);
 		speak_s->speak[0] = 0;
