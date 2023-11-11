@@ -1,5 +1,3 @@
-#include "alloc.h"
-
 #ifndef PARSEUR
 #define PARSEUR
 #include "perso.h"

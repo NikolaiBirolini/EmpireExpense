@@ -1,6 +1,6 @@
-#include "shared_var.h"
-float screenx = 500;
-float screeny = 500;
+#include "shared_var.h"	
+float screenx = 0;
+float screeny = 0;
 SDL_Texture **ground_texture;
 int *ground_altitude;
 int max_x;

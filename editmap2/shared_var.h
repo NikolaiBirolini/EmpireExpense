@@ -1,5 +1,6 @@
 #pragma once
 #include <SDL2/SDL.h>
+//#include "clavier.h"
 extern float screenx;
 extern float screeny;
 extern SDL_Texture **ground_texture;

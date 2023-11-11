@@ -279,7 +279,7 @@ char *log_menu(int socket)
 	char err1[] = "Mauvais identifiant";
 	char txt1[] = "Nom";
 	char txt2[] = "Mot de passe";
-	char *nom = ecalloc(50, 1);
+	char *nom = calloc(50, 1);
 	char mdp[50] = "";
 	SDL_Rect position1 = {100, 100, 558, 70};
 	SDL_Rect position2 = {100, 200, 558, 70};
@@ -289,7 +289,7 @@ char *log_menu(int socket)
 	set_pos(&position3, 100, 70);
 	set_pos(&position4, 100, 170);
 	set_pos(&position5, 100, 300);
-	char *boolean_rep = emalloc(1);
+	char *boolean_rep = malloc(1);
 	boolean_rep[0] = 'p';
 	char sel = 1;
 	char tryed = -127;
@@ -333,7 +333,7 @@ char *log_menu(int socket)
 		if (lettres->enter == 1)
 		{
 			tryed = 127;
-			char *to_send = ecalloc(101,1);
+			char *to_send = calloc(101,1);
 			chifrage(mdp,nom);
 			strcat(to_send, nom);
 			strcat(to_send, " ");

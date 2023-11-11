@@ -1,5 +1,4 @@
 #pragma once
-#include "alloc.h"
 #include "clavier.h"
 #include "perso.h"
 #include "collision.h"

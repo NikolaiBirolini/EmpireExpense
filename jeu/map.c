@@ -2,7 +2,7 @@
 	
 char *rec_ground(int socket)
 {
-	char *map = ecalloc(sizeof(char), 9);
+	char *map = calloc(sizeof(char), 9);
 	recv(socket, map, 8, 0);
 	int nb_char = atoi(map);
 	free(map);

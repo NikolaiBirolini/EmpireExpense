@@ -1,6 +1,4 @@
 #pragma once
-#include "alloc.h"
-
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <stdlib.h>

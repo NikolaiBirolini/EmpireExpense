@@ -1,4 +1,3 @@
-#include "alloc.h"
 #ifndef CONTROL
 #define CONTROL
 #include "clavier.h"

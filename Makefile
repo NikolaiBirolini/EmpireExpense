@@ -1,8 +1,9 @@
-cflags=-Wall -Werror -Wextra -std=c99 -pedantic
-jfiles=jeu/net.c jeu/gui.c jeu/perso.c jeu/init_sprite.c jeu/select_sprite.c jeu/clavier.c jeu/alloc.c jeu/control.c jeu/parseur.c jeu/ordre.c jeu/ia.c jeu/map.c jeu/linked_char.c jeu/stat.c jeu/chiffrement.c jeu/inventaire.c jeu/diplo.c jeu/pathfinding.c jeu/init_sound.c jeu/btree.c jeu/shared_var.c jeu/collision.c
+cflags=-Wall -Werror -Wextra -std=c99 -pedantic -g
+jfiles=jeu/net.c jeu/gui.c jeu/perso.c jeu/init_sprite.c jeu/select_sprite.c jeu/clavier.c jeu/control.c jeu/parseur.c jeu/ordre.c jeu/ia.c jeu/map.c jeu/linked_char.c jeu/stat.c jeu/chiffrement.c jeu/inventaire.c jeu/diplo.c jeu/pathfinding.c jeu/init_sound.c jeu/btree.c jeu/shared_var.c jeu/collision.c
 sfiles=serv/perso.c serv/map_op.c serv/req.c serv/utile.c serv/deschiffrement.c serv/net.c serv/diplo.c serv/inventaire.c serv/demographie.c serv/acount.c serv/file.c serv/shared_var.c serv/collision.c
 efiles=editmap/init_img.c editmap/select_sprite.c
-
+Efiles=editmap2/ground.c editmap2/shared_var.c editmap2/init_sprite.c editmap2/clavier.c editmap2/control.c
+EfilesinJfiles=jeu/init_sprite.c jeu/clavier.c jeu/clavier.h jeu/init_sprite.h
 
 j:
 	gcc ${cflags} jeu/main.c $(jfiles) -o empireExpense -lSDL2 -lm -lSDL2_mixer
@@ -15,4 +16,9 @@ static:
 
 e:
 	gcc $(cflags) editmap/main.c $(efiles) -o mapEditor -lSDL2 -lm
+
+E:	
+	cp $(EfilesinJfiles) editmap2/ 
+
+	gcc $(cflags) editmap2/main.c $(Efiles) -o mapEditor -lSDL2 -lm
 
