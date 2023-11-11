@@ -939,13 +939,11 @@ void talk(struct speak *speak_s, struct personnages *moi)
 	if (lettres->esc == 1)
 		speak_s->on = 0;
 	SDL_Rect position1 = {50, 50, 558, 70};
-	//printf("JE SUIS LA");
 	text_input(speak_s->speak, 90);
 	SDL_RenderCopy(renderer, img->g->selTextInput, NULL, &position1);
 	blit_text(position1, speak_s->speak, 30);
 	if (lettres->enter == 1)
 	{
-		printf("ENTER");
 		moi->speak_timer = 250;
 		sprintf (ordre + strlen(ordre), "%d 20 [%s] ", moi->id, speak_s->speak);
 		speak_s->speak[0] = 0;
