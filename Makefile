@@ -5,6 +5,8 @@ efiles=editmap/init_img.c editmap/select_sprite.c
 Efiles=editmap2/ground.c editmap2/shared_var.c editmap2/init_sprite.c editmap2/clavier.c editmap2/control.c
 EfilesinJfiles=jeu/init_sprite.c jeu/clavier.c jeu/clavier.h jeu/init_sprite.h
 
+all: j s
+
 j:
 	gcc ${cflags} jeu/main.c $(jfiles) -o empireExpense -lSDL2 -lm -lSDL2_mixer
 
@@ -22,3 +24,5 @@ E:
 
 	gcc $(cflags) editmap2/main.c $(Efiles) -o mapEditor -lSDL2 -lm
 
+clean:
+	rm -f empireExpense serveur
