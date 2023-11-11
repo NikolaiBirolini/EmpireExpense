@@ -114,28 +114,15 @@ void gui_event(struct personnages *perso, struct linked_list *list)
 	}
 	//bulle de dialogues
 	const int nb_word_per_line = 30;
-	
 	for (struct linked_list *p = list; p != NULL; p = p->next)
 	{
 		int nb_of_line = strlen(p->p->speak)/nb_word_per_line;
 
-		if (p->p->speak[0] != 0)
-		{
-			if (p->p == perso)
-			{
-				position.y = perso->y + 415 - nb_of_line * 25;
-				position.x = perso->x + 480;
-			}
-			else
-			{
-				SDL_Texture *affiche = select_good_img(p->p);
-				SDL_QueryTexture(affiche, NULL, NULL, &position.w, &position.h);
-				position.x = (/*p->p->x -*/perso->x) * cos(perso->angle) + (/*p->p->y - */perso->y) * sin(perso->angle) + 540 - position.w / 2;
-				position.y = (/*p->p->y -*/perso->y) * cos(perso->angle) - (/*p->p->x - */perso->x) * sin(perso->angle) + 500 - position.h / 2;
-
-			}
-			blit_text(position, p->p->speak, 30);    
-		}
+		position.x = (p->p->x - screenx) * 22 - (p->p->y - screeny) * 22 + 550 - position.w / 2;
+        position.y = (p->p->x - screenx) * 11 + (p->p->y - screeny) * 11 + 485 - position.h / 2 - ground_altitude[lroundf(p->p->x) + lroundf(p->p->y) * max_x] - nb_of_line * 25;
+		
+		blit_text(position, p->p->speak, 30);    
+		
 		if (perso->speak_timer > 0)
 		{
 			perso->speak_timer --;
