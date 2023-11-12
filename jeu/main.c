@@ -19,6 +19,16 @@ int main(int argc, char *argv[])
 	bool guiMode = areArgumentsInitialized(arguments); 
 	printf("Boool: %d\n", guiMode);
 
+    char* ip = NULL;
+	char* port = NULL;
+	bool test = extractIPAndPort(arguments.address, &ip, &port); 
+	printf("BooolTest: %d\n", test);
+	printf("ip: %s\n", ip);
+	printf("port: %s\n", port);
+
+	//free(ip);
+    //free(port);
+
 	lettres = calloc(sizeof(struct lettres), 1);
 	SDL_Init(SDL_INIT_VIDEO);
 	window = SDL_CreateWindow("Empire Expense",

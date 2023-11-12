@@ -2,6 +2,7 @@
 #define ARG_PARSE_H
 
 #include <argp.h>
+#include <string.h>
 #include <stdbool.h>
 
 extern struct argp_option options[];
@@ -11,6 +12,16 @@ struct arguments {
     char* login;
     char* password;
 };
+
+/**
+ * Extracts the IP address and port from a string in the format "IP:Port".
+ * 
+ * @param input - The input string containing the IP address and port.
+ * @param ip - A buffer to store the extracted IP address.
+ * @param port - A buffer to store the extracted port number.
+ * @return true if the format is correct and extraction is successful, false otherwise.
+ */
+bool extractIPAndPort(char* input, char** ip, char** port);
 
 /**
  * Verify if all arguments in the 'args' structure are initialized (not NULL) and meet the requirements.

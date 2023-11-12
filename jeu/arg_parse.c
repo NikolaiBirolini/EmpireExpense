@@ -9,6 +9,19 @@ struct argp_option options[] = {
     {0}
 };
 
+bool extractIPAndPort(char* input, char** ip, char** port) 
+{
+    *ip = strtok(input, ":");
+    *port = strtok(NULL, ":");
+
+    if (*ip == NULL || *port == NULL || strtok(NULL, ":")) 
+    {
+        fprintf(stderr, "\033[31mWrong address format, launch the GUI\033[0m\n");
+        return false;
+    }
+    return true; 
+}
+
 bool verifyEachArgument(struct arguments args)
 {
     bool addressDefined = false;
