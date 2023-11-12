@@ -19,6 +19,7 @@
 #include "init_sound.h"
 #include "btree.h"
 #include "shared_var.h"
+#include "arg_parse.h"
 #include <time.h>
 
 void set_pos(SDL_Rect *pos, int x, int y);

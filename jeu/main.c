@@ -1,7 +1,21 @@
 #include "main.h"
 
-int main(void)
+int main(int argc, char *argv[])
 {
+	struct arguments arguments;
+
+    argp_parse(&argp, argc, argv, 0, 0, &arguments);
+
+	if (arguments.address) {
+        printf("Address specified: %s\n", arguments.address);
+    }
+    if (arguments.login) {
+        printf("Login specified: %s\n", arguments.login);
+    }
+    if (arguments.password) {
+        printf("Password specified: %s\n", arguments.password);
+    }
+
 	lettres = calloc(sizeof(struct lettres), 1);
 	SDL_Init(SDL_INIT_VIDEO);
 	window = SDL_CreateWindow("Empire Expense",
