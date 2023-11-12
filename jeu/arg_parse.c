@@ -9,7 +9,6 @@ struct argp_option options[] = {
     {0}
 };
 
-
 bool verifyEachArgument(struct arguments args)
 {
     bool addressDefined = false;
@@ -28,9 +27,7 @@ bool verifyEachArgument(struct arguments args)
     {
         passwordDefined = true;
     }
-
     return addressDefined && loginDefined && passwordDefined;
-
 }
 
 bool areArgumentsInitialized(struct arguments args) 
