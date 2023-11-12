@@ -9,6 +9,48 @@ struct argp_option options[] = {
     {0}
 };
 
+
+bool verifyEachArgument(struct arguments args)
+{
+    bool addressDefined = false;
+    bool loginDefined = false;
+    bool passwordDefined = false;
+
+    if(args.address != NULL)
+    {
+        addressDefined = true;
+    }
+    if(args.login != NULL)
+    {
+        loginDefined = true;
+    }
+    if(args.password != NULL)
+    {
+        passwordDefined = true;
+    }
+
+    return addressDefined && loginDefined && passwordDefined;
+
+}
+
+bool areArgumentsInitialized(struct arguments args) 
+{
+    bool notAllDefined = verifyEachArgument(args);
+
+    if (args.address == NULL && args.login == NULL && args.password == NULL) {
+        return false;
+    }
+    else if (!notAllDefined)
+    {
+        fprintf(stderr, "\033[31mAll arguments were not initialized, launch the GUI\033[0m\n");
+        return false;
+    } 
+    else 
+    {
+        return true;
+    }
+}
+
 error_t parse_opt(int key, char *arg, struct argp_state *state) 
 {
     struct arguments *arguments = state->input;

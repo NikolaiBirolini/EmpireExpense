@@ -16,6 +16,9 @@ int main(int argc, char *argv[])
         printf("Password specified: %s\n", arguments.password);
     }
 
+	bool guiMode = areArgumentsInitialized(arguments); 
+	printf("Boool: %d\n", guiMode);
+
 	lettres = calloc(sizeof(struct lettres), 1);
 	SDL_Init(SDL_INIT_VIDEO);
 	window = SDL_CreateWindow("Empire Expense",
