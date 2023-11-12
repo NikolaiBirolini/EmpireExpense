@@ -2,11 +2,20 @@
 
 int main(int argc, char *argv[])
 {
+	bool validAddress = false;
+	char* ip = NULL;
+	char* port = NULL;
+
 	struct arguments arguments;
 
     argp_parse(&argp, argc, argv, 0, 0, &arguments);
 
 	if (arguments.address) {
+		
+	    validAddress = extractIPAndPort(arguments.address, &ip, &port); 
+	    printf("BooolTest: %d\n", validAddress);
+	    printf("ip: %s\n", ip);
+	    printf("port: %s\n", port);
         printf("Address specified: %s\n", arguments.address);
     }
     if (arguments.login) {
@@ -19,52 +28,58 @@ int main(int argc, char *argv[])
 	bool guiMode = areArgumentsInitialized(arguments); 
 	printf("Boool: %d\n", guiMode);
 
-    char* ip = NULL;
-	char* port = NULL;
-	bool test = extractIPAndPort(arguments.address, &ip, &port); 
-	printf("BooolTest: %d\n", test);
-	printf("ip: %s\n", ip);
-	printf("port: %s\n", port);
-
-	//free(ip);
-    //free(port);
-
-	lettres = calloc(sizeof(struct lettres), 1);
-	SDL_Init(SDL_INIT_VIDEO);
-	window = SDL_CreateWindow("Empire Expense",
-			SDL_WINDOWPOS_UNDEFINED,
-			SDL_WINDOWPOS_UNDEFINED,
-			1800,1000,
-			SDL_WINDOW_OPENGL);
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
-	    printf ("no sound\n");
-	img = init_img();
-	sons = init_sound();
-	Mix_PlayMusic(sons->menu, 1);
-	int socket = menu_connection();
-	if (socket == -1)
+    if (!guiMode && !validAddress)
 	{
-		free_malloc();
-		SDL_Quit();
-		return 1;
+	    lettres = calloc(sizeof(struct lettres), 1);
+	    SDL_Init(SDL_INIT_VIDEO);
+	    window = SDL_CreateWindow("Empire Expense",
+	    		SDL_WINDOWPOS_UNDEFINED,
+	    		SDL_WINDOWPOS_UNDEFINED,
+	    		1800,1000,
+	    		SDL_WINDOW_OPENGL);
+	    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+	    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+	        printf ("no sound\n");
+	    img = init_img();
+	    sons = init_sound();
+	    Mix_PlayMusic(sons->menu, 1);
+	    int socket = menu_connection();
+	    if (socket == -1)
+	    {
+	    	free_malloc();
+	    	SDL_Quit();
+	    	return 1;
+	    }
+	    char *name = log_menu(socket);
+	    if (name == NULL)
+	    {
+	    	free_malloc();
+	    	SDL_Quit();
+	    	return 1;
+	    }
+	    if (start_menu(socket) < 0)
+	    {
+	    	free_malloc();
+	    	SDL_Quit();
+	    	return -1;
+	    }
+	    boucle_jeu(socket, name);
+	    free_malloc();
+	    SDL_Quit();
 	}
-	char *name = log_menu(socket);
-	if (name == NULL)
+	else
 	{
-		free_malloc();
-		SDL_Quit();
-		return 1;
+		int socket = try_connect(ip, port);
+		char *to_send = calloc(101,1);
+		chifrage(arguments.password, arguments.login);
+		strcat(to_send, arguments.login);
+		strcat(to_send, " ");
+		strcat(to_send, arguments.password);
+		send(socket, to_send, 101, 0);
+		boucle_jeu(socket, arguments.login);
+	    //free_malloc();
+	    SDL_Quit();
 	}
-	if (start_menu(socket) < 0)
-	{
-		free_malloc();
-		SDL_Quit();
-		return -1;
-	}
-	boucle_jeu(socket, name);
-	free_malloc();
-	SDL_Quit();
 }
 
 void free_malloc()
