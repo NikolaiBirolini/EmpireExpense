@@ -10,39 +10,29 @@ int main(int argc, char *argv[])
 
     argp_parse(&argp, argc, argv, 0, 0, &arguments);
 
-	if (arguments.address) {
-		
+	if (arguments.address) 
+	{	
 	    validAddress = extractIPAndPort(arguments.address, &ip, &port); 
-	    printf("BooolTest: %d\n", validAddress);
-	    printf("ip: %s\n", ip);
-	    printf("port: %s\n", port);
-        printf("Address specified: %s\n", arguments.address);
-    }
-    if (arguments.login) {
-        printf("Login specified: %s\n", arguments.login);
-    }
-    if (arguments.password) {
-        printf("Password specified: %s\n", arguments.password);
     }
 
 	bool guiMode = areArgumentsInitialized(arguments); 
-	printf("Boool: %d\n", guiMode);
+
+	lettres = calloc(sizeof(struct lettres), 1);
+	SDL_Init(SDL_INIT_VIDEO);
+	window = SDL_CreateWindow("Empire Expense",
+		SDL_WINDOWPOS_UNDEFINED,
+		SDL_WINDOWPOS_UNDEFINED,
+		1800,1000,
+		SDL_WINDOW_OPENGL);
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+	    printf ("no sound\n");
+	img = init_img();
+	sons = init_sound();
+	Mix_PlayMusic(sons->menu, 1);
 
     if (!guiMode && !validAddress)
-	{
-	    lettres = calloc(sizeof(struct lettres), 1);
-	    SDL_Init(SDL_INIT_VIDEO);
-	    window = SDL_CreateWindow("Empire Expense",
-	    		SDL_WINDOWPOS_UNDEFINED,
-	    		SDL_WINDOWPOS_UNDEFINED,
-	    		1800,1000,
-	    		SDL_WINDOW_OPENGL);
-	    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-	    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
-	        printf ("no sound\n");
-	    img = init_img();
-	    sons = init_sound();
-	    Mix_PlayMusic(sons->menu, 1);
+	{    
 	    int socket = menu_connection();
 	    if (socket == -1)
 	    {
@@ -69,6 +59,8 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
+		char *boolean_rep = malloc(1);
+	    boolean_rep[0] = 'p';
 		int socket = try_connect(ip, port);
 		char *to_send = calloc(101,1);
 		chifrage(arguments.password, arguments.login);
@@ -76,8 +68,19 @@ int main(int argc, char *argv[])
 		strcat(to_send, " ");
 		strcat(to_send, arguments.password);
 		send(socket, to_send, 101, 0);
+		while (boolean_rep[0] == 'p')
+		{
+			recv(socket, boolean_rep, 1, 0);
+		}
+		char *c = malloc(101);
+		c[0] = 'p';
+		send(socket, c, 1, 0);
+		while (c[0] == 'p')
+			recv(socket, c, 1, 0);
+		free(c);
+		free(boolean_rep);
 		boucle_jeu(socket, arguments.login);
-	    //free_malloc();
+	    free_malloc();
 	    SDL_Quit();
 	}
 }
