@@ -29,3 +29,15 @@ int menu_connection();
 int start_menu(int socket);
 void free_malloc();
 
+/**
+ * @brief Handles errors and performs cleanup operations.
+ *
+ * This function is used to handle errors, free dynamically allocated memory,
+ * and shut down the SDL library.
+ *
+ * @param errorCode The error code to be returned at the end of the program.
+ *
+ * @return N/A (the function exits the program with the specified error code).
+ */
+void handleErrorsAndCleanup(int errorCode);
+

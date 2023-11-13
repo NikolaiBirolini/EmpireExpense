@@ -36,22 +36,16 @@ int main(int argc, char *argv[])
 	    int socket = menu_connection();
 	    if (socket == -1)
 	    {
-	    	free_malloc();
-	    	SDL_Quit();
-	    	return 1;
+	    	handleErrorsAndCleanup(1); 
 	    }
 	    char *name = log_menu(socket);
 	    if (name == NULL)
 	    {
-	    	free_malloc();
-	    	SDL_Quit();
-	    	return 1;
+	    	handleErrorsAndCleanup(1); 
 	    }
 	    if (start_menu(socket) < 0)
 	    {
-	    	free_malloc();
-	    	SDL_Quit();
-	    	return -1;
+	    	handleErrorsAndCleanup(-1); 
 	    }
 	    boucle_jeu(socket, name);
 	    free_malloc();
@@ -63,26 +57,44 @@ int main(int argc, char *argv[])
 	    boolean_rep[0] = 'p';
 		int socket = try_connect(ip, port);
 		char *to_send = calloc(101,1);
-		chifrage(arguments.password, arguments.login);
-		strcat(to_send, arguments.login);
-		strcat(to_send, " ");
-		strcat(to_send, arguments.password);
+
+		chiffrage(arguments.password, arguments.login);
+		sprintf (to_send, "%s %s", arguments.login, arguments.password);
 		send(socket, to_send, 101, 0);
+
 		while (boolean_rep[0] == 'p')
 		{
 			recv(socket, boolean_rep, 1, 0);
 		}
-		char *c = malloc(101);
-		c[0] = 'p';
-		send(socket, c, 1, 0);
-		while (c[0] == 'p')
-			recv(socket, c, 1, 0);
-		free(c);
+
+		to_send[0] = 'p';
+        send(socket, to_send, 1, 0);
+        boolean_rep[0] = 'p';
+        
+		while (boolean_rep[0] == 'p')
+        {
+            recv(socket, boolean_rep, 1, 0);
+        }
+		
+		if (boolean_rep[0] == 'o')
+		{
+		    boucle_jeu(socket, arguments.login);
+		}
+		else
+		{
+			fprintf(stderr, "\033[31mFailed to log\033[0m\n");
+		}
 		free(boolean_rep);
-		boucle_jeu(socket, arguments.login);
 	    free_malloc();
 	    SDL_Quit();
 	}
+}
+
+void handleErrorsAndCleanup(int errorCode) 
+{
+    free_malloc();
+    SDL_Quit();
+    exit(errorCode);
 }
 
 void free_malloc()
@@ -379,7 +391,7 @@ char *log_menu(int socket)
 		{
 			tryed = 127;
 			char *to_send = calloc(101,1);
-			chifrage(mdp,nom);
+			chiffrage(mdp,nom);
 			strcat(to_send, nom);
 			strcat(to_send, " ");
 			strcat(to_send, mdp);
