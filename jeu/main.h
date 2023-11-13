@@ -19,6 +19,7 @@
 #include "init_sound.h"
 #include "btree.h"
 #include "shared_var.h"
+#include "arg_parse.h"
 #include <time.h>
 
 void set_pos(SDL_Rect *pos, int x, int y);
@@ -27,4 +28,34 @@ char *log_menu(int socket);
 int menu_connection();
 int start_menu(int socket);
 void free_malloc();
+
+/**
+ * @brief Handles errors and performs cleanup operations.
+ *
+ * This function is used to handle errors, free dynamically allocated memory,
+ * and shut down the SDL library.
+ *
+ * @param errorCode The error code to be returned at the end of the program.
+ *
+ * @return N/A (the function exits the program with the specified error code).
+ */
+void handleErrorsAndCleanup(int errorCode);
+
+
+/**
+ * @brief Communicates with a server over a socket and waits for a response.
+ *
+ * This function sends data to a server using the provided socket and then waits for
+ * a response. It checks the response and handles errors accordingly. If the response
+ * is 'p', it continues waiting; if the response is 'o', the function returns.
+ * If there is an error during communication or if the response is not 'o', it handles
+ * the error and exits the program.
+ *
+ * @param socket The socket to communicate with the server.
+ * @param to_send The data to send to the server.
+ * @param size The size of the data to send.
+ * @param flags The flags to control the behavior of the send function.
+ *
+ */
+void communicateWithServer(int socket, char* to_send, int size, int flags);
 

@@ -1,43 +1,82 @@
 #include "main.h"
 
-int main(void)
+int main(int argc, char *argv[])
 {
+	bool validAddress = false;
+	char* ip = NULL;
+	char* port = NULL;
+
+	struct arguments arguments;
+
+    argp_parse(&argp, argc, argv, 0, 0, &arguments);
+
+	if (arguments.address) 
+	{	
+	    validAddress = extractIPAndPort(arguments.address, &ip, &port); 
+    }
+
+	bool guiMode = areArgumentsInitialized(arguments); 
+
 	lettres = calloc(sizeof(struct lettres), 1);
 	SDL_Init(SDL_INIT_VIDEO);
 	window = SDL_CreateWindow("Empire Expense",
-			SDL_WINDOWPOS_UNDEFINED,
-			SDL_WINDOWPOS_UNDEFINED,
-			1800,1000,
-			SDL_WINDOW_OPENGL);
+		SDL_WINDOWPOS_UNDEFINED,
+		SDL_WINDOWPOS_UNDEFINED,
+		1800,1000,
+		SDL_WINDOW_OPENGL);
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
 	    printf ("no sound\n");
 	img = init_img();
 	sons = init_sound();
 	Mix_PlayMusic(sons->menu, 1);
-	int socket = menu_connection();
-	if (socket == -1)
-	{
-		free_malloc();
-		SDL_Quit();
-		return 1;
+
+    if (!guiMode && !validAddress)
+	{    
+	    int socket = menu_connection();
+	    if (socket == -1)
+	    {
+	    	handleErrorsAndCleanup(1); 
+	    }
+	    char *name = log_menu(socket);
+	    if (name == NULL)
+	    {
+	    	handleErrorsAndCleanup(1); 
+	    }
+	    if (start_menu(socket) < 0)
+	    {
+	    	handleErrorsAndCleanup(-1); 
+	    }
+	    boucle_jeu(socket, name);
+	    free_malloc();
+	    SDL_Quit();
 	}
-	char *name = log_menu(socket);
-	if (name == NULL)
+	else
 	{
-		free_malloc();
-		SDL_Quit();
-		return 1;
+		int socket = try_connect(ip, port);
+		char *to_send = calloc(101,1);
+
+		chiffrage(arguments.password, arguments.login);
+		sprintf (to_send, "%s %s", arguments.login, arguments.password);
+
+		communicateWithServer(socket, to_send, 101, 0); 
+
+		to_send[0] = 'p';
+        
+		communicateWithServer(socket, to_send, 1, 0); 
+		
+		boucle_jeu(socket, arguments.login);
+
+	    free_malloc();
+	    SDL_Quit();
 	}
-	if (start_menu(socket) < 0)
-	{
-		free_malloc();
-		SDL_Quit();
-		return -1;
-	}
-	boucle_jeu(socket, name);
-	free_malloc();
-	SDL_Quit();
+}
+
+void handleErrorsAndCleanup(int errorCode) 
+{
+    free_malloc();
+    SDL_Quit();
+    exit(errorCode);
 }
 
 void free_malloc()
@@ -45,6 +84,29 @@ void free_malloc()
 	free(img);
 	free(lettres);
 }
+
+void communicateWithServer(int socket, char* to_send, int size, int flags) 
+{
+	if(send(socket, to_send, size, flags))
+	{
+		char* boolean_rep = malloc(1);
+	    boolean_rep[0] = 'p';
+		while (*boolean_rep == 'p') 
+	    {
+            recv(socket, boolean_rep, 1, 0);
+        }
+	    if (boolean_rep[0] != 'o')
+	    {
+	    	free(boolean_rep);
+	        handleErrorsAndCleanup(1);
+	    }
+	}
+	else
+	{
+		fprintf(stderr, "\033[31mSend data to server failed\033[0m\n");
+		handleErrorsAndCleanup(1);
+	}
+}   
 
 void boucle_jeu(int socket, char *name)
 {
@@ -334,7 +396,7 @@ char *log_menu(int socket)
 		{
 			tryed = 127;
 			char *to_send = calloc(101,1);
-			chifrage(mdp,nom);
+			chiffrage(mdp,nom);
 			strcat(to_send, nom);
 			strcat(to_send, " ");
 			strcat(to_send, mdp);
