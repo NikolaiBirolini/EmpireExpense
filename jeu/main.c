@@ -53,38 +53,20 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-		char *boolean_rep = malloc(1);
-	    boolean_rep[0] = 'p';
 		int socket = try_connect(ip, port);
 		char *to_send = calloc(101,1);
 
 		chiffrage(arguments.password, arguments.login);
 		sprintf (to_send, "%s %s", arguments.login, arguments.password);
-		send(socket, to_send, 101, 0);
 
-		while (boolean_rep[0] == 'p')
-		{
-			recv(socket, boolean_rep, 1, 0);
-		}
+		communicateWithServer(socket, to_send, 101, 0); 
 
 		to_send[0] = 'p';
-        send(socket, to_send, 1, 0);
-        boolean_rep[0] = 'p';
         
-		while (boolean_rep[0] == 'p')
-        {
-            recv(socket, boolean_rep, 1, 0);
-        }
+		communicateWithServer(socket, to_send, 1, 0); 
 		
-		if (boolean_rep[0] == 'o')
-		{
-		    boucle_jeu(socket, arguments.login);
-		}
-		else
-		{
-			fprintf(stderr, "\033[31mFailed to log\033[0m\n");
-		}
-		free(boolean_rep);
+		boucle_jeu(socket, arguments.login);
+
 	    free_malloc();
 	    SDL_Quit();
 	}
@@ -102,6 +84,29 @@ void free_malloc()
 	free(img);
 	free(lettres);
 }
+
+void communicateWithServer(int socket, char* to_send, int size, int flags) 
+{
+	if(send(socket, to_send, size, flags))
+	{
+		char* boolean_rep = malloc(1);
+	    boolean_rep[0] = 'p';
+		while (*boolean_rep == 'p') 
+	    {
+            recv(socket, boolean_rep, 1, 0);
+        }
+	    if (boolean_rep[0] != 'o')
+	    {
+	    	free(boolean_rep);
+	        handleErrorsAndCleanup(1);
+	    }
+	}
+	else
+	{
+		fprintf(stderr, "\033[31mSend data to server failed\033[0m\n");
+		handleErrorsAndCleanup(1);
+	}
+}   
 
 void boucle_jeu(int socket, char *name)
 {
