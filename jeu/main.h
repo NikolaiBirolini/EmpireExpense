@@ -26,8 +26,6 @@ void set_pos(SDL_Rect *pos, int x, int y);
 void boucle_jeu(int socket, char *name);
 char *log_menu(int socket);
 int menu_connection();
-int start_menu(int socket);
-void free_malloc();
 
 /**
  * @brief Handles errors and performs cleanup operations.

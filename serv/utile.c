@@ -56,14 +56,6 @@ struct linked_client *remove_linked(struct linked_client *list, int socket)
     return list;
 }
 
-int have_char(char *name)
-{
-    for (struct personnages *l = list; l != NULL; l = l->next)
-        if (strcmp(l->nom_de_compte, name) == 0)
-            return 1;
-    return -1;
-}
-
 int find_smalest_valid_id(int from)
 {
     for (struct personnages *l = list; l != NULL; l = l->next)

@@ -2,21 +2,6 @@
 
 int main(int argc, char *argv[])
 {
-	bool validAddress = false;
-	char* ip = NULL;
-	char* port = NULL;
-
-	struct arguments arguments;
-
-    argp_parse(&argp, argc, argv, 0, 0, &arguments);
-
-	if (arguments.address) 
-	{	
-	    validAddress = extractIPAndPort(arguments.address, &ip, &port); 
-    }
-
-	bool guiMode = areArgumentsInitialized(arguments); 
-
 	lettres = calloc(sizeof(struct lettres), 1);
 	SDL_Init(SDL_INIT_VIDEO);
 	window = SDL_CreateWindow("Empire Expense",
@@ -31,58 +16,46 @@ int main(int argc, char *argv[])
 	sons = init_sound();
 	Mix_PlayMusic(sons->menu, 1);
 
+	bool validAddress = false;
+	char* ip = NULL;
+	char* port = NULL;
+	struct arguments arguments;
+    argp_parse(&argp, argc, argv, 0, 0, &arguments);
+	if (arguments.address) 
+	    validAddress = extractIPAndPort(arguments.address, &ip, &port); 
+	bool guiMode = areArgumentsInitialized(arguments); 
+
     if (!guiMode && !validAddress)
 	{    
 	    int socket = menu_connection();
 	    if (socket == -1)
-	    {
 	    	handleErrorsAndCleanup(1); 
-	    }
 	    char *name = log_menu(socket);
 	    if (name == NULL)
-	    {
 	    	handleErrorsAndCleanup(1); 
-	    }
-	    if (start_menu(socket) < 0)
-	    {
-	    	handleErrorsAndCleanup(-1); 
-	    }
 	    boucle_jeu(socket, name);
-	    free_malloc();
-	    SDL_Quit();
+	    handleErrorsAndCleanup(0);
 	}
 	else
 	{
 		int socket = try_connect(ip, port);
 		char *to_send = calloc(101,1);
-
 		chiffrage(arguments.password, arguments.login);
 		sprintf (to_send, "%s %s", arguments.login, arguments.password);
-
 		communicateWithServer(socket, to_send, 101, 0); 
-
-		to_send[0] = 'p';
-        
-		communicateWithServer(socket, to_send, 1, 0); 
-		
+		//to_send[0] = 'p';
+		//communicateWithServer(socket, to_send, 1, 0); 
 		boucle_jeu(socket, arguments.login);
-
-	    free_malloc();
-	    SDL_Quit();
+	    handleErrorsAndCleanup(0);
 	}
 }
 
 void handleErrorsAndCleanup(int errorCode) 
 {
-    free_malloc();
+    free(img);
+	free(lettres);
     SDL_Quit();
     exit(errorCode);
-}
-
-void free_malloc()
-{
-	free(img);
-	free(lettres);
 }
 
 void communicateWithServer(int socket, char* to_send, int size, int flags) 
@@ -92,9 +65,7 @@ void communicateWithServer(int socket, char* to_send, int size, int flags)
 		char* boolean_rep = malloc(1);
 	    boolean_rep[0] = 'p';
 		while (*boolean_rep == 'p') 
-	    {
             recv(socket, boolean_rep, 1, 0);
-        }
 	    if (boolean_rep[0] != 'o')
 	    {
 	    	free(boolean_rep);
@@ -194,146 +165,6 @@ void set_pos(SDL_Rect *pos, int x, int y)
 {
 	pos->x = x;
 	pos->y = y;
-}
-
-int start_menu(int socket)
-{
-	char err1[] = "Vous avez deja un personnage.";
-	char err2[] = "Veuillez cree un personnage";
-	char txt1[] = "Jouer";
-	char txt2[] = "Creer un personnage";
-	char txt3[] = "Nom du personnage";
-	char txt4[] = "Zone";
-	char zone[50] = "";
-	char nom[50] = "";
-	SDL_Rect position1 = {100, 100, 558, 70};
-	SDL_Rect position2 = {100, 200, 558, 70};
-	SDL_Rect position3;
-	SDL_Rect position4;
-	SDL_Rect position5;
-	set_pos(&position3, 100, 300);
-	set_pos(&position4, 100, 70);
-	set_pos(&position5, 100, 170);
-	char play = 0;
-	char sel = 1;
-	int tryed = -127;
-	char *c = malloc(101);
-	char create = 0;
-	while (play ==  0)
-	{
-		SDL_RenderClear(renderer);
-		gestion_touche();
-		SDL_RenderCopy(renderer, img->t->fond, NULL, NULL);
-		if (lettres->exit == 1)
-		{
-			return -1;
-		}
-		if (create == 0)
-		{
-			if (tryed > -126)
-			{
-				blit_text(position3, err2, 99);
-				tryed --;
-			}
-			if (sel == 1)
-			{
-				SDL_RenderCopy(renderer, img->g->selTextInput, NULL, &position1);
-				SDL_RenderCopy(renderer, img->g->textInput, NULL, &position2);
-				if (lettres->tab == 1)
-				{
-					sel = 2;
-					lettres->tab = 0;
-				}
-				if (lettres->enter == 1)
-				{
-					c[0] = 'p';
-					send(socket, c, 1, 0);
-					while (c[0] == 'p')
-						recv(socket, c, 1, 0);
-					if (c[0] == 'o')
-						return 1;
-					else
-						tryed = 127;
-					lettres->enter = 0;
-				}
-			}
-			else
-			{
-				SDL_RenderCopy(renderer, img->g->selTextInput, NULL, &position2);
-				SDL_RenderCopy(renderer, img->g->textInput, NULL, &position1);
-				if (lettres->tab == 1)
-				{
-					sel = 1;
-					lettres->tab = 0;
-				}
-				if (lettres->enter == 1)
-				{
-					create = 1;
-					lettres->enter = 0;
-				}
-			}
-			blit_text(position2,txt2, 20);
-			blit_text(position1,txt1, 20);
-		}
-		else
-		{
-			if (tryed > -126)
-			{
-				blit_text(position3, err1, 99);
-				tryed --;
-			}
-			if (sel == 1)
-			{
-				SDL_RenderCopy(renderer, img->g->selTextInput, NULL, &position1);
-				SDL_RenderCopy(renderer, img->g->textInput, NULL, &position2);
-				if (lettres->tab == 1)
-				{
-					lettres->tab = 0;
-					sel = 2;
-				}
-				text_input(nom, 50);
-			}
-			else
-			{
-				SDL_RenderCopy(renderer, img->g->selTextInput, NULL, &position2);
-				SDL_RenderCopy(renderer, img->g->textInput, NULL, &position1);
-				if (lettres->tab == 1)
-				{
-					lettres->tab = 0;
-					sel = 1;
-				}
-				text_input(zone, 50);
-			}
-			if (lettres->enter == 1)	
-			{
-				c[0] = 'c';
-				c[1] = 0;
-				strcat(c, nom);
-				strcat(c, " ");
-				strcat(c, zone);
-				send(socket, c, strlen(c), 0);
-				while (c[0] == 'c')
-					recv(socket, c, 1, 0);
-				if (c[0] == 'o')
-					return 1;
-				else
-					tryed = 127;
-				lettres->enter = 0;
-			}
-			if (lettres->esc == 1)
-			{
-				lettres->esc = 0;
-				create = 0;
-			}
-			blit_text(position4,txt3, 20);
-			blit_text(position5,txt4, 20);
-			blit_text(position1,nom, 20);
-			blit_text(position2,zone, 20);
-		}
-		SDL_RenderPresent(renderer);
-	}
-	free(c);
-	return 1;
 }
 
 char *log_menu(int socket)
