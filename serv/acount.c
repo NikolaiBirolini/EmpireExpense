@@ -1,6 +1,6 @@
 #include "acount.h"
 
-void cut(char *str, char cutter)
+char *cut(char *str, char cutter)
 {
     int i = 0;
     while (str[i] != 0)
@@ -8,11 +8,28 @@ void cut(char *str, char cutter)
         if (str[i] == cutter)
         {
             str[i] = 0;
-            return;
+            return str;
         }
         i++;
     }
+    return NULL;
 }
+
+int have_char(char *name)
+{
+    char espace = 0;
+    for (int i = 0; name[i] != 0; i++)
+        if (name[i] == ' ')
+            espace = 1;
+    if (espace == 0)
+        return -1;
+    cut(name, ' ');
+    for (struct personnages *l = list; l != NULL; l = l->next)
+        if (strcmp(l->nom_de_compte, name) == 0)
+            return 1;
+    return -1;
+}
+
 
 int open_acount(char *test)
 {
