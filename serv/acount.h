@@ -4,6 +4,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include "deschiffrement.h"
+#include "utile.h"
 
 int open_acount(char *test);
-void cut(char *str, char cutter);
+char *cut(char *str, char cutter);
+int have_char(char *name);

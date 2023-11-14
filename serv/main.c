@@ -230,36 +230,17 @@ int main(int argc, char **argv)
                         buf[count] = 0;
                         if (statut[events[i].data.fd] == 0)
                         {
-							if (open_acount(buf) == 1) // good acount and password
+							if (open_acount(buf) == 1 && have_char(buf) == 1) // good acount and password
 							{
 								statut[events[i].data.fd] = 1;
 								s = write (events[i].data.fd, "o", 1);
-								cut(buf, ' ');
 								sprintf(c_names[events[i].data.fd], buf);
+                                send_background(events[i].data.fd, ground, size_ground);
+                                send_map(events[i].data.fd);
 							}
 							else
 								s = write (events[i].data.fd, "n", 1);
                         }
-						else if (statut[events[i].data.fd] == 1)
-						{
-							if (buf[0] == 'p' && have_char(c_names[events[i].data.fd]) == 1)
-		                    {
-								s = write (events[i].data.fd, "o", 1);
-		                        send_background(events[i].data.fd, ground, size_ground);
-		                        send_map(events[i].data.fd);
-								statut[events[i].data.fd] = 2;
-                    		}
-							else if (buf[0] == 'c' && have_char(c_names[events[i].data.fd]) != 1)
-							{
-								s = write (events[i].data.fd, "o", 1);
-								create_new_char(c_names[events[i].data.fd]);
-		                        send_background(events[i].data.fd, ground, size_ground);
-		                        send_map(events[i].data.fd);
-								statut[events[i].data.fd] = 2;
-							}
-							else
-								s = write (events[i].data.fd, "n", 1);
-						}
                         else
 						{
 							parse_order(buf); 
@@ -286,7 +267,7 @@ int main(int argc, char **argv)
             collision();
             int size = generate_order(order);
             for (int i = 4; i < MAXEVENTS + 5;i++)
-            	if (statut[i] == 2)
+            	if (statut[i] == 1)
 				{
 					//printf("%d : [%s %s]\n", i, order, order + 20);
                 	send(i, order, size + 20, MSG_NOSIGNAL);
