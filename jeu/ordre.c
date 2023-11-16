@@ -1,9 +1,7 @@
 #include "ordre.h"
 
-struct linked_list *select(struct linked_list *list, struct linked_list *selected)
-{
-	
-	
+struct linked_list *select(struct linked_list *selected)
+{	
 	if (lettres->Mouse_Lclick == 1)
 	{
 		lettres->Mouse_Lclick = 0;

@@ -56,3 +56,4 @@ void handleErrorsAndCleanup(int errorCode);
  *
  */
 void communicateWithServer(int socket, char* to_send, int size, int flags);
+

@@ -1,4 +1,6 @@
 #include "net.h"
+#include "shared_var.h"
+#include "diplo.h"
 
 char ordre[9999];
 
@@ -16,7 +18,7 @@ int try_connect(char *ip, char *port) // Connecter
 	return -1;
 }
 
-void recv_order(int socket, struct linked_list *list)
+void recv_order(int socket)
 {
 	char *buffer = calloc(20, sizeof(char));
 	recv(socket, buffer, 20, 0);
@@ -48,7 +50,7 @@ void recv_order(int socket, struct linked_list *list)
 			actualise_stat(yalist);
 		}
 		else
-			list = append_perso(list, &buffer);
+			list = append_perso(&buffer);
 	}
 	free(pos_buf);
 }

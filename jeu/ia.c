@@ -1,22 +1,26 @@
 #include "ia.h"
+#include "perso.h"
+#include "net.h"
+#include "pathfinding.h"
+#include "shared_var.h"
 
-void ia(struct linked_list *list, char *array)
+void ia(char *array)
 {
 	for (struct linked_list *parcour = list; parcour != NULL; parcour = parcour->next)
 	{
 		if (strcmp(parcour->p->nom_de_compte, "none") == 0)
 		{
 			if (strncmp(parcour->p->skin, "ship", 4) == 0)
-				ia_ship(list, parcour);
+				ia_ship(parcour);
 			else if (strcmp(parcour->p->skin, "chateau") == 0 || strcmp(parcour->p->skin, "tour") == 0)
-				ia_build(list, parcour);
+				ia_build(parcour);
 			else if (strncmp(parcour->p->skin, "arbre", 5) == 0)
-				ia_arbre(list, parcour);
+				ia_arbre(parcour);
 			else if (strncmp(parcour->p->skin, "fruit", 5) == 0)
 				ia_fruit(parcour, array);
 			else if (strcmp(parcour->p->skin, "flag_zone") == 0)
 				ia_flag(parcour);
-			ia_man(list, parcour, array);
+			ia_man(parcour, array);
 		}
 	}
 }
@@ -41,23 +45,23 @@ void ia_fruit(struct linked_list *parcour, char *ground)
 	}
 }
 
-void ia_arbre(struct linked_list *list, struct linked_list *parcour)
+void ia_arbre(struct linked_list *parcour)
 {
 	list = list;
 	parcour = parcour;
 }
 
-void ia_build(struct linked_list *list, struct linked_list *parcour)
+void ia_build(struct linked_list *parcour)
 {
 	if (strcmp(parcour->p->echange_player, "none") != 0)
 	{
-		struct personnages *p = find_perso_by_name(list, parcour->p->echange_player);
+		struct personnages *p = find_perso_by_name(parcour->p->echange_player);
 		if (p != NULL)
 			echange_item(parcour->p, p);
 	}
 }
 
-void ia_ship(struct linked_list *list, struct linked_list *parcour)
+void ia_ship(struct linked_list *parcour)
 {
 	list = list;
 	parcour = parcour;
@@ -132,7 +136,7 @@ void ia_ship(struct linked_list *list, struct linked_list *parcour)
 	*/
 }
 
-void ia_man(struct linked_list *list, struct linked_list *parcour, char *array)
+void ia_man(struct linked_list *parcour, char *array)
 {
 	if (parcour->p->faim < 0)
 		sprintf (ordre + strlen(ordre), "%d 00 -1 ", parcour->p->id);

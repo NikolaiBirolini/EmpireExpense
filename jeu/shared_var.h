@@ -12,3 +12,4 @@ extern SDL_Window *window;
 extern int max_x;
 extern int max_y;
 extern struct lettres *lettres;
+extern struct linked_list *list;

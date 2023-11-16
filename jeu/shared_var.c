@@ -9,3 +9,4 @@ struct img *img;
 SDL_Renderer *renderer;
 SDL_Window *window;
 struct lettres *lettres;
+struct linked_list *list;

@@ -169,9 +169,12 @@ void create_array(char *ground_string)
 			i += 4;
 		};
 		ground_altitude[j] = atoi(ground_string + i);
-		while (ground_string[i] != ' ' && ground_string[i] != '\n')
-				i++;
+		while (ground_string[i] != ' ' && ground_string[i] != '\n' && ground_string[i] != 0)
 			i++;
+		if (ground_string[i] == 0)
+			return;
+		i++;
+
 	}
 	i++;
 }

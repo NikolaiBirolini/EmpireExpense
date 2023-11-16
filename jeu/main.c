@@ -84,8 +84,8 @@ void boucle_jeu(int socket, char *name)
 	char *ground = rec_ground(socket);
 	create_array(ground);
 	free(ground);
-	struct linked_list *list = recv_map(socket, NULL);
-    struct personnages *moi = find_perso_by_name(list, name);	
+	list = recv_map(socket);
+    struct personnages *moi = find_perso_by_name(name);	
 	struct linked_list *selected = NULL;
 	//peux être faire une sous fonction pour init tout ca
 	struct menu *menu_s = malloc(sizeof(struct menu));
@@ -123,7 +123,7 @@ void boucle_jeu(int socket, char *name)
 		if (menu_s->on == 0 && speak_s->on == 0)
 		{
 			deplacement(moi);
-			selected = select(list, selected);
+			selected = select(selected);
 			commande(selected, moi, f);
 			if (lettres->m == 1)
 			{
@@ -142,19 +142,19 @@ void boucle_jeu(int socket, char *name)
 			}
 		}
 		else if (menu_s->on == 1)
-			menu(menu_s, moi, list);
+			menu(menu_s, moi);
 		else
 			talk(speak_s, moi);
 		char *grille_cp = actualise_array(list);
-		ia(list, grille_cp);
+		ia(grille_cp);
 		free(grille_cp);
-		gui_event(moi, list);
-		fix_some_shit(list);
+		gui_event(moi);
+		fix_some_shit();
 		send_orders(socket);
-		recv_order(socket, list);
-		list = death(list);
+		recv_order(socket);
+		list = death();
 		selected = clean_selected(selected);
-		disp_perso_list(list, moi);
+		disp_perso_list(moi);
 		display_selected(selected, moi, f);
 		SDL_RenderPresent(renderer);
 	}

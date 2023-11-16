@@ -68,7 +68,8 @@ int blit_text(SDL_Rect position1, char *text, int limite)
 	return mpox;
 }
 
-void gui_event(struct personnages *perso, struct linked_list *list)
+
+void gui_event(struct personnages *perso)
 {
 	// ordres (que tu recois)
 	SDL_Rect position = {(perso->ordrex - perso->x) * cos(perso->angle) + (perso->ordrey - perso->y) * sin(perso->angle) + 550, (perso->ordrey - perso->y) * cos(perso->angle) - (perso->ordrex - perso->x) * sin(perso->angle) + 500, 100, 100};
@@ -85,7 +86,7 @@ void gui_event(struct personnages *perso, struct linked_list *list)
 	//proposition d'échange
 	if (strcmp(perso->echange_player, "none") != 0)
 	{
-		struct personnages *p = find_perso_by_name(list, perso->echange_player);
+		struct personnages *p = find_perso_by_name(perso->echange_player);
 		{
 			if (p != NULL)
 			{
@@ -567,7 +568,7 @@ void menu_diplo(struct menu *m, struct personnages *perso, struct linked_list *l
 		{
 			if (strcmp(m->superieur, "none") == 0)
 			{
-				struct personnages *ancien = find_perso_by_name(list, perso->nom_superieur);
+				struct personnages *ancien = find_perso_by_name(perso->nom_superieur);
 				if (ancien == NULL)
 					sprintf (ordre + strlen(ordre), "%d 10 none ", perso->id);
 				else
@@ -575,12 +576,12 @@ void menu_diplo(struct menu *m, struct personnages *perso, struct linked_list *l
 			}
 			else
 			{
-				struct personnages *nouveau = find_perso_by_name(list, m->superieur);
+				struct personnages *nouveau = find_perso_by_name(m->superieur);
 				if (nouveau != NULL)
 				{
 					if (nouveau->nb_vassaux <= 200)
 					{
-						struct personnages *ancien = find_perso_by_name(list, perso->nom_superieur);
+						struct personnages *ancien = find_perso_by_name(perso->nom_superieur);
 						if (ancien == NULL)
 							sprintf (ordre + strlen(ordre), "%d 10 %s %d 14 +1 ", perso->id, m->superieur, nouveau->id);
 						else
@@ -853,7 +854,7 @@ void menu_technologie(struct menu *m)
 	display_tree(m->t_tree, m->yarbre);
 }
 
-void menu(struct menu *m, struct personnages *perso, struct linked_list *list)
+void menu(struct menu *m, struct personnages *perso)
 {
 	char txt[] = "menu Inventaire -> Taper I.\nmenu Diplomatique -> Taper D.\nmenu Action -> taper A.\nmenu Capacites -> Taper C.\nmenu Technologies -> Taper T.\nmenu Economie -> taper E.\nmenu Religions -> Taper R.";
 	SDL_Rect position1;

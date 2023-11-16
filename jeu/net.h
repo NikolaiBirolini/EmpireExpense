@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void recv_order(int socket, struct linked_list *list);
+void recv_order(int socket);
 void send_orders(int socket);
 int try_connect(char *ip, char *port);
 

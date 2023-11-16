@@ -1,4 +1,5 @@
 #include "perso.h"
+#include "shared_var.h"
 
 void free_linked(struct linked_list *list, char free_content)
 {
@@ -52,7 +53,7 @@ struct linked_list *append_in_linked(struct linked_list *list,struct personnages
 	}
 }
 
-struct linked_list *append_perso(struct linked_list *list,  char **line)
+struct linked_list *append_perso(char **line)
 {
 	if (**line == '\0')
 		return NULL;
@@ -84,7 +85,7 @@ struct linked_list *append_perso(struct linked_list *list,  char **line)
 	}
 }
 
-struct linked_list *recv_map(int socket, struct linked_list *list)
+struct linked_list *recv_map(int socket)
 {
 	char *buffer = calloc(order_size, sizeof(char));
 	recv(socket, buffer, 20, 0);
@@ -101,14 +102,14 @@ struct linked_list *recv_map(int socket, struct linked_list *list)
 		buffer = buffer + tmp;
 	}
 	buffer = pos_buf;
-	list = append_perso(list,  &buffer);
-	while ((append_perso(list,  &buffer) != NULL));
+	list = append_perso(&buffer);
+	while ((append_perso(&buffer) != NULL));
 	buffer = pos_buf;
 	free(buffer);
 	return list;
 }
 
-struct personnages *find_perso_by_name(struct linked_list *list ,char *name)
+struct personnages *find_perso_by_name(char *name)
 {
 	struct linked_list *parcour = list;
 	while (parcour != NULL)
@@ -124,13 +125,12 @@ struct personnages *find_perso_by_name(struct linked_list *list ,char *name)
 	return NULL;
 }
 
-void disp_perso_list(struct linked_list *list, struct personnages *moi)
+void disp_perso_list(struct personnages *moi)
 {	
 	moi = moi;
-	struct linked_list *parcour = list;
 	SDL_Rect position;
 	SDL_Texture *affiche;
-	while (parcour != NULL)
+	for (struct linked_list *parcour = list; parcour != NULL; parcour=parcour->next)
 	{	
 		affiche = select_good_img(parcour->p);
 		SDL_QueryTexture(affiche, NULL, NULL, &position.w, &position.h);
@@ -153,11 +153,10 @@ void disp_perso_list(struct linked_list *list, struct personnages *moi)
 			position.y = (parcour->p->x - screenx) * 11 + (parcour->p->y - screeny) * 11 + 500 - position.h - ground_altitude[lroundf(parcour->p->x) + lroundf(parcour->p->y) * max_x];
 			SDL_RenderCopyEx(renderer, affiche, NULL, &position, 0, NULL, 0);
 		}
-		parcour = parcour->next;
 	}
 }
 
-struct linked_list *death(struct linked_list *list)
+struct linked_list *death(void)
 {
 	struct linked_list *tmp = list;
 	struct linked_list *prev;
@@ -256,17 +255,16 @@ struct linked_list *clean_selected(struct linked_list *list)
 	return ret;
 }
 
-void fix_some_shit(struct linked_list *list)
+void fix_some_shit(void)
 {
-	while(list != NULL)
+	for (struct linked_list *parcour = list; parcour != NULL; parcour=parcour->next)
 	{
 		//faim
-		list->p->faim_time++;
-		if (list->p->faim_time > 1000 && list->p->faim > 0)
+		parcour->p->faim_time++;
+		if (parcour->p->faim_time > 1000 && parcour->p->faim > 0)
 		{
-			sprintf(ordre + strlen(ordre), "%d 07 %d ", list->p->id, list->p->faim - 1);
-			list->p->faim_time = 0;
+			sprintf(ordre + strlen(ordre), "%d 07 %d ", parcour->p->id, parcour->p->faim - 1);
+			parcour->p->faim_time = 0;
 		}
-		list = list->next;
 	}
 }

@@ -43,9 +43,9 @@ struct menu
 };
 
 void talk(struct speak *speak_s, struct personnages *moi);
-void gui_event(struct personnages *perso, struct linked_list *list);
+void gui_event(struct personnages *perso);
 void *cast(void *p);
 int blit_text(SDL_Rect position1, char *text, int limite);
 void blit_mdp(SDL_Rect position1, char *text, int limite);
-void menu(struct menu *m, struct personnages *perso, struct linked_list *list);
+void menu(struct menu *m, struct personnages *perso);
 void display_selected(struct linked_list *selected, struct personnages *moi, struct formation *f);

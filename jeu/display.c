@@ -1,12 +1,13 @@
-void display_all()
+#include "display.h"
+#include "shared_var.h"
 
-void buble_sort_perso(struct linked_list *list, struct personnages *moi)
+void buble_sort_perso()
 {
 	for (struct linked_list *par = list; par != NULL; par = par->next)
 	{
 		for (struct linked_list *par2 = par; par2->next != NULL; par2 = par2->next)
 		{
-			if (par2->p->screeny > par2->next->p->screeny)
+			if (par2->p->y > par2->next->p->y)
 			{
 				struct personnages *tmp = par2->p;
 				par2->p = par2->next->p;
@@ -14,6 +15,11 @@ void buble_sort_perso(struct linked_list *list, struct personnages *moi)
 			}
 		}
 	}
+}
+
+void display_all()
+{
+	bu
 }
 
 
