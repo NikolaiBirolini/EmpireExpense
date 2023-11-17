@@ -1,7 +1,5 @@
 #pragma once
 #include "perso.h"
-#include "net.h"
-#include "pathfinding.h"
 
 void ia( char *array);
 void ia_man(struct linked_list *parcour, char *array);

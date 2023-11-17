@@ -12,5 +12,3 @@
 //#include "main.h"
 
 char *rec_ground(int socket); 
-void display_ground();
-

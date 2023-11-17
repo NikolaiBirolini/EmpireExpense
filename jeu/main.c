@@ -118,7 +118,7 @@ void boucle_jeu(int socket, char *name)
 	{
 		//printf ("%f %f\n", moi->x, moi->y);
 		SDL_RenderClear(renderer);
-		display_ground();
+		display_all(moi);
 		gestion_touche();
 		if (menu_s->on == 0 && speak_s->on == 0)
 		{
@@ -154,7 +154,6 @@ void boucle_jeu(int socket, char *name)
 		recv_order(socket);
 		list = death();
 		selected = clean_selected(selected);
-		disp_perso_list(moi);
 		display_selected(selected, moi, f);
 		SDL_RenderPresent(renderer);
 	}

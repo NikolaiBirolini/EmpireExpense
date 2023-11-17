@@ -125,37 +125,6 @@ struct personnages *find_perso_by_name(char *name)
 	return NULL;
 }
 
-void disp_perso_list(struct personnages *moi)
-{	
-	moi = moi;
-	SDL_Rect position;
-	SDL_Texture *affiche;
-	for (struct linked_list *parcour = list; parcour != NULL; parcour=parcour->next)
-	{	
-		affiche = select_good_img(parcour->p);
-		SDL_QueryTexture(affiche, NULL, NULL, &position.w, &position.h);
-		char test = how_display(parcour->p->skin);
-		if (test == 1)
-		{
-			position.x = (parcour->p->x - screenx) * 22 - (parcour->p->y - screeny) * 22 + 500 - position.w / 2;
-			position.y = (parcour->p->x - screenx) * 11 + (parcour->p->y - screeny) * 11 + 500 - position.h / 2 - ground_altitude[lroundf(parcour->p->x) + lroundf(parcour->p->y) * max_x];
-			SDL_RenderCopyEx(renderer, affiche, NULL, &position, parcour->p->angle, NULL, 0);
-		}
-		else if (test == 0)
-		{
-			position.x = (parcour->p->x - screenx) * 22 - (parcour->p->y - screeny) * 22 + 500 - position.w / 2;
-			position.y = (parcour->p->x - screenx) * 11 + (parcour->p->y - screeny) * 11 + 500 - position.h - ground_altitude[(int)parcour->p->x + (int)parcour->p->y * max_x];
-			SDL_RenderCopy(renderer, affiche, NULL, &position);
-		}
-		else if (test == 2)
-		{
-			position.x = (parcour->p->x - screenx) * 22 - (parcour->p->y - screeny) * 22 + 500 - position.w / 2;
-			position.y = (parcour->p->x - screenx) * 11 + (parcour->p->y - screeny) * 11 + 500 - position.h - ground_altitude[lroundf(parcour->p->x) + lroundf(parcour->p->y) * max_x];
-			SDL_RenderCopyEx(renderer, affiche, NULL, &position, 0, NULL, 0);
-		}
-	}
-}
-
 struct linked_list *death(void)
 {
 	struct linked_list *tmp = list;

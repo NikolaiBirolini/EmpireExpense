@@ -1,13 +1,13 @@
 #include "display.h"
 #include "shared_var.h"
 
-void buble_sort_perso()
+void bubble_sort_perso()
 {
 	for (struct linked_list *par = list; par != NULL; par = par->next)
 	{
-		for (struct linked_list *par2 = par; par2->next != NULL; par2 = par2->next)
+		for (struct linked_list *par2 = list; par2->next != NULL; par2 = par2->next)
 		{
-			if (par2->p->y > par2->next->p->y)
+			if ((int)par2->p->y > (int)par2->next->p->y || ((int)par2->p->y == (int)par2->next->p->y && par2->p->x > par2->next->p->x))
 			{
 				struct personnages *tmp = par2->p;
 				par2->p = par2->next->p;
@@ -17,22 +17,108 @@ void buble_sort_perso()
 	}
 }
 
-void display_all()
+
+void display_ground(int x, int y, int xto, int yto)
 {
-	bu
+	x += 1;
+	if (x == max_x)
+	{
+		y += 1;
+		x = 0;
+	}
+	xto += 1;
+	if (xto == max_x)
+	{
+		yto += 1;
+		xto = 0;
+	}
+	while (x != xto || y != yto)
+	{
+		int indexList[] = { 3,0,1,1,2,3};
+		float newx1 = (x-screenx-y+screeny) * 22 + 500;
+		float newy1 = (x-screenx + y-screeny) * 11 + 500 - ground_altitude[x + y * max_x];
+		float newx2 = (x-screenx-y+screeny) * 22 + 22 + 500;
+        float newy2 = (x-screenx + y-screeny)* 11 + 11 + 500 - ground_altitude[x + y * max_x];
+		float newx3 = (x-screenx-y+screeny) * 22  + 500;
+        float newy3 = (x-screenx + y-screeny) * 11 + 22 + 500 - ground_altitude[x + y * max_x];
+		float newx4 = (x-screenx-y+screeny) * 22 - 22 + 500;
+        float newy4 = (x-screenx + y-screeny) * 11 + 11 + 500 - ground_altitude[x + y * max_x];
+		SDL_Vertex vertexes[]  = 
+		{{{newx1, newy1}, {255,255,255,255}, {0,0}},
+		{{newx2, newy2}, {255,255,255,255}, {1,0}},
+		{{newx3, newy3}, {255,255,255,255}, {0,1}},
+		{{newx4, newy4}, {255,255,255,255}, {1,1.0}}};
+		
+		SDL_RenderGeometry(renderer, ground_texture[x + y * max_x], vertexes, 4, indexList, 6);
+		
+		newx1 = (x-screenx-y+screeny) * 22 + 22 + 500;
+        newy1 = (x-screenx + y-screeny)* 11 + 11 + 500 - ground_altitude[x + y * max_x];
+		newx2 = (x-screenx-y+screeny) * 22  + 500;
+        newy2 = (x-screenx + y-screeny) * 11 + 22 + 500 - ground_altitude[x + y * max_x];
+        newx4 = (x-screenx-y+screeny) * 22 + 22 + 500;
+        newy4 = (x-screenx + y-screeny)* 11 + 11 + 500;
+		newx3 = (x-screenx-y+screeny) * 22  + 500;
+        newy3 = (x-screenx + y-screeny) * 11 + 22 + 500;
+
+		SDL_Vertex vertexes2[]  = 
+		{{{newx1, newy1}, {255,255,255,255}, {0,0}},
+		{{newx2, newy2}, {255,255,255,255}, {1,0}},
+		{{newx3, newy3}, {255,255,255,255}, {0,1}},
+		{{newx4, newy4}, {255,255,255,255}, {1,1.0}}};
+
+		SDL_RenderGeometry(renderer, img->t->gr1, vertexes2, 4, indexList, 6);
+
+
+		newx1 = (x-screenx-y+screeny) * 22  + 500;
+        newy1 = (x-screenx + y-screeny) * 11 + 22 + 500 - ground_altitude[x + y * max_x];
+		newx2 = (x-screenx-y+screeny) * 22 - 22 + 500;
+        newy2 = (x-screenx + y-screeny) * 11 + 11 + 500 - ground_altitude[x + y * max_x];
+        newx4 = (x-screenx-y+screeny) * 22  + 500;
+        newy4 = (x-screenx + y-screeny) * 11 + 22 + 500;
+		newx3 = (x-screenx-y+screeny) * 22 - 22 + 500;
+        newy3 = (x-screenx + y-screeny) * 11 + 11 + 500;
+
+
+		SDL_Vertex vertexes3[]  = 
+		{{{newx1, newy1}, {255,255,255,255}, {0,0}},
+		{{newx2, newy2}, {255,255,255,255}, {1,0}},
+		{{newx3, newy3}, {255,255,255,255}, {0,1}},
+		{{newx4, newy4}, {255,255,255,255}, {1,1.0}}};
+		
+		SDL_RenderGeometry(renderer, img->t->gr1, vertexes3, 4, indexList, 6);
+		x += 1;
+		if (x == max_x)
+		{
+			y += 1;
+			x = 0;
+		}
+	}
 }
 
 
-struct list prepare_display_char()
-{
-	struct linked_list *ret = NULL;
-	for (struct linked_list *parcour = list; parcour != NULL; parcour = parcour->next)
-	{
-		parcour->p->screenx = (parcour->p->x - screenx) * 22 - (parcour->p->y - screeny) * 22 + 500 - position.w / 2;
-		parcour->p->screeny = (parcour->p->x - screenx) * 11 + (parcour->p->y - screeny) * 11 + 500 - position.h - ground_altitude[(int)parcour->p->x + (int)parcour->p->y * max_x];
-		if (parcour->p->screenx >= 0 && parcour->p->screenx <= 1000 && parcour->p->screeny >= 0 && parcour->p->screeny <= 1000)
+void display_all(struct personnages *moi)
+{	
+
+	bubble_sort_perso();
+	moi = moi;
+	//printf ("%d %d\n", (int)moi->x, (int)moi->y);
+	SDL_Rect position;
+	SDL_Texture *affiche;
+	int xfrom = -1; int yfrom = 0;
+	for (struct linked_list *parcour = list; parcour != NULL; parcour=parcour->next)
+	{	
+		display_ground(xfrom, yfrom, (int)parcour->p->x, (int)parcour->p->y);
+		xfrom = (int)parcour->p->x;
+		yfrom = (int)parcour->p->y;
+		affiche = select_good_img(parcour->p);
+		SDL_QueryTexture(affiche, NULL, NULL, &position.w, &position.h);
+		char test = how_display(parcour->p->skin);
+		if (test == 0)
 		{
-			list = append_in_linked(list, p)
+			position.x = (parcour->p->x - screenx - parcour->p->y + screeny) * 22 + 500 - position.w / 2;
+			position.y = (parcour->p->x - screenx - screeny + parcour->p->y) * 11 + 500 - position.h - ground_altitude[(int)parcour->p->x + (int)parcour->p->y * max_x];
+			SDL_RenderCopy(renderer, affiche, NULL, &position);
 		}
 	}
+	display_ground(xfrom, yfrom, max_x-1, max_y-1);
 }
