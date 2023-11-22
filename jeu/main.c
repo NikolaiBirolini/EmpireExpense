@@ -43,8 +43,6 @@ int main(int argc, char *argv[])
 		chiffrage(arguments.password, arguments.login);
 		sprintf (to_send, "%s %s", arguments.login, arguments.password);
 		communicateWithServer(socket, to_send, 101, 0); 
-		//to_send[0] = 'p';
-		//communicateWithServer(socket, to_send, 1, 0); 
 		boucle_jeu(socket, arguments.login);
 	    handleErrorsAndCleanup(0);
 	}
@@ -253,6 +251,7 @@ int menu_connection()
 	char txt2[] = "Port";
 	char ip[50] = "";
 	char port[50] = "";
+	SDL_Event event;
 	SDL_Rect position1 = {100, 100, 558, 70};
 	SDL_Rect position2 = {100, 200, 558, 70};
 	SDL_Rect position3;
@@ -264,50 +263,59 @@ int menu_connection()
 	int socket = -1;
 	char sel = 1;
 	char tryed = -127;
+	TTF_Init();
+	TTF_Font *font = TTF_OpenFont("fonts/connection_menu/Ancient Medium.ttf", 24);
+	Button playButton = {100, 100, 200, 50, {255, 0, 0, 255}, {150, 0, 0, 255}, font, {0, 0, 0, 255}, "PLAY"};
+
 	while (socket < 0)
 	{
-		SDL_RenderClear(renderer);
-		SDL_RenderCopy(renderer, img->t->fond, NULL, NULL);
-		if (lettres->exit == 1)
-			return -1;
-		if (tryed > -126)
-		{
-			blit_text(position5, err1, 40);
-			tryed --;
+		while (SDL_PollEvent(&event) != 0) {
+		    SDL_RenderClear(renderer);
+		    SDL_RenderCopy(renderer, img->t->fond, NULL, NULL);
+			drawButton(renderer, &playButton, SDL_FALSE); 
+		    if (lettres->exit == 1)
+		    	return -1;
+		    if (tryed > -126)
+		    {
+		    	blit_text(position5, err1, 40);
+		    	tryed --;
+		    }
+		    blit_text(position3, txt1, 40);
+		    blit_text(position4, txt2, 40);
+		    if (sel == 1)
+		    {
+		    	SDL_RenderCopy(renderer, img->g->selTextInput, NULL, &position1);
+		    	SDL_RenderCopy(renderer, img->g->textInput, NULL, &position2);
+		    	text_input(ip, 39);
+		    	if (lettres->tab == 1)
+		    	{
+		    		sel = 2;
+		    		lettres->tab = 0;
+		    	}
+		    }
+		    else
+		    {
+		    	SDL_RenderCopy(renderer, img->g->selTextInput, NULL, &position2);
+		    	SDL_RenderCopy(renderer, img->g->textInput, NULL, &position1);
+		    	text_input(port, 6);
+		    	if (lettres-> tab == 1)
+		    	{
+		    		sel = 1;
+		    		lettres->tab = 0;
+		    	}
+		    }
+		    if (lettres->enter == 1 && *ip != '\0' && *port != '\0')
+		    {
+		    	tryed = 127;
+		    	socket = try_connect(ip, port);
+		    	lettres->enter = 0;
+		    }
+		    blit_text(position1, ip, 20);
+		    blit_text(position2, port, 7);
+		    SDL_RenderPresent(renderer);
 		}
-		blit_text(position3, txt1, 40);
-		blit_text(position4, txt2, 40);
-		if (sel == 1)
-		{
-			SDL_RenderCopy(renderer, img->g->selTextInput, NULL, &position1);
-			SDL_RenderCopy(renderer, img->g->textInput, NULL, &position2);
-			text_input(ip, 39);
-			if (lettres->tab == 1)
-			{
-				sel = 2;
-				lettres->tab = 0;
-			}
-		}
-		else
-		{
-			SDL_RenderCopy(renderer, img->g->selTextInput, NULL, &position2);
-			SDL_RenderCopy(renderer, img->g->textInput, NULL, &position1);
-			text_input(port, 6);
-			if (lettres-> tab == 1)
-			{
-				sel = 1;
-				lettres->tab = 0;
-			}
-		}
-		if (lettres->enter == 1 && *ip != '\0' && *port != '\0')
-		{
-			tryed = 127;
-			socket = try_connect(ip, port);
-			lettres->enter = 0;
-		}
-		blit_text(position1, ip, 20);
-		blit_text(position2, port, 7);
-		SDL_RenderPresent(renderer);
 	}
+	TTF_CloseFont(font);
+	//freeButton(&playButton);
 	return socket;
 }
