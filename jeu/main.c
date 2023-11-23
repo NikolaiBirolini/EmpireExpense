@@ -264,15 +264,28 @@ int menu_connection()
 	char sel = 1;
 	char tryed = -127;
 	TTF_Init();
-	TTF_Font *font = TTF_OpenFont("fonts/connection_menu/Ancient Medium.ttf", 24);
-	Button playButton = {100, 100, 200, 50, {255, 0, 0, 255}, {150, 0, 0, 255}, font, {0, 0, 0, 255}, "PLAY"};
+	TTF_Font *font = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 24);
+	Button playButton = {200, 200, 200, 300, {255, 0, 0, 255}, {150, 0, 0, 255}, font, {0, 0, 0, 255}, "PLAY"};
 
 	while (socket < 0)
 	{
-		while (SDL_PollEvent(&event) != 0) {
-		    SDL_RenderClear(renderer);
-		    SDL_RenderCopy(renderer, img->t->fond, NULL, NULL);
+		while (SDL_PollEvent(&event) != 0) 
+		{
+			SDL_RenderClear(renderer);
+			SDL_RenderCopy(renderer, img->t->fond, NULL, NULL);
 			drawButton(renderer, &playButton, SDL_FALSE); 
+
+			if (event.type == SDL_MOUSEBUTTONDOWN) 
+			{
+                int mouseX, mouseY;
+                SDL_GetMouseState(&mouseX, &mouseY);
+                if (mouseX >= playButton.x && mouseX <= playButton.x + playButton.width &&
+                    mouseY >= playButton.y && mouseY <= playButton.y + playButton.height) 
+				{
+					drawButton(renderer, &playButton, SDL_TRUE); 
+				}
+            }
+
 		    if (lettres->exit == 1)
 		    	return -1;
 		    if (tryed > -126)
@@ -313,6 +326,7 @@ int menu_connection()
 		    blit_text(position1, ip, 20);
 		    blit_text(position2, port, 7);
 		    SDL_RenderPresent(renderer);
+			
 		}
 	}
 	TTF_CloseFont(font);
