@@ -61,10 +61,10 @@ void drawTextBox(SDL_Renderer* renderer, TextBox* textBox) {
     SDL_FreeSurface(textSurface);
 
     // Draw the cursor if visible
-    //if ((int)SDL_GetTicks() - textBox->lastCursorBlinkTime >= textBox->cursorBlinkRate) {
-    //    textBox->lastCursorBlinkTime = SDL_GetTicks();
-    //    textBox->cursorVisible = !textBox->cursorVisible;
-    //}
+    if ((int)SDL_GetTicks() - textBox->lastCursorBlinkTime >= textBox->cursorBlinkRate) {
+        textBox->lastCursorBlinkTime = SDL_GetTicks();
+        textBox->cursorVisible = !textBox->cursorVisible;
+    }
 
     if (textBox->cursorVisible) {
         SDL_SetRenderDrawColor(renderer, textBox->edgeColor.r, textBox->edgeColor.g, textBox->edgeColor.b, textBox->edgeColor.a);
