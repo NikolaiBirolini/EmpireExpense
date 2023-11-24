@@ -251,10 +251,14 @@ int menu_connection()
 	TTF_Init();
 	TTF_Font *fontIpBox = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 20);
 	TextBox ipTextBox;
-    initTextBox(&ipTextBox, 50, 50, 300, 50, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, fontIpBox);
+    initTextBox(&ipTextBox, 100, 100, 558, 70, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, fontIpBox);
+	TextBox portTextBox;
+    initTextBox(&portTextBox, 100, 200, 558, 70, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, fontIpBox);
 	TTF_Font *font = TTF_OpenFont("fonts/connection_menu/Ancient Medium.ttf", 24);
 	Button playButton = {400, 400, 200, 200, {255, 0, 0, 255}, {150, 0, 0, 255}, font, {0, 0, 0, 255}, "PLAY"};
     bool done = false;
+	bool writeIp = false;
+	bool writePort = false;
 
 	while (!(done)) 
 	{
@@ -262,6 +266,7 @@ int menu_connection()
 	    SDL_RenderCopy(renderer, img->t->fond, NULL, NULL);
 		drawButton(renderer, &playButton, SDL_FALSE);
 		drawTextBox(renderer, &ipTextBox); 
+		drawTextBox(renderer, &portTextBox); 
 
 		while(SDL_PollEvent(&event) != 0)
 		{ 
@@ -281,11 +286,35 @@ int menu_connection()
 	        	{
 	        		drawButton(renderer, &playButton, SDL_TRUE); 
 	        	}
+				else if (mouseX >= ipTextBox.x && mouseX <= ipTextBox.x + ipTextBox.width &&
+                    mouseY >= ipTextBox.y && mouseY <= ipTextBox.y + ipTextBox.height) 
+	        	{
+	        		writeIp = true;
+					writePort = false;
+	        	}
+				else if (mouseX >= portTextBox.x && mouseX <= portTextBox.x + portTextBox.width &&
+                    mouseY >= portTextBox.y && mouseY <= portTextBox.y + portTextBox.height) 
+	        	{
+					writePort = true;
+					writeIp = false;		
+	        	}
             }
-			else if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
-		    {
-		    	handleTextInput(&ipTextBox, event);
-		    }
+
+            if(writePort)
+			{	
+				if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
+		        {
+		        	handleTextInput(&portTextBox, event);
+		        }
+			}
+
+			if(writeIp)
+			{
+				if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
+		        {
+		        	handleTextInput(&ipTextBox, event);
+		        }
+			}
 		}
 	    SDL_RenderPresent(renderer);
 		SDL_Delay(10);
