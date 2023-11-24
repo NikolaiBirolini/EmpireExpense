@@ -250,6 +250,7 @@ int menu_connection()
 	int socket = -1;
 	TTF_Init();
 	TTF_Font *fontIpBox = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 20);
+	TTF_Font *ipTextFont = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 25);
 	TextBox ipTextBox;
     initTextBox(&ipTextBox, 100, 100, 558, 70, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, fontIpBox);
 	TextBox portTextBox;
@@ -259,6 +260,7 @@ int menu_connection()
     bool done = false;
 	bool writeIp = false;
 	bool writePort = false;
+	TextInfo textIp = {"IP Address", ipTextFont, 100, 70, {0, 0, 0, 255}, 0, {0, 0, 0, 0}, 0, {0, 0, 0, 0}, 1, 1, 1};
 
 	while (!(done)) 
 	{
@@ -266,7 +268,8 @@ int menu_connection()
 	    SDL_RenderCopy(renderer, img->t->fond, NULL, NULL);
 		drawButton(renderer, &playButton, SDL_FALSE);
 		drawTextBox(renderer, &ipTextBox); 
-		drawTextBox(renderer, &portTextBox); 
+		drawTextBox(renderer, &portTextBox);
+		drawTextInfo(renderer, &textIp); 
 
 		while(SDL_PollEvent(&event) != 0)
 		{ 
@@ -274,6 +277,7 @@ int menu_connection()
 	        {
 	        	TTF_CloseFont(font);
 	            TTF_CloseFont(fontIpBox);
+				TTF_CloseFont(ipTextFont);
 	        	TTF_Quit();
                 done = true;
 	        }
