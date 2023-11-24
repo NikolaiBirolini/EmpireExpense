@@ -24,6 +24,8 @@ typedef struct {
     int cursorBlinkRate;
     int lastCursorBlinkTime;
     bool cursorVisible;
+    bool backspacePressed;
+    int backspaceCooldown;
 } TextBox;
 
 // Function to draw a textBox

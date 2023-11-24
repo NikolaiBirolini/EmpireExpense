@@ -16,6 +16,8 @@ void initTextBox(TextBox* textBox, int x, int y, int width, int height, SDL_Colo
     textBox->cursorBlinkRate = 500; // Cursor blink rate in milliseconds
     textBox->lastCursorBlinkTime = 0;
     textBox->cursorVisible = true;
+    textBox->backspacePressed = false;
+    textBox->backspaceCooldown = 0;
     strcpy(textBox->text, ""); // Initialize text as an empty string
 }
 
@@ -71,13 +73,34 @@ void drawTextBox(SDL_Renderer* renderer, TextBox* textBox) {
         SDL_Rect cursorRect = {textBox->cursorX, textBox->y + 5, textBox->cursorWidth, textSurface->h};
         SDL_RenderFillRect(renderer, &cursorRect);
     }
+
+    if (textBox->backspacePressed && textBox->backspaceCooldown <= 0 && strlen(textBox->text) > 0) {
+        // Remove the last character from the text
+        textBox->text[strlen(textBox->text) - 1] = '\0';
+        textBox->backspaceCooldown = 100; 
+        textBox->backspacePressed = false;
+    }
+
+    // Decrement the backspace cooldown timer
+    if (textBox->backspaceCooldown > 0) {
+        textBox->backspaceCooldown -= 16;
+    }
 }
 
 // Fonction pour gérer la saisie de texte
 void handleTextInput(TextBox* textBox, SDL_Event event) 
 {
-    if (event.type == SDL_TEXTINPUT) {
+    if (event.type == SDL_TEXTINPUT) 
+    {
         // Append the input text to the existing text, up to the maximum length
         strncat(textBox->text, event.text.text, sizeof(textBox->text) - strlen(textBox->text) - 1);
+    }
+    else if (event.type == SDL_KEYDOWN) 
+    {
+        // Remove character
+        if (event.key.keysym.sym == SDLK_BACKSPACE) 
+        {
+            textBox->backspacePressed = true;
+        }
     }
 }
