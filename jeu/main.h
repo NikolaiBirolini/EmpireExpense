@@ -23,6 +23,7 @@
 #include <time.h>
 #include "display.h"
 #include "graphic_widget/button.h"
+#include "graphic_widget/textBox.h"
 
 void set_pos(SDL_Rect *pos, int x, int y);
 void boucle_jeu(int socket, char *name);

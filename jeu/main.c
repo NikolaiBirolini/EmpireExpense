@@ -246,90 +246,53 @@ char *log_menu(int socket)
 
 int menu_connection()
 {
-	char err1[] = "La connection a echouer";
-	char txt1[] = "Adresse IP";
-	char txt2[] = "Port";
-	char ip[50] = "";
-	char port[50] = "";
+	//char err1[] = "La connection a echouer";
+	//char txt1[] = "Adresse IP";
+	//char txt2[] = "Port";
 	SDL_Event event;
-	SDL_Rect position1 = {100, 100, 558, 70};
-	SDL_Rect position2 = {100, 200, 558, 70};
-	SDL_Rect position3;
-	SDL_Rect position4;
-	SDL_Rect position5;
-	set_pos(&position3, 100, 70);
-	set_pos(&position4, 100, 170);
-	set_pos(&position5, 100, 300);
+	//SDL_Rect position1 = {100, 100, 558, 70};
+	//SDL_Rect position2 = {100, 200, 558, 70};
 	int socket = -1;
-	char sel = 1;
-	char tryed = -127;
 	TTF_Init();
-	TTF_Font *font = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 24);
-	Button playButton = {200, 200, 200, 300, {255, 0, 0, 255}, {150, 0, 0, 255}, font, {0, 0, 0, 255}, "PLAY"};
-
-	while (socket < 0)
+	TTF_Font *fontPlay = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 24);
+	TTF_Font *fontIpBox = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 20);
+	Button playButton = {200, 200, 200, 300, {255, 0, 0, 255}, {150, 0, 0, 255}, fontPlay, {0, 0, 0, 255}, "PLAY"};
+    TextBox ipTextBox;
+    initTextBox(&ipTextBox, 50, 50, 300, 50, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, fontIpBox);
+	while (SDL_PollEvent(&event) != 0 || socket < 0) 
 	{
-		while (SDL_PollEvent(&event) != 0) 
+		SDL_RenderClear(renderer);
+		SDL_RenderCopy(renderer, img->t->fond, NULL, NULL);
+		drawButton(renderer, &playButton, SDL_FALSE); 
+		drawTextBox(renderer, &ipTextBox); 
+
+        if (event.type == SDL_QUIT) 
 		{
-			SDL_RenderClear(renderer);
-			SDL_RenderCopy(renderer, img->t->fond, NULL, NULL);
-			drawButton(renderer, &playButton, SDL_FALSE); 
-
-			if (event.type == SDL_MOUSEBUTTONDOWN) 
-			{
-                int mouseX, mouseY;
-                SDL_GetMouseState(&mouseX, &mouseY);
-                if (mouseX >= playButton.x && mouseX <= playButton.x + playButton.width &&
-                    mouseY >= playButton.y && mouseY <= playButton.y + playButton.height) 
-				{
-					drawButton(renderer, &playButton, SDL_TRUE); 
-				}
-            }
-
-		    if (lettres->exit == 1)
-		    	return -1;
-		    if (tryed > -126)
-		    {
-		    	blit_text(position5, err1, 40);
-		    	tryed --;
-		    }
-		    blit_text(position3, txt1, 40);
-		    blit_text(position4, txt2, 40);
-		    if (sel == 1)
-		    {
-		    	SDL_RenderCopy(renderer, img->g->selTextInput, NULL, &position1);
-		    	SDL_RenderCopy(renderer, img->g->textInput, NULL, &position2);
-		    	text_input(ip, 39);
-		    	if (lettres->tab == 1)
-		    	{
-		    		sel = 2;
-		    		lettres->tab = 0;
-		    	}
-		    }
-		    else
-		    {
-		    	SDL_RenderCopy(renderer, img->g->selTextInput, NULL, &position2);
-		    	SDL_RenderCopy(renderer, img->g->textInput, NULL, &position1);
-		    	text_input(port, 6);
-		    	if (lettres-> tab == 1)
-		    	{
-		    		sel = 1;
-		    		lettres->tab = 0;
-		    	}
-		    }
-		    if (lettres->enter == 1 && *ip != '\0' && *port != '\0')
-		    {
-		    	tryed = 127;
-		    	socket = try_connect(ip, port);
-		    	lettres->enter = 0;
-		    }
-		    blit_text(position1, ip, 20);
-		    blit_text(position2, port, 7);
-		    SDL_RenderPresent(renderer);
-			
+			TTF_CloseFont(fontPlay);
+	        TTF_CloseFont(fontIpBox);
+			TTF_Quit();
+            return socket;
 		}
+		else if (event.type == SDL_MOUSEBUTTONDOWN) 
+		{
+            int mouseX, mouseY;
+            SDL_GetMouseState(&mouseX, &mouseY);
+            if (mouseX >= playButton.x && mouseX <= playButton.x + playButton.width &&
+                mouseY >= playButton.y && mouseY <= playButton.y + playButton.height) 
+			{
+				drawButton(renderer, &playButton, SDL_TRUE); 
+				//sleep(1);
+			}
+        }
+		else if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
+		{
+			//printf("eee");
+			handleTextInput(&ipTextBox, event);
+		}
+	    SDL_RenderPresent(renderer);
+		
 	}
-	TTF_CloseFont(font);
-	//freeButton(&playButton);
+	TTF_CloseFont(fontPlay);
+	TTF_CloseFont(fontIpBox);
 	return socket;
 }
