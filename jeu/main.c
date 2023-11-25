@@ -287,9 +287,8 @@ int menu_connection()
                 SDL_GetMouseState(&mouseX, &mouseY);
                 if (mouseX >= playButton.x && mouseX <= playButton.x + playButton.width &&
                     mouseY >= playButton.y && mouseY <= playButton.y + playButton.height) 
-	        	{
 	        		drawButton(renderer, &playButton, SDL_TRUE); 
-	        	}
+	        	
 				else if (mouseX >= ipTextBox.x && mouseX <= ipTextBox.x + ipTextBox.width &&
                     mouseY >= ipTextBox.y && mouseY <= ipTextBox.y + ipTextBox.height) 
 	        	{
@@ -307,17 +306,13 @@ int menu_connection()
             if(writePort)
 			{	
 				if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
-		        {
 		        	handleTextInput(&portTextBox, event);
-		        }
 			}
 
 			if(writeIp)
 			{
 				if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
-		        {
 		        	handleTextInput(&ipTextBox, event);
-		        }
 			}
 		}
 	    SDL_RenderPresent(renderer);

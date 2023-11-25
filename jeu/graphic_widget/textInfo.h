@@ -24,15 +24,4 @@ typedef struct {
 
 void drawTextInfo(SDL_Renderer *renderer, const TextInfo *textInfo);
 
-
-
-
-
-
-
-
-
-
-
-
 #endif /* TEXTINFO_H */
