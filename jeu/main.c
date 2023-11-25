@@ -166,20 +166,22 @@ void set_pos(SDL_Rect *pos, int x, int y)
 
 char *log_menu(int socket)
 {
-	//char err1[] = "Mauvais identifiant";
 	TTF_Init();
+	SDL_Event event;
+	char *boolean_rep = malloc(1);
+	boolean_rep[0] = 'p';
 	TTF_Font *litleFont = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 20);
 	TTF_Font *bigFont = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 25);
-	TextBox ipTextBox;
-    initTextBox(&ipTextBox, 100, 100, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, litleFont);
-	TextBox portTextBox;
-    initTextBox(&portTextBox, 100, 180, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, litleFont);
+	TextBox logTextBox;
+	TextBox psswdTextBox;
+    initTextBox(&logTextBox, 100, 100, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, litleFont);
+    initTextBox(&psswdTextBox, 100, 180, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, litleFont);
 	TTF_Font *font = TTF_OpenFont("fonts/connection_menu/Ancient Medium.ttf", 24);
 	Button playButton = {700, 180, 100, 45, {45, 165, 100, 255}, {136, 0, 21, 255}, font, {0, 0, 0, 255}, "PLAY"};
-	bool writeIp = false;
-	bool writePort = false;
-	TextInfo textName = {"Nom", ipTextFont, 100, 70, {0, 0, 0, 255}, 0, {0, 0, 0, 0}, 0, {0, 0, 0, 0}, 1, 1, 0};
-	TextInfo textPassword = {"Mot de passe", ipTextFont, 100, 150, {0, 0, 0, 255}, 0, {0, 0, 0, 0}, 0, {0, 0, 0, 0}, 1, 1, 0};
+	bool writeLogin = true;
+	bool writePsswd = false;
+	TextInfo textName = {"Login", litleFont, 100, 70, {0, 0, 0, 255}, 0, {0, 0, 0, 0}, 0, {0, 0, 0, 0}, 1, 1, 0};
+	TextInfo textPassword = {"Password", bigFont, 100, 150, {0, 0, 0, 255}, 0, {0, 0, 0, 0}, 0, {0, 0, 0, 0}, 1, 1, 0};
 	TextBox unusedtextbox;
     initTextBox(&unusedtextbox, 80, 60, 760, 200, (SDL_Color){150, 100, 135, 255}, (SDL_Color){150, 100, 135, 255}, (SDL_Color){0, 0, 0, 255}, litleFont);
 	while (boolean_rep[0] != 'o')
@@ -188,8 +190,8 @@ char *log_menu(int socket)
 		SDL_RenderCopy(renderer, img->t->fond, NULL, NULL);
 	    drawTextBox(renderer, &unusedtextbox); 
 		drawButton(renderer, &playButton, SDL_FALSE);
-		drawTextBox(renderer, &ipTextBox); 
-		drawTextBox(renderer, &portTextBox);
+		drawTextBox(renderer, &logTextBox); 
+		drawTextBox(renderer, &psswdTextBox);
 		drawTextInfo(renderer, &textName);
 		drawTextInfo(renderer, &textPassword);
 		while(SDL_PollEvent(&event) != 0)
@@ -197,19 +199,89 @@ char *log_menu(int socket)
 	        if (event.type == SDL_QUIT) 
 	        {
 	        	TTF_CloseFont(font);
-	            TTF_CloseFont(fontIpBox);
-				TTF_CloseFont(ipTextFont);
+	            TTF_CloseFont(litleFont);
+				TTF_CloseFont(bigFont);
 	        	TTF_Quit();
+				free(boolean_rep);
 	        	exit(0);
 	        }
+			else if (event.type == SDL_MOUSEBUTTONDOWN) 
+	        {
+                int mouseX, mouseY;
+                SDL_GetMouseState(&mouseX, &mouseY);
+                if (( lettres->enter == 1 || (mouseX >= playButton.x && mouseX <= playButton.x + playButton.width && mouseY >= playButton.y && mouseY <= playButton.y + playButton.height)) && logTextBox.text[0] != 0 && psswdTextBox.text[0] != 0) 
+                {
+	        		drawButton(renderer, &playButton, SDL_TRUE);
+					char *to_send = calloc(101,1);
+			        chiffrage(psswdTextBox.text,logTextBox.text);
+			        strcat(to_send, logTextBox.text);
+			        strcat(to_send, " ");
+			        strcat(to_send, psswdTextBox.text);
+			        send(socket, to_send, 101, 0);
+			        while (boolean_rep[0] == 'p')
+			        	recv(socket, boolean_rep, 1, 0);
+			        if (boolean_rep[0] == 'n')
+			        	boolean_rep[0] = 'p';
+                }
+	        	
+				else if (mouseX >= logTextBox.x && mouseX <= logTextBox.x + logTextBox.width &&
+                    mouseY >= logTextBox.y && mouseY <= logTextBox.y + logTextBox.height) 
+	        	{
+	        		writeLogin = true;
+					writePsswd = false;
+	        	}
+				else if (mouseX >= psswdTextBox.x && mouseX <= psswdTextBox.x + psswdTextBox.width &&
+                    mouseY >= psswdTextBox.y && mouseY <= psswdTextBox.y + psswdTextBox.height) 
+	        	{
+					writePsswd = true;
+					writeLogin = false;		
+	        	}
+            }
+			else if (event.type == SDL_KEYDOWN) 
+	        {
+				if (event.key.keysym.sym == SDLK_TAB) 
+				{
+					writePsswd = !writePsswd;
+				    writeLogin = !writeLogin;
+				}
+				if (event.key.keysym.sym == SDLK_RETURN) 
+				{
+					char *to_send = calloc(101,1);
+			        chiffrage(psswdTextBox.text,logTextBox.text);
+			        strcat(to_send, logTextBox.text);
+			        strcat(to_send, " ");
+			        strcat(to_send, psswdTextBox.text);
+			        send(socket, to_send, 101, 0);
+			        while (boolean_rep[0] == 'p')
+			        	recv(socket, boolean_rep, 1, 0);
+			        if (boolean_rep[0] == 'n')
+			        	boolean_rep[0] = 'p';
+				}
+	        }
+
+            if(writePsswd)
+			{	
+				if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
+		        	handleTextInput(&psswdTextBox, event);
+			}
+
+			if(writeLogin)
+			{
+				if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
+		        	handleTextInput(&logTextBox, event);
+			}
 	    }
 		SDL_RenderPresent(renderer);
 		SDL_Delay(10);
 	}
-	
 	TTF_CloseFont(font);
-	TTF_CloseFont(fontIpBox);
-		
+	TTF_CloseFont(litleFont);
+	TTF_CloseFont(bigFont);
+	TTF_Quit();
+	free(boolean_rep);
+	char *name = calloc(50, 1);
+	strcat(name, logTextBox.text);
+	return name;
 }
 
 
@@ -226,7 +298,7 @@ int menu_connection()
     initTextBox(&portTextBox, 100, 180, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, fontIpBox);
 	TTF_Font *font = TTF_OpenFont("fonts/connection_menu/Ancient Medium.ttf", 24);
 	Button playButton = {700, 180, 100, 45, {45, 165, 100, 255}, {136, 0, 21, 255}, font, {0, 0, 0, 255}, "PLAY"};
-	bool writeIp = false;
+	bool writeIp = true;
 	bool writePort = false;
 	TextInfo textIp = {"IP Address", ipTextFont, 100, 70, {0, 0, 0, 255}, 0, {0, 0, 0, 0}, 0, {0, 0, 0, 0}, 1, 1, 0};
 	TextInfo textPort = {"Port", ipTextFont, 100, 150, {0, 0, 0, 255}, 0, {0, 0, 0, 0}, 0, {0, 0, 0, 0}, 1, 1, 0};
@@ -258,7 +330,7 @@ int menu_connection()
 	        {
                 int mouseX, mouseY;
                 SDL_GetMouseState(&mouseX, &mouseY);
-                if (( lettres->enter == 1 || (mouseX >= playButton.x && mouseX <= playButton.x + playButton.width && mouseY >= playButton.y && mouseY <= playButton.y + playButton.height)) && ipTextBox.text[0] != 0 && portTextBox.text[0] != 0) 
+                if ((mouseX >= playButton.x && mouseX <= playButton.x + playButton.width && mouseY >= playButton.y && mouseY <= playButton.y + playButton.height) && (ipTextBox.text[0] != 0 && portTextBox.text[0] != 0)) 
                 {
 	        		drawButton(renderer, &playButton, SDL_TRUE);
                     socket = try_connect(ipTextBox.text, portTextBox.text);
@@ -276,12 +348,19 @@ int menu_connection()
 					writePort = true;
 					writeIp = false;		
 	        	}
-	        	if (lettres-> tab == 1)
-	        	{
-	        		writePort = !writePort;
-					writeIp = !writeIp;
-	        	}
             }
+			else if (event.type == SDL_KEYDOWN) 
+	        {
+				if (event.key.keysym.sym == SDLK_TAB) 
+				{
+					writePort = !writePort;
+				    writeIp = !writeIp;
+				}
+				if (event.key.keysym.sym == SDLK_RETURN) 
+				{
+					socket = try_connect(ipTextBox.text, portTextBox.text);
+				}
+	        }
 
             if(writePort)
 			{	
