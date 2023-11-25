@@ -43,8 +43,6 @@ int main(int argc, char *argv[])
 		chiffrage(arguments.password, arguments.login);
 		sprintf (to_send, "%s %s", arguments.login, arguments.password);
 		communicateWithServer(socket, to_send, 101, 0); 
-		//to_send[0] = 'p';
-		//communicateWithServer(socket, to_send, 1, 0); 
 		boucle_jeu(socket, arguments.login);
 	    handleErrorsAndCleanup(0);
 	}
@@ -248,66 +246,80 @@ char *log_menu(int socket)
 
 int menu_connection()
 {
-	char err1[] = "La connection a echouer";
-	char txt1[] = "Adresse IP";
-	char txt2[] = "Port";
-	char ip[50] = "";
-	char port[50] = "";
-	SDL_Rect position1 = {100, 100, 558, 70};
-	SDL_Rect position2 = {100, 200, 558, 70};
-	SDL_Rect position3;
-	SDL_Rect position4;
-	SDL_Rect position5;
-	set_pos(&position3, 100, 70);
-	set_pos(&position4, 100, 170);
-	set_pos(&position5, 100, 300);
+	SDL_Event event;
 	int socket = -1;
-	char sel = 1;
-	char tryed = -127;
-	while (socket < 0)
+	TTF_Init();
+	TTF_Font *fontIpBox = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 20);
+	TTF_Font *ipTextFont = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 25);
+	TextBox ipTextBox;
+    initTextBox(&ipTextBox, 100, 100, 558, 70, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, fontIpBox);
+	TextBox portTextBox;
+    initTextBox(&portTextBox, 100, 200, 558, 70, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, fontIpBox);
+	TTF_Font *font = TTF_OpenFont("fonts/connection_menu/Ancient Medium.ttf", 24);
+	Button playButton = {400, 400, 200, 200, {255, 0, 0, 255}, {150, 0, 0, 255}, font, {0, 0, 0, 255}, "PLAY"};
+    bool done = false;
+	bool writeIp = false;
+	bool writePort = false;
+	TextInfo textIp = {"IP Address", ipTextFont, 100, 70, {0, 0, 0, 255}, 0, {0, 0, 0, 0}, 0, {0, 0, 0, 0}, 1, 1, 1};
+
+	while (!(done)) 
 	{
-		SDL_RenderClear(renderer);
-		SDL_RenderCopy(renderer, img->t->fond, NULL, NULL);
-		if (lettres->exit == 1)
-			return -1;
-		if (tryed > -126)
-		{
-			blit_text(position5, err1, 40);
-			tryed --;
-		}
-		blit_text(position3, txt1, 40);
-		blit_text(position4, txt2, 40);
-		if (sel == 1)
-		{
-			SDL_RenderCopy(renderer, img->g->selTextInput, NULL, &position1);
-			SDL_RenderCopy(renderer, img->g->textInput, NULL, &position2);
-			text_input(ip, 39);
-			if (lettres->tab == 1)
+	    SDL_RenderClear(renderer);
+	    SDL_RenderCopy(renderer, img->t->fond, NULL, NULL);
+		drawButton(renderer, &playButton, SDL_FALSE);
+		drawTextBox(renderer, &ipTextBox); 
+		drawTextBox(renderer, &portTextBox);
+		drawTextInfo(renderer, &textIp); 
+
+		while(SDL_PollEvent(&event) != 0)
+		{ 
+	        if (event.type == SDL_QUIT) 
+	        {
+	        	TTF_CloseFont(font);
+	            TTF_CloseFont(fontIpBox);
+				TTF_CloseFont(ipTextFont);
+	        	TTF_Quit();
+                done = true;
+	        }
+	        else if (event.type == SDL_MOUSEBUTTONDOWN) 
+	        {
+                int mouseX, mouseY;
+                SDL_GetMouseState(&mouseX, &mouseY);
+                if (mouseX >= playButton.x && mouseX <= playButton.x + playButton.width &&
+                    mouseY >= playButton.y && mouseY <= playButton.y + playButton.height) 
+	        		drawButton(renderer, &playButton, SDL_TRUE); 
+	        	
+				else if (mouseX >= ipTextBox.x && mouseX <= ipTextBox.x + ipTextBox.width &&
+                    mouseY >= ipTextBox.y && mouseY <= ipTextBox.y + ipTextBox.height) 
+	        	{
+	        		writeIp = true;
+					writePort = false;
+	        	}
+				else if (mouseX >= portTextBox.x && mouseX <= portTextBox.x + portTextBox.width &&
+                    mouseY >= portTextBox.y && mouseY <= portTextBox.y + portTextBox.height) 
+	        	{
+					writePort = true;
+					writeIp = false;		
+	        	}
+            }
+
+            if(writePort)
+			{	
+				if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
+		        	handleTextInput(&portTextBox, event);
+			}
+
+			if(writeIp)
 			{
-				sel = 2;
-				lettres->tab = 0;
+				if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
+		        	handleTextInput(&ipTextBox, event);
 			}
 		}
-		else
-		{
-			SDL_RenderCopy(renderer, img->g->selTextInput, NULL, &position2);
-			SDL_RenderCopy(renderer, img->g->textInput, NULL, &position1);
-			text_input(port, 6);
-			if (lettres-> tab == 1)
-			{
-				sel = 1;
-				lettres->tab = 0;
-			}
-		}
-		if (lettres->enter == 1 && *ip != '\0' && *port != '\0')
-		{
-			tryed = 127;
-			socket = try_connect(ip, port);
-			lettres->enter = 0;
-		}
-		blit_text(position1, ip, 20);
-		blit_text(position2, port, 7);
-		SDL_RenderPresent(renderer);
+	    SDL_RenderPresent(renderer);
+		SDL_Delay(10);
 	}
+	
+	TTF_CloseFont(font);
+	TTF_CloseFont(fontIpBox);
 	return socket;
 }
