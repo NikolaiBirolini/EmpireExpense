@@ -18,7 +18,7 @@ typedef struct {
     SDL_Color backgroundColor;
     SDL_Color textColor; 
     TTF_Font* font;
-    char text[15];
+    char text[50];
     int cursorX;
     int cursorWidth;
     int cursorBlinkRate;
