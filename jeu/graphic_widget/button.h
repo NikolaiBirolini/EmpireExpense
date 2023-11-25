@@ -19,6 +19,4 @@ typedef struct {
 // Function to draw a button
 void drawButton(SDL_Renderer *renderer, Button *button, SDL_bool pressed);
 
-void freeButton(Button *button);
-
 #endif /* BUTTON_H */

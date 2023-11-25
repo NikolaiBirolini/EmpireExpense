@@ -37,10 +37,3 @@ void drawButton(SDL_Renderer *renderer, Button *button, SDL_bool pressed)
     SDL_FreeSurface(surface);
     SDL_DestroyTexture(texture);
 }
-
-
-
-void freeBouton(Button *button) 
-{
-    TTF_CloseFont(button->font);
-}

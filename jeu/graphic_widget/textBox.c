@@ -21,7 +21,7 @@ void initTextBox(TextBox* textBox, int x, int y, int width, int height, SDL_Colo
     strcpy(textBox->text, ""); // Initialize text as an empty string
 }
 
-void drawTextBox(SDL_Renderer* renderer, TextBox* textBox) 
+void drawTextBox(SDL_Renderer* renderer, TextBox* textBox, bool textBoxSelected) 
 {
     // Draw the background
     SDL_SetRenderDrawColor(renderer, textBox->backgroundColor.r, textBox->backgroundColor.g, textBox->backgroundColor.b, textBox->backgroundColor.a);
@@ -59,17 +59,17 @@ void drawTextBox(SDL_Renderer* renderer, TextBox* textBox)
     else  
         fprintf(stderr, "CursorX calculation caused overflow.\n");
     
-
     SDL_FreeSurface(textSurface);
 
     // Draw the cursor if visible
+
     if ((int)SDL_GetTicks() - textBox->lastCursorBlinkTime >= textBox->cursorBlinkRate) 
     {
         textBox->lastCursorBlinkTime = SDL_GetTicks();
         textBox->cursorVisible = !textBox->cursorVisible;
     }
 
-    if (textBox->cursorVisible) 
+    if (textBox->cursorVisible && textBoxSelected) 
     {
         SDL_SetRenderDrawColor(renderer, textBox->edgeColor.r, textBox->edgeColor.g, textBox->edgeColor.b, textBox->edgeColor.a);
         SDL_Rect cursorRect = {textBox->cursorX, textBox->y + 5, textBox->cursorWidth, textSurface->h};
@@ -80,7 +80,7 @@ void drawTextBox(SDL_Renderer* renderer, TextBox* textBox)
     {
         // Remove the last character from the text
         textBox->text[strlen(textBox->text) - 1] = '\0';
-        textBox->backspaceCooldown = 100; 
+        textBox->backspaceCooldown = 10; 
         textBox->backspacePressed = false;
     }
 

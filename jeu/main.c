@@ -188,10 +188,10 @@ char *log_menu(int socket)
 	{
 		SDL_RenderClear(renderer);
 		SDL_RenderCopy(renderer, img->t->fond, NULL, NULL);
-	    drawTextBox(renderer, &unusedtextbox); 
+	    drawTextBox(renderer, &unusedtextbox, false); 
 		drawButton(renderer, &playButton, SDL_FALSE);
-		drawTextBox(renderer, &logTextBox); 
-		drawTextBox(renderer, &psswdTextBox);
+		drawTextBox(renderer, &logTextBox, writeLogin); 
+		drawTextBox(renderer, &psswdTextBox, writePsswd);
 		drawTextInfo(renderer, &textName);
 		drawTextInfo(renderer, &textPassword);
 		while(SDL_PollEvent(&event) != 0)
@@ -309,10 +309,10 @@ int menu_connection()
 	{
 	    SDL_RenderClear(renderer);
 	    SDL_RenderCopy(renderer, img->t->fond, NULL, NULL);
-	    drawTextBox(renderer, &unusedtextbox); 
+	    drawTextBox(renderer, &unusedtextbox, false); 
 		drawButton(renderer, &playButton, SDL_FALSE);
-		drawTextBox(renderer, &ipTextBox); 
-		drawTextBox(renderer, &portTextBox);
+		drawTextBox(renderer, &ipTextBox, writeIp); 
+		drawTextBox(renderer, &portTextBox, writePort);
 		drawTextInfo(renderer, &textIp);
 		drawTextInfo(renderer, &textPort);
 
@@ -366,12 +366,16 @@ int menu_connection()
 			{	
 				if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
 		        	handleTextInput(&portTextBox, event);
+				//ipTextBox.cursorVisible = false;
+				//portTextBox.cursorVisible = true;
 			}
 
 			if(writeIp)
 			{
 				if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
 		        	handleTextInput(&ipTextBox, event);
+				//portTextBox.cursorVisible = false;
+				//ipTextBox.cursorVisible = true;
 			}
 		}
 	    SDL_RenderPresent(renderer);
