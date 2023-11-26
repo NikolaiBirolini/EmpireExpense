@@ -42,7 +42,8 @@ int main(int argc, char *argv[])
 		char *to_send = calloc(101,1);
 		chiffrage(arguments.password, arguments.login);
 		sprintf (to_send, "%s %s", arguments.login, arguments.password);
-		communicateWithServer(socket, to_send, 101, 0); 
+		if(!communicateWithServer(socket, to_send, 101, 0))
+			handleErrorsAndCleanup(1);
 		boucle_jeu(socket, arguments.login);
 	    handleErrorsAndCleanup(0);
 	}
@@ -56,7 +57,7 @@ void handleErrorsAndCleanup(int errorCode)
     exit(errorCode);
 }
 
-void communicateWithServer(int socket, char* to_send, int size, int flags) 
+bool communicateWithServer(int socket, char* to_send, int size, int flags) 
 {
 	if(send(socket, to_send, size, flags))
 	{
@@ -67,14 +68,14 @@ void communicateWithServer(int socket, char* to_send, int size, int flags)
 	    if (boolean_rep[0] != 'o')
 	    {
 	    	free(boolean_rep);
-	        handleErrorsAndCleanup(1);
+	        return false;
 	    }
+		return true;
 	}
 	else
-	{
 		fprintf(stderr, "\033[31mSend data to server failed\033[0m\n");
-		handleErrorsAndCleanup(1);
-	}
+	
+	return false;
 }   
 
 void boucle_jeu(int socket, char *name)
@@ -168,8 +169,7 @@ char *log_menu(int socket)
 {
 	TTF_Init();
 	SDL_Event event;
-	char *boolean_rep = malloc(1);
-	boolean_rep[0] = 'p';
+	bool done = false;
 	TTF_Font *litleFont = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 20);
 	TTF_Font *bigFont = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 25);
 	TextBox logTextBox;
@@ -184,7 +184,7 @@ char *log_menu(int socket)
 	TextInfo textPassword = {"Password", bigFont, 100, 150, {0, 0, 0, 255}, 0, {0, 0, 0, 0}, 0, {0, 0, 0, 0}, 1, 1, 0};
 	TextBox unusedtextbox;
     initTextBox(&unusedtextbox, 80, 60, 760, 200, (SDL_Color){150, 100, 135, 255}, (SDL_Color){150, 100, 135, 255}, (SDL_Color){0, 0, 0, 255}, litleFont, false);
-	while (boolean_rep[0] != 'o')
+	while (!done)
 	{
 		SDL_RenderClear(renderer);
 		SDL_RenderCopy(renderer, img->t->fond, NULL, NULL);
@@ -202,7 +202,6 @@ char *log_menu(int socket)
 	            TTF_CloseFont(litleFont);
 				TTF_CloseFont(bigFont);
 	        	TTF_Quit();
-				free(boolean_rep);
 	        	exit(0);
 	        }
 			else if (event.type == SDL_MOUSEBUTTONDOWN) 
@@ -213,17 +212,10 @@ char *log_menu(int socket)
                 {
 	        		drawButton(renderer, &playButton, SDL_TRUE);
 					char *to_send = calloc(101,1);
-			        chiffrage(psswdTextBox.text,logTextBox.text);
-			        strcat(to_send, logTextBox.text);
-			        strcat(to_send, " ");
-			        strcat(to_send, psswdTextBox.text);
-			        send(socket, to_send, 101, 0);
-			        while (boolean_rep[0] == 'p')
-			        	recv(socket, boolean_rep, 1, 0);
-			        if (boolean_rep[0] == 'n')
-			        	boolean_rep[0] = 'p';
+			        chiffrage(psswdTextBox.text, logTextBox.text);
+		            sprintf (to_send, "%s %s", logTextBox.text, psswdTextBox.text);
+					done = communicateWithServer(socket, to_send, 101, 0);
                 }
-	        	
 				else if (mouseX >= logTextBox.x && mouseX <= logTextBox.x + logTextBox.width &&
                     mouseY >= logTextBox.y && mouseY <= logTextBox.y + logTextBox.height) 
 	        	{
@@ -247,29 +239,19 @@ char *log_menu(int socket)
 				if (event.key.keysym.sym == SDLK_RETURN) 
 				{
 					char *to_send = calloc(101,1);
-			        chiffrage(psswdTextBox.text,logTextBox.text);
-			        strcat(to_send, logTextBox.text);
-			        strcat(to_send, " ");
-			        strcat(to_send, psswdTextBox.text);
-			        send(socket, to_send, 101, 0);
-			        while (boolean_rep[0] == 'p')
-			        	recv(socket, boolean_rep, 1, 0);
-			        if (boolean_rep[0] == 'n')
-			        	boolean_rep[0] = 'p';
+			        chiffrage(psswdTextBox.text, logTextBox.text);
+		            sprintf (to_send, "%s %s", logTextBox.text, psswdTextBox.text);
+					done = communicateWithServer(socket, to_send, 101, 0);
 				}
 	        }
 
             if(writePsswd)
-			{	
 				if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
 		        	handleTextInput(&psswdTextBox, event);
-			}
 
 			if(writeLogin)
-			{
 				if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
 		        	handleTextInput(&logTextBox, event);
-			}
 	    }
 		SDL_RenderPresent(renderer);
 		SDL_Delay(10);
@@ -278,12 +260,10 @@ char *log_menu(int socket)
 	TTF_CloseFont(litleFont);
 	TTF_CloseFont(bigFont);
 	TTF_Quit();
-	free(boolean_rep);
 	char *name = calloc(50, 1);
 	strcat(name, logTextBox.text);
 	return name;
 }
-
 
 int menu_connection()
 {
@@ -357,22 +337,16 @@ int menu_connection()
 				    writeIp = !writeIp;
 				}
 				if (event.key.keysym.sym == SDLK_RETURN) 
-				{
 					socket = try_connect(ipTextBox.text, portTextBox.text);
-				}
 	        }
 
             if(writePort)
-			{	
 				if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
 		        	handleTextInput(&portTextBox, event);
-			}
 
 			if(writeIp)
-			{
 				if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
 		        	handleTextInput(&ipTextBox, event);
-			}
 		}
 	    SDL_RenderPresent(renderer);
 		SDL_Delay(10);
