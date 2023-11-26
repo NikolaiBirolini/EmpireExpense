@@ -1,7 +1,6 @@
 
 #include "textBox.h"
 
-// Initialisation de la TextBox
 void initTextBox(TextBox* textBox, int x, int y, int width, int height, SDL_Color edgeColor, SDL_Color backgroundColor, SDL_Color textColor, TTF_Font* font, bool confidential) 
 {
     textBox->x = x;
@@ -27,20 +26,20 @@ void drawTextBox(SDL_Renderer* renderer, TextBox* textBox, bool textBoxSelected)
 {
     SDL_Surface* textSurface;
 
-    // Dessiner le fond et le contour du TextBox
+    // Draw the background
     SDL_SetRenderDrawColor(renderer, textBox->backgroundColor.r, textBox->backgroundColor.g, textBox->backgroundColor.b, textBox->backgroundColor.a);
     SDL_RenderFillRect(renderer, &(SDL_Rect){textBox->x, textBox->y, textBox->width, textBox->height});
     SDL_SetRenderDrawColor(renderer, textBox->edgeColor.r, textBox->edgeColor.g, textBox->edgeColor.b, textBox->edgeColor.a);
     SDL_RenderDrawRect(renderer, &(SDL_Rect){textBox->x, textBox->y, textBox->width, textBox->height});
 
-    // Vérifier si le texte est vide ou contient uniquement des espaces
+    // Verify if the text is empty
     if (strlen(textBox->text) == 0 || strspn(textBox->text, " \t\n\r") == strlen(textBox->text)) 
     {
         textBox->cursorX = textBox->x + 5;
         return;
     }
 
-    // Mettre à jour la position du curseur en fonction du texte saisi
+    // Update cursor position
     if (textBox->confidential) 
     {
         size_t passwordLength = strlen(textBox->text);
@@ -65,7 +64,7 @@ void drawTextBox(SDL_Renderer* renderer, TextBox* textBox, bool textBoxSelected)
 
     SDL_FreeSurface(textSurface);
 
-    // Dessiner le curseur s'il est visible
+    // Draw the cursor
     if ((int)SDL_GetTicks() - textBox->lastCursorBlinkTime >= textBox->cursorBlinkRate) 
     {
         textBox->lastCursorBlinkTime = SDL_GetTicks();
@@ -90,7 +89,7 @@ void drawTextBox(SDL_Renderer* renderer, TextBox* textBox, bool textBoxSelected)
         textBox->backspaceCooldown -= 16;
 }
 
-// Fonction pour gérer la saisie de texte
+// Recuperate entered text
 void handleTextInput(TextBox* textBox, SDL_Event event) {
     if (event.type == SDL_TEXTINPUT) 
         strncat(textBox->text, event.text.text, sizeof(textBox->text) - strlen(textBox->text) - 1);
