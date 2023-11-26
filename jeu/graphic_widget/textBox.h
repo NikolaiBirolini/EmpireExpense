@@ -26,11 +26,12 @@ typedef struct {
     bool cursorVisible;
     bool backspacePressed;
     int backspaceCooldown;
+    bool confidential;
 } TextBox;
 
 // Function to draw a textBox
 void drawTextBox(SDL_Renderer* renderer, TextBox* textBox, bool textBoxSelected);
 void handleTextInput(TextBox* textBox, SDL_Event event);
-void initTextBox(TextBox* textBox, int x, int y, int width, int height, SDL_Color edgeColor, SDL_Color backgroundColor, SDL_Color textColor, TTF_Font* font);
+void initTextBox(TextBox* textBox, int x, int y, int width, int height, SDL_Color edgeColor, SDL_Color backgroundColor, SDL_Color textColor, TTF_Font* font, bool confidential);
 
 #endif /* TEXTBOX_H */

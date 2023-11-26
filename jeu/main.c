@@ -174,8 +174,8 @@ char *log_menu(int socket)
 	TTF_Font *bigFont = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 25);
 	TextBox logTextBox;
 	TextBox psswdTextBox;
-    initTextBox(&logTextBox, 100, 100, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, litleFont);
-    initTextBox(&psswdTextBox, 100, 180, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, litleFont);
+    initTextBox(&logTextBox, 100, 100, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, litleFont, false);
+    initTextBox(&psswdTextBox, 100, 180, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, litleFont, true);
 	TTF_Font *font = TTF_OpenFont("fonts/connection_menu/Ancient Medium.ttf", 24);
 	Button playButton = {700, 180, 100, 45, {45, 165, 100, 255}, {136, 0, 21, 255}, font, {0, 0, 0, 255}, "PLAY"};
 	bool writeLogin = true;
@@ -183,7 +183,7 @@ char *log_menu(int socket)
 	TextInfo textName = {"Login", litleFont, 100, 70, {0, 0, 0, 255}, 0, {0, 0, 0, 0}, 0, {0, 0, 0, 0}, 1, 1, 0};
 	TextInfo textPassword = {"Password", bigFont, 100, 150, {0, 0, 0, 255}, 0, {0, 0, 0, 0}, 0, {0, 0, 0, 0}, 1, 1, 0};
 	TextBox unusedtextbox;
-    initTextBox(&unusedtextbox, 80, 60, 760, 200, (SDL_Color){150, 100, 135, 255}, (SDL_Color){150, 100, 135, 255}, (SDL_Color){0, 0, 0, 255}, litleFont);
+    initTextBox(&unusedtextbox, 80, 60, 760, 200, (SDL_Color){150, 100, 135, 255}, (SDL_Color){150, 100, 135, 255}, (SDL_Color){0, 0, 0, 255}, litleFont, false);
 	while (boolean_rep[0] != 'o')
 	{
 		SDL_RenderClear(renderer);
@@ -293,9 +293,9 @@ int menu_connection()
 	TTF_Font *fontIpBox = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 20);
 	TTF_Font *ipTextFont = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 25);
 	TextBox ipTextBox;
-    initTextBox(&ipTextBox, 100, 100, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, fontIpBox);
+    initTextBox(&ipTextBox, 100, 100, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, fontIpBox, false);
 	TextBox portTextBox;
-    initTextBox(&portTextBox, 100, 180, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, fontIpBox);
+    initTextBox(&portTextBox, 100, 180, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, fontIpBox, false);
 	TTF_Font *font = TTF_OpenFont("fonts/connection_menu/Ancient Medium.ttf", 24);
 	Button playButton = {700, 180, 100, 45, {45, 165, 100, 255}, {136, 0, 21, 255}, font, {0, 0, 0, 255}, "PLAY"};
 	bool writeIp = true;
@@ -303,7 +303,7 @@ int menu_connection()
 	TextInfo textIp = {"IP Address", ipTextFont, 100, 70, {0, 0, 0, 255}, 0, {0, 0, 0, 0}, 0, {0, 0, 0, 0}, 1, 1, 0};
 	TextInfo textPort = {"Port", ipTextFont, 100, 150, {0, 0, 0, 255}, 0, {0, 0, 0, 0}, 0, {0, 0, 0, 0}, 1, 1, 0};
 	TextBox unusedtextbox;
-    initTextBox(&unusedtextbox, 80, 60, 760, 200, (SDL_Color){150, 100, 135, 255}, (SDL_Color){150, 100, 135, 255}, (SDL_Color){0, 0, 0, 255}, fontIpBox);
+    initTextBox(&unusedtextbox, 80, 60, 760, 200, (SDL_Color){150, 100, 135, 255}, (SDL_Color){150, 100, 135, 255}, (SDL_Color){0, 0, 0, 255}, fontIpBox, false);
 
 	while (socket < 0) 
 	{
@@ -366,16 +366,12 @@ int menu_connection()
 			{	
 				if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
 		        	handleTextInput(&portTextBox, event);
-				//ipTextBox.cursorVisible = false;
-				//portTextBox.cursorVisible = true;
 			}
 
 			if(writeIp)
 			{
 				if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
 		        	handleTextInput(&ipTextBox, event);
-				//portTextBox.cursorVisible = false;
-				//ipTextBox.cursorVisible = true;
 			}
 		}
 	    SDL_RenderPresent(renderer);
