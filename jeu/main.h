@@ -49,9 +49,9 @@ void handleErrorsAndCleanup(int errorCode);
  *
  * This function sends data to a server using the provided socket and then waits for
  * a response. It checks the response and handles errors accordingly. If the response
- * is 'p', it continues waiting; if the response is 'o', the function returns.
+ * is 'p', it continues waiting; if the response is 'o', the function returns true.
  * If there is an error during communication or if the response is not 'o', it handles
- * the error and exits the program.
+ * the error and return false.
  *
  * @param socket The socket to communicate with the server.
  * @param to_send The data to send to the server.
@@ -59,5 +59,5 @@ void handleErrorsAndCleanup(int errorCode);
  * @param flags The flags to control the behavior of the send function.
  *
  */
-void communicateWithServer(int socket, char* to_send, int size, int flags);
+bool communicateWithServer(int socket, char* to_send, int size, int flags);
 
