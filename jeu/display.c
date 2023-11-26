@@ -117,6 +117,10 @@ void display_all(struct personnages *moi)
 		{
 			position.x = (parcour->p->x - screenx - parcour->p->y + screeny) * 22 + 500 - position.w / 2;
 			position.y = (parcour->p->x - screenx - screeny + parcour->p->y) * 11 + 500 - position.h - ground_altitude[(int)parcour->p->x + (int)parcour->p->y * max_x];
+			parcour->p->screenx = position.x;
+			parcour->p->screeny = position.y;
+			parcour->p->sizescreenx = position.w;
+			parcour->p->sizescreeny = position.h;
 			SDL_RenderCopy(renderer, affiche, NULL, &position);
 		}
 	}

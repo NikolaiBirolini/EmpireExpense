@@ -53,6 +53,8 @@ struct personnages
     struct path *chemin;
     float screenx;
     float screeny;
+    float sizescreenx;
+    float sizescreeny;
 };
 
 struct linked_list
