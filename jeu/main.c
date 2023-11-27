@@ -39,10 +39,7 @@ int main(int argc, char *argv[])
 	else
 	{
 		int socket = try_connect(ip, port);
-		char *to_send = calloc(101,1);
-		chiffrage(arguments.password, arguments.login);
-		sprintf (to_send, "%s %s", arguments.login, arguments.password);
-		if(!communicateWithServer(socket, to_send, 101, 0))
+		if(!sendLoginDataToServer(arguments.login, arguments.password, socket, 101, 0))
 			handleErrorsAndCleanup(1);
 		boucle_jeu(socket, arguments.login);
 	    handleErrorsAndCleanup(0);
@@ -55,6 +52,14 @@ void handleErrorsAndCleanup(int errorCode)
 	free(lettres);
     SDL_Quit();
     exit(errorCode);
+}
+
+bool sendLoginDataToServer(char *login, char *password, int socket, int size, int flags)
+{
+	char *to_send = calloc(size, flags);
+	chiffrage(password, login);
+	sprintf (to_send, "%s %s", login, password);
+	return communicateWithServer(socket, to_send, size, flags);
 }
 
 bool communicateWithServer(int socket, char* to_send, int size, int flags) 
@@ -211,10 +216,7 @@ char *log_menu(int socket)
                 if (( lettres->enter == 1 || (mouseX >= playButton.x && mouseX <= playButton.x + playButton.width && mouseY >= playButton.y && mouseY <= playButton.y + playButton.height)) && logTextBox.text[0] != 0 && psswdTextBox.text[0] != 0) 
                 {
 	        		drawButton(renderer, &playButton, SDL_TRUE);
-					char *to_send = calloc(101,1);
-			        chiffrage(psswdTextBox.text, logTextBox.text);
-		            sprintf (to_send, "%s %s", logTextBox.text, psswdTextBox.text);
-					done = communicateWithServer(socket, to_send, 101, 0);
+					done = sendLoginDataToServer(logTextBox.text, psswdTextBox.text, socket, 101, 0);
                 }
 				else if (mouseX >= logTextBox.x && mouseX <= logTextBox.x + logTextBox.width &&
                     mouseY >= logTextBox.y && mouseY <= logTextBox.y + logTextBox.height) 

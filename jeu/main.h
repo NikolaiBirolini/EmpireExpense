@@ -62,3 +62,6 @@ void handleErrorsAndCleanup(int errorCode);
  */
 bool communicateWithServer(int socket, char* to_send, int size, int flags);
 
+
+bool sendLoginDataToServer(char *login, char *password, int socket, int size, int flags);
+
