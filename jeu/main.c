@@ -269,6 +269,8 @@ int menu_connection()
 {
 	SDL_Event event;
 	int socket = -1;
+	pictureButton noiseButton;
+    initPictureButton(renderer, &noiseButton, 1700, 800, 80, 80, "img/textures/graphical_widget_img/noise_button/default_son.png", "img/textures/graphical_widget_img/noise_button/pressed_son.png");
 	TTF_Init();
 	TTF_Font *fontIpBox = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 20);
 	TTF_Font *ipTextFont = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 25);
@@ -295,6 +297,7 @@ int menu_connection()
 		drawTextBox(renderer, &portTextBox, writePort);
 		drawTextInfo(renderer, &textIp);
 		drawTextInfo(renderer, &textPort);
+		drawPictureButton(renderer, &noiseButton);
 
 		while(SDL_PollEvent(&event) != 0)
 		{ 
@@ -315,6 +318,21 @@ int menu_connection()
 	        		drawButton(renderer, &playButton, SDL_TRUE);
                     socket = try_connect(ipTextBox.text, portTextBox.text);
                 }
+
+				else if (mouseX >= noiseButton.x && mouseX <= noiseButton.x + noiseButton.width &&
+                    mouseY >= noiseButton.y && mouseY <= noiseButton.y + noiseButton.height) 
+	        	{
+	        		noiseButton.isPressed = !noiseButton.isPressed;
+					if(noiseButton.isPressed)
+					{
+						stopMusic();
+					}
+					else
+					{
+						sons = init_sound();
+	                    Mix_PlayMusic(sons->menu, 1);
+					}
+	        	}
 	        	
 				else if (mouseX >= ipTextBox.x && mouseX <= ipTextBox.x + ipTextBox.width &&
                     mouseY >= ipTextBox.y && mouseY <= ipTextBox.y + ipTextBox.height) 

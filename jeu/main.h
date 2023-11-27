@@ -23,6 +23,7 @@
 #include <time.h>
 #include "display.h"
 #include "graphic_widget/button.h"
+#include "graphic_widget/pictureButton.h"
 #include "graphic_widget/textBox.h"
 #include "graphic_widget/textInfo.h"
 
