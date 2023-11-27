@@ -39,10 +39,7 @@ int main(int argc, char *argv[])
 	else
 	{
 		int socket = try_connect(ip, port);
-		char *to_send = calloc(101,1);
-		chiffrage(arguments.password, arguments.login);
-		sprintf (to_send, "%s %s", arguments.login, arguments.password);
-		if(!communicateWithServer(socket, to_send, 101, 0))
+		if(!sendLoginDataToServer(arguments.login, arguments.password, socket, 101, 0))
 			handleErrorsAndCleanup(1);
 		boucle_jeu(socket, arguments.login);
 	    handleErrorsAndCleanup(0);
@@ -55,6 +52,14 @@ void handleErrorsAndCleanup(int errorCode)
 	free(lettres);
     SDL_Quit();
     exit(errorCode);
+}
+
+bool sendLoginDataToServer(char *login, char *password, int socket, int size, int flags)
+{
+	char *to_send = calloc(size, flags);
+	chiffrage(password, login);
+	sprintf (to_send, "%s %s", login, password);
+	return communicateWithServer(socket, to_send, size, flags);
 }
 
 bool communicateWithServer(int socket, char* to_send, int size, int flags) 
@@ -211,10 +216,7 @@ char *log_menu(int socket)
                 if (( lettres->enter == 1 || (mouseX >= playButton.x && mouseX <= playButton.x + playButton.width && mouseY >= playButton.y && mouseY <= playButton.y + playButton.height)) && logTextBox.text[0] != 0 && psswdTextBox.text[0] != 0) 
                 {
 	        		drawButton(renderer, &playButton, SDL_TRUE);
-					char *to_send = calloc(101,1);
-			        chiffrage(psswdTextBox.text, logTextBox.text);
-		            sprintf (to_send, "%s %s", logTextBox.text, psswdTextBox.text);
-					done = communicateWithServer(socket, to_send, 101, 0);
+					done = sendLoginDataToServer(logTextBox.text, psswdTextBox.text, socket, 101, 0);
                 }
 				else if (mouseX >= logTextBox.x && mouseX <= logTextBox.x + logTextBox.width &&
                     mouseY >= logTextBox.y && mouseY <= logTextBox.y + logTextBox.height) 
@@ -269,6 +271,8 @@ int menu_connection()
 {
 	SDL_Event event;
 	int socket = -1;
+	pictureButton noiseButton;
+    initPictureButton(renderer, &noiseButton, 1700, 800, 80, 80, "img/textures/graphical_widget_img/noise_button/default_son.png", "img/textures/graphical_widget_img/noise_button/pressed_son.png");
 	TTF_Init();
 	TTF_Font *fontIpBox = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 20);
 	TTF_Font *ipTextFont = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 25);
@@ -295,6 +299,7 @@ int menu_connection()
 		drawTextBox(renderer, &portTextBox, writePort);
 		drawTextInfo(renderer, &textIp);
 		drawTextInfo(renderer, &textPort);
+		drawPictureButton(renderer, &noiseButton);
 
 		while(SDL_PollEvent(&event) != 0)
 		{ 
@@ -315,6 +320,21 @@ int menu_connection()
 	        		drawButton(renderer, &playButton, SDL_TRUE);
                     socket = try_connect(ipTextBox.text, portTextBox.text);
                 }
+
+				else if (mouseX >= noiseButton.x && mouseX <= noiseButton.x + noiseButton.width &&
+                    mouseY >= noiseButton.y && mouseY <= noiseButton.y + noiseButton.height) 
+	        	{
+	        		noiseButton.isPressed = !noiseButton.isPressed;
+					if(noiseButton.isPressed)
+					{
+						stopMusic();
+					}
+					else
+					{
+						sons = init_sound();
+	                    Mix_PlayMusic(sons->menu, 1);
+					}
+	        	}
 	        	
 				else if (mouseX >= ipTextBox.x && mouseX <= ipTextBox.x + ipTextBox.width &&
                     mouseY >= ipTextBox.y && mouseY <= ipTextBox.y + ipTextBox.height) 

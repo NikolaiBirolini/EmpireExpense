@@ -13,5 +13,6 @@ struct sound
 
 struct sound *init_sound(void);
 
+void stopMusic();
 
 extern struct sound *sons;

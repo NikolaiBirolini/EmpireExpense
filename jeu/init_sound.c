@@ -14,3 +14,8 @@ struct sound *init_sound(void)
     sons->c1 = Mix_LoadMUS("sons/musiques/ivan-rebroff-the-drunken-monk.mp3");
     return sons;
 }
+
+void stopMusic() 
+{
+    Mix_HaltMusic();
+}
