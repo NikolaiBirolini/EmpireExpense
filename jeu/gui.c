@@ -72,7 +72,8 @@ int blit_text(SDL_Rect position1, char *text, int limite)
 void gui_event(struct personnages *perso)
 {
 	// ordres (que tu recois)
-	SDL_Rect position = {(perso->ordrex - perso->x) * cos(perso->angle) + (perso->ordrey - perso->y) * sin(perso->angle) + 550, (perso->ordrey - perso->y) * cos(perso->angle) - (perso->ordrex - perso->x) * sin(perso->angle) + 500, 100, 100};
+	SDL_Rect position = {(perso->ordrex - screenx - perso->ordrey + screeny) * 22 + 450, (perso->ordrex - screenx - screeny + perso->ordrey) * 11 + 450 - ground_altitude[(int)perso->ordrex + (int)perso->ordrey * max_x],100 , 100};
+		
 	if (perso->ordrex != -1)
 	{
 		if (perso->x > perso->ordrex + - 50 && perso->x < perso->ordrex + 50 && perso->y > perso->ordrey - 50 && perso->y < perso->ordrey + 50)

@@ -22,24 +22,26 @@ struct linked_list *select(struct linked_list *selected)
 
 void commande(struct linked_list *selected, struct personnages *moi, struct formation *f)
 {
-	moi = moi;
 	f = f;
 	if (lettres->Mouse_Rclick == 1)
 	{
 		float x = (lettres->Mouse_pos_x  + 2*lettres->Mouse_pos_y + 44*screenx - 1500)/44;
 		float y = (2*lettres->Mouse_pos_y - lettres->Mouse_pos_x + 44*screeny - 500)/44;
+		//parcour->p->x = ((lettres->Mouse_pos_x - 500)/22) + screenx + parcour->p->y -screeny;
+        //parcour->p->y = ((lettres->Mouse_pos_y - 500)/11) - parcour->p->x + screenx + screeny;
 
-		printf  ("%f %f\n", x,y);
+		//printf  ("%f %f\n", x,y);
 		
-	//	int i = 0;
-	//	int j = 0;
+		int i = 0;
+		int j = 0;
 		for (struct linked_list *a = selected; a != NULL; a = a->next)
 		{
-			printf ("%s\n", a->p->nom);
-			/*
+			//printf ("%s\n", a->p->nom);
+			
 			if (strcmp(a->p->nom_superieur, moi->nom) == 0)
 			{
-				sprintf (ordre + strlen(ordre), "%d 03 %f %d 04 %f ", a->p->id, (lettres->Mouse_pos_x - 600) * cos(moi->angle) - (lettres->Mouse_pos_y - 550) * sin(moi->angle) + moi->x + f->ecart_x * i, a->p->id, (lettres->Mouse_pos_x - 600) * sin(moi->angle) + (lettres->Mouse_pos_y - 550) * cos(moi->angle) + moi->y + f->ecart_y * j);
+				// Perso parametre 3 = x et parametre 4 tu le mets à y
+				sprintf (ordre + strlen(ordre), "%d 03 %f %d 04 %f ", a->p->id, x, a->p->id, y);
 				i++;
 				if (i > f->n_par_lignes)
 				{
@@ -47,7 +49,7 @@ void commande(struct linked_list *selected, struct personnages *moi, struct form
 					j++;
 				}
 			}
-			*/
+			
 		}
 		lettres->Mouse_Rclick = 0;
 	}
