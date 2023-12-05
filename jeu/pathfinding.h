@@ -6,23 +6,19 @@
 #include <math.h>
 #include "init_sprite.h"
 #include "map.h"
+#include "perso.h"
 #include "shared_var.h"
-
-void create_array(char *ground);
-
 
 struct path
 {
     int value;
-    char type;
+    char walkable;
     char already;
     int prev;
 };
 
 int can_walk(char type, struct personnages *p);
-char *actualise_array(struct linked_list *list);
+void createArray(struct personnages *p);
 int find_next(struct path *array);
 void generate_around(struct path *array, int src, struct personnages *p);
-int findpath(struct personnages *p, char *array);
-
-
+char findpath(struct personnages *p);

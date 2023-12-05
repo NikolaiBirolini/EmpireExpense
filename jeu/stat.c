@@ -64,6 +64,7 @@ void init_stat(struct personnages *p)
 	p->sur_plancher = NULL;
 	p->speak_timer = 0;
 	p->faim_time = 0;
+    p->chemin_is_set = 0;
 	if (strcmp(p->skin, "ship1") == 0)
 	{
 		p->max_pv = 800;

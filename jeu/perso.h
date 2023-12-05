@@ -51,6 +51,7 @@ struct personnages
     char eau; //O si terrestre 1 si aquatique 2 si les deux
     char plancher;
     struct path *chemin;
+    char chemin_is_set;
     float screenx;
     float screeny;
     float sizescreenx;

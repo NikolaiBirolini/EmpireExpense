@@ -22,6 +22,7 @@
 #include "arg_parse.h"
 #include <time.h>
 #include "display.h"
+#include "initWorld.h"
 #include "graphic_widget/button.h"
 #include "graphic_widget/pictureButton.h"
 #include "graphic_widget/textBox.h"

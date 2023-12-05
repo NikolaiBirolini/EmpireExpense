@@ -71,19 +71,26 @@ int blit_text(SDL_Rect position1, char *text, int limite)
 
 void gui_event(struct personnages *perso)
 {
-	// ordres (que tu recois)
-	SDL_Rect position = {(perso->ordrex - perso->x) * cos(perso->angle) + (perso->ordrey - perso->y) * sin(perso->angle) + 550, (perso->ordrey - perso->y) * cos(perso->angle) - (perso->ordrex - perso->x) * sin(perso->angle) + 500, 100, 100};
+	SDL_Rect position;
+	   
+    //ordre de deplacement	
 	if (perso->ordrex != -1)
 	{
-		if (perso->x > perso->ordrex + - 50 && perso->x < perso->ordrex + 50 && perso->y > perso->ordrey - 50 && perso->y < perso->ordrey + 50)
+        position.x = (perso->ordrex - screenx - perso->ordrey + screeny) * 22 + 450;
+        position.y = (perso->ordrex - screenx - screeny + perso->ordrey) * 11 + 450 - ground_altitude[(int)perso->ordrex + (int)perso->ordrey * max_x],
+        position.w = 100; position.h =  100;
+		if (powf(perso->x - perso->ordrex, 2) + powf(perso->y - perso->ordrey, 2) < 9)
 			sprintf (ordre + strlen(ordre), "%d 03 -1 ", perso->id);
 		SDL_RenderCopy(renderer, img->g->croix, NULL, &position);
 	}
 	position.x = 50;
 	position.y = 50;
+    /*
 	char txt[231];
 	txt[0] = 0;
+    
 	//proposition d'échange
+    
 	if (strcmp(perso->echange_player, "none") != 0)
 	{
 		struct personnages *p = find_perso_by_name(perso->echange_player);
@@ -113,6 +120,7 @@ void gui_event(struct personnages *perso)
 		}
 		blit_text(position, txt, 90);
 	}
+    
 	//bulle de dialogues
 	const int nb_word_per_line = 30;
 	for (struct linked_list *p = list; p != NULL; p = p->next)
@@ -131,13 +139,20 @@ void gui_event(struct personnages *perso)
 				sprintf (ordre + strlen(ordre), "%d 20 [] ", perso->id);
 		}
 	}
+    */
 }
 
 void display_selected(struct linked_list *selected, struct personnages *moi, struct formation *f)
 {
+    for (struct linked_list *p = selected; p != NULL; p = p->next)
+    {
+        SDL_Rect position2 = {p->p->screenx-1, p->p->screeny-1, p->p->sizescreenx + 1,p->p->sizescreeny + 1};
+        SDL_RenderCopy(renderer, img->g->selecteur, NULL, &position2);
+    }
 	f =f;
-	selected = selected;
-	char txt[200] = "pv\nvitesse\nperiode d attaque\nporte\npoid\nfaim";
+	
+
+    char txt[200] = "pv\nvitesse\nperiode d attaque\nporte\npoid\nfaim";
 	char txt2[200];
 	txt2[0] = 0;
 	SDL_Rect position = {1000, 0, 800, 1000};
