@@ -120,7 +120,7 @@ void boucle_jeu(int socket, char *name)
     menu_s->economie_on = 0;
     while (lettres->exit != 1)
     {
-        //printf ("%f %f\n", moi->x, moi->y);
+        //printf ("%f \n", moi->angle);
         SDL_RenderClear(renderer);
         display_all(moi);
         gestion_touche();
@@ -149,9 +149,7 @@ void boucle_jeu(int socket, char *name)
             menu(menu_s, moi);
         else
             talk(speak_s, moi);
-        char *grille_cp = actualise_array(list);
-        ia(grille_cp);
-        free(grille_cp);
+        ia();
         gui_event(moi);
         fix_some_shit();
         send_orders(socket);
