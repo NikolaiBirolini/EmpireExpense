@@ -309,180 +309,23 @@ void parse_order(char *line)
                     i++;
                 i++;
                 break;
+            case 23:
+                p->chemin_is_set = line[i] - '0';
+                i += 2;
+                break;
         }
     }
 }
 
 void parse_new(struct personnages *p, char *line)
 {
-    int i = 0;
-    int j = 0;
+    int i;
+    int j;
     char tmpI[10];
     char tmpF[30];
     char tmpN[50];
-    while (line[i] != ' ')
-    {
-        tmpI[j] = line[i];
-        j++;
-        i++;
-    }
-    tmpI[j] = 0;
-    p->id = atoi(tmpI);
-    i++;
-    j = 0;
-    while (line[i] != ' ')
-    {
-        tmpI[j] = line[i];
-        i++;
-        j++;
-    }
-    tmpI[j] = 0;
-    j = 0;
-    i++;
-    p->pv = atoi(tmpI);
-    while (line[i] != ' ')
-    {
-        p->nom_de_compte[j] = line[i];
-        j++;
-        i++;
-    }
-    p->nom_de_compte[j] = 0;
-    i++;
-    j = 0;
-    while (line[i] != ' ')
-    {
-        tmpF[j] = line[i];
-        j++;
-        i++;
-    }
-    tmpF[j] = 0;
-    j = 0;
-    p->x = atof(tmpF);
-    i++;
-    while (line[i] != ' ')
-    {
-        tmpF[j] = line[i];
-        i++;
-        j++;
-    }
-    tmpF[j] = 0;
-    j = 0;
-    p->y = atof(tmpF);
-    i++;
-    while (line[i] != ' ')
-    {
-        tmpF[j] = line[i];
-        i++;
-        j++;
-    }
-    tmpF[j] = 0;
-    j = 0;
-    p->ordrex = atof(tmpF);
-    i++;
-    while (line[i] != ' ')
-    {
-        tmpF[j] = line[i];
-        i++;
-        j++;
-    }
-    tmpF[j] = 0;
-    j = 0;
-    p->ordrey = atof(tmpF);
-    i++;
-    while (line[i] != ' ')
-    {
-        tmpI[j] = line[i];
-        i++;
-        j++;
-    }
-    tmpI[j] = 0;
-    j = 0;
-    i++;
-    p->angle = atoi(tmpI);
-    while (line[i] != ' ')
-    {
-        tmpI[j] = line[i];
-        i++;
-        j++;
-    }
-    tmpI[j] = 0;
-    j = 0;
-    i++;
-    p->timer_dom = atoi(tmpI);
-    while (line[i] != ' ')
-    {
-        tmpI[j] = line[i];
-        i++;
-        j++;
-    }
-    tmpI[j] = 0;
-    j = 0;
-    i++;
-    p->faim = atoi(tmpI);
-    while (line[i] != ' ')
-    {
-        p->skin[j] = line[i];
-        j++;
-        i++;
-    }
-    p->skin[j] = 0;
-    j = 0;
-    i++;
-    while (line[i] != ' ')
-    {
-        p->nom[j] = line[i];
-        j++;
-        i++;
-    }
-    p->nom[j] = 0;
-    j = 0;
-    i++;
-    while (line[i] != ' ')
-    {
-        p->nom_superieur[j] = line[i];
-        j++;
-        i++;
-    }
-    p->nom_superieur[j] = 0;
-    j = 0;
-    i++;
-    while (line[i] != ' ')
-    {
-        p->titre[j] = line[i];
-        j++;
-        i++;
-    }
-    p->titre[j] = 0;
-    j = 0;
-    i++;
-    while (line[i] != ' ')
-    {
-        p->religion[j] = line[i];
-        j++;
-        i++;
-    }
-    p->religion[j] = 0;
-    j = 0;
-    i++;
-    while (line[i] != ' ')
-    {
-        p->region[j] = line[i];
-        j++;
-        i++;
-    }
-    p->region[j] = 0;
-    i ++;
-	j = 0;
-	while (line[i] != ' ')
-    {
-        tmpI[j] = line[i];
-        j++;
-        i++;
-    }
-    tmpI[j] = 0;
-    p->nb_vassaux = atoi(tmpI);
-    i++;
-    j = 0;
+    sscanf(line, "%d %d %s %f %f %f %f %f %d %d %s %s %s %s %s %d%n", &p->id, &p->pv, p->nom_de_compte, &p->x, &p->y, &p->ordrex, &p->ordrey, &p->angle, &p->timer_dom, &p->faim, p->skin, p->nom, p->nom_superieur, p->titre, p->religion, &p->nb_vassaux, &i);
+    i += 1;
     while (line[i] != ']')
     {
         i += 1;
@@ -535,66 +378,7 @@ void parse_new(struct personnages *p, char *line)
         }
     }
     i += 2;
-    j = 0;
-    while (line[i] != ' ')
-    {
-        p->echange_player[j] = line[i];
-        j++;
-        i++;
-    }
-    p->echange_player[j] = 0;
-    i++;
-    j = 0;
-    while (line[i] != ' ')
-    {
-        tmpI[j] = line[i];
-        i++;
-        j++;
-    }
-    tmpI[j] = 0;
-    j = 0;
-    i++;
-    p->item1 = atoi(tmpI);
-    while (line[i] != ' ')
-    {
-        tmpI[j] = line[i];
-        i++;
-        j++;
-    }
-    tmpI[j] = 0;
-    p->item2 = atoi(tmpI);
-    i++;
-    j = 0;
-    while (line[i] != ']')
-    {
-        p->speak[j] = line[i];
-        i++;
-        j++;
-    }
-    p->speak[j] = ']';
-    p->speak[j + 1] = 0;
-    i += 2;
-    j = 0;
-    while (line[i] != ' ')
-    {
-        tmpI[j] = line[i];
-        j++;
-        i++;
-    }
-    i++;
-    tmpI[j] = 0;
-    j = 0;
-    p->animation = atoi(tmpI);
-    while (line[i] != 0 && line[i] != '\n')
-    {
-        tmpI[j] = line[i];
-        j++;
-        i++;
-    }
-    i++;
-    tmpI[j] = 0;
-    j = 0;
-    p->animation_2 = atoi(tmpI);
+    sscanf(line + i, "%s %d %d %s %d %d %d", p->echange_player, &p->item1, &p->item2, p->speak, &p->animation, &p->animation_2, &p->chemin_is_set);
     p->moved_x = 0;
     p->moved_y = 0;
 

@@ -154,13 +154,13 @@ void ia_man(struct linked_list *parcour)
             int src = (int)parcour->p->y * max_x + (int)parcour->p->x;
             int dst = parcour->p->chemin[src].prev;
             if (src + 1 == dst)
-                sprintf (ordre + strlen(ordre), "%d 01 +%f ", parcour->p->id, parcour->p->vitesse_dep);
+                sprintf (ordre + strlen(ordre), "%d 01 +%f %d 05 4,7124 ", parcour->p->id, parcour->p->vitesse_dep, parcour->p->id);
             else if (src - 1 == dst)
-                sprintf (ordre + strlen(ordre), "%d 01 -%f ", parcour->p->id, parcour->p->vitesse_dep); 
+                sprintf (ordre + strlen(ordre), "%d 01 -%f %d 05 1.5708 ", parcour->p->id, parcour->p->vitesse_dep, parcour->p->id); 
             else if (src - max_x == dst)
-                sprintf (ordre + strlen(ordre), "%d 02 -%f ", parcour->p->id, parcour->p->vitesse_dep);
+                sprintf (ordre + strlen(ordre), "%d 02 -%f %d 05 3,1416 ", parcour->p->id, parcour->p->vitesse_dep, parcour->p->id);
             else if (src + max_x == dst)
-                sprintf (ordre + strlen(ordre), "%d 02 +%f ", parcour->p->id, parcour->p->vitesse_dep);
+                sprintf (ordre + strlen(ordre), "%d 02 +%f %d 05 0 ", parcour->p->id, parcour->p->vitesse_dep, parcour->p->id);
         }
         else
         {

@@ -41,7 +41,7 @@ char findpath(struct personnages *p)
     createArray(p);
     int src = (int)p->y * max_x + (int)p->x;
     int dst = (int)p->ordrey * max_x + (int)p->ordrex;
-    if (p->chemin[dst].walkable == 0)
+    if (p->ordrey > max_y || p->ordrey < 0 || p->ordrex > max_x || p->ordrex < 0 || p->chemin[dst].walkable == 0)
         return 0;
     p->chemin[dst].value = fabs(p->ordrex - p->x) + fabs(p->ordrey - p->y);
     p->chemin[dst].already = 1;

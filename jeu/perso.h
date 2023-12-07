@@ -37,6 +37,7 @@ struct personnages
     char speak[90];
     int animation; // gestion frame
     int animation_2; // ce qu'il est en train de faire
+    int chemin_is_set;
     ///////////////////////////////////////
     char animation_time;
     int speak_timer;
@@ -51,7 +52,6 @@ struct personnages
     char eau; //O si terrestre 1 si aquatique 2 si les deux
     char plancher;
     struct path *chemin;
-    char chemin_is_set;
     float screenx;
     float screeny;
     float sizescreenx;

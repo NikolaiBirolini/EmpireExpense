@@ -39,6 +39,7 @@ struct personnages
     char speak[90];
     int animation;
 	int animation_2;
+    int chemin_is_set;
     /////////////
 	struct personnages *next;
     float moved_x;

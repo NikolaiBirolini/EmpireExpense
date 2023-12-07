@@ -6,7 +6,7 @@ void actualise_stat(struct personnages *p)
 	{
 		int max_pv = 10;
 		int vitesse_dom = 100;
-		float vitesse_dep = 0.1;
+		float vitesse_dep = 0.2;
 		int porte_dom = 10;
 		int dom = 1;
 		int poid = 65; 	

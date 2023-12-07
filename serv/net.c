@@ -24,7 +24,7 @@ int generate_order(char *ret)
                 else
                     sprintf (order + strlen(order), "%s %d", p->nom, p->count);
 			}
-			sprintf(order + strlen(order),  "] %s %d %d %s %d %d", pa->echange_player, pa->item1, pa->item2, pa->speak, pa->animation, pa->animation_2);
+			sprintf(order + strlen(order),  "] %s %d %d %s %d %d %d", pa->echange_player, pa->item1, pa->item2, pa->speak, pa->animation, pa->animation_2, pa->chemin_is_set);
             if (pa->next != NULL)
                 strcat(order, "\n");
 			pa->a_bouger = 0;
@@ -57,7 +57,7 @@ void send_map(int socket)
             else
                 sprintf (ordre + strlen(ordre), "%s %d", p->nom, p->count);
         }
-        sprintf(ordre + strlen(ordre),  "] %s %d %d %s %d %d", pa->echange_player, pa->item1, pa->item2, pa->speak, pa->animation, pa->animation_2);
+        sprintf(ordre + strlen(ordre),  "] %s %d %d %s %d %d %d", pa->echange_player, pa->item1, pa->item2, pa->speak, pa->animation, pa->animation_2, pa->chemin_is_set);
         if (pa->next != NULL)
             strcat(ordre, "\n");
     }
