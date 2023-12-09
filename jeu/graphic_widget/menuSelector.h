@@ -15,13 +15,14 @@ typedef struct {
     int y;
     int width;
     int height;
-    SDL_Color color;
+    SDL_Color selectedColor;
+    SDL_Color defaultColor; 
     SDL_Color textColor;  
     TTF_Font* font;      
 } Selector;
 
-void initializeSelector(Selector* selector, int x, int y, int width, int height, SDL_Color color, SDL_Color textColor, TTF_Font* font, char* options[], int numOptions);
-
+void initializeSelector(Selector* selector, int x, int y, int width, int height, SDL_Color selectedColor, SDL_Color defaultColor, SDL_Color textColor, TTF_Font* font, char* options[], int numOptions);
+ 
 void drawSelector(SDL_Renderer* renderer, Selector* selector);
 
 #endif /* MENU_SELECTOR_H */

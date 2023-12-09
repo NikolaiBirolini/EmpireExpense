@@ -85,27 +85,6 @@ bool communicateWithServer(int socket, char* to_send, int size, int flags)
 
 void menuDisplay(SDL_Renderer *renderer)
 {
-	TTF_Font *littleFont = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 20);
-
-	// Initialize options
-    char* options[] = {
-        "Inventory",
-        "Diplomacy",
-        "Action",
-        "Capacity",
-        "Research",
-        "Economy",
-        "Religion"
-    };
-
-	// Set up colors
-    SDL_Color color = {255, 0, 0, 255};       // Background color
-    SDL_Color textColor = {255, 255, 255, 255}; // Text color
-
-    // Initialize the selector
-    Selector selector;
-    initializeSelector(&selector, 100, 50, 200, 50, color, textColor, littleFont, options, sizeof(options) / sizeof(options[0]));
-    drawSelector(renderer, &selector);
 }
 
 void eventManagement(SDL_Event event)
@@ -165,12 +144,14 @@ void boucle_jeu(int socket, char *name)
     };
 
 	// Set up colors
-    SDL_Color color = {255, 0, 0, 255};       // Background color
-    SDL_Color textColor = {255, 255, 255, 255}; // Text color
+    SDL_Color selectedColor = {75, 0, 130, 255};   // Dark purple for selected option
+    SDL_Color defaultColor = {221, 160, 221, 255};  // Light purple for default option
+    SDL_Color textColor = {255, 255, 255, 255};     // Text color
 
     // Initialize the selector
     Selector selector;
-    initializeSelector(&selector, 100, 50, 200, 50, color, textColor, littleFont, options, sizeof(options) / sizeof(options[0]));
+    initializeSelector(&selector, 100, 50, 200, 50, selectedColor, defaultColor, textColor, littleFont, options, sizeof(options) / sizeof(options[0]));
+
 
 	while(!done)
 	{
@@ -276,7 +257,7 @@ void boucle_jeu(int socket, char *name)
 		
 	    SDL_RenderPresent(renderer);
 	}
-	free(menu_s);
+	//free(menu_s);
 
 	//while (lettres->exit != 1)
 	//{
@@ -529,15 +510,15 @@ int menu_connection()
                 if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
                     handleTextInput(&portTextBox, event);
 
-            if(writeIp)
-                if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
-                    handleTextInput(&ipTextBox, event);
-        }
-        SDL_RenderPresent(renderer);
-        SDL_Delay(10);
-    }
-
-    TTF_CloseFont(font);
-    TTF_CloseFont(fontIpBox);
-    return socket;
+			if(writeIp)
+				if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
+		        	handleTextInput(&ipTextBox, event);
+		}
+	    SDL_RenderPresent(renderer);
+		SDL_Delay(10);
+	}
+	
+	TTF_CloseFont(font);
+	TTF_CloseFont(fontIpBox);
+	return socket;
 }
