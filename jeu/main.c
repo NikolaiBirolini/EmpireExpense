@@ -100,33 +100,10 @@ void boucle_jeu(int socket, char *name)
     list = recv_map(socket);
     struct personnages *moi = find_perso_by_name(name);	
 	struct linked_list *selected = NULL;
-	//peux être faire une sous fonction pour init tout ca
-	//struct menu *menu_s = malloc(sizeof(struct menu));
-	//struct speak *speak_s = malloc(sizeof(struct speak));
 	struct formation *f= malloc(sizeof(struct formation));
 	f->ecart_x = 25;
 	f->ecart_y = 25;
 	f->n_par_lignes = 10;
-	//speak_s->on = 0;
-	//speak_s->speak[0] = 0;
-	//menu_s->on = 0;
-	//menu_s->diplo_on = 0;
-	//menu_s->inventaire_on = 0;
-	//menu_s->action_on = 0;
-	//menu_s->echange_on = 0;
-	//menu_s->add_enemi[0] = 0;
-	//menu_s->rem_enemi[0] = 0;
-	//menu_s->sel_diplo = 0;
-	//menu_s->sel_echange1 = 0;
-	//menu_s->sel_echange2 = 0;
-	//menu_s->sel_inventaire = 0;
-	//menu_s->technologies_on = 0;
-	//menu_s->religion_on = 0;
-	//menu_s->yarbre = 10;
-	//menu_s->r_tree = NULL;
-	//menu_s->t_tree = NULL;
-	//menu_s->capacite_on = 0;
-	//menu_s->economie_on = 0;
 	bool done = false;
 	SDL_Event event;
 
@@ -152,7 +129,9 @@ void boucle_jeu(int socket, char *name)
     Selector selector;
     initializeSelector(&selector, 100, 50, 200, 50, selectedColor, defaultColor, textColor, littleFont, options, sizeof(options) / sizeof(options[0]));
 
-
+    bool speak = false;
+	TextBox dialTextBox;
+    
 	while(!done)
 	{
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
@@ -161,6 +140,11 @@ void boucle_jeu(int socket, char *name)
 		
 		if (lettres->m)
 		    drawSelector(renderer, &selector);
+
+		if (lettres->t)
+		{
+		    drawTextBox(renderer, &dialTextBox, true); 
+		}
 
 		while(SDL_PollEvent(&event) != 0)
 		{
@@ -194,10 +178,28 @@ void boucle_jeu(int socket, char *name)
 			    {
 		    		lettres->m = !lettres->m;
 				}
+				if (event.key.keysym.sym == SDLK_t && !speak)
+			    {
+		    		lettres->t = !lettres->t;
+					initTextBox(&dialTextBox, 100, 100, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, littleFont, false);
+					speak = true;
+				}
 				if (event.key.keysym.sym == SDLK_RETURN)
 				{
-		    		printf("You chose: %s\n", selector.options[selector.selectedOption]);
+					if (lettres->t)
+					{
+						lettres->t = 0;
+					}
+					if (lettres->m)
+					{
+		    		    printf("You chose: %s\n", selector.options[selector.selectedOption]);
+					    lettres->m = 0;
+					}
+				}
+				if (event.key.keysym.sym == SDLK_ESCAPE)
+				{
 					lettres->m = 0;
+					lettres->t = 0;
 				}
 		    }
 		    if (event.type == SDL_KEYUP)
@@ -257,52 +259,6 @@ void boucle_jeu(int socket, char *name)
 		
 	    SDL_RenderPresent(renderer);
 	}
-	//free(menu_s);
-
-	//while (lettres->exit != 1)
-	//{
-	//	//printf ("%f %f\n", moi->x, moi->y);
-	//	SDL_RenderClear(renderer);
-	//	display_all(moi);
-	//	gestion_touche();
-	//	if (menu_s->on == 0 && speak_s->on == 0)
-	//	{
-	//		deplacement(moi);
-	//		selected = select(selected);
-	//		commande(selected, moi, f);
-	//		if (lettres->m == 1)
-	//		{
-	//			lettres->m = 0;
-	//			menu_s->on = 1;
-	//		}
-	//		if (lettres->t == 1)
-	//		{
-	//			lettres->t = 0;
-	//			speak_s->on = 1;
-	//		}
-	//		if (lettres->Mouse_Mclick == 1)
-	//		{
-	//			free_linked(selected, 0);
-	//			selected = NULL;
-	//		}
-	//	}
-	//	else if (menu_s->on == 1)
-			//menu(menu_s, moi);
-	//	else
-	//		talk(speak_s, moi);
-	//	char *grille_cp = actualise_array(list);
-	//	ia(grille_cp);
-	//	free(grille_cp);
-	//	gui_event(moi);
-	//	fix_some_shit();
-	//	send_orders(socket);
-	//	recv_order(socket);
-	//	list = death();
-	//	selected = clean_selected(selected);
-	//	display_selected(selected, moi, f);
-	//	SDL_RenderPresent(renderer);
-	//}
-	//free(menu_s);
 }
 
 void set_pos(SDL_Rect *pos, int x, int y)
