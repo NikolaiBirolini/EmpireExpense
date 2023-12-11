@@ -143,7 +143,7 @@ void boucle_jeu(int socket, char *name)
 
 		if (lettres->t)
 		{
-		    drawTextBox(renderer, &dialTextBox, true); 
+		    drawTextBox(renderer, &dialTextBox, lettres->t); 
 		}
 
 		while(SDL_PollEvent(&event) != 0)
