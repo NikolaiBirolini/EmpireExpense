@@ -64,11 +64,11 @@ bool sendLoginDataToServer(char *login, char *password, int socket, int size, in
 
 bool communicateWithServer(int socket, char* to_send, int size, int flags) 
 {
-    if(send(socket, to_send, size, flags))
-    {
-        char* boolean_rep = malloc(1);
-        boolean_rep[0] = 'p';
-        while (*boolean_rep == 'p') 
+	if(send(socket, to_send, size, flags))
+	{
+		char* boolean_rep = malloc(1);
+	    boolean_rep[0] = 'p';
+		while (*boolean_rep == 'p') 
             recv(socket, boolean_rep, 1, 0);
 	    if (boolean_rep[0] != 'o')
 	    {
@@ -82,6 +82,7 @@ bool communicateWithServer(int socket, char* to_send, int size, int flags)
 	
 	return false;
 }
+
 
 void boucle_jeu(int socket, char *name)
 {
@@ -246,9 +247,7 @@ void boucle_jeu(int socket, char *name)
 	    selected = select(selected);
 	    commande(selected, moi, f);
 
-		char *grille_cp = actualise_array(list);
-	    ia(grille_cp);
-	    free(grille_cp);
+	    ia();
 	    gui_event(moi);
 	    fix_some_shit();
 	    send_orders(socket);
