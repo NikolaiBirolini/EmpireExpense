@@ -2,7 +2,7 @@
 #include <SDL2/SDL.h>
 #include "shared_var.h"
 
-void keyboardManagement(SDL_Event event);
+void gestion_touche(void);
 void text_input(char *text, unsigned int limite);
 
 struct lettres

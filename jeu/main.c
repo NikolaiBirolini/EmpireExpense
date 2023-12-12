@@ -83,15 +83,6 @@ bool communicateWithServer(int socket, char* to_send, int size, int flags)
 	return false;
 }
 
-void menuDisplay(SDL_Renderer *renderer)
-{
-}
-
-void eventManagement(SDL_Event event)
-{
-	keyboardManagement(event);
-}
-
 void boucle_jeu(int socket, char *name)
 {
     char *ground = rec_ground(socket);
@@ -143,40 +134,49 @@ void boucle_jeu(int socket, char *name)
 
 		if (lettres->t)
 		{
-		    drawTextBox(renderer, &dialTextBox, lettres->t); 
+		    drawTextBox(renderer, &dialTextBox, true); 
 		}
 
 		while(SDL_PollEvent(&event) != 0)
 		{
 			if (event.type == SDL_KEYDOWN)
 		    {
+				if (event.type == SDL_TEXTINPUT)
+				{
+					printf("BLABLABLABLABLBALAB");
+		            handleTextInput(&dialTextBox, event);
+				}
 		    	if (event.key.keysym.sym == SDLK_d || event.key.keysym.sym == SDLK_RIGHT)
 				{
-					if(!lettres->m)
+					if(!lettres->m && !speak)
 		    		    lettres->d = 1;
 				}
 		    	if (event.key.keysym.sym == SDLK_s || event.key.keysym.sym == SDLK_DOWN)
 				{
-					if(!lettres->m)
+					if(!lettres->m && !speak)
 		    		    lettres->s = 1;
 					else
 					    selector.selectedOption = (selector.selectedOption + 1) % selector.numOptions;
 				}
 		    	if (event.key.keysym.sym == SDLK_q || event.key.keysym.sym == SDLK_LEFT)
 				{
-					if(!lettres->m)
+					if(!lettres->m && !speak)
 		    		    lettres->q = 1;
 				}
 		    	if (event.key.keysym.sym == SDLK_z || event.key.keysym.sym == SDLK_UP)
 				{
-					if(!lettres->m)
+					if(!lettres->m && !speak)
 		    		    lettres->z = 1;
 					else
 					    selector.selectedOption = (selector.selectedOption - 1 + selector.numOptions) % selector.numOptions;
 				}
-		    	if (event.key.keysym.sym == SDLK_m)
+		    	if (event.key.keysym.sym == SDLK_m && !speak)
 			    {
 		    		lettres->m = !lettres->m;
+				}
+				if (event.key.keysym.sym == SDLK_t && speak)
+			    {
+		    		lettres->t = !lettres->t;
 				}
 				if (event.key.keysym.sym == SDLK_t && !speak)
 			    {

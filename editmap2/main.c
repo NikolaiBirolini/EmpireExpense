@@ -28,10 +28,9 @@ int main(int argc, char **argv)
 			SDL_WINDOW_OPENGL);
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 	img = init_img();
-	SDL_Event event;
 	while (lettres->exit != 1)
 	{
-		keyboardManagement(event);
+		gestion_touche();
 		deplacement();
 		load_file_as_string(argv[1], &ground);
 		create_array(ground);
