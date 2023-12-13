@@ -39,6 +39,8 @@ void text_input(char *text, unsigned int limite)
 	}
 }
 
+
+
 void gestion_touche(void)
 {
 	if (writing == 1)

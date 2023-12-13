@@ -27,6 +27,7 @@
 #include "graphic_widget/pictureButton.h"
 #include "graphic_widget/textBox.h"
 #include "graphic_widget/textInfo.h"
+#include "graphic_widget/menuSelector.h"
 
 void set_pos(SDL_Rect *pos, int x, int y);
 void boucle_jeu(int socket, char *name);
