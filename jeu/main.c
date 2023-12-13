@@ -460,6 +460,16 @@ int menu_connection()
 					writeIp = false;		
 	        	}
             }
+            else if (event.type == SDL_KEYDOWN) 
+            {
+                if (event.key.keysym.sym == SDLK_TAB) 
+                {
+                    writePort = !writePort;
+                    writeIp = !writeIp;
+                }
+                if (event.key.keysym.sym == SDLK_RETURN) 
+                    socket = try_connect(ipTextBox.text, portTextBox.text);
+            }
 
             if(writePort)
                 if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
