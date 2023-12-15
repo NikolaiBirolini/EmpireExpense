@@ -20,6 +20,10 @@ void gui_event(struct personnages *perso)
 
 void display_selected(struct linked_list *selected, struct personnages *moi, struct formation *f)
 {
+    SDL_Rect position = {1000, 0, 800, 1000};
+    SDL_RenderCopy(renderer, img->g->menu_bas, NULL, &position);
+    TextInfo text_my_stats = {"pv\nqdsf", littleFont, 1100, 100, 0, {0, 0, 0, 255}, 1, 1, 0};
+    drawTextInfo(renderer, &text_my_stats);
     selected = selected;
     moi = moi;
     f = f;

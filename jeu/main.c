@@ -367,10 +367,6 @@ char *log_menu(int socket)
         SDL_RenderPresent(renderer);
         SDL_Delay(10);
     }
-    TTF_CloseFont(font);
-    TTF_CloseFont(littleFont);
-    TTF_CloseFont(bigFont);
-    TTF_Quit();
     char *name = calloc(50, 1);
     strcat(name, logTextBox.text);
     return name;
