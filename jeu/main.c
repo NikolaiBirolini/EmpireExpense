@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
         printf ("no sound\n");
     img = init_img();
     sons = init_sound();
+    initFonts();
     Mix_PlayMusic(sons->menu, 1);
 
     bool validAddress = false;
@@ -98,8 +99,6 @@ void boucle_jeu(int socket, char *name)
 	f->n_par_lignes = 10;
 	bool done = false;
 	SDL_Event event;
-
-	TTF_Font *littleFont = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 20);
 
 	// Initialize options
     char* options[] = {
@@ -271,20 +270,17 @@ char *log_menu(int socket)
     TTF_Init();
     SDL_Event event;
     bool done = false;
-    TTF_Font *litleFont = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 20);
-    TTF_Font *bigFont = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 25);
     TextBox logTextBox;
     TextBox psswdTextBox;
-    initTextBox(&logTextBox, 100, 100, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, litleFont, false);
-    initTextBox(&psswdTextBox, 100, 180, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, litleFont, true);
-	TTF_Font *font = TTF_OpenFont("fonts/connection_menu/Ancient Medium.ttf", 24);
+    initTextBox(&logTextBox, 100, 100, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, littleFont, false);
+    initTextBox(&psswdTextBox, 100, 180, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, littleFont, true);
 	Button playButton = {700, 180, 100, 45, {45, 165, 100, 255}, {136, 0, 21, 255}, font, {0, 0, 0, 255}, "PLAY"};
 	bool writeLogin = true;
 	bool writePsswd = false;
-	TextInfo textName = {"Login", litleFont, 100, 70, 0, {0, 0, 0, 255}, 1, 1, 0};
+	TextInfo textName = {"Login", littleFont, 100, 70, 0, {0, 0, 0, 255}, 1, 1, 0};
 	TextInfo textPassword = {"Password", bigFont, 100, 150, 0, {0, 0, 0, 255}, 1, 1, 0};
 	TextBox unusedtextbox;
-    initTextBox(&unusedtextbox, 80, 60, 760, 200, (SDL_Color){150, 100, 135, 255}, (SDL_Color){150, 100, 135, 255}, (SDL_Color){0, 0, 0, 255}, litleFont, false);
+    initTextBox(&unusedtextbox, 80, 60, 760, 200, (SDL_Color){150, 100, 135, 255}, (SDL_Color){150, 100, 135, 255}, (SDL_Color){0, 0, 0, 255}, littleFont, false);
     pictureButton noiseButton;
     initPictureButton(renderer, &noiseButton, 1700, 800, 80, 80, "img/textures/graphical_widget_img/noise_button/default_son.png", "img/textures/graphical_widget_img/noise_button/pressed_son.png");
     while (!done)
@@ -303,7 +299,7 @@ char *log_menu(int socket)
             if (event.type == SDL_QUIT) 
             {
                 TTF_CloseFont(font);
-                TTF_CloseFont(litleFont);
+                TTF_CloseFont(littleFont);
                 TTF_CloseFont(bigFont);
                 TTF_Quit();
                 exit(0);
@@ -372,7 +368,7 @@ char *log_menu(int socket)
         SDL_Delay(10);
     }
     TTF_CloseFont(font);
-    TTF_CloseFont(litleFont);
+    TTF_CloseFont(littleFont);
     TTF_CloseFont(bigFont);
     TTF_Quit();
     char *name = calloc(50, 1);
@@ -387,20 +383,17 @@ int menu_connection()
     pictureButton noiseButton;
     initPictureButton(renderer, &noiseButton, 1700, 800, 80, 80, "img/textures/graphical_widget_img/noise_button/default_son.png", "img/textures/graphical_widget_img/noise_button/pressed_son.png");
     TTF_Init();
-    TTF_Font *fontIpBox = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 20);
-    TTF_Font *ipTextFont = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 25);
     TextBox ipTextBox;
-    initTextBox(&ipTextBox, 100, 100, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, fontIpBox, false);
+    initTextBox(&ipTextBox, 100, 100, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, bigFont, false);
     TextBox portTextBox;
-    initTextBox(&portTextBox, 100, 180, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, fontIpBox, false);
-	TTF_Font *font = TTF_OpenFont("fonts/connection_menu/Ancient Medium.ttf", 24);
+    initTextBox(&portTextBox, 100, 180, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, bigFont, false);
 	Button playButton = {700, 180, 100, 45, {45, 165, 100, 255}, {136, 0, 21, 255}, font, {0, 0, 0, 255}, "PLAY"};
 	bool writeIp = true;
 	bool writePort = false;
-	TextInfo textIp = {"IP Address", ipTextFont, 100, 70, 0, {0, 0, 0, 255}, 1, 1, 0};
-	TextInfo textPort = {"Port", ipTextFont, 100, 150, 0, {0, 0, 0, 255},1, 1, 0};
+	TextInfo textIp = {"IP Address", littleFont, 100, 70, 0, {0, 0, 0, 255}, 1, 1, 0};
+	TextInfo textPort = {"Port", littleFont, 100, 150, 0, {0, 0, 0, 255},1, 1, 0};
 	TextBox unusedtextbox;
-    initTextBox(&unusedtextbox, 80, 60, 760, 200, (SDL_Color){150, 100, 135, 255}, (SDL_Color){150, 100, 135, 255}, (SDL_Color){0, 0, 0, 255}, fontIpBox, false);
+    initTextBox(&unusedtextbox, 80, 60, 760, 200, (SDL_Color){150, 100, 135, 255}, (SDL_Color){150, 100, 135, 255}, (SDL_Color){0, 0, 0, 255}, bigFont, false);
 
     while (socket < 0) 
     {
@@ -418,9 +411,9 @@ int menu_connection()
         { 
             if (event.type == SDL_QUIT) 
             {
+                TTF_CloseFont(bigFont);
+                TTF_CloseFont(littleFont);
                 TTF_CloseFont(font);
-                TTF_CloseFont(fontIpBox);
-                TTF_CloseFont(ipTextFont);
                 TTF_Quit();
                 exit(0);
             }
@@ -482,8 +475,5 @@ int menu_connection()
 	    SDL_RenderPresent(renderer);
 		SDL_Delay(10);
 	}
-	
-	TTF_CloseFont(font);
-	TTF_CloseFont(fontIpBox);
 	return socket;
 }

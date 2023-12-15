@@ -12,7 +12,6 @@ void drawTextInfo(SDL_Renderer *renderer, TextInfo *textInfo)
         surface = TTF_RenderText_Blended_Wrapped(textInfo->font, textInfo->text, textInfo->textColor, textInfo->wrapWidth);
     else 
         surface = TTF_RenderText_Blended(textInfo->font, textInfo->text, textInfo->textColor);
-
     SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
 
@@ -20,4 +19,12 @@ void drawTextInfo(SDL_Renderer *renderer, TextInfo *textInfo)
     SDL_RenderCopy(renderer, texture, NULL, &dstRect);
 
     SDL_DestroyTexture(texture);
+}
+
+void initFonts(void)
+{
+    TTF_Init();
+    littleFont = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 20);
+    bigFont = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 25);
+    font = TTF_OpenFont("fonts/connection_menu/Ancient Medium.ttf", 24);
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "main.h"
+#include "shared_var.h"
 
 struct node
 {

@@ -1,23 +1,26 @@
-20 22
-he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0
-he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0
-he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0
-he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0
-he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0
-he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0
-he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0
-he1 0 he1 0 he1 0 sa1 30 sa1 30 sa2 100 he1 0 he1 0 he1 0 he1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0
-he1 0 he1 0 he1 0 sa1 30 sa1 30 sa2 100 he1 0 he1 0 he1 0 he1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0
-he1 0 he1 0 he1 0 sa1 30 sa1 30 sa2 100 he1 0 he1 0 he1 0 he1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0
-he1 0 he1 0 he1 0 sa1 30 sa1 30 sa2 100 he1 0 he1 0 he1 0 he1 0 he1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0
-ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0
-ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0
-ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0
-ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0
-ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0
-ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0
-ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0
-ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0
-ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 he1 0 ea1 0 ea1 0 ea1 0 ea1 0
-ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0
-ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0
+31 25
+he1 10 he1 10 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0
+he1 10 he1 10 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0
+he1 10 he1 10 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0
+he1 10 he1 10 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0
+he1 10 he1 10 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0
+he1 10 he1 10 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0
+he1 10 he1 10 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0
+he1 10 he1 10 he1 0 sa1 30 sa1 30 sa2 60 sa1 30 he1 10 he1 0 he1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0
+he1 10 he1 10 he1 0 sa1 30 sa1 30 sa2 60 sa1 30 he1 10 he1 0 he1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0
+he1 10 he1 10 he1 0 sa1 30 sa1 30 sa2 60 sa1 30 he1 10 he1 0 he1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0
+he1 10 he1 10 he1 0 sa1 30 sa1 30 sa2 60 sa1 30 he1 10 he1 0 he1 0 he1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0
+he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 ea1 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0
+he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 ea1 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0
+he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 ea1 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0
+he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 ea1 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0
+he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 ea1 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0
+he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 ea1 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0
+he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 40 he1 40 he1 40 he1 40 he1 40 he1 40 he1 0 he1 0 he1 0 he1 0 ea1 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0
+he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 40 he1 40 he1 40 he1 40 he1 40 he1 40 he1 0 he1 0 he1 0 he1 0 ea1 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0
+he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 0 he1 0 he1 0 he1 0 he1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea1 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0
+he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 9 he1 10 he1 10 he1 10 he1 10 he1 10 he1 10 he1 10 he1 10 he1 10 he1 10 ea1 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0
+he2 0 he2 0 he2 0 he2 0 he2 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he1 0 he2 0 he2 0 he2 0 he2 0 he2 0 he2 0 ea1 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0
+ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0
+ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0
+ea3 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0 ea2 0

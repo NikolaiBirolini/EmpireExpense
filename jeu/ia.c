@@ -20,7 +20,8 @@ void ia(void)
                 ia_fruit(parcour);
             else if (strcmp(parcour->p->skin, "flag_zone") == 0)
                 ia_flag(parcour);
-            ia_man(parcour);
+            else
+                ia_man(parcour);
         }
     }
 }

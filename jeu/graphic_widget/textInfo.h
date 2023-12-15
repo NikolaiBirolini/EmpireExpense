@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include "../shared_var.h"
 
 // Structure to store information about the text to be displayed
 typedef struct {
@@ -20,5 +21,5 @@ typedef struct {
 } TextInfo;
 
 void drawTextInfo(SDL_Renderer *renderer, TextInfo *textInfo);
-
+void initFonts(void);
 #endif /* TEXTINFO_H */
