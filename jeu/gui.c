@@ -1,5 +1,28 @@
 #include "gui.h"
 
+void init_main_menu(void)
+{
+    main_menu = calloc(sizeof(struct menu), 1);
+    char* options[] = {
+        "Inventory",
+        "Diplomacy",
+        "Action",
+        "Capacity",
+        "Research",
+        "Economy",
+        "Religion"
+    };
+
+    // Set up colors
+    SDL_Color selectedColor = {75, 0, 130, 255};   // Dark purple for selected option
+    SDL_Color defaultColor = {221, 160, 221, 255};  // Light purple for default option
+    SDL_Color textColor = {255, 255, 255, 255};     // Text color
+
+    // Initialize the selector
+    //Selector selector;
+    main_menu->selector = initializeSelector(100, 50, 200, 50, selectedColor, defaultColor, textColor, littleFont, options, sizeof(options) / sizeof(options[0]));
+}
+
 void gui_event(struct personnages *perso)
 {
 	SDL_Rect position;
@@ -62,11 +85,13 @@ void menu_technologie(struct menu *m)
     m = m;
 }
 
+/*
 void menu(struct menu *m, struct personnages *perso)
 {
     m = m;
     perso = perso;
 }
+*/
 
 void talk(struct speak *speak_s, struct personnages *moi)
 {
@@ -75,23 +100,23 @@ void talk(struct speak *speak_s, struct personnages *moi)
 }
 
 
-void handleMenuSelector(struct menu *s_menu)
+void menu(void)
 {
     gestion_touche();
 
 	if (lettres->s)
-	    s_menu->Selector->selectedOption = (selector.selectedOption + 1) % selector.numOptions;
+	    main_menu->selector->selectedOption = (main_menu->selector->selectedOption + 1) % main_menu->selector->numOptions;
 
 	if (lettres->z)
-	    s_menu.selector.selectedOption = (selector.selectedOption - 1 + selector.numOptions) % selector.numOptions;
+	    main_menu->selector->selectedOption = (main_menu->selector->selectedOption - 1 + main_menu->selector->numOptions) % main_menu->selector->numOptions;
 
     if (lettres->esc)
-        s_menu->on = 0;
+        main_menu->on = 0;
 
-    drawSelector(renderer, &selector);
+    drawSelector(renderer, main_menu->selector);
 }
 
 void handleDialogBox(TextBox* dialTextBox)
 {
-
+    dialTextBox = dialTextBox;
 }

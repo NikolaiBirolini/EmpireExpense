@@ -13,3 +13,4 @@ struct linked_list *list;
 TTF_Font *littleFont;
 TTF_Font *bigFont;
 TTF_Font *font;
+struct menu *main_menu;

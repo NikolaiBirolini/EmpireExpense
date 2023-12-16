@@ -17,4 +17,5 @@ extern struct linked_list *list;
 extern TTF_Font *littleFont;
 extern TTF_Font *bigFont;
 extern TTF_Font *font;
+extern struct menu *main_menu;
 

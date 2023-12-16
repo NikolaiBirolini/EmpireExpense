@@ -94,42 +94,17 @@ void boucle_jeu(int socket, char *name)
     struct personnages *moi = find_perso_by_name(name);	
 	struct linked_list *selected = NULL;
 	struct formation *f= malloc(sizeof(struct formation));
-    struct menu *s_menu = calloc(sizeof(struct menu), 1);
-    // Initialize options
-    char* options[] = {
-        "Inventory",
-        "Diplomacy",
-        "Action",
-        "Capacity",
-        "Research",
-        "Economy",
-        "Religion"
-    };
-
-	// Set up colors
-    SDL_Color selectedColor = {75, 0, 130, 255};   // Dark purple for selected option
-    SDL_Color defaultColor = {221, 160, 221, 255};  // Light purple for default option
-    SDL_Color textColor = {255, 255, 255, 255};     // Text color
-
-    // Initialize the selector
-    //Selector selector;
-    initializeSelector(s_menu->selector, 100, 50, 200, 50, selectedColor, defaultColor, textColor, littleFont, options, sizeof(options) / sizeof(options[0]));
-	f->ecart_x = 25;
-	f->ecart_y = 25;
-	f->n_par_lignes = 10;
+    init_main_menu();
 	bool done = false;
-	SDL_Event event;
-
     bool speak = false;
-	TextBox dialTextBox;
     
 	while(!done)
 	{
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
 	    display_all(moi);
-        if (s_menu->on == 1)
-            handleMenuSelector(s_menu);
+        if (main_menu->on == 1)
+            menu();
         else if (speak)
             handleDialogBox();
         else
@@ -140,14 +115,11 @@ void boucle_jeu(int socket, char *name)
 	        commande(selected, moi, f);
             if (lettres->m)
             {
-                s_menu->on = 1;
+                main_menu->on = 1;
             }
         }
 
         
-
-            
-
 		//if (lettres->m)
 		//    drawSelector(renderer, &selector);
 //

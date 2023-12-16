@@ -1,7 +1,8 @@
 #include "menuSelector.h"
 
 // Function to initialize the selector
-void initializeSelector(Selector* selector, int x, int y, int width, int height, SDL_Color selectedColor, SDL_Color defaultColor, SDL_Color textColor, TTF_Font* font, char* options[], int numOptions) {
+Selector  *initializeSelector(int x, int y, int width, int height, SDL_Color selectedColor, SDL_Color defaultColor, SDL_Color textColor, TTF_Font* font, char* options[], int numOptions) {
+    Selector *selector = malloc(sizeof(Selector));
     // Initialize options
     selector->options = options;
     selector->numOptions = numOptions;
@@ -18,6 +19,7 @@ void initializeSelector(Selector* selector, int x, int y, int width, int height,
     selector->defaultColor = defaultColor;  // Set the default color
     selector->textColor = textColor;
     selector->font = font;
+    return selector;
 }
 
 // Function to draw the selector

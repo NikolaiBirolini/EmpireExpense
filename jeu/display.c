@@ -1,5 +1,6 @@
 #include "display.h"
 #include "shared_var.h"
+#include "gui.h"
 
 void bubble_sort_perso()
 {
@@ -104,7 +105,14 @@ void display_all(struct personnages *moi)
 	//printf ("%d %d\n", (int)moi->x, (int)moi->y);
 	SDL_Rect position;
 	SDL_Texture *affiche;
-	int xfrom = -1; int yfrom = 0;
+    printf ("%s\n", main_menu->selector->options[3]);
+            printf ("%s\n", main_menu->selector->options[3]);
+
+	int yfrom = 0;
+        printf ("%s\n", main_menu->selector->options[3]);
+    
+    int xfrom = -1;
+    printf ("%s\n", main_menu->selector->options[3]);
 	for (struct linked_list *parcour = list; parcour != NULL; parcour=parcour->next)
 	{	
 		display_ground(xfrom, yfrom, (int)parcour->p->x, (int)parcour->p->y);
