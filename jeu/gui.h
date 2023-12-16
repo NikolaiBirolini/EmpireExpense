@@ -9,6 +9,9 @@
 #include "ordre.h"
 #include "inventaire.h"
 #include "init_sound.h"
+#include "graphic_widget/textBox.h"
+#include "graphic_widget/textInfo.h"
+#include "graphic_widget/menuSelector.h"
 
 struct speak
 {
@@ -40,7 +43,11 @@ struct menu
     struct node *t_tree;
     struct node *r_tree;
     struct personnages *echange;
+    struct Selector *selector;
 };
+
+void handleMenuSelector(struct menu *s_menu);
+void handleDialogBox();
 
 void talk(struct speak *speak_s, struct personnages *moi);
 void gui_event(struct personnages *perso);

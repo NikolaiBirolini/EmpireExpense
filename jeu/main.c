@@ -94,13 +94,8 @@ void boucle_jeu(int socket, char *name)
     struct personnages *moi = find_perso_by_name(name);	
 	struct linked_list *selected = NULL;
 	struct formation *f= malloc(sizeof(struct formation));
-	f->ecart_x = 25;
-	f->ecart_y = 25;
-	f->n_par_lignes = 10;
-	bool done = false;
-	SDL_Event event;
-
-	// Initialize options
+    struct menu *s_menu = calloc(sizeof(struct menu), 1);
+    // Initialize options
     char* options[] = {
         "Inventory",
         "Diplomacy",
@@ -117,8 +112,13 @@ void boucle_jeu(int socket, char *name)
     SDL_Color textColor = {255, 255, 255, 255};     // Text color
 
     // Initialize the selector
-    Selector selector;
-    initializeSelector(&selector, 100, 50, 200, 50, selectedColor, defaultColor, textColor, littleFont, options, sizeof(options) / sizeof(options[0]));
+    //Selector selector;
+    initializeSelector(s_menu->selector, 100, 50, 200, 50, selectedColor, defaultColor, textColor, littleFont, options, sizeof(options) / sizeof(options[0]));
+	f->ecart_x = 25;
+	f->ecart_y = 25;
+	f->n_par_lignes = 10;
+	bool done = false;
+	SDL_Event event;
 
     bool speak = false;
 	TextBox dialTextBox;
@@ -128,123 +128,137 @@ void boucle_jeu(int socket, char *name)
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
 	    display_all(moi);
-		
-		if (lettres->m)
-		    drawSelector(renderer, &selector);
+        if (s_menu->on == 1)
+            handleMenuSelector(s_menu);
+        else if (speak)
+            handleDialogBox();
+        else
+        {
+            gestion_touche();
+            deplacement(moi);
+	        selected = select(selected);
+	        commande(selected, moi, f);
+            if (lettres->m)
+            {
+                s_menu->on = 1;
+            }
+        }
 
-		if (lettres->t)
-		{
-		    drawTextBox(renderer, &dialTextBox, true); 
-		}
+        
 
-		while(SDL_PollEvent(&event) != 0)
-		{
-			if (event.type == SDL_KEYDOWN)
-		    {
-				if (event.type == SDL_TEXTINPUT)
-				{
-					printf("BLABLABLABLABLBALAB");
-		            handleTextInput(&dialTextBox, event);
-				}
-		    	if (event.key.keysym.sym == SDLK_d || event.key.keysym.sym == SDLK_RIGHT)
-				{
-					if(!lettres->m && !speak)
-		    		    lettres->d = 1;
-				}
-		    	if (event.key.keysym.sym == SDLK_s || event.key.keysym.sym == SDLK_DOWN)
-				{
-					if(!lettres->m && !speak)
-		    		    lettres->s = 1;
-					else
-					    selector.selectedOption = (selector.selectedOption + 1) % selector.numOptions;
-				}
-		    	if (event.key.keysym.sym == SDLK_q || event.key.keysym.sym == SDLK_LEFT)
-				{
-					if(!lettres->m && !speak)
-		    		    lettres->q = 1;
-				}
-		    	if (event.key.keysym.sym == SDLK_z || event.key.keysym.sym == SDLK_UP)
-				{
-					if(!lettres->m && !speak)
-		    		    lettres->z = 1;
-					else
-					    selector.selectedOption = (selector.selectedOption - 1 + selector.numOptions) % selector.numOptions;
-				}
-		    	if (event.key.keysym.sym == SDLK_m && !speak)
-			    {
-		    		lettres->m = !lettres->m;
-				}
-				if (event.key.keysym.sym == SDLK_t && speak)
-			    {
-		    		lettres->t = !lettres->t;
-				}
-				if (event.key.keysym.sym == SDLK_t && !speak)
-			    {
-		    		lettres->t = !lettres->t;
-					initTextBox(&dialTextBox, 100, 100, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, littleFont, false);
-					speak = true;
-				}
-				if (event.key.keysym.sym == SDLK_RETURN)
-				{
-					if (lettres->t)
-					{
-						lettres->t = 0;
-					}
-					if (lettres->m)
-					{
-		    		    printf("You chose: %s\n", selector.options[selector.selectedOption]);
-					    lettres->m = 0;
-					}
-				}
-				if (event.key.keysym.sym == SDLK_ESCAPE)
-				{
-					lettres->m = 0;
-					lettres->t = 0;
-				}
-		    }
-		    if (event.type == SDL_KEYUP)
-		    {
-		    	if (event.key.keysym.sym == SDLK_d || event.key.keysym.sym == SDLK_RIGHT)
-		    		lettres->d = 0;
-		    	if (event.key.keysym.sym == SDLK_s || event.key.keysym.sym == SDLK_DOWN)
-		    		lettres->s = 0;
-		    	if (event.key.keysym.sym == SDLK_q || event.key.keysym.sym == SDLK_LEFT)
-		    		lettres->q = 0;
-		    	if (event.key.keysym.sym == SDLK_z || event.key.keysym.sym == SDLK_UP)
-		    		lettres->z = 0;
-		    }
-		    if (event.type ==  SDL_MOUSEBUTTONDOWN)
-		    {
-		    	lettres->Mouse_pos_x = event.motion.x;
-		    	lettres->Mouse_pos_y = event.motion.y;
-		    	if (event.button.button == SDL_BUTTON_LEFT)
-		    		lettres->Mouse_Lclick = 1;
-		    	if (event.button.button == SDL_BUTTON_RIGHT)
-		    		lettres->Mouse_Rclick = 1;
-		    	if (event.button.button == SDL_BUTTON_MIDDLE)
-		    		lettres->Mouse_Mclick = 1;
-    
-		    }
-		    if (event.type ==  SDL_MOUSEBUTTONUP)
-		    {
-		    	if (event.button.button == SDL_BUTTON_LEFT)
-		    		lettres->Mouse_Lclick = 0;
-		    	if (event.button.button == SDL_BUTTON_RIGHT)
-		    		lettres->Mouse_Rclick = 0;
-		    	if (event.button.button == SDL_BUTTON_MIDDLE)
-		    		lettres->Mouse_Mclick = 0;
-		    }
-    
-		    if (event.type == SDL_QUIT)
-		    {
-		    	SDL_Quit();
-		    	exit(0);
-		    }
-		}
+            
+
+		//if (lettres->m)
+		//    drawSelector(renderer, &selector);
+//
+		//if (lettres->t)
+		//{
+		//    drawTextBox(renderer, &dialTextBox, true); 
+		//}
+
+		//while(SDL_PollEvent(&event) != 0)
+		//{
+		//	if (event.type == SDL_KEYDOWN)
+		//    {
+		//		printf("BLABLABLABLABLBALAB");
+		//        handleTextInput(&dialTextBox, event);
+		//    	if (event.key.keysym.sym == SDLK_d || event.key.keysym.sym == SDLK_RIGHT)
+		//		{
+		//			if(!lettres->m && !speak)
+		//    		    lettres->d = 1;
+		//		}
+		//    	if (event.key.keysym.sym == SDLK_s || event.key.keysym.sym == SDLK_DOWN)
+		//		{
+		//			if(!lettres->m && !speak)
+		//    		    lettres->s = 1;
+		//			else
+		//			    selector.selectedOption = (selector.selectedOption + 1) % selector.numOptions;
+		//		}
+		//    	if (event.key.keysym.sym == SDLK_q || event.key.keysym.sym == SDLK_LEFT)
+		//		{
+		//			if(!lettres->m && !speak)
+		//    		    lettres->q = 1;
+		//		}
+		//    	if (event.key.keysym.sym == SDLK_z || event.key.keysym.sym == SDLK_UP)
+		//		{
+		//			if(!lettres->m && !speak)
+		//    		    lettres->z = 1;
+		//			else
+		//			    selector.selectedOption = (selector.selectedOption - 1 + selector.numOptions) % selector.numOptions;
+		//		}
+		//    	if (event.key.keysym.sym == SDLK_m && !speak)
+		//	    {
+		//    		lettres->m = !lettres->m;
+		//		}
+		//		if (event.key.keysym.sym == SDLK_t && speak)
+		//	    {
+		//    		lettres->t = !lettres->t;
+		//		}
+		//		if (event.key.keysym.sym == SDLK_t && !speak)
+		//	    {
+		//    		lettres->t = !lettres->t;
+		//			initTextBox(&dialTextBox, 100, 100, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, littleFont, false);
+		//			speak = true;
+		//		}
+		//		if (event.key.keysym.sym == SDLK_RETURN)
+		//		{
+		//			if (lettres->t)
+		//			{
+		//				lettres->t = 0;
+		//			}
+		//			if (lettres->m)
+		//			{
+		//    		    printf("You chose: %s\n", selector.options[selector.selectedOption]);
+		//			    lettres->m = 0;
+		//			}
+		//		}
+		//		if (event.key.keysym.sym == SDLK_ESCAPE)
+		//		{
+		//			lettres->m = 0;
+		//			lettres->t = 0;
+		//		}
+		//    }
+		//    if (event.type == SDL_KEYUP)
+		//    {
+		//    	if (event.key.keysym.sym == SDLK_d || event.key.keysym.sym == SDLK_RIGHT)
+		//    		lettres->d = 0;
+		//    	if (event.key.keysym.sym == SDLK_s || event.key.keysym.sym == SDLK_DOWN)
+		//    		lettres->s = 0;
+		//    	if (event.key.keysym.sym == SDLK_q || event.key.keysym.sym == SDLK_LEFT)
+		//    		lettres->q = 0;
+		//    	if (event.key.keysym.sym == SDLK_z || event.key.keysym.sym == SDLK_UP)
+		//    		lettres->z = 0;
+		//    }
+		//    if (event.type ==  SDL_MOUSEBUTTONDOWN)
+		//    {
+		//    	lettres->Mouse_pos_x = event.motion.x;
+		//    	lettres->Mouse_pos_y = event.motion.y;
+		//    	if (event.button.button == SDL_BUTTON_LEFT)
+		//    		lettres->Mouse_Lclick = 1;
+		//    	if (event.button.button == SDL_BUTTON_RIGHT)
+		//    		lettres->Mouse_Rclick = 1;
+		//    	if (event.button.button == SDL_BUTTON_MIDDLE)
+		//    		lettres->Mouse_Mclick = 1;
+    //
+		//    }
+		//    if (event.type ==  SDL_MOUSEBUTTONUP)
+		//    {
+		//    	if (event.button.button == SDL_BUTTON_LEFT)
+		//    		lettres->Mouse_Lclick = 0;
+		//    	if (event.button.button == SDL_BUTTON_RIGHT)
+		//    		lettres->Mouse_Rclick = 0;
+		//    	if (event.button.button == SDL_BUTTON_MIDDLE)
+		//    		lettres->Mouse_Mclick = 0;
+		//    }
+    //
+		//    if (event.type == SDL_QUIT)
+		//    {
+		//    	SDL_Quit();
+		//    	exit(0);
+		//    }
+		//}
+		//
 		
-		deplacement(moi);
-	    selected = select(selected);
-	    commande(selected, moi, f);
 
 	    ia();
 	    gui_event(moi);

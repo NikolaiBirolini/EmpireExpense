@@ -73,3 +73,25 @@ void talk(struct speak *speak_s, struct personnages *moi)
     speak_s = speak_s;
     moi = moi;
 }
+
+
+void handleMenuSelector(struct menu *s_menu)
+{
+    gestion_touche();
+
+	if (lettres->s)
+	    s_menu->Selector->selectedOption = (selector.selectedOption + 1) % selector.numOptions;
+
+	if (lettres->z)
+	    s_menu.selector.selectedOption = (selector.selectedOption - 1 + selector.numOptions) % selector.numOptions;
+
+    if (lettres->esc)
+        s_menu->on = 0;
+
+    drawSelector(renderer, &selector);
+}
+
+void handleDialogBox(TextBox* dialTextBox)
+{
+
+}
