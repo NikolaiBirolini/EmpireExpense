@@ -204,7 +204,7 @@ struct gui_sprite
     SDL_Texture *demarcation;
     SDL_Texture *plus;
     SDL_Texture *moins;
-    SDL_Texture *menu_bas;
+    SDL_Texture *elipse;
     SDL_Texture *selecteur;
 };
 

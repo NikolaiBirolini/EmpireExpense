@@ -3,24 +3,23 @@
 void init_main_menu(void)
 {
     main_menu = calloc(sizeof(struct menu), 1);
-    char* options[] = {
-        "Inventory",
-        "Diplomacy",
-        "Action",
-        "Capacity",
-        "Research",
-        "Economy",
-        "Religion"
-    };
-
-    // Set up colors
+    char **options = malloc(sizeof(char*)*7);
+    options[0] = calloc(10, 1); strcat(options[0], "Inventory");
+    options[1] = calloc(10, 2); strcat(options[1], "Diplomacy");
+    options[2] = calloc(10, 3); strcat(options[2], "Action");
+    options[3] = calloc(10, 4); strcat(options[3], "Capacity");
+    options[4] = calloc(10, 5); strcat(options[4], "Research");
+    options[5] = calloc(10, 6); strcat(options[5], "Economy");
+    options[6] = calloc(10, 7); strcat(options[6], "Religion");
+    
+// Set up colors
     SDL_Color selectedColor = {75, 0, 130, 255};   // Dark purple for selected option
     SDL_Color defaultColor = {221, 160, 221, 255};  // Light purple for default option
     SDL_Color textColor = {255, 255, 255, 255};     // Text color
 
     // Initialize the selector
     //Selector selector;
-    main_menu->selector = initializeSelector(100, 50, 200, 50, selectedColor, defaultColor, textColor, littleFont, options, sizeof(options) / sizeof(options[0]));
+    main_menu->selector = initializeSelector(100, 50, 200, 50, selectedColor, defaultColor, textColor, littleFont, options, 7);
 }
 
 void gui_event(struct personnages *perso)
@@ -48,8 +47,8 @@ void display_selected(struct linked_list *selected, struct personnages *moi, str
         SDL_Rect position2 = {p->p->screenx-1, p->p->screeny-1, p->p->sizescreenx + 1,p->p->sizescreeny + 1};
         SDL_RenderCopy(renderer, img->g->selecteur, NULL, &position2);
     }
-    SDL_Rect position = {1000, 0, 800, 1000};
-    SDL_RenderCopy(renderer, img->g->menu_bas, NULL, &position);
+    SDL_Rect position = {0, 0, 1800, 900};
+    SDL_RenderCopy(renderer, img->g->elipse, NULL, &position);
     TextInfo text_my_stats = {"pv\nqdsf", littleFont, 1100, 100, 0, {0, 0, 0, 255}, 1, 1, 0};
     drawTextInfo(renderer, &text_my_stats);
     moi = moi;
