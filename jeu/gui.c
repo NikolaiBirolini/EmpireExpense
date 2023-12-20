@@ -108,20 +108,9 @@ void speakPerso(void)
 {
     SDL_Event event;
     drawTextBox(renderer, &speakBubble->textBox, true);
-    while(SDL_PollEvent(&event) != 0)
+    while(SDL_PollEvent(&event) != 0 && speakBubble->on == 1)
     {
-        handleTextInput(&speakBubble->textBox, event);
-        if (event.type == SDL_KEYDOWN)
-        { 
-            if (event.key.keysym.sym == SDLK_ESCAPE)
-            {
-                speakBubble->on = 0;
-            }
-            else if (event.key.keysym.sym == SDLK_RETURN)
-            {
-                speakBubble->on = 0;
-            }
-        }
+        handleTextInputForBubbleBox(&speakBubble->textBox, event, &speakBubble->on);
     }
 }
 
