@@ -16,7 +16,7 @@
 struct speak
 {
     char on;
-    char speak[90];
+    TextBox *textBox;
 };
 
 struct menu
@@ -49,7 +49,9 @@ struct menu
 void menu(void);
 void handleDialogBox();
 void init_main_menu(void);
+void init_speak_bubble(void);
 void talk(struct speak *speak_s, struct personnages *moi);
+void speakPerso(void);
 void gui_event(struct personnages *perso);
 void *cast(void *p);
 int blit_text(SDL_Rect position1, char *text, int limite);

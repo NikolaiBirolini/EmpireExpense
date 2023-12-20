@@ -95,9 +95,9 @@ void boucle_jeu(int socket, char *name)
 	struct linked_list *selected = NULL;
 	struct formation *f= malloc(sizeof(struct formation));
     init_main_menu();
+    init_speak_bubble();
 	bool done = false;
-    bool speak = false;
-    
+
 	while(!done)
 	{
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
@@ -105,8 +105,8 @@ void boucle_jeu(int socket, char *name)
 	    display_all(moi);
         if (main_menu->on == 1)
             menu();
-        else if (speak)
-            handleDialogBox();
+        else if (speakBubble->on)
+            speakPerso();
         else
         {
             gestion_touche();
@@ -114,124 +114,10 @@ void boucle_jeu(int socket, char *name)
 	        selected = select(selected);
 	        commande(selected, moi, f);
             if (lettres->m)
-            {
                 main_menu->on = 1;
-            }
+            else if(lettres->t)
+                speakBubble->on = 1;
         }
-
-        
-		//if (lettres->m)
-		//    drawSelector(renderer, &selector);
-//
-		//if (lettres->t)
-		//{
-		//    drawTextBox(renderer, &dialTextBox, true); 
-		//}
-
-		//while(SDL_PollEvent(&event) != 0)
-		//{
-		//	if (event.type == SDL_KEYDOWN)
-		//    {
-		//		printf("BLABLABLABLABLBALAB");
-		//        handleTextInput(&dialTextBox, event);
-		//    	if (event.key.keysym.sym == SDLK_d || event.key.keysym.sym == SDLK_RIGHT)
-		//		{
-		//			if(!lettres->m && !speak)
-		//    		    lettres->d = 1;
-		//		}
-		//    	if (event.key.keysym.sym == SDLK_s || event.key.keysym.sym == SDLK_DOWN)
-		//		{
-		//			if(!lettres->m && !speak)
-		//    		    lettres->s = 1;
-		//			else
-		//			    selector.selectedOption = (selector.selectedOption + 1) % selector.numOptions;
-		//		}
-		//    	if (event.key.keysym.sym == SDLK_q || event.key.keysym.sym == SDLK_LEFT)
-		//		{
-		//			if(!lettres->m && !speak)
-		//    		    lettres->q = 1;
-		//		}
-		//    	if (event.key.keysym.sym == SDLK_z || event.key.keysym.sym == SDLK_UP)
-		//		{
-		//			if(!lettres->m && !speak)
-		//    		    lettres->z = 1;
-		//			else
-		//			    selector.selectedOption = (selector.selectedOption - 1 + selector.numOptions) % selector.numOptions;
-		//		}
-		//    	if (event.key.keysym.sym == SDLK_m && !speak)
-		//	    {
-		//    		lettres->m = !lettres->m;
-		//		}
-		//		if (event.key.keysym.sym == SDLK_t && speak)
-		//	    {
-		//    		lettres->t = !lettres->t;
-		//		}
-		//		if (event.key.keysym.sym == SDLK_t && !speak)
-		//	    {
-		//    		lettres->t = !lettres->t;
-		//			initTextBox(&dialTextBox, 100, 100, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, littleFont, false);
-		//			speak = true;
-		//		}
-		//		if (event.key.keysym.sym == SDLK_RETURN)
-		//		{
-		//			if (lettres->t)
-		//			{
-		//				lettres->t = 0;
-		//			}
-		//			if (lettres->m)
-		//			{
-		//    		    printf("You chose: %s\n", selector.options[selector.selectedOption]);
-		//			    lettres->m = 0;
-		//			}
-		//		}
-		//		if (event.key.keysym.sym == SDLK_ESCAPE)
-		//		{
-		//			lettres->m = 0;
-		//			lettres->t = 0;
-		//		}
-		//    }
-		//    if (event.type == SDL_KEYUP)
-		//    {
-		//    	if (event.key.keysym.sym == SDLK_d || event.key.keysym.sym == SDLK_RIGHT)
-		//    		lettres->d = 0;
-		//    	if (event.key.keysym.sym == SDLK_s || event.key.keysym.sym == SDLK_DOWN)
-		//    		lettres->s = 0;
-		//    	if (event.key.keysym.sym == SDLK_q || event.key.keysym.sym == SDLK_LEFT)
-		//    		lettres->q = 0;
-		//    	if (event.key.keysym.sym == SDLK_z || event.key.keysym.sym == SDLK_UP)
-		//    		lettres->z = 0;
-		//    }
-		//    if (event.type ==  SDL_MOUSEBUTTONDOWN)
-		//    {
-		//    	lettres->Mouse_pos_x = event.motion.x;
-		//    	lettres->Mouse_pos_y = event.motion.y;
-		//    	if (event.button.button == SDL_BUTTON_LEFT)
-		//    		lettres->Mouse_Lclick = 1;
-		//    	if (event.button.button == SDL_BUTTON_RIGHT)
-		//    		lettres->Mouse_Rclick = 1;
-		//    	if (event.button.button == SDL_BUTTON_MIDDLE)
-		//    		lettres->Mouse_Mclick = 1;
-    //
-		//    }
-		//    if (event.type ==  SDL_MOUSEBUTTONUP)
-		//    {
-		//    	if (event.button.button == SDL_BUTTON_LEFT)
-		//    		lettres->Mouse_Lclick = 0;
-		//    	if (event.button.button == SDL_BUTTON_RIGHT)
-		//    		lettres->Mouse_Rclick = 0;
-		//    	if (event.button.button == SDL_BUTTON_MIDDLE)
-		//    		lettres->Mouse_Mclick = 0;
-		//    }
-    //
-		//    if (event.type == SDL_QUIT)
-		//    {
-		//    	SDL_Quit();
-		//    	exit(0);
-		//    }
-		//}
-		//
-		
-
 	    ia();
 	    gui_event(moi);
 	    fix_some_shit();

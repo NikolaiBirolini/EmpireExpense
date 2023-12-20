@@ -12,14 +12,19 @@ void init_main_menu(void)
     options[5] = calloc(10, 6); strcat(options[5], "Economy");
     options[6] = calloc(10, 7); strcat(options[6], "Religion");
     
-// Set up colors
+    // Set up colors
     SDL_Color selectedColor = {75, 0, 130, 255};   // Dark purple for selected option
     SDL_Color defaultColor = {221, 160, 221, 255};  // Light purple for default option
     SDL_Color textColor = {255, 255, 255, 255};     // Text color
 
     // Initialize the selector
-    //Selector selector;
     main_menu->selector = initializeSelector(100, 50, 200, 50, selectedColor, defaultColor, textColor, littleFont, options, 7);
+}
+
+void init_speak_bubble(void)
+{
+    speakBubble = calloc(sizeof(struct speak), 1);
+    initTextBox(&speakBubble->textBox, 100, 180, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, bigFont, false);
 }
 
 void gui_event(struct personnages *perso)
@@ -98,6 +103,27 @@ void talk(struct speak *speak_s, struct personnages *moi)
     moi = moi;
 }
 
+
+void speakPerso(void)
+{
+    SDL_Event event;
+    drawTextBox(renderer, &speakBubble->textBox, true);
+    while(SDL_PollEvent(&event) != 0)
+    {
+        handleTextInput(&speakBubble->textBox, event);
+        if (event.type == SDL_KEYDOWN)
+        { 
+            if (event.key.keysym.sym == SDLK_ESCAPE)
+            {
+                speakBubble->on = 0;
+            }
+            else if (event.key.keysym.sym == SDLK_RETURN)
+            {
+                speakBubble->on = 0;
+            }
+        }
+    }
+}
 
 void menu(void)
 {
