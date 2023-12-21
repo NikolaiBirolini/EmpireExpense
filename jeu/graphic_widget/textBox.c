@@ -110,11 +110,13 @@ void handleTextInputForBubbleBox(TextBox* textBox, SDL_Event event, char* on) {
             textBox->backspacePressed = true;
         else if (event.key.keysym.sym == SDLK_ESCAPE)
         {
-            on = 0;
+            printf("ESCP");
+            *on = 0;
         }
         else if (event.key.keysym.sym == SDLK_RETURN)
         {
-            on = 0;
+            *on = 0;
+            printf("Return");
         }
         
     }
