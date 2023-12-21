@@ -25,12 +25,13 @@ void commande(struct linked_list *selected, struct personnages *moi, struct form
 	f = f;
 	if (lettres->Mouse_Rclick == 1)
 	{
-		float x = (lettres->Mouse_pos_x  + 2*lettres->Mouse_pos_y + 44*screenx - 1500)/44;
-		float y = (2*lettres->Mouse_pos_y - lettres->Mouse_pos_x + 44*screeny - 500)/44;
-		//parcour->p->x = ((lettres->Mouse_pos_x - 500)/22) + screenx + parcour->p->y -screeny;
-        //parcour->p->y = ((lettres->Mouse_pos_y - 500)/11) - parcour->p->x + screenx + screeny;
+		//float x = (lettres->Mouse_pos_x  + 2*lettres->Mouse_pos_y + 44*screenx - 1500)/44;
+		//float y = (2*lettres->Mouse_pos_y - lettres->Mouse_pos_x + 44*screeny - 500)/44;
 
-		//printf  ("%f %f\n", x,y);
+		float x = ((float)lettres->Mouse_pos_x + 2*(float)lettres->Mouse_pos_y-1800)/44 + (float)screenx;
+		float y = (2*(float)lettres->Mouse_pos_y - (float)lettres->Mouse_pos_x)/44 + (float)screeny;
+
+
 		
 		int i = 0;
 		int j = 0;

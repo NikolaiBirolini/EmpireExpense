@@ -116,8 +116,6 @@ struct personnages *find_perso_by_name(char *name)
 	{
 		if (strcmp(parcour->p->nom, name) == 0)
 		{
-			screenx = parcour->p->x;
-			screeny = parcour->p->y;
 			return parcour->p;
 		}
 		parcour = parcour->next;

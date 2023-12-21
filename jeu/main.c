@@ -92,6 +92,8 @@ void boucle_jeu(int socket, char *name)
     free(ground);
     list = recv_map(socket);
     struct personnages *moi = find_perso_by_name(name);	
+    screenx = moi->x;
+    screeny = moi->y;
 	struct linked_list *selected = NULL;
 	struct formation *f= malloc(sizeof(struct formation));
     init_main_menu();

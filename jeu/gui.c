@@ -34,11 +34,13 @@ void gui_event(struct personnages *perso)
     //ordre de deplacement	
 	if (perso->ordrex != -1)
 	{
-        position.x = (perso->ordrex - screenx - perso->ordrey + screeny) * 22 + 450;
-        position.y = (perso->ordrex - screenx - screeny + perso->ordrey) * 11 + 450 - ground_altitude[(int)perso->ordrex + (int)perso->ordrey * max_x],
+        position.x = (perso->ordrex - screenx - perso->ordrey + screeny) * 22 + 850;
+        position.y = (perso->ordrex - screenx - screeny + perso->ordrey) * 11 + 400 - ground_altitude[(int)perso->ordrex + (int)perso->ordrey * max_x],
         position.w = 100; position.h =  100;
 		if (powf(perso->x - perso->ordrex, 2) + powf(perso->y - perso->ordrey, 2) < 9)
+        {
 			sprintf (ordre + strlen(ordre), "%d 03 -1 ", perso->id);
+        }
 		SDL_RenderCopy(renderer, img->g->croix, NULL, &position);
 	}
 	position.x = 50;
