@@ -100,6 +100,7 @@ void boucle_jeu(int socket, char *name)
 
 	while(!done)
 	{
+        clock_t begin = clock();
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
 	    display_all(moi);
@@ -128,6 +129,9 @@ void boucle_jeu(int socket, char *name)
 	    display_selected(selected, moi, f);
 		
 	    SDL_RenderPresent(renderer);
+        clock_t end = clock();
+        double time_spent = (double)(end - begin); //in microseconds
+
 	}
 }
 
