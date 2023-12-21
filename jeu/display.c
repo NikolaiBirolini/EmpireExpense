@@ -50,7 +50,7 @@ void display_ground(int x, int y, int xto, int yto)
 		{{newx3, newy3}, {255,255,255,255}, {0,1}},
 		{{newx4, newy4}, {255,255,255,255}, {1,1.0}}};*/
             
-	    SDL_Rect position = {(x-screenx-y+screeny) * 22 + 878, (x-screenx + y-screeny) * 11 + 461 - ground_altitude[x + y * max_x], 0, 0};
+	    SDL_Rect position = {(x-screenx-y+screeny) * 22 + 878, (x-screenx + y-screeny) * 11 + 450 - ground_altitude[x + y * max_x], 0, 0};
         SDL_Texture *affiche = ground_texture[x + y * max_x];
         SDL_QueryTexture(affiche, NULL, NULL, &position.w, &position.h);
         SDL_RenderCopy(renderer, affiche, NULL, &position);
