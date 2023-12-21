@@ -106,8 +106,11 @@ void boucle_jeu(int socket, char *name)
 	    display_all(moi);
         if (main_menu->on == 1)
             menu();
-        else if (speakBubble->on)
+        else if (*speakBubble->on == 1)
+        {
             speakPerso();
+            lettres->t = 0;
+        }
         else
         {
             gestion_touche();
@@ -116,8 +119,8 @@ void boucle_jeu(int socket, char *name)
 	        commande(selected, moi, f);
             if (lettres->m)
                 main_menu->on = 1;
-            else if(lettres->t)
-                speakBubble->on = 1;
+            else if(lettres->t == 1)
+                *speakBubble->on = 1;
         }
 	    ia();
 	    gui_event(moi);

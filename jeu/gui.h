@@ -15,7 +15,7 @@
 
 struct speak
 {
-    char on;
+    char* on;
     TextBox *textBox;
 };
 

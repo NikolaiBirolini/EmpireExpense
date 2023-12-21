@@ -25,6 +25,7 @@ void init_speak_bubble(void)
 {
     speakBubble = calloc(sizeof(struct speak), 1);
     speakBubble->textBox = calloc(sizeof(TextBox), 1);
+    speakBubble->on = calloc(sizeof(char*), 1);
 
     initTextBox(speakBubble->textBox, 100, 180, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, bigFont, false);
 }
@@ -102,9 +103,9 @@ void speakPerso(void)
 {
     SDL_Event event;
     drawTextBox(renderer, speakBubble->textBox, true);
-    while(SDL_PollEvent(&event) != 0 && speakBubble->on == 1)
+    while(SDL_PollEvent(&event) != 0)
     {
-        handleTextInputForBubbleBox(speakBubble->textBox, event, &speakBubble->on);
+        handleTextInputForBubbleBox(speakBubble->textBox, event, speakBubble->on);
     }
 }
 
