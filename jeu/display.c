@@ -35,63 +35,20 @@ void display_ground(int x, int y, int xto, int yto)
 	}
 	while (x != xto || y != yto)
 	{
-/*		int indexList[] = { 3,0,1,1,2,3};
-		float newx1 = (x-screenx-y+screeny) * 22 + 900;
-		float newy1 = (x-screenx + y-screeny) * 11 + 450 - ground_altitude[x + y * max_x];
-		float newx2 = (x-screenx-y+screeny) * 22 + 22 + 900;
-        float newy2 = (x-screenx + y-screeny)* 11 + 11 + 450 - ground_altitude[x + y * max_x];
-		float newx3 = (x-screenx-y+screeny) * 22  + 900;
-        float newy3 = (x-screenx + y-screeny) * 11 + 22 + 450 - ground_altitude[x + y * max_x];
-		float newx4 = (x-screenx-y+screeny) * 22 - 22 + 900;
-        float newy4 = (x-screenx + y-screeny) * 11 + 11 + 450 - ground_altitude[x + y * max_x];
-		SDL_Vertex vertexes[]  = 
-		{{{newx1, newy1}, {255,255,255,255}, {0,0}},
-		{{newx2, newy2}, {255,255,255,255}, {1,0}},
-		{{newx3, newy3}, {255,255,255,255}, {0,1}},
-		{{newx4, newy4}, {255,255,255,255}, {1,1.0}}};*/
-            
 	    SDL_Rect position = {(x-screenx-y+screeny) * 22 + 878, (x-screenx + y-screeny) * 11 + 450 - ground_altitude[x + y * max_x], 0, 0};
         SDL_Texture *affiche = ground_texture[x + y * max_x];
-        SDL_QueryTexture(affiche, NULL, NULL, &position.w, &position.h);
+        position.h = 22;
+		position.w = 44;
         SDL_RenderCopy(renderer, affiche, NULL, &position);
+
+		for (int i = 0; i < ground_altitude[x + y * max_x]; i++)
+		{	
+			SDL_RenderDrawLine(renderer, position.x, position.y+i+11, position.x+22, position.y+22+i);
+			SDL_RenderDrawLine(renderer, position.x+22, position.y+i+22, position.x+44, position.y+11+i);
+		}
+		
 	
-//		SDL_RenderGeometry(renderer, ground_texture[x + y * max_x], vertexes, 4, indexList, 6);
-		
-/*		newx1 = (x-screenx-y+screeny) * 22 + 22 + 900;
-        newy1 = (x-screenx + y-screeny)* 11 + 11 + 450 - ground_altitude[x + y * max_x];
-		newx2 = (x-screenx-y+screeny) * 22  + 900;
-        newy2 = (x-screenx + y-screeny) * 11 + 22 + 450 - ground_altitude[x + y * max_x];
-        newx4 = (x-screenx-y+screeny) * 22 + 22 + 900;
-        newy4 = (x-screenx + y-screeny)* 11 + 11 + 450;
-		newx3 = (x-screenx-y+screeny) * 22  + 900;
-        newy3 = (x-screenx + y-screeny) * 11 + 22 + 450;
 
-		SDL_Vertex vertexes2[]  = 
-		{{{newx1, newy1}, {255,255,255,255}, {0,0}},
-		{{newx2, newy2}, {255,255,255,255}, {1,0}},
-		{{newx3, newy3}, {255,255,255,255}, {0,1}},
-		{{newx4, newy4}, {255,255,255,255}, {1,1.0}}};
-
-		SDL_RenderGeometry(renderer, img->t->gr1, vertexes2, 4, indexList, 6);
-
-
-		newx1 = (x-screenx-y+screeny) * 22  + 900;
-        newy1 = (x-screenx + y-screeny) * 11 + 22 + 450 - ground_altitude[x + y * max_x];
-		newx2 = (x-screenx-y+screeny) * 22 - 22 + 900;
-        newy2 = (x-screenx + y-screeny) * 11 + 11 + 450 - ground_altitude[x + y * max_x];
-        newx4 = (x-screenx-y+screeny) * 22  + 900;
-        newy4 = (x-screenx + y-screeny) * 11 + 22 + 450;
-		newx3 = (x-screenx-y+screeny) * 22 - 22 + 900;
-        newy3 = (x-screenx + y-screeny) * 11 + 11 + 450;
-
-
-		SDL_Vertex vertexes3[]  = 
-		{{{newx1, newy1}, {255,255,255,255}, {0,0}},
-		{{newx2, newy2}, {255,255,255,255}, {1,0}},
-		{{newx3, newy3}, {255,255,255,255}, {0,1}},
-		{{newx4, newy4}, {255,255,255,255}, {1,1.0}}};
-		
-		SDL_RenderGeometry(renderer, img->t->gr1, vertexes3, 4, indexList, 6);*/
 		x += 1;
 		if (x == max_x)
 		{
@@ -104,7 +61,7 @@ void display_ground(int x, int y, int xto, int yto)
 
 void display_all(struct personnages *moi)
 {	
-
+	SDL_SetRenderDrawColor(renderer, 74, 71,51,0);
 	bubble_sort_perso();
 	moi = moi;
 	SDL_Rect position;

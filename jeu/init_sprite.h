@@ -36,6 +36,8 @@ struct textures
     SDL_Texture *te2;
     SDL_Texture *te3;
     SDL_Texture *fond;
+    SDL_Texture *gauche;
+    SDL_Texture *droite;
 };
 
 struct skin
