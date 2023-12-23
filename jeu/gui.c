@@ -26,29 +26,40 @@ void init_speak_bubble(void)
     speakBubble = calloc(sizeof(struct speak), 1);
     speakBubble->textBox = calloc(sizeof(TextBox), 1);
     speakBubble->textInfo = calloc(sizeof(TextInfo), 1);
-    speakBubble->on = calloc(sizeof(char*), 1);
+    speakBubble->on = 0;
 
     initTextBox(speakBubble->textBox, 100, 180, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, bigFont, false);
 }
 
-void gui_event(struct personnages *perso)
+void gui_event(struct personnages *moi) 
 {
 	SDL_Rect position;
 	   
     //ordre de deplacement	
-	if (perso->ordrex != -1)
+	if (moi->ordrex != -1)
 	{
-        position.x = (perso->ordrex - screenx - perso->ordrey + screeny) * 22 + 850;
-        position.y = (perso->ordrex - screenx - screeny + perso->ordrey) * 11 + 400 - ground_altitude[(int)perso->ordrex + (int)perso->ordrey * max_x],
+        position.x = (moi->ordrex - screenx - moi->ordrey + screeny) * 22 + 850;
+        position.y = (moi->ordrex - screenx - screeny + moi->ordrey) * 11 + 400 - ground_altitude[(int)moi->ordrex + (int)moi->ordrey * max_x],
         position.w = 100; position.h =  100;
-		if (powf(perso->x - perso->ordrex, 2) + powf(perso->y - perso->ordrey, 2) < 9)
+		if (powf(moi->x - moi->ordrex, 2) + powf(moi->y - moi->ordrey, 2) < 9)
         {
-			sprintf (ordre + strlen(ordre), "%d 03 -1 ", perso->id);
+			sprintf (ordre + strlen(ordre), "%d 03 -1 ", moi->id);
         }
 		SDL_RenderCopy(renderer, img->g->croix, NULL, &position);
 	}
-	position.x = 50;
-	position.y = 50;
+	
+    //speak bubble
+    for (struct linked_list *p = list; p != NULL; p = p->next)
+	{
+        if (strlen(p->p->speak) > 2)
+        {
+            TextInfo bubble = {p->p->speak,  littleFont, 
+            (p->p->x - screenx - p->p->y + screeny) * 22 + 850, 
+            (p->p->x - screenx - screeny + p->p->y) * 11 + 360 - ground_altitude[(int)p->p->x + (int)p->p->y * max_x],
+            0,{255, 255, 255, 255}, 0,0,0};
+            drawTextInfo(renderer, &bubble);
+        }
+    }
 }
 
 void display_selected(struct linked_list *selected, struct personnages *moi, struct formation *f)
@@ -107,68 +118,27 @@ void speakPerso(struct personnages *moi, char* ordre)
     SDL_Event event;
     drawTextBox(renderer, speakBubble->textBox, true);
     while(SDL_PollEvent(&event) != 0)
-    {
-        handleTextInputForBubbleBox(speakBubble->textBox, event, speakBubble->on, speakBubble->textInfo, moi, ordre);
-    }
-}
-
-void printSpeakBubble(struct personnages *perso, TextInfo* textInfo, TextBox* textBox, char* on)
-{
-    
-    SDL_Rect position;
-	for (struct linked_list *p = list; p != NULL; p = p->next)
-	{
-		position.x = (p->p->x - screenx) * 22 - (p->p->y - screeny) * 22 + 550 - position.w / 2;
-        position.y = (p->p->x - screenx) * 11 + (p->p->y - screeny) * 11 + 485 - position.h / 2 - ground_altitude[lroundf(p->p->x) + lroundf(p->p->y) * max_x];
-		
-        textInfo->text = textBox->text;
-        textInfo->font = littleFont;
-        textInfo->x = position.x;
-        textInfo->y = position.y;
-        textInfo->isBold = 0;
-        textInfo->isItalic = 0;
-        textInfo->isUnderlined = 0;
-        textInfo->wrapWidth = 0;
-        textInfo->textColor = (SDL_Color){0, 0, 0, 255};
-        drawTextInfo(renderer, textInfo);
-		
-		if (perso->speak_timer > 0)
-		{
-			perso->speak_timer --;
-			if (perso->speak_timer == 0)
+    {        
+        if (event.type == SDL_TEXTINPUT) 
+            strncat(speakBubble->textBox->text, event.text.text, sizeof(speakBubble->textBox->text) - strlen(speakBubble->textBox->text) - 1);
+        else if (event.type == SDL_KEYDOWN) 
+        {
+            if (event.key.keysym.sym == SDLK_BACKSPACE) 
+                speakBubble->textBox->text[strlen(speakBubble->textBox->text)-1] = 0;
+            else if (event.key.keysym.sym == SDLK_ESCAPE)
+                speakBubble->on = 0;
+            else if (event.key.keysym.sym == SDLK_RETURN)
             {
-				sprintf (ordre + strlen(ordre), "%d 20 [] ", perso->id);
-                *on = 0;
-            }
-		}
-	}
-}
+                sprintf (ordre + strlen(ordre), "%d 20 [%s] ", moi->id, speakBubble->textBox->text);
+                speakBubble->textBox->text[0] = 0;
+                speakBubble->on = 0;
 
-// Recuperate entered text
-void handleTextInputForBubbleBox(TextBox* textBox, SDL_Event event, char* on, TextInfo* textInfo, struct personnages *moi, char* ordre) {
-    if (event.type == SDL_TEXTINPUT) 
-        strncat(textBox->text, event.text.text, sizeof(textBox->text) - strlen(textBox->text) - 1);
-    else if (event.type == SDL_KEYDOWN) 
-    {
-        if (event.key.keysym.sym == SDLK_BACKSPACE) 
-            textBox->backspacePressed = true;
-        else if (event.key.keysym.sym == SDLK_ESCAPE)
-        {
-            printf("ESCP");
-            *on = 0;
-        }
-        else if (event.key.keysym.sym == SDLK_RETURN)
-        {
-            sprintf (ordre + strlen(ordre), "%d 20 [%s] ", moi->id, textBox->text);
-            printSpeakBubble(moi, textInfo, textBox, on);
-            
-            printf("Return");
+            }
             
         }
-        
+        else if (event.type == SDL_QUIT) 
+            exit(0);
     }
-    else if (event.type == SDL_QUIT) 
-        exit(0);
 }
 
 void menu(void)

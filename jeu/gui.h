@@ -16,7 +16,7 @@
 
 struct speak
 {
-    char* on;
+    char on;
     TextBox *textBox;
     TextInfo *textInfo;
 };
@@ -55,7 +55,7 @@ void talk(struct speak *speak_s, struct personnages *moi);
 void speakPerso(struct personnages *moi, char* ordre);
 void printSpeakBubble(struct personnages *perso, TextInfo* textInfo, TextBox* textBox, char* on);
 void handleTextInputForBubbleBox(TextBox* textBox, SDL_Event event, char* on, TextInfo* textInfo, struct personnages *moi, char* ordre);
-void gui_event(struct personnages *perso);
+void gui_event(struct personnages *moi);
 void *cast(void *p);
 int blit_text(SDL_Rect position1, char *text, int limite);
 void blit_mdp(SDL_Rect position1, char *text, int limite);

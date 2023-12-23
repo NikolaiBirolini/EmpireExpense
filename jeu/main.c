@@ -102,13 +102,14 @@ void boucle_jeu(int socket, char *name)
 
 	while(!done)
 	{
-        clock_t begin = clock();
+       // clock_t begin = clock();
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
 	    display_all(moi);
+        display_selected(selected, moi, f);
         if (main_menu->on == 1)
             menu();
-        else if (*speakBubble->on == 1)
+        else if (speakBubble->on == 1)
         {
             speakPerso(moi, ordre);
             lettres->t = 0;
@@ -122,20 +123,20 @@ void boucle_jeu(int socket, char *name)
             if (lettres->m)
                 main_menu->on = 1;
             else if(lettres->t == 1)
-                *speakBubble->on = 1;
+                speakBubble->on = 1;
         }
 	    ia();
+        
 	    gui_event(moi);
 	    fix_some_shit();
 	    send_orders(socket);
 	    recv_order(socket);
 	    list = death();
 	    selected = clean_selected(selected);
-	    display_selected(selected, moi, f);
 		
 	    SDL_RenderPresent(renderer);
-        clock_t end = clock();
-        double time_spent = (double)(end - begin); //in microseconds
+//        clock_t end = clock();
+//        double time_spent = (double)(end - begin); //in microseconds
 
 	}
 }
