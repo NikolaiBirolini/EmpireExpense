@@ -110,7 +110,7 @@ void boucle_jeu(int socket, char *name)
             menu();
         else if (*speakBubble->on == 1)
         {
-            speakPerso();
+            speakPerso(moi, ordre);
             lettres->t = 0;
         }
         else

@@ -12,11 +12,13 @@
 #include "graphic_widget/textBox.h"
 #include "graphic_widget/textInfo.h"
 #include "graphic_widget/menuSelector.h"
+#include "shared_var.h"
 
 struct speak
 {
     char* on;
     TextBox *textBox;
+    TextInfo *textInfo;
 };
 
 struct menu
@@ -47,11 +49,12 @@ struct menu
 };
 
 void menu(void);
-void handleDialogBox();
 void init_main_menu(void);
 void init_speak_bubble(void);
 void talk(struct speak *speak_s, struct personnages *moi);
-void speakPerso(void);
+void speakPerso(struct personnages *moi, char* ordre);
+void printSpeakBubble(struct personnages *perso, TextInfo* textInfo, TextBox* textBox, char* on);
+void handleTextInputForBubbleBox(TextBox* textBox, SDL_Event event, char* on, TextInfo* textInfo, struct personnages *moi, char* ordre);
 void gui_event(struct personnages *perso);
 void *cast(void *p);
 int blit_text(SDL_Rect position1, char *text, int limite);

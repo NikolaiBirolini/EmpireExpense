@@ -100,26 +100,3 @@ void handleTextInput(TextBox* textBox, SDL_Event event) {
     }
 }
 
-// Recuperate entered text
-void handleTextInputForBubbleBox(TextBox* textBox, SDL_Event event, char* on) {
-    if (event.type == SDL_TEXTINPUT) 
-        strncat(textBox->text, event.text.text, sizeof(textBox->text) - strlen(textBox->text) - 1);
-    else if (event.type == SDL_KEYDOWN) 
-    {
-        if (event.key.keysym.sym == SDLK_BACKSPACE) 
-            textBox->backspacePressed = true;
-        else if (event.key.keysym.sym == SDLK_ESCAPE)
-        {
-            printf("ESCP");
-            *on = 0;
-        }
-        else if (event.key.keysym.sym == SDLK_RETURN)
-        {
-            *on = 0;
-            printf("Return");
-        }
-        
-    }
-    else if (event.type == SDL_QUIT) 
-        exit(0);
-}
