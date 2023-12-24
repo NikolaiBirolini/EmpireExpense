@@ -230,7 +230,10 @@ void gestion_touche(void)
 				lettres->Mouse_pos_x = event.motion.x;
 				lettres->Mouse_pos_y = event.motion.y;
 				if (event.button.button == SDL_BUTTON_LEFT)
+				{
+					printf ("test\n");
 					lettres->Mouse_Lclick = 1;
+				}
 				if (event.button.button == SDL_BUTTON_RIGHT)
 					lettres->Mouse_Rclick = 1;
 				if (event.button.button == SDL_BUTTON_MIDDLE)
@@ -240,7 +243,10 @@ void gestion_touche(void)
 			if (event.type ==  SDL_MOUSEBUTTONUP)
 			{
 				if (event.button.button == SDL_BUTTON_LEFT)
+				{
+					printf ("test2\n");
 					lettres->Mouse_Lclick = 0;
+				}
 				if (event.button.button == SDL_BUTTON_RIGHT)
 					lettres->Mouse_Rclick = 0;
 				if (event.button.button == SDL_BUTTON_MIDDLE)

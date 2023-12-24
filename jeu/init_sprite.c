@@ -850,16 +850,6 @@ struct textures *init_textures()
     a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
     to_return->fond = SDL_CreateTextureFromSurface(renderer, a);
     SDL_FreeSurface(a);
-    a = SDL_LoadBMP("img/textures/gauche.bmp");
-    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
-    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
-    to_return->gauche = SDL_CreateTextureFromSurface(renderer, a);
-    SDL_FreeSurface(a);
-    a = SDL_LoadBMP("img/textures/droite.bmp");
-    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
-    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
-    to_return->droite = SDL_CreateTextureFromSurface(renderer, a);
-    SDL_FreeSurface(a);
     return to_return;
 }
 
@@ -1266,6 +1256,11 @@ struct gui_sprite *init_gui()
     SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
     a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
     to_return->selecteur = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+    a = SDL_LoadBMP("img/gui/menuButton.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->menuButton = SDL_CreateTextureFromSurface(renderer, a);
     SDL_FreeSurface(a);
     return to_return;
 }

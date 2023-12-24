@@ -69,12 +69,29 @@ void display_selected(struct linked_list *selected, struct personnages *moi, str
         SDL_Rect position2 = {p->p->screenx-1, p->p->screeny-1, p->p->sizescreenx + 1,p->p->sizescreeny + 1};
         SDL_RenderCopy(renderer, img->g->selecteur, NULL, &position2);
     }
-    SDL_Rect position = {0, 0, 1800, 900};
-    SDL_RenderCopy(renderer, img->g->elipse, NULL, &position);
-    TextInfo text_my_stats = {"pv\nqdsf", littleFont, 1100, 100, 0, {0, 0, 0, 255}, 1, 1, 0};
-    drawTextInfo(renderer, &text_my_stats);
     moi = moi;
     f = f;
+    //TextInfo text_my_stats = {"pv\nqdsf", littleFont, 1100, 100, 0, {0, 0, 0, 255}, 1, 1, 0};
+    //drawTextInfo(renderer, &text_my_stats);
+}
+
+void display_elipse_and_handle_buttons(void)
+{
+    SDL_Rect position = {0, 0, 1800, 900};
+    SDL_RenderCopy(renderer, img->g->elipse, NULL, &position);
+    position.x = 50;
+    position.y = 50;
+    position.h = 35;
+    position.w = 35;
+    SDL_RenderCopy(renderer, img->g->menuButton, NULL, &position);
+    if (lettres->Mouse_Lclick == 1 && lettres->Mouse_pos_x > 50 && lettres->Mouse_pos_x < 85 && lettres->Mouse_pos_y > 50 && lettres->Mouse_pos_y < 85)
+    {
+        if (main_menu->on == 0)
+            main_menu->on = 1;
+        else
+            main_menu->on = 0;
+        printf ("%d\n", main_menu->on);
+    }
 }
 
 void menu_echange(struct menu *m, struct personnages *perso)
@@ -143,8 +160,6 @@ void speakPerso(struct personnages *moi, char* ordre)
 
 void menu(void)
 {
-    gestion_touche();
-
 	if (lettres->s)
 	    main_menu->selector->selectedOption = (main_menu->selector->selectedOption + 1) % main_menu->selector->numOptions;
 

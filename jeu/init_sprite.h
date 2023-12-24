@@ -36,8 +36,6 @@ struct textures
     SDL_Texture *te2;
     SDL_Texture *te3;
     SDL_Texture *fond;
-    SDL_Texture *gauche;
-    SDL_Texture *droite;
 };
 
 struct skin
@@ -208,6 +206,7 @@ struct gui_sprite
     SDL_Texture *moins;
     SDL_Texture *elipse;
     SDL_Texture *selecteur;
+    SDL_Texture *menuButton;
 };
 
 

@@ -107,8 +107,12 @@ void boucle_jeu(int socket, char *name)
 		SDL_RenderClear(renderer);
 	    display_all(moi);
         display_selected(selected, moi, f);
+        display_elipse_and_handle_buttons();
         if (main_menu->on == 1)
+        {
+            gestion_touche();
             menu();
+        }
         else if (speakBubble->on == 1)
         {
             speakPerso(moi, ordre);
@@ -126,7 +130,6 @@ void boucle_jeu(int socket, char *name)
                 speakBubble->on = 1;
         }
 	    ia();
-        
 	    gui_event(moi);
 	    fix_some_shit();
 	    send_orders(socket);
