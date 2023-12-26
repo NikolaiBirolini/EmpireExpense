@@ -4,7 +4,6 @@ struct linked_list *select(struct linked_list *selected)
 {	
 	if (lettres->Mouse_Lclick == 1)
 	{
-		lettres->Mouse_Lclick = 0;
 		for (struct linked_list *a = list; a != NULL; a = a->next)
 		{
 			if (lettres->Mouse_pos_x > a->p->screenx && lettres->Mouse_pos_x < a->p->screenx + a->p->sizescreenx &&

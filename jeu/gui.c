@@ -83,15 +83,14 @@ void display_elipse_and_handle_buttons(void)
     position.y = 50;
     position.h = 35;
     position.w = 35;
-    SDL_RenderCopy(renderer, img->g->menuButton, NULL, &position);
+    pictureButton mainMenuButton;
+    initPictureButton(renderer, &mainMenuButton, 50, 50, 35, 35, "img/textures/graphical_widget_img/main_menu_button/menu_button_not_pressed.png", "img/textures/graphical_widget_img/main_menu_button/menu_button_pressed.png");
+    
+    //SDL_RenderCopy(renderer, img->g->menuButton, NULL, &position);
     if (lettres->Mouse_Lclick == 1 && lettres->Mouse_pos_x > 50 && lettres->Mouse_pos_x < 85 && lettres->Mouse_pos_y > 50 && lettres->Mouse_pos_y < 85)
-    {
-        if (main_menu->on == 0)
-            main_menu->on = 1;
-        else
-            main_menu->on = 0;
-        printf ("%d\n", main_menu->on);
-    }
+        main_menu->on = !main_menu->on;
+    mainMenuButton.isPressed = main_menu->on;
+    drawPictureButton(renderer, &mainMenuButton);
 }
 
 void menu_echange(struct menu *m, struct personnages *perso)

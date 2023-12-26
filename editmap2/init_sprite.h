@@ -206,6 +206,7 @@ struct gui_sprite
     SDL_Texture *moins;
     SDL_Texture *elipse;
     SDL_Texture *selecteur;
+    SDL_Texture *menuButton;
 };
 
 
