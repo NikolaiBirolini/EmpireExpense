@@ -21,6 +21,15 @@ void init_main_menu(void)
     main_menu->selector = initializeSelector(100, 50, 200, 50, selectedColor, defaultColor, textColor, littleFont, options, 7);
 }
 
+
+void init_life_gauge(void)
+{
+    lifeGauge = calloc(sizeof(Gauge), 1);
+    SDL_Color fill_color = {255, 0, 0, 255};   // Rouge
+    SDL_Color bg_color = {139, 69, 19, 255};    // Marron
+    initGauge(lifeGauge, 50, 800, 200, 30, fill_color, bg_color, 100);
+}
+
 void init_speak_bubble(void)
 {
     speakBubble = calloc(sizeof(struct speak), 1);
@@ -90,7 +99,9 @@ void display_elipse_and_handle_buttons(void)
     if (lettres->Mouse_Lclick == 1 && lettres->Mouse_pos_x > 50 && lettres->Mouse_pos_x < 85 && lettres->Mouse_pos_y > 50 && lettres->Mouse_pos_y < 85)
         main_menu->on = !main_menu->on;
     mainMenuButton.isPressed = main_menu->on;
+    lifeGauge->curvalue = 75;
     drawPictureButton(renderer, &mainMenuButton);
+    drawGauge(renderer, lifeGauge);
 }
 
 void menu_echange(struct menu *m, struct personnages *perso)

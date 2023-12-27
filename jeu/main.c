@@ -99,8 +99,9 @@ void boucle_jeu(int socket, char *name)
 	struct formation *f= malloc(sizeof(struct formation));
     init_main_menu();
     init_speak_bubble();
+    init_life_gauge();
 	bool done = false;
-
+    
 	while(!done)
 	{
        // clock_t begin = clock();

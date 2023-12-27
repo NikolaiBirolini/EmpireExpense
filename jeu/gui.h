@@ -13,6 +13,7 @@
 #include "graphic_widget/textInfo.h"
 #include "graphic_widget/menuSelector.h"
 #include "shared_var.h"
+#include "graphic_widget/gauge.h"
 
 struct speak
 {
@@ -51,6 +52,7 @@ struct menu
 void menu(void);
 void init_main_menu(void);
 void init_speak_bubble(void);
+void init_life_gauge(void);
 void talk(struct speak *speak_s, struct personnages *moi);
 void speakPerso(struct personnages *moi, char* ordre);
 void printSpeakBubble(struct personnages *perso, TextInfo* textInfo, TextBox* textBox, char* on);

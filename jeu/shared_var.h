@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
+#include "graphic_widget/gauge.h"
 
 extern float screenx;
 extern float screeny;
@@ -20,3 +21,4 @@ extern TTF_Font *bigFont;
 extern TTF_Font *font;
 extern struct speak *speakBubble;
 extern struct menu *main_menu;
+extern Gauge *lifeGauge;
