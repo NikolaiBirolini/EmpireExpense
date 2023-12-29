@@ -8,6 +8,7 @@ extern float screeny;
 extern SDL_Texture **ground_texture;
 extern int *ground_altitude;
 extern struct img *img;
+extern struct s_gui *s_gui;
 extern SDL_Renderer *renderer;
 extern SDL_Window *window;
 #define screensizex 1800
@@ -22,3 +23,4 @@ extern TTF_Font *font;
 extern struct speak *speakBubble;
 extern struct menu *main_menu;
 extern Gauge *lifeGauge;
+#define order_size 2000

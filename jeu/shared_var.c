@@ -6,6 +6,7 @@ int *ground_altitude;
 int max_x;
 int max_y;
 struct img *img;
+struct s_gui *s_gui;
 SDL_Renderer *renderer;
 SDL_Window *window;
 struct lettres *lettres;

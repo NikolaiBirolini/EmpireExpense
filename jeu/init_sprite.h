@@ -197,10 +197,6 @@ struct gui_sprite
 {
     SDL_Texture *croix;
     SDL_Texture *croix_inverse;
-    SDL_Texture *textInput;
-    SDL_Texture *selTextInput;
-    SDL_Texture *narrowTextInput;
-    SDL_Texture *narrowSelTextInput;
     SDL_Texture *demarcation;
     SDL_Texture *plus;
     SDL_Texture *moins;
@@ -286,4 +282,4 @@ struct img *init_img();
 struct textures *init_textures();
 struct skin *init_skin();
 struct lettres_img *init_lettre();
-struct gui_sprite *init_gui();
+struct gui_sprite *init_gui_sprite();

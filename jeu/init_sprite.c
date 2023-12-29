@@ -1199,7 +1199,7 @@ struct lettres_img *init_lettre()
     return to_return;
 }
 
-struct gui_sprite *init_gui()
+struct gui_sprite *init_gui_sprite()
 {
     struct gui_sprite *to_return = malloc(sizeof(struct gui_sprite));
     SDL_Surface *a = SDL_LoadBMP("img/gui/croix.bmp");
@@ -1211,26 +1211,6 @@ struct gui_sprite *init_gui()
     SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
     a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
     to_return->croix_inverse = SDL_CreateTextureFromSurface(renderer, a);
-    SDL_FreeSurface(a);
-    a = SDL_LoadBMP("img/gui/textInput.bmp");
-    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
-    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
-    to_return->textInput = SDL_CreateTextureFromSurface(renderer, a);
-    SDL_FreeSurface(a);
-    a = SDL_LoadBMP("img/gui/selTextInput.bmp");
-    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
-    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
-    to_return->selTextInput = SDL_CreateTextureFromSurface(renderer, a);
-    SDL_FreeSurface(a);
-    a = SDL_LoadBMP("img/gui/narrowTextInput.bmp");
-    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
-    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
-    to_return->narrowTextInput = SDL_CreateTextureFromSurface(renderer, a);
-    SDL_FreeSurface(a);
-    a = SDL_LoadBMP("img/gui/narrowSelTextInput.bmp");
-    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
-    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
-    to_return->narrowSelTextInput = SDL_CreateTextureFromSurface(renderer, a);
     SDL_FreeSurface(a);
      a = SDL_LoadBMP("img/gui/demarcation.bmp");
      SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
@@ -1271,6 +1251,6 @@ struct img *init_img()
     ret->t = init_textures();
     ret->s = init_skin();
     ret->li = init_lettre();
-    ret->g = init_gui();
+    ret->g = init_gui_sprite();
     return ret;
 }

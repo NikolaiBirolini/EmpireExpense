@@ -85,30 +85,6 @@ struct linked_list *append_perso(char **line)
 	}
 }
 
-struct linked_list *recv_map(int socket)
-{
-	char *buffer = calloc(order_size, sizeof(char));
-	recv(socket, buffer, 20, 0);
-
-	size_t res  = 0;
-	size_t nb_to_res  = atoi(buffer);
-	free(buffer);
-	buffer = calloc(nb_to_res + 2, 1);
-	char *pos_buf = buffer;
-	while (res < nb_to_res)
-	{
-		size_t tmp = recv(socket, buffer, nb_to_res - res, 0);
-		res += tmp;
-		buffer = buffer + tmp;
-	}
-	buffer = pos_buf;
-	list = append_perso(&buffer);
-	while ((append_perso(&buffer) != NULL));
-	buffer = pos_buf;
-	free(buffer);
-	return list;
-}
-
 struct personnages *find_perso_by_name(char *name)
 {
 	struct linked_list *parcour = list;

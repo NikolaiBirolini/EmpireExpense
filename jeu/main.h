@@ -14,6 +14,7 @@
 #include "map.h"
 #include <fcntl.h>
 #include "init_sprite.h"
+#include "init_gui.h"
 #include "chiffrement.h"
 #include "pathfinding.h"
 #include "init_sound.h"

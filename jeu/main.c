@@ -12,9 +12,10 @@ int main(int argc, char *argv[])
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
         printf ("no sound\n");
-    img = init_img();
-    sons = init_sound();
     initFonts();
+    img = init_img();
+    s_gui = init_gui();
+    sons = init_sound();
     Mix_PlayMusic(sons->menu, 1);
 
     bool validAddress = false;
@@ -161,7 +162,6 @@ char *log_menu(int socket)
     TextBox psswdTextBox;
     initTextBox(&logTextBox, 100, 100, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, littleFont, false);
     initTextBox(&psswdTextBox, 100, 180, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, littleFont, true);
-	Button playButton = {700, 180, 100, 45, {45, 165, 100, 255}, {136, 0, 21, 255}, font, {0, 0, 0, 255}, "PLAY"};
 	bool writeLogin = true;
 	bool writePsswd = false;
 	TextInfo textName = {"Login", littleFont, 100, 70, 0, {0, 0, 0, 255}, 1, 1, 0};
@@ -191,7 +191,7 @@ char *log_menu(int socket)
         SDL_RenderClear(renderer);
         SDL_RenderCopy(renderer, img->t->fond, NULL, NULL);
         drawTextBox(renderer, &unusedtextbox, false); 
-        drawButton(renderer, &playButton, SDL_FALSE);
+        drawButton(s_gui->b->play);
         drawTextBox(renderer, &logTextBox, writeLogin); 
         drawTextBox(renderer, &psswdTextBox, writePsswd);
         drawTextInfo(renderer, &textName);
@@ -200,7 +200,7 @@ char *log_menu(int socket)
         drawTextInfo(renderer, &textError);  
         drawPictureButton(renderer, &noiseButton);
         drawPictureButton(renderer, &betrayedCesar);
-
+        s_gui->b->play->isPressed = false;
         while(SDL_PollEvent(&event) != 0)
         { 
             if (event.type == SDL_QUIT) 
@@ -215,9 +215,9 @@ char *log_menu(int socket)
             {
                 int mouseX, mouseY;
                 SDL_GetMouseState(&mouseX, &mouseY);
-                if (( lettres->enter == 1 || (mouseX >= playButton.x && mouseX <= playButton.x + playButton.width && mouseY >= playButton.y && mouseY <= playButton.y + playButton.height)) && logTextBox.text[0] != 0 && psswdTextBox.text[0] != 0) 
+                if (( lettres->enter == 1 || (mouseX >= s_gui->b->play->buttonRect.x && mouseX <= s_gui->b->play->buttonRect.x + s_gui->b->play->buttonRect.w && mouseY >= s_gui->b->play->buttonRect.y && mouseY <= s_gui->b->play->buttonRect.y + s_gui->b->play->buttonRect.h)) && logTextBox.text[0] != 0 && psswdTextBox.text[0] != 0) 
                 {
-                    drawButton(renderer, &playButton, SDL_TRUE);
+                    s_gui->b->play->isPressed = true;
                     done = sendLoginDataToServer(logTextBox.text, psswdTextBox.text, socket, 101, 0);
                     if (!done)
                         textError.text = "INVALID CREDENTIALS, please retry";   
@@ -298,7 +298,6 @@ int menu_connection()
     initTextBox(&ipTextBox, 100, 100, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, bigFont, false);
     TextBox portTextBox;
     initTextBox(&portTextBox, 100, 180, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, bigFont, false);
-	Button playButton = {700, 180, 100, 45, {45, 165, 100, 255}, {136, 0, 21, 255}, font, {0, 0, 0, 255}, "PLAY"};
 	bool writeIp = true;
 	bool writePort = false;
 	TextInfo textIp = {"IP Address", littleFont, 100, 70, 0, {0, 0, 0, 255}, 1, 1, 0};
@@ -328,13 +327,14 @@ int menu_connection()
         drawTextBox(renderer, &unusedtextbox, false); 
         drawTextBox(renderer, &browBackgroundPrintInfo, false);
         drawTextInfo(renderer, &textError);  
-        drawButton(renderer, &playButton, SDL_FALSE);
+        drawButton(s_gui->b->play);
         drawTextBox(renderer, &ipTextBox, writeIp); 
         drawTextBox(renderer, &portTextBox, writePort);
         drawTextInfo(renderer, &textIp);
         drawTextInfo(renderer, &textPort);
         drawPictureButton(renderer, &noiseButton);
         drawPictureButton(renderer, &primeCesar);
+        s_gui->b->play->isPressed = false;
 
         while(SDL_PollEvent(&event) != 0)
         { 
@@ -350,9 +350,9 @@ int menu_connection()
             {
                 int mouseX, mouseY;
                 SDL_GetMouseState(&mouseX, &mouseY);
-                if ((mouseX >= playButton.x && mouseX <= playButton.x + playButton.width && mouseY >= playButton.y && mouseY <= playButton.y + playButton.height) && (ipTextBox.text[0] != 0 && portTextBox.text[0] != 0)) 
+                if ((mouseX >= s_gui->b->play->buttonRect.x && mouseX <= s_gui->b->play->buttonRect.x + s_gui->b->play->buttonRect.w && mouseY >= s_gui->b->play->buttonRect.y && mouseY <= s_gui->b->play->buttonRect.y + s_gui->b->play->buttonRect.h) && (ipTextBox.text[0] != 0 && portTextBox.text[0] != 0)) 
                 {
-                    drawButton(renderer, &playButton, SDL_TRUE);
+                    s_gui->b->play->isPressed = true;
                     socket = try_connect(ipTextBox.text, portTextBox.text);
                     if (socket == -1)
                         textError.text = "Server not found, INVALID ADDRESS";   

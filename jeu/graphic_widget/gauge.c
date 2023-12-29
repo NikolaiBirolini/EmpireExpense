@@ -33,4 +33,3 @@ void drawGauge(SDL_Renderer *renderer, const Gauge *gauge) {
     SDL_Rect fillRect = {gauge->x, gauge->y, fillWidth, gauge->height};
     SDL_RenderFillRect(renderer, &fillRect);
 }
-

@@ -1,39 +1,34 @@
 #include "button.h"
 
 // Function to draw a button
-void drawButton(SDL_Renderer *renderer, Button *button, SDL_bool pressed) 
+
+void initButton(Button* button, int x, int y, int width, int height,  SDL_Color normalColor, SDL_Color pressedColor,TTF_Font *font,SDL_Color textColor ,char *text)
 {
-    SDL_SetRenderDrawColor(renderer, (pressed ? button->pressedColor.r : button->normalColor.r),
-                                       (pressed ? button->pressedColor.g : button->normalColor.g),
-                                       (pressed ? button->pressedColor.b : button->normalColor.b),
+    button->isPressed = false;
+    
+    button->normalColor = normalColor; 
+    button->pressedColor = pressedColor;
+
+    SDL_Surface *surface = TTF_RenderText_Solid(font, text, textColor);
+    button->textTexture = SDL_CreateTextureFromSurface(renderer, surface);
+    button->buttonRect.x = x;
+    button->buttonRect.y = y;
+    button->buttonRect.w = width;
+    button->buttonRect.h = height;
+    button->textRect.x = x + (width - surface->w) / 2;
+    button->textRect.y = y + (height - surface->h) / 2;
+    button->textRect.w = surface->w;
+    button->textRect.h = surface->h;    
+    button->textTexture = SDL_CreateTextureFromSurface(renderer, surface);
+    
+}
+
+void drawButton(Button *button) 
+{
+    SDL_SetRenderDrawColor(renderer, (button->isPressed ? button->pressedColor.r : button->normalColor.r),
+                                       (button->isPressed  ? button->pressedColor.g : button->normalColor.g),
+                                       (button->isPressed  ? button->pressedColor.b : button->normalColor.b),
                                        255);
-
-    // Draw the button rectangle
-    SDL_Rect buttonRect = {button->x, button->y, button->width, button->height};
-    SDL_RenderFillRect(renderer, &buttonRect);
-
-    // Draw the text at the center of the button using the specified font and text color
-    SDL_Surface *surface = TTF_RenderText_Solid(button->font, button->text, button->textColor);
-    if (!surface) 
-    {
-        fprintf(stderr, "Error creating text surface: %s\n", TTF_GetError());
-        return;
-    }
-    SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
-    if (!texture) 
-    {
-        fprintf(stderr, "Error creating texture from surface: %s\n", SDL_GetError());
-        SDL_FreeSurface(surface);
-        return;
-    }
-    SDL_Rect textRect;
-    textRect.x = button->x + (button->width - surface->w) / 2;
-    textRect.y = button->y + (button->height - surface->h) / 2;
-    textRect.w = surface->w;
-    textRect.h = surface->h;
-    SDL_RenderCopy(renderer, texture, NULL, &textRect);
-
-    // Free resources of the surface and texture
-    SDL_FreeSurface(surface);
-    SDL_DestroyTexture(texture);
+    SDL_RenderFillRect(renderer, &button->buttonRect);
+    SDL_RenderCopy(renderer, button->textTexture, NULL, &button->textRect);   
 }

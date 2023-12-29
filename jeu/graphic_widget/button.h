@@ -5,18 +5,20 @@
 #include <SDL2/SDL_ttf.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
+#include "../shared_var.h"
 
 typedef struct {
-    int x, y;                 // Button position
-    int width, height;        // Button dimensions
-    SDL_Color normalColor;     // Color of the button when not pressed
-    SDL_Color pressedColor;    // Color of the button when pressed
-    TTF_Font *font;           // Font for the button text
-    SDL_Color textColor;       // Color of the button text
-    char text[50];             // Text to display at the center of the button
+    SDL_Rect textRect;
+    SDL_Rect buttonRect;
+    SDL_Texture* textTexture;
+    bool isPressed;
+    SDL_Color normalColor;
+    SDL_Color pressedColor;
 } Button;
 
 // Function to draw a button
-void drawButton(SDL_Renderer *renderer, Button *button, SDL_bool pressed);
+void drawButton(Button *button);
+void initButton(Button* button, int x, int y, int width, int height,  SDL_Color normalColor, SDL_Color pressedColor,TTF_Font *font,SDL_Color textColor ,char *text);
 
 #endif /* BUTTON_H */

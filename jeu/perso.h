@@ -8,7 +8,6 @@
 #include "sys/socket.h"
 #include "netinet/in.h"
 #include "arpa/inet.h"
-#define order_size 2000
 
 struct personnages
 {
@@ -74,7 +73,6 @@ struct linked_list
 
 char exist_in_linked(struct linked_list *list, struct personnages *to_test);
 struct linked_list *append_in_linked(struct linked_list *list,struct personnages *p);
-struct linked_list *recv_map(int socket);
 struct linked_list *append_perso(char **line);
 void disp_perso_list(struct personnages *moi);
 //struct personnages *find_perso(struct linked_list *list ,char *name);
