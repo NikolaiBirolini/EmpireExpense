@@ -21,15 +21,6 @@ void init_main_menu(void)
     main_menu->selector = initializeSelector(100, 50, 200, 50, selectedColor, defaultColor, textColor, littleFont, options, 7);
 }
 
-
-void init_life_gauge(void)
-{
-    lifeGauge = calloc(sizeof(Gauge), 1);
-    SDL_Color fill_color = {255, 0, 0, 255};   // Rouge
-    SDL_Color bg_color = {139, 69, 19, 255};    // Marron
-    initGauge(lifeGauge, 50, 800, 200, 30, fill_color, bg_color, 100);
-}
-
 void init_speak_bubble(void)
 {
     speakBubble = calloc(sizeof(struct speak), 1);
@@ -84,7 +75,7 @@ void display_selected(struct linked_list *selected, struct personnages *moi, str
     //drawTextInfo(renderer, &text_my_stats);
 }
 
-void display_elipse_and_handle_buttons(void)
+void display_elipse_and_handle_buttons(struct personnages *moi)
 {
     SDL_Rect position = {0, 0, 1800, 900};
     SDL_RenderCopy(renderer, img->g->elipse, NULL, &position);
@@ -92,16 +83,14 @@ void display_elipse_and_handle_buttons(void)
     position.y = 50;
     position.h = 35;
     position.w = 35;
-    pictureButton mainMenuButton;
-    initPictureButton(renderer, &mainMenuButton, 50, 50, 35, 35, "img/textures/graphical_widget_img/main_menu_button/menu_button_not_pressed.png", "img/textures/graphical_widget_img/main_menu_button/menu_button_pressed.png");
+    
     
     //SDL_RenderCopy(renderer, img->g->menuButton, NULL, &position);
     if (lettres->Mouse_Lclick == 1 && lettres->Mouse_pos_x > 50 && lettres->Mouse_pos_x < 85 && lettres->Mouse_pos_y > 50 && lettres->Mouse_pos_y < 85)
         main_menu->on = !main_menu->on;
-    mainMenuButton.isPressed = main_menu->on;
-    lifeGauge->curvalue = 75;
-    drawPictureButton(renderer, &mainMenuButton);
-    drawGauge(renderer, lifeGauge);
+    s_gui->b->menu->isPressed = main_menu->on;
+    drawPictureButton(s_gui->b->menu);
+    drawGauge(s_gui->g->my_health, moi->pv, moi->max_pv);
 }
 
 void menu_echange(struct menu *m, struct personnages *perso)

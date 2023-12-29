@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "../shared_var.h"
 
 typedef struct {
     int x, y;                 // Button position
@@ -15,10 +16,10 @@ typedef struct {
     bool isPressed;
 } pictureButton;
 
-void initPictureButton(SDL_Renderer* renderer, pictureButton* button, int x, int y, int width, int height, const char* defaultImagePath, const char* pressedImagePath);
+void initPictureButton(pictureButton* button, int x, int y, int width, int height, const char* defaultImagePath, const char* pressedImagePath);
 
 // Function to draw a button
-void drawPictureButton(SDL_Renderer *renderer, pictureButton *button);
+void drawPictureButton(pictureButton *button);
 
 void freePictureButton(pictureButton* button);
 

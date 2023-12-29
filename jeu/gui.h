@@ -59,5 +59,5 @@ void printSpeakBubble(struct personnages *perso, TextInfo* textInfo, TextBox* te
 //void handleTextInputForBubbleBox(TextBox* textBox, SDL_Event event, char* on, TextInfo* textInfo, struct personnages *moi, char* ordre);
 void gui_event(struct personnages *moi);
 void *cast(void *p);
-void display_elipse_and_handle_buttons(void);
+void display_elipse_and_handle_buttons(struct personnages *moi);
 void display_selected(struct linked_list *selected, struct personnages *moi, struct formation *f);

@@ -2,7 +2,7 @@
 
 
 // Function to initialize a picture button
-void initPictureButton(SDL_Renderer* renderer, pictureButton* button, int x, int y, int width, int height, const char* defaultImagePath, const char* pressedImagePath ) 
+void initPictureButton(pictureButton* button, int x, int y, int width, int height, const char* defaultImagePath, const char* pressedImagePath ) 
 {
     button->x = x;
     button->y = y;
@@ -28,14 +28,13 @@ void initPictureButton(SDL_Renderer* renderer, pictureButton* button, int x, int
 }
 
 // Function to draw a picture button
-void drawPictureButton(SDL_Renderer *renderer, pictureButton *button) 
+void drawPictureButton(pictureButton *button) 
 {
-    // Choose the appropriate texture based on the button state
-    SDL_Texture* textureToDraw = (button->isPressed) ? button->pressedPicture : button->defaultPicture;
-
-    // Draw the button texture
     SDL_Rect destRect = { button->x, button->y, button->width, button->height };
-    SDL_RenderCopy(renderer, textureToDraw, NULL, &destRect);
+    if (button->isPressed)
+        SDL_RenderCopy(renderer, button->pressedPicture, NULL, &destRect);
+    else
+        SDL_RenderCopy(renderer, button->defaultPicture, NULL, &destRect);
 }
 
 void freePictureButton(pictureButton* button) 

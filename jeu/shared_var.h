@@ -22,5 +22,4 @@ extern TTF_Font *bigFont;
 extern TTF_Font *font;
 extern struct speak *speakBubble;
 extern struct menu *main_menu;
-extern Gauge *lifeGauge;
 #define order_size 2000

@@ -100,7 +100,6 @@ void boucle_jeu(int socket, char *name)
 	struct formation *f= malloc(sizeof(struct formation));
     init_main_menu();
     init_speak_bubble();
-    init_life_gauge();
 	bool done = false;
     
 	while(!done)
@@ -110,7 +109,7 @@ void boucle_jeu(int socket, char *name)
 		SDL_RenderClear(renderer);
 	    display_all(moi);
         display_selected(selected, moi, f);
-        display_elipse_and_handle_buttons();
+        display_elipse_and_handle_buttons(moi);
         if (main_menu->on == 1)
         {
             gestion_touche();
@@ -168,8 +167,6 @@ char *log_menu(int socket)
 	TextInfo textPassword = {"Password", bigFont, 100, 150, 0, {0, 0, 0, 255}, 1, 1, 0};
 	TextBox unusedtextbox;
     initTextBox(&unusedtextbox, 80, 60, 760, 200, (SDL_Color){150, 100, 135, 255}, (SDL_Color){150, 100, 135, 255}, (SDL_Color){0, 0, 0, 255}, littleFont, false);
-    pictureButton noiseButton;
-    initPictureButton(renderer, &noiseButton, 1700, 800, 80, 80, "img/textures/graphical_widget_img/noise_button/default_son.png", "img/textures/graphical_widget_img/noise_button/pressed_son.png");
     TextBox browBackgroundPrintInfo;
     initTextBox(&browBackgroundPrintInfo, 80, 400, 760, 400, (SDL_Color){255, 165, 0, 255}, (SDL_Color){139, 69, 19, 255}, (SDL_Color){0, 0, 0, 255}, bigFont, false);
     TextInfo textError;
@@ -183,8 +180,8 @@ char *log_menu(int socket)
     textError.y = 400;
     textError.text = "";
 
-    pictureButton betrayedCesar;
-    initPictureButton(renderer, &betrayedCesar, 900, 60, 810, 740, "img/gui/menus/end_of_cesar.jpg", "img/gui/menus/end_of_cesar.jpg");
+    //pictureButton betrayedCesar;
+    //initPictureButton(renderer, &betrayedCesar, 900, 60, 810, 740, "img/gui/menus/end_of_cesar.jpg", "img/gui/menus/end_of_cesar.jpg");
 
     while (!done)
     {
@@ -198,8 +195,8 @@ char *log_menu(int socket)
         drawTextInfo(renderer, &textPassword);
         drawTextBox(renderer, &browBackgroundPrintInfo, false);
         drawTextInfo(renderer, &textError);  
-        drawPictureButton(renderer, &noiseButton);
-        drawPictureButton(renderer, &betrayedCesar);
+        drawPictureButton(s_gui->b->music);
+        //drawPictureButton( &betrayedCesar);
         s_gui->b->play->isPressed = false;
         while(SDL_PollEvent(&event) != 0)
         { 
@@ -236,11 +233,11 @@ char *log_menu(int socket)
                     writePsswd = true;
                     writeLogin = false;		
                 }
-                else if (mouseX >= noiseButton.x && mouseX <= noiseButton.x + noiseButton.width &&
-                        mouseY >= noiseButton.y && mouseY <= noiseButton.y + noiseButton.height)
+                else if (mouseX >= s_gui->b->music->x && mouseX <= s_gui->b->music->x + s_gui->b->music->width &&
+                        mouseY >= s_gui->b->music->y && mouseY <= s_gui->b->music->y + s_gui->b->music->height)
                 {
-                    noiseButton.isPressed = !noiseButton.isPressed;
-                    if(noiseButton.isPressed)
+                    s_gui->b->music->isPressed = !s_gui->b->music->isPressed;
+                    if(s_gui->b->music->isPressed)
                     {
                         stopMusic();
                     }
@@ -291,8 +288,6 @@ int menu_connection()
 {
     SDL_Event event;
     int socket = -1;
-    pictureButton noiseButton;
-    initPictureButton(renderer, &noiseButton, 1700, 800, 80, 80, "img/textures/graphical_widget_img/noise_button/default_son.png", "img/textures/graphical_widget_img/noise_button/pressed_son.png");
     TTF_Init();
     TextBox ipTextBox;
     initTextBox(&ipTextBox, 100, 100, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, bigFont, false);
@@ -317,8 +312,8 @@ int menu_connection()
     textError.y = 400;
     textError.text = "";
 
-    pictureButton primeCesar;
-    initPictureButton(renderer, &primeCesar, 900, 60, 810, 740, "img/gui/menus/cesar_prime.jpg", "img/gui/menus/cesar_prime.jpg");
+    //pictureButton primeCesar;
+    //initPictureButton(renderer, &primeCesar, 900, 60, 810, 740, "img/gui/menus/cesar_prime.jpg", "img/gui/menus/cesar_prime.jpg");
     
     while (socket < 0) 
     {
@@ -332,8 +327,8 @@ int menu_connection()
         drawTextBox(renderer, &portTextBox, writePort);
         drawTextInfo(renderer, &textIp);
         drawTextInfo(renderer, &textPort);
-        drawPictureButton(renderer, &noiseButton);
-        drawPictureButton(renderer, &primeCesar);
+        drawPictureButton(s_gui->b->music);
+        //drawPictureButton( &primeCesar);
         s_gui->b->play->isPressed = false;
 
         while(SDL_PollEvent(&event) != 0)
@@ -360,11 +355,11 @@ int menu_connection()
                         textError.text = "SUCCESS";
                 }
 
-				else if (mouseX >= noiseButton.x && mouseX <= noiseButton.x + noiseButton.width &&
-                    mouseY >= noiseButton.y && mouseY <= noiseButton.y + noiseButton.height) 
+				else if (mouseX >= s_gui->b->music->x && mouseX <= s_gui->b->music->x + s_gui->b->music->width &&
+                    mouseY >= s_gui->b->music->y && mouseY <= s_gui->b->music->y + s_gui->b->music->height) 
 	        	{
-	        		noiseButton.isPressed = !noiseButton.isPressed;
-					if(noiseButton.isPressed)
+	        		s_gui->b->music->isPressed = !s_gui->b->music->isPressed;
+					if(s_gui->b->music->isPressed)
 						stopMusic();
 					else
 					{

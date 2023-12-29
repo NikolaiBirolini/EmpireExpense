@@ -35,7 +35,7 @@ struct textboxes
 
 struct gauges
 {
-    char a;
+    Gauge *my_health;
 };
 
 struct s_gui *init_gui();
