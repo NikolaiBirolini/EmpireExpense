@@ -25,7 +25,11 @@ struct buttons
 
 struct textinfos
 {
-    char a;
+    TextInfo *errorText;
+    TextInfo *IpText;
+    TextInfo *PortText;
+    TextInfo *loginText;
+    TextInfo *passwordText;
 };
 
 struct textboxes

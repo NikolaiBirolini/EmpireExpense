@@ -1,5 +1,19 @@
 #include "textInfo.h"
 
+
+void initTextInfo(TextInfo* textinfo, char* text, TTF_Font* font, int x, int y, int wrapWidth, SDL_Color textColor,  bool isBold, bool isItalic, bool isUnderlined) 
+{
+    textinfo->font = font;
+    textinfo->x = x;
+    textinfo->y = y;
+    textinfo->wrapWidth = wrapWidth; 
+    textinfo->textColor = textColor;
+    textinfo->isBold = isBold;       
+    textinfo->isItalic = isItalic;     
+    textinfo->isUnderlined = isUnderlined; 
+    textinfo->text = text; 
+}
+
 // Function to display text with options
 void drawTextInfo(SDL_Renderer *renderer, TextInfo *textInfo) 
 {

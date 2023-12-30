@@ -24,6 +24,16 @@ struct buttons *init_buttons()
 struct textinfos *init_textinfos()
 {
     struct textinfos *to_return = malloc(sizeof(struct textinfos));
+    to_return->errorText = malloc(sizeof(TextInfo));
+    initTextInfo(to_return->errorText, "", littleFont, 80, 400, 700, (SDL_Color){255, 255, 255, 255}, 0, 0, 0);
+    to_return->IpText = malloc(sizeof(TextInfo));
+    initTextInfo(to_return->IpText, "IP Address", littleFont, 100, 70, 0, (SDL_Color){0, 0, 0, 255}, 1, 1, 0);
+    to_return->PortText = malloc(sizeof(TextInfo));
+    initTextInfo(to_return->PortText, "Port", littleFont, 100, 150, 0, (SDL_Color){0, 0, 0, 255},1, 1, 0);
+    to_return->loginText = malloc(sizeof(TextInfo));
+    initTextInfo(to_return->loginText, "Login", littleFont, 100, 70, 0, (SDL_Color){0, 0, 0, 255}, 1, 1, 0);
+    to_return->passwordText = malloc(sizeof(TextInfo));
+    initTextInfo(to_return->passwordText, "Password", bigFont, 100, 150, 0, (SDL_Color){0, 0, 0, 255}, 1, 1, 0);
     return to_return;
 }
 struct textboxes *init_textboxes()

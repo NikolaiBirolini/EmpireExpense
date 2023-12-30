@@ -7,6 +7,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include "../shared_var.h"
+#include <string.h>
 
 // Structure to store information about the text to be displayed
 typedef struct {
@@ -20,6 +21,7 @@ typedef struct {
     bool isUnderlined; // Indicator for underlined text
 } TextInfo;
 
+void initTextInfo(TextInfo* textinfo, char* text, TTF_Font* font, int x, int y, int wrapWidth, SDL_Color textColor,  bool isBold, bool isItalic, bool isUnderlined);
 void drawTextInfo(SDL_Renderer *renderer, TextInfo *textInfo);
 void initFonts(void);
 #endif /* TEXTINFO_H */

@@ -163,22 +163,11 @@ char *log_menu(int socket)
     initTextBox(&psswdTextBox, 100, 180, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, littleFont, true);
 	bool writeLogin = true;
 	bool writePsswd = false;
-	TextInfo textName = {"Login", littleFont, 100, 70, 0, {0, 0, 0, 255}, 1, 1, 0};
-	TextInfo textPassword = {"Password", bigFont, 100, 150, 0, {0, 0, 0, 255}, 1, 1, 0};
+
 	TextBox unusedtextbox;
     initTextBox(&unusedtextbox, 80, 60, 760, 200, (SDL_Color){150, 100, 135, 255}, (SDL_Color){150, 100, 135, 255}, (SDL_Color){0, 0, 0, 255}, littleFont, false);
     TextBox browBackgroundPrintInfo;
     initTextBox(&browBackgroundPrintInfo, 80, 400, 760, 400, (SDL_Color){255, 165, 0, 255}, (SDL_Color){139, 69, 19, 255}, (SDL_Color){0, 0, 0, 255}, bigFont, false);
-    TextInfo textError;
-    textError.font = littleFont;
-    textError.isBold = 0;
-    textError.isItalic = 0;
-    textError.isUnderlined = 0;
-    textError.textColor = (SDL_Color){255, 255, 255, 255};
-    textError.wrapWidth = 700;
-    textError.x = 80;
-    textError.y = 400;
-    textError.text = "";
 
     //pictureButton betrayedCesar;
     //initPictureButton(renderer, &betrayedCesar, 900, 60, 810, 740, "img/gui/menus/end_of_cesar.jpg", "img/gui/menus/end_of_cesar.jpg");
@@ -191,10 +180,10 @@ char *log_menu(int socket)
         drawButton(s_gui->b->play);
         drawTextBox(renderer, &logTextBox, writeLogin); 
         drawTextBox(renderer, &psswdTextBox, writePsswd);
-        drawTextInfo(renderer, &textName);
-        drawTextInfo(renderer, &textPassword);
+        drawTextInfo(renderer, s_gui->ti->loginText);
+        drawTextInfo(renderer, s_gui->ti->passwordText);
         drawTextBox(renderer, &browBackgroundPrintInfo, false);
-        drawTextInfo(renderer, &textError);  
+        drawTextInfo(renderer, s_gui->ti->errorText);  
         drawPictureButton(s_gui->b->music);
         //drawPictureButton( &betrayedCesar);
         s_gui->b->play->isPressed = false;
@@ -217,9 +206,9 @@ char *log_menu(int socket)
                     s_gui->b->play->isPressed = true;
                     done = sendLoginDataToServer(logTextBox.text, psswdTextBox.text, socket, 101, 0);
                     if (!done)
-                        textError.text = "INVALID CREDENTIALS, please retry";   
+                        s_gui->ti->errorText->text = "INVALID CREDENTIALS, please retry";   
                     else
-                        textError.text = "SUCCESS";
+                        s_gui->ti->errorText->text = "SUCCESS";
                 }
                 else if (mouseX >= logTextBox.x && mouseX <= logTextBox.x + logTextBox.width &&
                         mouseY >= logTextBox.y && mouseY <= logTextBox.y + logTextBox.height) 
@@ -262,9 +251,9 @@ char *log_menu(int socket)
                     sprintf (to_send, "%s %s", logTextBox.text, psswdTextBox.text);
                     done = communicateWithServer(socket, to_send, 101, 0);
                     if (!done)
-                        textError.text = "INVALID CREDENTIALS, please retry";   
+                        s_gui->ti->errorText->text = "INVALID CREDENTIALS, please retry";   
                     else
-                        textError.text = "SUCCESS";
+                        s_gui->ti->errorText->text = "SUCCESS";
                 }
             }
 
@@ -295,22 +284,11 @@ int menu_connection()
     initTextBox(&portTextBox, 100, 180, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, bigFont, false);
 	bool writeIp = true;
 	bool writePort = false;
-	TextInfo textIp = {"IP Address", littleFont, 100, 70, 0, {0, 0, 0, 255}, 1, 1, 0};
-	TextInfo textPort = {"Port", littleFont, 100, 150, 0, {0, 0, 0, 255},1, 1, 0};
+
 	TextBox unusedtextbox;
     initTextBox(&unusedtextbox, 80, 60, 760, 200, (SDL_Color){150, 100, 135, 255}, (SDL_Color){150, 100, 135, 255}, (SDL_Color){0, 0, 0, 255}, bigFont, false);
     TextBox browBackgroundPrintInfo;
     initTextBox(&browBackgroundPrintInfo, 80, 400, 760, 400, (SDL_Color){255, 165, 0, 255}, (SDL_Color){139, 69, 19, 255}, (SDL_Color){0, 0, 0, 255}, bigFont, false);
-    TextInfo textError;
-    textError.font = littleFont;
-    textError.isBold = 0;
-    textError.isItalic = 0;
-    textError.isUnderlined = 0;
-    textError.textColor = (SDL_Color){255, 255, 255, 255};
-    textError.wrapWidth = 700;
-    textError.x = 80;
-    textError.y = 400;
-    textError.text = "";
 
     //pictureButton primeCesar;
     //initPictureButton(renderer, &primeCesar, 900, 60, 810, 740, "img/gui/menus/cesar_prime.jpg", "img/gui/menus/cesar_prime.jpg");
@@ -321,12 +299,12 @@ int menu_connection()
         SDL_RenderCopy(renderer, img->t->fond, NULL, NULL);
         drawTextBox(renderer, &unusedtextbox, false); 
         drawTextBox(renderer, &browBackgroundPrintInfo, false);
-        drawTextInfo(renderer, &textError);  
+        drawTextInfo(renderer, s_gui->ti->errorText);  
         drawButton(s_gui->b->play);
         drawTextBox(renderer, &ipTextBox, writeIp); 
         drawTextBox(renderer, &portTextBox, writePort);
-        drawTextInfo(renderer, &textIp);
-        drawTextInfo(renderer, &textPort);
+        drawTextInfo(renderer, s_gui->ti->IpText);
+        drawTextInfo(renderer, s_gui->ti->PortText);
         drawPictureButton(s_gui->b->music);
         //drawPictureButton( &primeCesar);
         s_gui->b->play->isPressed = false;
@@ -350,9 +328,9 @@ int menu_connection()
                     s_gui->b->play->isPressed = true;
                     socket = try_connect(ipTextBox.text, portTextBox.text);
                     if (socket == -1)
-                        textError.text = "Server not found, INVALID ADDRESS";   
+                        s_gui->ti->errorText->text = "Server not found, INVALID ADDRESS";   
                     else
-                        textError.text = "SUCCESS";
+                        s_gui->ti->errorText->text = "SUCCESS";
                 }
 
 				else if (mouseX >= s_gui->b->music->x && mouseX <= s_gui->b->music->x + s_gui->b->music->width &&
@@ -392,9 +370,9 @@ int menu_connection()
                 { 
                     socket = try_connect(ipTextBox.text, portTextBox.text);
                     if (socket == -1)
-                        textError.text = "Server not found, INVALID ADDRESS";   
+                        s_gui->ti->errorText->text = "Server not found, INVALID ADDRESS";   
                     else
-                        textError.text = "SUCCESS";
+                        s_gui->ti->errorText->text = "SUCCESS";
                 }
             }
 
