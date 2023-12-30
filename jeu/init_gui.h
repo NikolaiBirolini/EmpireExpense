@@ -34,7 +34,12 @@ struct textinfos
 
 struct textboxes
 {
-    char a;
+    TextBox *IpTextBox;
+    TextBox *PortTextBox;
+    TextBox *loginTextBox;
+    TextBox *passwordTextBox;
+    TextBox *unusedTextBox;
+    TextBox *bgPrintErrorTextBox;
 };
 
 struct gauges
