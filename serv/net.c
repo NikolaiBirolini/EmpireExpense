@@ -8,7 +8,7 @@ int generate_order(char *ret)
     {
         if (pa->a_bouger == 1)
         {
-			sprintf(order + strlen(order), "%d %d %s %f %f %f %f %f %d %d %s %s %s %s %s %s %d [", pa->id, pa->pv, pa->nom_de_compte, pa->x, pa->y, pa->ordrex, pa->ordrey, pa->angle, pa->timer_dom, pa->faim, pa->skin, pa->nom, pa->nom_superieur, pa->titre, pa->religion, pa->region, pa->nb_vassaux);
+			sprintf(order + strlen(order), "%d %d %s %f %f %f %f %f %d %d %s %s %s %s %s %s %d %s %d %d %d %d %d [", pa->id, pa->pv, pa->nom_de_compte, pa->x, pa->y, pa->ordrex, pa->ordrey, pa->angle, pa->timer_dom, pa->faim, pa->skin, pa->nom, pa->nom_superieur, pa->titre, pa->religion, pa->region, pa->nb_vassaux, pa->echange_player, pa->item1, pa->item2, pa->animation, pa->animation_2, pa->chemin_is_set);
 			for (struct linked_enemie *p = pa->e_list; p != NULL; p = p->next)
 			{
 				if (p->next != NULL)
@@ -24,7 +24,7 @@ int generate_order(char *ret)
                 else
                     sprintf (order + strlen(order), "%s %d", p->nom, p->count);
 			}
-			sprintf(order + strlen(order),  "] %s %d %d %s %d %d %d", pa->echange_player, pa->item1, pa->item2, pa->speak, pa->animation, pa->animation_2, pa->chemin_is_set);
+			sprintf(order + strlen(order),  "] %s", pa->speak);
             if (pa->next != NULL)
                 strcat(order, "\n");
 			pa->a_bouger = 0;
@@ -41,7 +41,7 @@ void send_map(int socket)
 	char *ordre = &order[20];
     for (struct personnages *pa = list; pa != NULL; pa = pa->next)
     {
-		sprintf(ordre + strlen(ordre), "%d %d %s %f %f %f %f %f %d %d %s %s %s %s %s %s %d [", pa->id, pa->pv, pa->nom_de_compte, pa->x, pa->y, pa->ordrex, pa->ordrey, pa->angle, pa->timer_dom, pa->faim, pa->skin, pa->nom, pa->nom_superieur, pa->titre, pa->religion, pa->region, pa->nb_vassaux);
+		sprintf(ordre + strlen(ordre), "%d %d %s %f %f %f %f %f %d %d %s %s %s %s %s %s %d %s %d %d %d %d %d [", pa->id, pa->pv, pa->nom_de_compte, pa->x, pa->y, pa->ordrex, pa->ordrey, pa->angle, pa->timer_dom, pa->faim, pa->skin, pa->nom, pa->nom_superieur, pa->titre, pa->religion, pa->region, pa->nb_vassaux, pa->echange_player, pa->item1, pa->item2, pa->animation, pa->animation_2, pa->chemin_is_set);
         for (struct linked_enemie *p = pa->e_list; p != NULL; p = p->next)
         {
             if (p->next != NULL) 
@@ -57,7 +57,7 @@ void send_map(int socket)
             else
                 sprintf (ordre + strlen(ordre), "%s %d", p->nom, p->count);
         }
-        sprintf(ordre + strlen(ordre),  "] %s %d %d %s %d %d %d", pa->echange_player, pa->item1, pa->item2, pa->speak, pa->animation, pa->animation_2, pa->chemin_is_set);
+        sprintf(ordre + strlen(ordre),  "] %s", pa->speak);
         if (pa->next != NULL)
             strcat(ordre, "\n");
     }

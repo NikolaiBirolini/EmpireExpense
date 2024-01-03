@@ -27,7 +27,8 @@ int parse_order(struct personnages *p, char *line)
     char tmpN[50];
     p->e_list = NULL;
     p->i_list = NULL;
-    sscanf(line, "%d %d %s %f %f %f %f %f %d %d %s %s %s %s %s %d%n", &p->id, &p->pv, p->nom_de_compte, &p->x, &p->y, &p->ordrex, &p->ordrey, &p->angle, &p->timer_dom, &p->faim, p->skin, p->nom, p->nom_superieur, p->titre, p->religion, &p->nb_vassaux, &i);
+    
+    sscanf(line, "%d %d %s %f %f %f %f %f %d %d %s %s %s %s %s %d %s %d %d %d %d %d %n", &p->id, &p->pv, p->nom_de_compte, &p->x, &p->y, &p->ordrex, &p->ordrey, &p->angle, &p->timer_dom, &p->faim, p->skin, p->nom, p->nom_superieur, p->titre, p->religion, &p->nb_vassaux, p->echange_player, &p->item1, &p->item2,  &p->animation, &p->animation_2, &p->chemin_is_set, &i);
     i += 1;
     while (line[i] != ']')
     {
@@ -81,6 +82,13 @@ int parse_order(struct personnages *p, char *line)
         }
     }
     i += 2;
-    sscanf(line + i, "%s %d %d %s %d %d %d %n", p->echange_player, &p->item1, &p->item2, p->speak, &p->animation, &p->animation_2, &p->chemin_is_set, &j);
-    return i + j;
+    j = 0;
+    while (line[i] != '\n' && line[i] != 0)
+    {
+        p->speak[j] = line[i];
+        i += 1;
+        j += 1;
+    }
+    p->speak[j] = 0;
+    return i + 1;
 }
