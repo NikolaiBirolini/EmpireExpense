@@ -53,7 +53,6 @@ void menu(void);
 void init_main_menu(void);
 void init_speak_bubble(void);
 void init_life_gauge(void);
-void talk(struct speak *speak_s, struct personnages *moi);
 void speakPerso(struct personnages *moi, char* ordre);
 void printSpeakBubble(struct personnages *perso, TextInfo* textInfo, TextBox* textBox, char* on);
 //void handleTextInputForBubbleBox(TextBox* textBox, SDL_Event event, char* on, TextInfo* textInfo, struct personnages *moi, char* ordre);

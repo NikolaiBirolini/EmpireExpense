@@ -122,13 +122,6 @@ void menu_technologie(struct menu *m)
     m = m;
 }
 
-void talk(struct speak *speak_s, struct personnages *moi)
-{
-    speak_s = speak_s;
-    moi = moi;
-}
-
-
 void speakPerso(struct personnages *moi, char* ordre)
 {
     SDL_Event event;
@@ -145,7 +138,7 @@ void speakPerso(struct personnages *moi, char* ordre)
                 speakBubble->on = 0;
             else if (event.key.keysym.sym == SDLK_RETURN)
             {
-                sprintf (ordre + strlen(ordre), "%d 20 [%s] ", moi->id, speakBubble->textBox->text);
+                sprintf (ordre + strlen(ordre), "%d 20 %s\037 ", moi->id, speakBubble->textBox->text);
                 speakBubble->textBox->text[0] = 0;
                 speakBubble->on = 0;
 

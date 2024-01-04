@@ -286,15 +286,13 @@ void parse_order(char *line)
                 break;
             case 20: // pas sur
                 j = 0;
-                while (line[i] != ']')
+                while (line[i] != 31)
                 {
                     p->speak[j] = line[i];
                     i++;
                     j++;
                 }
-                p->speak[j] = ']';
-                p->speak[j + 1] = '\0';
-                //list->speak[j + 1] = 0;
+                p->speak[j] = 0;
                 i += 2;
                 break;
             case 21:
