@@ -21,6 +21,13 @@ void init_main_menu(void)
     main_menu->selector = initializeSelector(100, 50, 200, 50, selectedColor, defaultColor, textColor, littleFont, options, 7);
 }
 
+void init_diplo_menu(void)
+{
+    diplo_menu = calloc(sizeof(struct menu), 1);
+    diplo_menu->diploSelect = s_gui->d->diploSelector;
+    diplo_menu->diploTextBox = s_gui->tb->diploTextBox;
+}
+
 void init_speak_bubble(void)
 {
     speakBubble = calloc(sizeof(struct speak), 1);
@@ -160,6 +167,65 @@ void menu(void)
 
     if (lettres->esc)
         main_menu->on = 0;
+    
+    if (lettres->enter)
+    {
+        main_menu->on = 0;
+        if(main_menu->selector->selectedOption == 1)
+            diplo_menu->on = 1;
+    }
 
     drawSelector(renderer, main_menu->selector);
+}
+
+void diplomatic_menu(void)
+{
+    int mouseX, mouseY;
+    SDL_GetMouseState(&mouseX, &mouseY);
+    bool diploTextBoxSelected;
+
+    if (lettres->esc)
+        diplo_menu->on = 0;
+    
+    if (lettres->z)
+        diplo_menu->diploSelect->selectedItem = (diplo_menu->diploSelect->selectedItem - 1 + diplo_menu->diploSelect->nbOfItems) % diplo_menu->diploSelect->nbOfItems;
+
+    if (lettres->s)
+        diplo_menu->diploSelect->selectedItem = (diplo_menu->diploSelect->selectedItem + 1) % diplo_menu->diploSelect->nbOfItems;
+
+    if (lettres->Mouse_Lclick)
+    {
+        if (mouseX >= diplo_menu->diploTextBox->x && mouseX <= diplo_menu->diploTextBox->x + diplo_menu->diploTextBox->width &&
+            mouseY >= diplo_menu->diploTextBox->y && mouseY <= diplo_menu->diploTextBox->y + diplo_menu->diploTextBox->height)
+        {
+            diploTextBoxSelected = true;
+        }
+        else
+        {
+            diploTextBoxSelected = false;
+        }
+    }
+
+    if (diploTextBoxSelected)
+    {
+        SDL_Event event;
+        while(SDL_PollEvent(&event) != 0)
+        { 
+            if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
+                handleTextInput(diplo_menu->diploTextBox, event);
+        }
+    }
+
+    if (lettres->enter)
+    {
+        // Recupere le nom + le statut
+        // Si joueur inexistant -> affiche erreur
+        diplo_menu->on = 0;      
+    }
+    
+    if(diplo_menu->on == 1)
+    {
+        drawTextBox(renderer, diplo_menu->diploTextBox, diploTextBoxSelected);
+        drawDropDown(diplo_menu->diploSelect);
+    }
 }

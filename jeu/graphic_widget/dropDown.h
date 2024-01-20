@@ -12,7 +12,7 @@ typedef struct {
     int x, y; // Position
     int nbOfItems;
     int w, h; // Width and height
-    const char **items; // List of items
+    char **items; // List of items
     int itemCount; // Number of items
     int selectedItem; // Selected item
     SDL_Rect **itemsRect; // Rectangles for dropdown items
@@ -22,12 +22,12 @@ typedef struct {
     TTF_Font *font; // Font for text rendering
 } DropDown;
 
-void initDropDown(DropDown *dropdown, int x, int y, int nbOfItems, int w, int h, const char **items,
+void initDropDown(DropDown *dropdown, int x, int y, int nbOfItems, int w, int h, char **items,
                   SDL_Color bgColor, SDL_Color itemColor, SDL_Color textColor, TTF_Font *font);
  
 
 // Function to render the dropDown
-void renderDropDown(const DropDown *dropdown);
+void drawDropDown(const DropDown *dropdown);
 
 
 #endif /* DROPDOWN_H */

@@ -7,6 +7,7 @@ struct s_gui *init_gui()
     ret->b = init_buttons();
     ret->tb = init_textboxes();
     ret->g = init_gauges();
+    ret->d = init_dropDown();
     return ret;
 }
 
@@ -65,6 +66,9 @@ struct textboxes *init_textboxes()
     
     to_return->bgPrintErrorTextBox = malloc(sizeof(TextBox));
     initTextBox(to_return->bgPrintErrorTextBox, 80, 400, 760, 400, (SDL_Color){255, 165, 0, 255}, (SDL_Color){139, 69, 19, 255}, (SDL_Color){0, 0, 0, 255}, bigFont, false);
+    
+    to_return->diploTextBox = malloc(sizeof(TextBox));
+    initTextBox(to_return->diploTextBox, 800, 400, 400, 90, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, littleFont, false);
 
     return to_return;
 }
@@ -73,5 +77,19 @@ struct gauges *init_gauges()
     struct gauges *to_return = malloc(sizeof(struct gauges));
     to_return->my_health = malloc(sizeof(Gauge));
     initGauge(to_return->my_health, 50, 800, 200, 30, (SDL_Color) {0, 255, 0, 255}, (SDL_Color) {255, 0, 0, 255});
+    return to_return;
+}
+
+struct dropdowns *init_dropDown()
+{
+    struct dropdowns *to_return = malloc(sizeof(struct dropdowns));
+    char **options = malloc(sizeof(char*)*3);
+    options[0] = calloc(10, 1); strcat(options[0], "Vassal");
+    options[1] = calloc(10, 2); strcat(options[1], "Enemy");
+    options[2] = calloc(10, 3); strcat(options[2], "Ally");
+    to_return->diploSelector = malloc(sizeof(DropDown));
+
+    initDropDown(to_return->diploSelector, 300, 400, 3, 300, 80, options,
+                  (SDL_Color) {255, 255, 255, 255}, (SDL_Color) {169, 169, 169, 255}, (SDL_Color){0, 0, 0, 255}, littleFont);
     return to_return;
 }

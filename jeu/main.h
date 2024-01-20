@@ -30,6 +30,7 @@
 #include "graphic_widget/textInfo.h"
 #include "graphic_widget/menuSelector.h"
 #include "graphic_widget/gauge.h"
+#include "graphic_widget/dropDown.h"
 
 void set_pos(SDL_Rect *pos, int x, int y);
 void boucle_jeu(int socket, char *name);

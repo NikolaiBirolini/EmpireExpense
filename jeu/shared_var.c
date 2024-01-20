@@ -15,4 +15,5 @@ TTF_Font *littleFont;
 TTF_Font *bigFont;
 TTF_Font *font;
 struct menu *main_menu;
+struct menu *diplo_menu;
 struct speak *speakBubble;

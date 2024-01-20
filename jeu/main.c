@@ -98,6 +98,7 @@ void boucle_jeu(int socket, char *name)
 	struct linked_list *selected = NULL;
 	struct formation *f= malloc(sizeof(struct formation));
     init_main_menu();
+    init_diplo_menu();
     init_speak_bubble();
 	bool done = false;
     
@@ -113,6 +114,11 @@ void boucle_jeu(int socket, char *name)
         {
             gestion_touche();
             menu();
+        }
+        if (diplo_menu->on == 1)
+        {
+            gestion_touche();
+            diplomatic_menu();
         }
         else if (speakBubble->on == 1)
         {
@@ -172,6 +178,7 @@ char *log_menu(int socket)
         drawTextBox(renderer, s_gui->tb->bgPrintErrorTextBox, false);
         drawTextInfo(renderer, s_gui->ti->errorText);  
         drawPictureButton(s_gui->b->music);
+        
         //drawPictureButton( &betrayedCesar);
         s_gui->b->play->isPressed = false;
         while(SDL_PollEvent(&event) != 0)

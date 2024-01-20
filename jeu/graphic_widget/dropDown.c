@@ -1,6 +1,6 @@
 #include "dropDown.h"
 
-void initDropDown(DropDown *dropdown, int x, int y, int nbOfItems, int w, int h, const char **items,
+void initDropDown(DropDown *dropdown, int x, int y, int nbOfItems, int w, int h, char **items,
                   SDL_Color bgColor, SDL_Color itemColor, SDL_Color textColor, TTF_Font *font) {
     dropdown->x = x;
     dropdown->y = y;
@@ -31,7 +31,7 @@ void initDropDown(DropDown *dropdown, int x, int y, int nbOfItems, int w, int h,
     }
 }
 
-void renderDropDown(const DropDown *dropdown) {
+void drawDropDown(const DropDown *dropdown) {
     // Draw the dropdown
     SDL_SetRenderDrawColor(renderer, dropdown->backgroundColor.r, dropdown->backgroundColor.g,
                            dropdown->backgroundColor.b, dropdown->backgroundColor.a);
@@ -39,13 +39,43 @@ void renderDropDown(const DropDown *dropdown) {
 
     // Draw dropdown items
     for (int i = 0; i < dropdown->itemCount; ++i) {
+        //SDL_SetRenderDrawColor(renderer, dropdown->itemColor.r, dropdown->itemColor.g,
+        //                       dropdown->itemColor.b, dropdown->itemColor.a);
+        //SDL_RenderFillRect(renderer, dropdown->itemsRect[i]);
+//
+        //SDL_SetRenderDrawColor(renderer, dropdown->textColor.r, dropdown->textColor.g,
+        //                       dropdown->textColor.b, dropdown->textColor.a);
+        //// Draw text at the center of each item
+        //SDL_Surface *textSurface = TTF_RenderText_Solid(dropdown->font, dropdown->items[i], dropdown->textColor);
+        //SDL_Texture *textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+//
+        //int textWidth, textHeight;
+        //SDL_QueryTexture(textTexture, NULL, NULL, &textWidth, &textHeight);
+//
+        //SDL_Rect textRect = {
+        //    dropdown->itemsRect[i]->x + (dropdown->itemsRect[i]->w - textWidth) / 2,
+        //    dropdown->itemsRect[i]->y + (dropdown->itemsRect[i]->h - textHeight) / 2,
+        //    textWidth,
+        //    textHeight
+        //};
+//
+        //SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
+//
+        //SDL_DestroyTexture(textTexture);
+        //SDL_FreeSurface(textSurface);
         SDL_SetRenderDrawColor(renderer, dropdown->itemColor.r, dropdown->itemColor.g,
                                dropdown->itemColor.b, dropdown->itemColor.a);
+
+        // Surligner l'item sélectionné
+        if (i == dropdown->selectedItem) {
+            SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); // Couleur de surbrillance (rouge ici)
+        }
+
         SDL_RenderFillRect(renderer, dropdown->itemsRect[i]);
 
         SDL_SetRenderDrawColor(renderer, dropdown->textColor.r, dropdown->textColor.g,
                                dropdown->textColor.b, dropdown->textColor.a);
-        // Draw text at the center of each item
+        // Dessiner le texte au centre de chaque item
         SDL_Surface *textSurface = TTF_RenderText_Solid(dropdown->font, dropdown->items[i], dropdown->textColor);
         SDL_Texture *textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
 
@@ -58,7 +88,6 @@ void renderDropDown(const DropDown *dropdown) {
             textWidth,
             textHeight
         };
-
         SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
 
         SDL_DestroyTexture(textTexture);

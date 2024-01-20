@@ -14,6 +14,7 @@
 #include "graphic_widget/menuSelector.h"
 #include "shared_var.h"
 #include "graphic_widget/gauge.h"
+#include "graphic_widget/dropDown.h"
 
 struct speak
 {
@@ -47,10 +48,14 @@ struct menu
     struct node *r_tree;
     struct personnages *echange;
     Selector *selector;
+    DropDown *diploSelect;
+    TextBox *diploTextBox;
 };
 
 void menu(void);
+void diplomatic_menu(void);
 void init_main_menu(void);
+void init_diplo_menu(void);
 void init_speak_bubble(void);
 void init_life_gauge(void);
 void speakPerso(struct personnages *moi, char* ordre);
