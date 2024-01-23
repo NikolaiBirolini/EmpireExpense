@@ -26,7 +26,6 @@ struct personnages
     char nom_superieur[50];
     char titre[50];
     char religion[50];
-    char region[50];
     int nb_vassaux;
     struct linked_enemie *e_list;
     struct linked_item *i_list;
@@ -37,6 +36,7 @@ struct personnages
     int animation; // gestion frame
     int animation_2; // ce qu'il est en train de faire
     int chemin_is_set;
+    char online;
     ///////////////////////////////////////
     char animation_time;
     int speak_timer;
@@ -55,6 +55,7 @@ struct personnages
     float screeny;
     float sizescreenx;
     float sizescreeny;
+    char my_computer_work;
 };
 
 struct linked_list

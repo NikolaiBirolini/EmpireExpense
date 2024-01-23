@@ -13,7 +13,7 @@ int count_pop()
 }
 
 void create_new_char(char *name)
-{
+{/*
 	char *line = malloc(1000);
 	line[0] = 0;
 	int id = find_smalest_valid_id(0);
@@ -29,14 +29,15 @@ void create_new_char(char *name)
 	s = find_first_valid_leader(s);
 	if ( s!= NULL)
 		s->nb_vassaux += 1;
-	list = append_perso(line);
+	list = append_perso(line);*/
 }
 
 struct personnages *croissance_pop()
 {
+	/*
 	
 	int new = (int)(count_pop(list) * 0.1);
 	for (int i = 0; i < new; i++)
 		create_new_char(NULL);
-	return list;
+	return list;*/
 }

@@ -15,19 +15,20 @@ char *cut(char *str, char cutter)
     return NULL;
 }
 
-int have_char(char *name)
+struct personnages *have_char(char *name)
 {
-    char espace = 0;
+    char espace = -1;
     for (int i = 0; name[i] != 0; i++)
         if (name[i] == ' ')
-            espace = 1;
-    if (espace == 0)
-        return -1;
-    cut(name, ' ');
+            espace = i;
+    if (espace <= 0)
+        return NULL;
     for (struct personnages *l = list; l != NULL; l = l->next)
-        if (strcmp(l->nom_de_compte, name) == 0)
-            return 1;
-    return -1;
+    {
+        if (strncmp(l->nom_de_compte, name, espace-1) == 0)
+            return l;
+    }
+    return NULL;
 }
 
 
@@ -37,7 +38,7 @@ int open_acount(char *test)
         return 0;
     FILE *acount = fopen("acount.txt", "r");
     char *line = NULL;
-    size_t len = 0;
+    size_t len = 0; 
     char *s = test;
     int count  = 0;
     while (*s != ' ')

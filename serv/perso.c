@@ -158,17 +158,6 @@ void parse_order(char *line)
                 p->religion[j] = 0;
                 i++;
                 break;
-            case 13:
-                j = 0;
-                while (line[i] != ' ')
-                {
-                    p->region[j] = line[i];
-                    i++;
-                    j++;
-                }
-                p->region[j] = 0;
-                i++;
-                break;
 			case 14:
 				if (line[i] == '+')
                 {
@@ -322,7 +311,10 @@ void parse_new(struct personnages *p, char *line)
     char tmpI[10];
     char tmpF[30];
     char tmpN[50];
-    sscanf(line, "%d %d %s %f %f %f %f %f %d %d %s %s %s %s %s %d %s %d %d %d %d %d%n", &p->id, &p->pv, p->nom_de_compte, &p->x, &p->y, &p->ordrex, &p->ordrey, &p->angle, &p->timer_dom, &p->faim, p->skin, p->nom, p->nom_superieur, p->titre, p->religion, &p->nb_vassaux, p->echange_player, &p->item1, &p->item2, &p->animation, &p->animation_2, &p->chemin_is_set, &i);
+    sscanf(line, "%d %d %s %f %f %f %f %f %d %d %s %s %s %s %s %d %s %d %d %d %d %c%n", 
+    &p->id, &p->pv, p->nom_de_compte, &p->x, &p->y, &p->ordrex, &p->ordrey, &p->angle, &p->timer_dom, &p->faim, p->skin, p->nom, 
+    p->nom_superieur, p->titre, p->religion, &p->nb_vassaux, p->echange_player, &p->item1, &p->item2, &p->animation, &p->animation_2, 
+    &p->chemin_is_set, &i);
     i += 1;
     while (line[i] != ']')
     {
@@ -391,25 +383,20 @@ void parse_new(struct personnages *p, char *line)
 
 struct personnages *append_perso(char *line)
 {
+    struct personnages *new = malloc(sizeof(struct personnages));
+    new->online = '0';
+    new->e_list = NULL;
+    new->i_list = NULL;
+    parse_new(new, line);
+    new->next = NULL;
     if (list == NULL)
-    {
-        list = malloc(sizeof(struct personnages));
-        list->e_list = NULL;
-        list->i_list = NULL;
-        parse_new(list, line);
-        list->next = NULL;
-    }
+        list = new;
     else
     {
 		struct personnages *parcour = list;
 		while (parcour->next != NULL)
 			parcour = parcour->next;
-        struct personnages *n = malloc(sizeof(struct personnages));
-        n->e_list = NULL;
-        n->i_list = NULL;
-        parse_new(n, line);
-        parcour->next = n;
-        n->next = NULL;
+        parcour->next = new;
     }
     return list;
 }

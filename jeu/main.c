@@ -104,7 +104,7 @@ void boucle_jeu(int socket, char *name)
     
 	while(!done)
 	{
-       // clock_t begin = clock();
+        clock_t begin = clock();
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
 	    display_all(moi);
@@ -136,6 +136,11 @@ void boucle_jeu(int socket, char *name)
             else if(lettres->t == 1)
                 speakBubble->on = 1;
         }
+        if (should_i_call_my_computer_work == '1')
+        {
+            my_computer_work(moi);
+            should_i_call_my_computer_work = 0;
+        }
 	    ia();
 	    gui_event(moi);
 	    fix_some_shit();
@@ -145,8 +150,8 @@ void boucle_jeu(int socket, char *name)
 	    selected = clean_selected(selected);
 		
 	    SDL_RenderPresent(renderer);
-//        clock_t end = clock();
-//        double time_spent = (double)(end - begin); //in microseconds
+        clock_t end = clock();
+        printf ("%f\n", (double)(end - begin)/CLOCKS_PER_SEC); //in microseconds
 
 	}
 }
@@ -161,7 +166,7 @@ char *log_menu(int socket)
 {
     SDL_Event event;
 
-    bool done = false;
+    bool done = false;  
     bool writeLogin = true;
 	bool writePsswd = false;
 

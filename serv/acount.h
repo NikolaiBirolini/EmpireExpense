@@ -8,4 +8,4 @@
 
 int open_acount(char *test);
 char *cut(char *str, char cutter);
-int have_char(char *name);
+struct personnages *have_char(char *name);

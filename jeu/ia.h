@@ -9,3 +9,4 @@ void ia_fruit(struct linked_list *parcour);
 //void append_enemi_list(struct linked_list *list, struct personnages *p);
 void ia_build(struct linked_list *parcour);
 void ia_flag(struct linked_list *parcour);
+void my_computer_work(struct personnages *moi);

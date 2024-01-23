@@ -29,17 +29,18 @@ struct personnages
     char nom_superieur[50];
     char titre[50];
     char religion[50];
-    char region[50];
     int nb_vassaux;
     struct linked_enemie *e_list;
     struct linked_item *i_list;
     char echange_player[50];
     int item1;
     int item2;
+    char online;
     char speak[90];
     int animation;
 	int animation_2;
-    int chemin_is_set;
+    char chemin_is_set;
+    
     /////////////
 	struct personnages *next;
     float moved_x;

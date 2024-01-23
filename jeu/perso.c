@@ -57,32 +57,26 @@ struct linked_list *append_perso(char **line)
 {
 	if (**line == '\0')
 		return NULL;
+	struct personnages *n = malloc(sizeof(struct personnages));
+	int a = parse_order(n, *line);
+	init_stat(n);
+	*line = *line + a;
+	struct linked_list *to_append = malloc(sizeof(struct linked_list));
+	should_i_call_my_computer_work = '1';
+	to_append->p = n;
+	to_append->next = NULL;
+	printf ("append_perso\n");
+
 	if (list == NULL)
-	{
-		list = malloc(sizeof(struct linked_list));
-		struct personnages *n = malloc(sizeof(struct personnages));
-		list->p = n;
-		list->next = NULL;
-		int a = parse_order(n, *line);
-		init_stat(n);
-		*line = *line + a;
-		return (list);
-	}
+		list = to_append;	
 	else
 	{
 		struct linked_list *parcour = list;
 		while (parcour->next != NULL)
 			parcour = parcour->next;
-		struct linked_list *to_append = malloc(sizeof(struct linked_list));
-		struct personnages *n = malloc(sizeof(struct personnages));
 		parcour->next = to_append;
-		to_append->p = n;
-		int a = parse_order(n, *line);
-		*line = *line + a;
-		init_stat(n);
-		to_append->next = NULL;
-		return list;
 	}
+	return (list);
 }
 
 struct personnages *find_perso_by_name(char *name)
@@ -112,6 +106,8 @@ struct linked_list *death(void)
 		free(tmp->p);
 		free(tmp);
 		tmp = list;
+		printf ("death\n");
+		should_i_call_my_computer_work = '1';
 	}
 	while (tmp != NULL)
 	{
@@ -129,6 +125,8 @@ struct linked_list *death(void)
         free(tmp->p);
         free(tmp);
 		tmp = prev->next;
+		printf ("death\n");
+		should_i_call_my_computer_work = '1';
 	}
 	return list;
 }

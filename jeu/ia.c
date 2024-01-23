@@ -4,11 +4,64 @@
 #include "pathfinding.h"
 #include "shared_var.h"
 
+void sort_per_id()
+{
+	for (struct linked_list *par = list; par != NULL; par = par->next)
+	{
+		for (struct linked_list *par2 = list; par2->next != NULL; par2 = par2->next)
+		{
+			if (par2->p->id > par2->next->p->id)
+			{
+				struct personnages *tmp = par2->p;
+				par2->p = par2->next->p;
+				par2->next->p = tmp;
+			}
+		}
+	}
+}
+
+//call when -> one player connect/disconect. One character create/delete
+void my_computer_work(struct personnages *moi)
+{   
+    printf ("my_computer_work\n");
+    float nb_player = 0;
+    float nb_ai = 0;
+    int nb_player_lower_id = 0;
+    for (struct linked_list *l = list; l != NULL; l = l->next)
+    {
+        if (l->p->online != '1')
+            nb_ai += 1;
+        else
+        {
+            nb_player += 1;
+            if (l->p->id < moi->id)
+                nb_player_lower_id  += 1;
+        }
+    }
+    int ai_per_player = ceil(nb_ai/nb_player);
+    sort_per_id();
+
+    int i = 0;
+    for (struct linked_list *l = list; l != NULL; l = l->next)
+    {
+        if (l->p->online != '1')
+        {
+            if ( i >= nb_player_lower_id * ai_per_player && i < nb_player_lower_id * ai_per_player + ai_per_player)
+                l->p->my_computer_work = 1;
+            else
+                l->p->my_computer_work = 0;
+            i += 1;
+        }
+        l = l->next;
+    }
+    
+}
+
 void ia(void)
 {
     for (struct linked_list *parcour = list; parcour != NULL; parcour = parcour->next)
     {
-        if (strcmp(parcour->p->nom_de_compte, "none") == 0)
+        if (parcour->p->my_computer_work == 1)
         {
             if (strncmp(parcour->p->skin, "ship", 4) == 0)
                 ia_ship(parcour);
@@ -219,5 +272,5 @@ void ia_man(struct linked_list *parcour)
     if (parcour->p->speak_timer > 0)
         parcour->p->speak_timer --;
     else if (parcour->p->speak_timer <= 0 && parcour->p->speak[0] != 0)
-        sprintf (ordre + strlen(ordre), "%d 20 [] ", parcour->p->id);
+        sprintf (ordre + strlen(ordre), "%d 20 \037 ", parcour->p->id);
 }

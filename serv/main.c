@@ -1,8 +1,6 @@
 #include "main.h"
 #include "shared_var.h"
 
-struct personnages *flag = NULL;
-
 static int create_and_bind (char *port)
 {
     struct addrinfo hints;
@@ -73,10 +71,7 @@ int main(int argc, char **argv)
 	size_t size_ground = load_file_as_string("ground.txt", &ground);
 	create_array(ground);
 	list = init_map();
-	flag = list;
-	while (strcmp(flag->skin, "flag_zone") != 0)
-		flag = flag->next;
-	list = croissance_pop(list);
+	//list = croissance_pop(list);
 
 	char statut[MAXEVENTS + 5] = {0};
 	char c_names[MAXEVENTS + 5][50];
@@ -132,11 +127,15 @@ int main(int argc, char **argv)
                     (events[i].events & EPOLLHUP) ||
                     (!(events[i].events & EPOLLIN)))
             {
-                /* An error has occured on this fd, or the socket is not
-                 * ready for reading (why were we notified then?) */
-                fprintf (stderr, "epoll error. events=%u\n", events[i].events);
+                if (statut[events[i].data.fd] == 1)
+                {
+                    struct personnages *p = have_char(c_names[events[i].data.fd]);
+                    p->online = '0';
+                    p->a_bouger = 1;
+                }
                 close (events[i].data.fd);
 				statut[events[i].data.fd] = 0;
+
 				
                 continue;
             }
@@ -230,11 +229,14 @@ int main(int argc, char **argv)
                         buf[count] = 0;
                         if (statut[events[i].data.fd] == 0)
                         {
-							if (open_acount(buf) == 1 && have_char(buf) == 1) // good acount and password
+                            struct personnages *p = have_char(buf);
+							if (open_acount(buf) == 1 && p != NULL) // good acount and password
 							{
 								statut[events[i].data.fd] = 1;
 								s = write (events[i].data.fd, "o", 1);
 								sprintf(c_names[events[i].data.fd], buf);
+                                p->online = '1';
+                                p->a_bouger = 1;
                                 send_background(events[i].data.fd, ground, size_ground);
                                 send_map(events[i].data.fd);
 							}
@@ -249,11 +251,13 @@ int main(int argc, char **argv)
 				}
                 if (done)
                 {
-                    printf ("Closed connection on descriptor %d\n",
-                            events[i].data.fd);
-
-                    /* Closing the descriptor will make epoll remove it
-                     * from the set of descriptors which are monitored. */
+                    
+                    if (statut[events[i].data.fd] == 1)
+                    {
+                        struct personnages *p = have_char(c_names[events[i].data.fd]);
+                        p->online = '0';
+                        p->a_bouger = 1;
+                    }
 					statut[events[i].data.fd] = 0;
                     close (events[i].data.fd);
                 }
