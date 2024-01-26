@@ -26,6 +26,7 @@ void init_diplo_menu(void)
     diplo_menu = calloc(sizeof(struct menu), 1);
     diplo_menu->diploSelect = s_gui->d->diploSelector;
     diplo_menu->diploTextBox = s_gui->tb->diploTextBox;
+    diplo_menu->on = 0;
 }
 
 void init_speak_bubble(void)
@@ -172,7 +173,10 @@ void menu(void)
     {
         main_menu->on = 0;
         if(main_menu->selector->selectedOption == 1)
+        {
             diplo_menu->on = 1;
+            printf("Je suis séléctionné");
+        }
     }
 
     drawSelector(renderer, main_menu->selector);
