@@ -117,7 +117,6 @@ void boucle_jeu(int socket, char *name)
         }
         if (diplo_menu->on == 1)
         {
-            //gestion_touche();
             diplomatic_menu();
         }
         else if (speakBubble->on == 1)
