@@ -175,8 +175,8 @@ void parse_order(char *line)
                     i++;
                 i++;
                 break;
-            case 15:
-                if (line[i] == '+')
+            case 15:// Modifie enemie
+                if (line[i] == '+') // Rajoute enemie
                 {
                     i++;
                     int n = atoi(&line[i]);
@@ -194,7 +194,7 @@ void parse_order(char *line)
                     i++;
                     p->e_list = append_enemie(tmpC, p->e_list, n);
                 }
-                else
+                else // enleve enemie
                 {
                     i++;
                     while (line[i] != ' ')

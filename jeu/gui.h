@@ -60,7 +60,6 @@ void init_speak_bubble(void);
 void init_life_gauge(void);
 void speakPerso(struct personnages *moi, char* ordre);
 void printSpeakBubble(struct personnages *perso, TextInfo* textInfo, TextBox* textBox, char* on);
-//void handleTextInputForBubbleBox(TextBox* textBox, SDL_Event event, char* on, TextInfo* textInfo, struct personnages *moi, char* ordre);
 void gui_event(struct personnages *moi);
 void *cast(void *p);
 void display_elipse_and_handle_buttons(struct personnages *moi);

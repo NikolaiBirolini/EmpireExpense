@@ -18,3 +18,4 @@ struct menu *main_menu;
 struct menu *diplo_menu;
 struct speak *speakBubble;
 char should_i_call_my_computer_work;
+struct personnages *moi;

@@ -202,17 +202,28 @@ void diplomatic_menu(void)
             else if (event.key.keysym.sym == SDLK_RETURN) 
             {
                 printf("Appliqué à %s \n", diplo_menu->diploTextBox->text);
-                printf("Type : %s \n", diplo_menu->diploSelect->items[diplo_menu->diploSelect->selectedItem]); // List of items
+                printf("Type : %s \n", diplo_menu->diploSelect->items[diplo_menu->diploSelect->selectedItem]); 
                 diplo_menu->on = 0;
 
                 struct personnages* persoToFind = find_perso_by_name(diplo_menu->diploTextBox->text);
 
                 if(persoToFind == NULL)
                 {
-                    printf("Le personnage séléctionné n'existe pas");
-                    //On ajoute un textinfo ici avec une erreur
+                    s_gui->ti->errorText->x = 500;
+                    s_gui->ti->errorText->y = 500;
+                    s_gui->ti->errorText->text = "He didn't exist, looooooseeer";
+                    drawTextInfo(renderer, s_gui->ti->errorText); 
+                    //time.sleep(10);
                     return;
                 }
+
+                sprintf(ordre + strlen(ordre), "%d 15 +0 %s ", moi->id, diplo_menu->diploTextBox->text);
+
+	            while (moi->e_list != NULL)
+	            {
+                    printf("Mes enemies : \n %s", moi->e_list->nom);
+	            	moi->e_list = moi->e_list->next;
+	            }
             }
         }
         else if (event.type == SDL_QUIT) 
