@@ -149,7 +149,6 @@ void speakPerso(struct personnages *moi, char* ordre)
                 sprintf (ordre + strlen(ordre), "%d 20 %s\037 ", moi->id, speakBubble->textBox->text);
                 speakBubble->textBox->text[0] = 0;
                 speakBubble->on = 0;
-
             }
             
         }
@@ -173,10 +172,7 @@ void menu(void)
     {
         main_menu->on = 0;
         if(main_menu->selector->selectedOption == 1)
-        {
             diplo_menu->on = 1;
-            printf("Je suis séléctionné");
-        }
     }
 
     drawSelector(renderer, main_menu->selector);
@@ -184,52 +180,28 @@ void menu(void)
 
 void diplomatic_menu(void)
 {
-    int mouseX, mouseY;
-    SDL_GetMouseState(&mouseX, &mouseY);
-    bool diploTextBoxSelected;
+    drawTextBox(renderer, diplo_menu->diploTextBox, true);
+    drawDropDown(diplo_menu->diploSelect);
 
-    if (lettres->esc)
-        diplo_menu->on = 0;
-    
-    if (lettres->z)
-        diplo_menu->diploSelect->selectedItem = (diplo_menu->diploSelect->selectedItem - 1 + diplo_menu->diploSelect->nbOfItems) % diplo_menu->diploSelect->nbOfItems;
+    SDL_Event event;
 
-    if (lettres->s)
-        diplo_menu->diploSelect->selectedItem = (diplo_menu->diploSelect->selectedItem + 1) % diplo_menu->diploSelect->nbOfItems;
-
-    if (lettres->Mouse_Lclick)
-    {
-        if (mouseX >= diplo_menu->diploTextBox->x && mouseX <= diplo_menu->diploTextBox->x + diplo_menu->diploTextBox->width &&
-            mouseY >= diplo_menu->diploTextBox->y && mouseY <= diplo_menu->diploTextBox->y + diplo_menu->diploTextBox->height)
+    while(SDL_PollEvent(&event) != 0)
+    {        
+        if (event.type == SDL_TEXTINPUT) 
+            strncat(diplo_menu->diploTextBox->text, event.text.text, sizeof(diplo_menu->diploTextBox->text) - strlen(diplo_menu->diploTextBox->text) - 1);
+        else if (event.type == SDL_KEYDOWN) 
         {
-            diploTextBoxSelected = true;
+            if (event.key.keysym.sym == SDLK_BACKSPACE) 
+                diplo_menu->diploTextBox->text[strlen(diplo_menu->diploTextBox->text)-1] = 0;
+            else if (event.key.keysym.sym == SDLK_ESCAPE)
+                diplo_menu->on = 0;
+            else if (event.key.keysym.sym == SDLK_UP)
+                diplo_menu->diploSelect->selectedItem = (diplo_menu->diploSelect->selectedItem - 1 + diplo_menu->diploSelect->nbOfItems) % diplo_menu->diploSelect->nbOfItems;
+            else if(event.key.keysym.sym == SDLK_DOWN)
+                diplo_menu->diploSelect->selectedItem = (diplo_menu->diploSelect->selectedItem + 1) % diplo_menu->diploSelect->nbOfItems;
+            
         }
-        else
-        {
-            diploTextBoxSelected = false;
-        }
-    }
-
-    if (diploTextBoxSelected)
-    {
-        SDL_Event event;
-        while(SDL_PollEvent(&event) != 0)
-        { 
-            if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
-                handleTextInput(diplo_menu->diploTextBox, event);
-        }
-    }
-
-    if (lettres->enter)
-    {
-        // Recupere le nom + le statut
-        // Si joueur inexistant -> affiche erreur
-        diplo_menu->on = 0;      
-    }
-    
-    if(diplo_menu->on == 1)
-    {
-        drawTextBox(renderer, diplo_menu->diploTextBox, diploTextBoxSelected);
-        drawDropDown(diplo_menu->diploSelect);
+        else if (event.type == SDL_QUIT) 
+            exit(0);
     }
 }
