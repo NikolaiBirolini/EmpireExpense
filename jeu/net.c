@@ -46,7 +46,12 @@ void recv_order(int socket)
 		{
 			free_linked_enemie(yalist->e_list);
 			free_linked_item(yalist->i_list);
+			char online = yalist->online;
 			buffer += parse_order(yalist, buffer);
+			if (online != yalist->online)
+			{
+				should_i_call_my_computer_work = '1';
+			}
 			actualise_stat(yalist);
 		}
 		else

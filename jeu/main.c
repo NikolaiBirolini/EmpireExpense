@@ -151,7 +151,7 @@ void boucle_jeu(int socket, char *name)
 		
 	    SDL_RenderPresent(renderer);
         clock_t end = clock();
-        printf ("%f\n", (double)(end - begin)/CLOCKS_PER_SEC); //in microseconds
+        //printf ("%f\n", (double)(end - begin)/CLOCKS_PER_SEC); //in microseconds
 
 	}
 }

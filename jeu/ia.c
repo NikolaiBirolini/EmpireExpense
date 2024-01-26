@@ -23,7 +23,6 @@ void sort_per_id()
 //call when -> one player connect/disconect. One character create/delete
 void my_computer_work(struct personnages *moi)
 {   
-    printf ("my_computer_work\n");
     float nb_player = 0;
     float nb_ai = 0;
     int nb_player_lower_id = 0;
@@ -52,9 +51,7 @@ void my_computer_work(struct personnages *moi)
                 l->p->my_computer_work = 0;
             i += 1;
         }
-        l = l->next;
     }
-    
 }
 
 void ia(void)
