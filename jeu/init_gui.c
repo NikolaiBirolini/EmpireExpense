@@ -45,7 +45,7 @@ struct textinfos *init_textinfos()
     initTextInfo(to_return->passwordText, "Password", bigFont, 100, 150, 0, (SDL_Color){0, 0, 0, 255}, 1, 1, 0);
 
     to_return->enemyListText = malloc(sizeof(TextInfo));
-    initTextInfo(to_return->enemyListText, "", bigFont, 100, 150, 0, (SDL_Color){0, 0, 0, 255}, 1, 1, 0);
+    initTextInfo(to_return->enemyListText, "Enemy list : ", littleFont, 800, 520, 0, (SDL_Color){0, 0, 0, 255}, 0, 0, 0);
     return to_return;
 }
 struct textboxes *init_textboxes()

@@ -219,13 +219,25 @@ void diplomatic_menu(void)
                     return;
                 }
 
+                char *tempEnemyList = malloc(strlen(s_gui->ti->enemyListText->text) + 1);
+                strcpy(tempEnemyList, s_gui->ti->enemyListText->text);
+
                 s_gui->ti->errorText->text = "";
                 while (moi->e_list != NULL)
 	            {
-                    printf("Mes enemies : \n %s", moi->e_list->nom);
-                    s_gui->ti->enemyListText->text = moi->e_list->nom;
-	            	moi->e_list = moi->e_list->next;
+                    char *isAlreadyAnEnemy = strstr(s_gui->ti->enemyListText->text, moi->e_list->nom);
+
+                    if (isAlreadyAnEnemy == NULL && moi->nom != moi->e_list->nom) 
+                    {
+                        tempEnemyList = realloc(tempEnemyList, strlen(tempEnemyList) + strlen(" ") + 1);
+                        strcat(tempEnemyList, " ");
+
+                        tempEnemyList = realloc(tempEnemyList, strlen(tempEnemyList) + strlen(moi->e_list->nom) + 1);
+                        strcat(tempEnemyList, moi->e_list->nom);
+                    }
+                    moi->e_list = moi->e_list->next;
 	            }
+                s_gui->ti->enemyListText->text = tempEnemyList;
                 sprintf(ordre + strlen(ordre), "%d 15 +0 %s ", moi->id, diplo_menu->diploTextBox->text);
             }
         }
