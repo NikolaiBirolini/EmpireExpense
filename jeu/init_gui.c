@@ -43,6 +43,9 @@ struct textinfos *init_textinfos()
     
     to_return->passwordText = malloc(sizeof(TextInfo));
     initTextInfo(to_return->passwordText, "Password", bigFont, 100, 150, 0, (SDL_Color){0, 0, 0, 255}, 1, 1, 0);
+
+    to_return->enemyListText = malloc(sizeof(TextInfo));
+    initTextInfo(to_return->enemyListText, "", bigFont, 100, 150, 0, (SDL_Color){0, 0, 0, 255}, 1, 1, 0);
     return to_return;
 }
 struct textboxes *init_textboxes()
@@ -70,6 +73,9 @@ struct textboxes *init_textboxes()
     to_return->diploTextBox = malloc(sizeof(TextBox));
     initTextBox(to_return->diploTextBox, 800, 400, 400, 90, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, littleFont, false);
 
+    to_return->bgDiploTextBox = malloc(sizeof(TextBox));
+    initTextBox(to_return->bgDiploTextBox, 200, 350, 1100, 300, (SDL_Color){165, 132, 86, 255}, (SDL_Color){165, 132, 86, 255}, (SDL_Color){165, 132, 86, 255}, littleFont, false);
+    
     return to_return;
 }
 struct gauges *init_gauges()

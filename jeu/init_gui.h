@@ -32,6 +32,7 @@ struct textinfos
     TextInfo *PortText;
     TextInfo *loginText;
     TextInfo *passwordText;
+    TextInfo *enemyListText;
 };
 
 struct textboxes
@@ -43,6 +44,7 @@ struct textboxes
     TextBox *unusedTextBox;
     TextBox *bgPrintErrorTextBox;
     TextBox *diploTextBox;
+    TextBox *bgDiploTextBox;
 };
 
 struct dropdowns
