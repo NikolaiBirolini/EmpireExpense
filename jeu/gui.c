@@ -184,9 +184,17 @@ void diplomatic_menu(void)
     drawTextBox(renderer, diplo_menu->diploTextBox, true);
     drawDropDown(diplo_menu->diploSelect);
     drawTextInfo(renderer, s_gui->ti->errorText); 
-    drawTextInfo(renderer, s_gui->ti->enemyListText);
-
     
+
+    char tempEnemyList[99999];
+    tempEnemyList[0] = 0;
+    for (struct linked_enemie *l = moi->e_list; l != NULL; l=l->next)
+	{
+        strcat(tempEnemyList, l->nom);
+        strcat(tempEnemyList, " ");        
+    }
+    s_gui->ti->enemyListText->text = tempEnemyList;
+    drawTextInfo(renderer, s_gui->ti->enemyListText);
 
     SDL_Event event;
 
@@ -208,37 +216,26 @@ void diplomatic_menu(void)
             {
                 printf("Appliqué à %s \n", diplo_menu->diploTextBox->text);
                 printf("Type : %s \n", diplo_menu->diploSelect->items[diplo_menu->diploSelect->selectedItem]); 
+                
+                struct personnages* persoToFind = find_perso_by_name(diplo_menu->diploTextBox->text);                
+                char is_already_in_list = 0;
 
-                struct personnages* persoToFind = find_perso_by_name(diplo_menu->diploTextBox->text);
-
-                if(persoToFind == NULL)
+                for (struct linked_enemie *l = moi->e_list; l != NULL; l=l->next)
+                    if (strcmp(diplo_menu->diploTextBox->text, l->nom) == 0)
+                        is_already_in_list = 1;
+                
+                
+                if(persoToFind == NULL || persoToFind == moi || is_already_in_list == 1)
                 {
                     s_gui->ti->errorText->x = 500;
                     s_gui->ti->errorText->y = 500;
-                    s_gui->ti->errorText->text = "He didn t exist, looooooseeer";
+                    s_gui->ti->errorText->text = "invalid username (stupid)";
                     return;
                 }
+                else
+                    sprintf(ordre + strlen(ordre), "%d 15 +0 %s ", moi->id, diplo_menu->diploTextBox->text);
 
-                char *tempEnemyList = malloc(strlen(s_gui->ti->enemyListText->text) + 1);
-                strcpy(tempEnemyList, s_gui->ti->enemyListText->text);
-
-                s_gui->ti->errorText->text = "";
-                while (moi->e_list != NULL)
-	            {
-                    char *isAlreadyAnEnemy = strstr(s_gui->ti->enemyListText->text, moi->e_list->nom);
-
-                    if (isAlreadyAnEnemy == NULL && moi->nom != moi->e_list->nom) 
-                    {
-                        tempEnemyList = realloc(tempEnemyList, strlen(tempEnemyList) + strlen(" ") + 1);
-                        strcat(tempEnemyList, " ");
-
-                        tempEnemyList = realloc(tempEnemyList, strlen(tempEnemyList) + strlen(moi->e_list->nom) + 1);
-                        strcat(tempEnemyList, moi->e_list->nom);
-                    }
-                    moi->e_list = moi->e_list->next;
-	            }
-                s_gui->ti->enemyListText->text = tempEnemyList;
-                sprintf(ordre + strlen(ordre), "%d 15 +0 %s ", moi->id, diplo_menu->diploTextBox->text);
+                
             }
         }
         else if (event.type == SDL_QUIT) 
