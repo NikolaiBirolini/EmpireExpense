@@ -45,9 +45,9 @@ void send_map(int socket)
         for (struct linked_enemie *p = pa->e_list; p != NULL; p = p->next)
         {
             if (p->next != NULL) 
-                sprintf (ordre + strlen(order), "%s %d ", p->nom, p->rang);
+                sprintf (ordre + strlen(ordre), "%s %d ", p->nom, p->rang);
             else
-                sprintf (ordre + strlen(order), "%s %d", p->nom, p->rang);
+                sprintf (ordre + strlen(ordre), "%s %d", p->nom, p->rang);
         }
         strcat(ordre, "] [");
         for (struct linked_item *p = pa->i_list; p != NULL; p =p->next)
