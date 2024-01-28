@@ -196,10 +196,6 @@ void parse_order(char *line)
                 }
                 else // enleve enemie
                 {
-                    i++;
-                    while (line[i] != ' ')
-                        i++;
-                    i++;
                     j = 0;
                     while (line[i] != ' ')
                     {

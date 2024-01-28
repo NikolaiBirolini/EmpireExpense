@@ -89,13 +89,15 @@ struct gauges *init_gauges()
 struct dropdowns *init_dropDown()
 {
     struct dropdowns *to_return = malloc(sizeof(struct dropdowns));
-    char **options = malloc(sizeof(char*)*3);
-    options[0] = calloc(10, 1); strcat(options[0], "Vassal");
-    options[1] = calloc(10, 2); strcat(options[1], "Enemy");
-    options[2] = calloc(10, 3); strcat(options[2], "Ally");
+    char **options = malloc(sizeof(char*)*5);
+    options[0] = calloc(10, 1); strcat(options[0], "Set Overlord");
+    options[1] = calloc(10, 2); strcat(options[1], "Add ally");
+    options[2] = calloc(10, 3); strcat(options[2], "Remove ally");
+    options[3] = calloc(10, 4); strcat(options[3], "Add enemy");
+    options[4] = calloc(10, 5); strcat(options[4], "Remove enemy");
     to_return->diploSelector = malloc(sizeof(DropDown));
 
-    initDropDown(to_return->diploSelector, 300, 400, 3, 300, 80, options,
+    initDropDown(to_return->diploSelector, 300, 400, 5, 300, 80, options,
                   (SDL_Color) {255, 255, 255, 255}, (SDL_Color) {169, 169, 169, 255}, (SDL_Color){0, 0, 0, 255}, littleFont);
     return to_return;
 }

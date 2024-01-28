@@ -213,29 +213,51 @@ void diplomatic_menu(void)
             else if(event.key.keysym.sym == SDLK_DOWN)
                 diplo_menu->diploSelect->selectedItem = (diplo_menu->diploSelect->selectedItem + 1) % diplo_menu->diploSelect->nbOfItems; 
             else if (event.key.keysym.sym == SDLK_RETURN) 
-            {
-                printf("Appliqué à %s \n", diplo_menu->diploTextBox->text);
-                printf("Type : %s \n", diplo_menu->diploSelect->items[diplo_menu->diploSelect->selectedItem]); 
-                
-                struct personnages* persoToFind = find_perso_by_name(diplo_menu->diploTextBox->text);                
-                char is_already_in_list = 0;
-
-                for (struct linked_enemie *l = moi->e_list; l != NULL; l=l->next)
-                    if (strcmp(diplo_menu->diploTextBox->text, l->nom) == 0)
-                        is_already_in_list = 1;
-                
-                
-                if(persoToFind == NULL || persoToFind == moi || is_already_in_list == 1)
+            {  
+                if(strcmp("Add enemy", diplo_menu->diploSelect->items[diplo_menu->diploSelect->selectedItem]) == 0)
                 {
-                    s_gui->ti->errorText->x = 500;
-                    s_gui->ti->errorText->y = 500;
-                    s_gui->ti->errorText->text = "invalid username (stupid)";
-                    return;
+                    struct personnages* persoToFind = find_perso_by_name(diplo_menu->diploTextBox->text);                      
+                    char is_already_in_list = 0;
+    
+                    for (struct linked_enemie *l = moi->e_list; l != NULL; l=l->next)
+                        if (strcmp(diplo_menu->diploTextBox->text, l->nom) == 0)
+                            is_already_in_list = 1;
+                    
+                    
+                    if(persoToFind == NULL || persoToFind == moi || is_already_in_list == 1)
+                    {
+                        s_gui->ti->errorText->x = 500;
+                        s_gui->ti->errorText->y = 500;
+                        s_gui->ti->errorText->text = "invalid username (stupid)";
+                        return;
+                    }
+                    else
+                    {
+                        sprintf(ordre + strlen(ordre), "%d 15 +0 %s ", moi->id, diplo_menu->diploTextBox->text);
+                        s_gui->ti->errorText->text = "";
+                    }
                 }
-                else
-                    sprintf(ordre + strlen(ordre), "%d 15 +0 %s ", moi->id, diplo_menu->diploTextBox->text);
+                else if(strcmp("Remove enemy", diplo_menu->diploSelect->items[diplo_menu->diploSelect->selectedItem]) == 0)
+                {
+                    char is_already_in_list = 0;
+    
+                    for (struct linked_enemie *l = moi->e_list; l != NULL; l=l->next)
+                        if (strcmp(diplo_menu->diploTextBox->text, l->nom) == 0)
+                            is_already_in_list = 1;
 
-                
+                    if(is_already_in_list == 0)
+                    {
+                        s_gui->ti->errorText->x = 500;
+                        s_gui->ti->errorText->y = 500;
+                        s_gui->ti->errorText->text = "invalid username (stupid)";
+                        return;
+                    }
+                    else
+                    {
+                        sprintf(ordre + strlen(ordre), "%d 15 %s ", moi->id, diplo_menu->diploTextBox->text);
+                        s_gui->ti->errorText->text = "";
+                    }
+                }
             }
         }
         else if (event.type == SDL_QUIT) 
