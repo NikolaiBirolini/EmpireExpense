@@ -2,6 +2,32 @@
 
 void actualise_stat(struct personnages *p)
 {
+
+	struct personnages *overlord = find_perso_by_name(p->nom_superieur);
+	if (overlord == NULL)
+	{
+		for (struct linked_enemie* l = p->e_list; l != NULL; l=l->next)
+			if (l->rang>0)
+				sprintf(ordre + strlen(ordre), "%d 15 %s ", p->id, l->nom);
+	}
+	else 
+	{
+		for (struct linked_enemie* l = p->e_list; l != NULL; l=l->next)
+		{
+			if (l->rang>0)
+			{
+				struct linked_enemie *test = exist_in_linked_enemie(overlord->e_list, l->nom);
+				if (test == NULL || test->rang +1 != l->rang)
+					sprintf(ordre + strlen(ordre), "%d 15 %s ", p->id, l->nom);
+			}
+		}
+		for (struct linked_enemie* l = overlord->e_list; l != NULL; l=l->next)
+		{
+			if (exist_in_linked_enemie(p->e_list, l->nom) == NULL)
+				sprintf(ordre + strlen(ordre), "%d 15 +%d %s ", p->id, l->rang+1, l->nom);
+		}
+	}
+	
 	if (strcmp(p->skin, "archer") == 0 || strcmp(p->skin, "civil") == 0 || strcmp(p->skin, "fantassin") == 0)
 	{
 		int max_pv = 10;

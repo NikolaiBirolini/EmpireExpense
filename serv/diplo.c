@@ -80,33 +80,3 @@ void free_linked_enemie(struct linked_enemie *e)
 		free(e);
 	}
 }
-
-struct personnages *find_first_valid_leader(struct personnages *p)
-{
-    struct personnages *stack[10000] = {p};
-    int i = 0;
-    int j = 1;
-    int k = 1;
-    while (1 == 1)
-    {
-        for (int l = i; l < j; l++)
-        {
-            if (stack[l]->nb_vassaux < 101)
-                return stack[l];
-            else
-            {
-                for (struct personnages *li = list; li != NULL; li = li->next)
-                {
-                    if (strcmp(li->nom_superieur,stack[l]->nom) == 0)
-                    {
-                        stack[k] = li;
-                        k++;
-                    }
-                }
-            }
-        }
-        i = j;
-        j = k;
-    }
-    return NULL;
-}

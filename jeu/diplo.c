@@ -69,14 +69,6 @@ int max_rang(struct linked_enemie *l)
 	return ret;
 }
 
-void rec_append_enemie(char *nom, struct personnages *p, struct linked_list *l, int n)
-{
-	sprintf (ordre + strlen(ordre), "%d 15 +%d %s ", p->id, n, nom);
-	for (struct linked_list *ll = l; ll != NULL; ll = ll->next)
-		if (strcmp(ll->p->nom_superieur, p->nom) == 0 && ll->p != p && strcmp(p->nom, "none") != 0)
-			rec_append_enemie(nom, ll->p, l, n + 1);
-}
-
 int get_rang(char *nom, struct linked_enemie *l)
 {
 	for (struct linked_enemie *ll = l; ll != NULL; ll = ll->next)
@@ -85,17 +77,7 @@ int get_rang(char *nom, struct linked_enemie *l)
 	return 0;
 }
 
-void rec_remove_enemie(char *nom, struct personnages *p, struct linked_list *l, int n)
-{
-	int r = get_rang(nom, p->e_list);
-	if (r >= n)
-	{
-		sprintf (ordre + strlen(ordre), "%d 15 - %s ", p->id, nom);
-		for (struct linked_list *ll = l; ll != NULL; ll = ll->next)
-			if (strcmp(ll->p->nom_superieur, p->nom) == 0 && ll->p != p && strcmp(p->nom, "none") != 0)
-				rec_remove_enemie(nom, ll->p, l, n + 1);	    
-	}  
-}
+
 
 struct personnages *find_first_valid_leader(struct personnages *p, struct linked_list *list)
 {
