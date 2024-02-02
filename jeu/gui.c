@@ -3,22 +3,7 @@
 void init_main_menu(void)
 {
     main_menu = calloc(sizeof(struct menu), 1);
-    char **options = malloc(sizeof(char*)*7);
-    options[0] = calloc(10, 1); strcat(options[0], "Inventory");
-    options[1] = calloc(10, 2); strcat(options[1], "Diplomacy");
-    options[2] = calloc(10, 3); strcat(options[2], "Action");
-    options[3] = calloc(10, 4); strcat(options[3], "Capacity");
-    options[4] = calloc(10, 5); strcat(options[4], "Research");
-    options[5] = calloc(10, 6); strcat(options[5], "Economy");
-    options[6] = calloc(10, 7); strcat(options[6], "Religion");
-    
-    // Set up colors
-    SDL_Color selectedColor = {75, 0, 130, 255};   // Dark purple for selected option
-    SDL_Color defaultColor = {221, 160, 221, 255};  // Light purple for default option
-    SDL_Color textColor = {255, 255, 255, 255};     // Text color
-
-    // Initialize the selector
-    main_menu->selector = initializeSelector(100, 50, 200, 50, selectedColor, defaultColor, textColor, littleFont, options, 7);
+    main_menu->selector = s_gui->s->mainMenuSelector;
 }
 
 void init_diplo_menu(void)
@@ -171,8 +156,11 @@ void menu(void)
     if (lettres->enter)
     {
         main_menu->on = 0;
-        if(main_menu->selector->selectedOption == 1)
+        //if(main_menu->selector->selectedOption == 0)
+            
+        /*else*/ if(main_menu->selector->selectedOption == 1)
             diplo_menu->on = 1;
+        
     }
 
     drawSelector(renderer, main_menu->selector);
@@ -257,6 +245,10 @@ void diplomatic_menu(void)
                         sprintf(ordre + strlen(ordre), "%d 15 %s ", moi->id, diplo_menu->diploTextBox->text);
                         s_gui->ti->errorText->text = "";
                     }
+                }
+                else if(strcmp("Set Overlord", diplo_menu->diploSelect->items[diplo_menu->diploSelect->selectedItem]) == 0)
+                {
+                    sprintf(ordre + strlen(ordre), "%d 10 %s ", moi->id, diplo_menu->diploTextBox->text);
                 }
             }
         }

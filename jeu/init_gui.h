@@ -8,6 +8,7 @@
 #include "graphic_widget/textBox.h"
 #include "graphic_widget/textInfo.h"
 #include "graphic_widget/dropDown.h"
+#include "graphic_widget/menuSelector.h"
 
 struct s_gui
 {
@@ -16,6 +17,7 @@ struct s_gui
     struct textboxes *tb;
     struct gauges* g;
     struct dropdowns* d;
+    struct selectors* s;
 };
 
 struct buttons
@@ -52,6 +54,11 @@ struct dropdowns
     DropDown *diploSelector;
 };
 
+struct selectors
+{
+    Selector *mainMenuSelector;
+};
+
 struct gauges
 {
     Gauge *my_health;
@@ -63,3 +70,4 @@ struct textinfos *init_textinfos();
 struct textboxes *init_textboxes();
 struct gauges *init_gauges();
 struct dropdowns *init_dropDown();
+struct selectors *init_selectors();

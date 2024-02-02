@@ -8,6 +8,7 @@ struct s_gui *init_gui()
     ret->tb = init_textboxes();
     ret->g = init_gauges();
     ret->d = init_dropDown();
+    ret->s = init_selectors();
     return ret;
 }
 
@@ -90,14 +91,30 @@ struct dropdowns *init_dropDown()
 {
     struct dropdowns *to_return = malloc(sizeof(struct dropdowns));
     char **options = malloc(sizeof(char*)*5);
-    options[0] = calloc(10, 1); strcat(options[0], "Set Overlord");
-    options[1] = calloc(10, 2); strcat(options[1], "Add ally");
-    options[2] = calloc(10, 3); strcat(options[2], "Remove ally");
-    options[3] = calloc(10, 4); strcat(options[3], "Add enemy");
-    options[4] = calloc(10, 5); strcat(options[4], "Remove enemy");
+    options[0] = malloc(15); strcpy(options[0], "Set Overlord");
+    options[1] = malloc(15); strcpy(options[1], "Add ally");
+    options[2] = malloc(15); strcpy(options[2], "Remove ally");
+    options[3] = malloc(15); strcpy(options[3], "Add enemy");
+    options[4] = malloc(15); strcpy(options[4], "Remove enemy");
     to_return->diploSelector = malloc(sizeof(DropDown));
 
     initDropDown(to_return->diploSelector, 300, 400, 5, 300, 80, options,
                   (SDL_Color) {255, 255, 255, 255}, (SDL_Color) {169, 169, 169, 255}, (SDL_Color){0, 0, 0, 255}, littleFont);
+    return to_return;
+}
+
+struct selectors *init_selectors()
+{
+    struct selectors *to_return = malloc(sizeof(struct selectors));
+    char **options = malloc(sizeof(char*)*7);
+    options[0] = malloc(11); strcpy(options[0], "Inventory");
+    options[1] = malloc(11); strcpy(options[1], "Diplomacy");
+    options[2] = malloc(11); strcpy(options[2], "Action");
+    options[3] = malloc(11); strcpy(options[3], "Capacity");
+    options[4] = malloc(11); strcpy(options[4], "Research");
+    options[5] = malloc(11); strcpy(options[5], "Economy");
+    options[6] = malloc(11); strcpy(options[6], "Religion");
+    
+    to_return->mainMenuSelector = initializeSelector(100, 50, 200, 50, (SDL_Color){75, 0, 130, 255}, (SDL_Color){221, 160, 221, 255}, (SDL_Color){255, 255, 255, 255}, littleFont, options, 7);
     return to_return;
 }

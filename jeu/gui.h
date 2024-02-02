@@ -26,7 +26,7 @@ struct speak
 struct menu
 {
     char on;
-    char diplo_on;
+    /*char diplo_on;
     char inventaire_on;
     char action_on;
     char echange_on;
@@ -46,7 +46,7 @@ struct menu
     int yarbre;
     struct node *t_tree;
     struct node *r_tree;
-    struct personnages *echange;
+    struct personnages *echange;*/
     Selector *selector;
     DropDown *diploSelect;
     TextBox *diploTextBox;
