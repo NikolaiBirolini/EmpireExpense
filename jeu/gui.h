@@ -23,39 +23,24 @@ struct speak
     TextInfo *textInfo;
 };
 
-struct menu
-{
+struct menu_diplo {
     char on;
-    /*char diplo_on;
-    char inventaire_on;
-    char action_on;
-    char echange_on;
-    char capacite_on;
-    char technologies_on;
-    char economie_on;
-    char religion_on;
-    char add_enemi[50];
-    char rem_enemi[50];
-	char superieur[50];
-    char sel_diplo;
-    char sel_inventaire;
-    char sel_action;
-    int sel_echange1;
-    int sel_echange2;
-    char tab_echange;
-    int yarbre;
-    struct node *t_tree;
-    struct node *r_tree;
-    struct personnages *echange;*/
     Selector *selector;
     DropDown *diploSelect;
     TextBox *diploTextBox;
 };
 
+struct menu
+{
+    char on;
+    struct menu_diplo *menuDip;
+    Selector *selector;
+};
+
 void menu(void);
 void diplomatic_menu(void);
 void init_main_menu(void);
-void init_diplo_menu(void);
+struct menu_diplo* init_diplo_menu(void);
 void init_speak_bubble(void);
 void init_life_gauge(void);
 void speakPerso(struct personnages *moi, char* ordre);

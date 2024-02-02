@@ -115,7 +115,7 @@ void boucle_jeu(int socket, char *name)
             gestion_touche();
             menu();
         }
-        if (diplo_menu->on == 1)
+        if (main_menu->menuDip->on == 1)
         {
             diplomatic_menu();
         }
