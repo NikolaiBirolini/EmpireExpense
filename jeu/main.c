@@ -115,10 +115,6 @@ void boucle_jeu(int socket, char *name)
             gestion_touche();
             menu();
         }
-        if (main_menu->menuDip->on == 1)
-        {
-            diplomatic_menu();
-        }
         else if (speakBubble->on == 1)
         {
             speakPerso(moi, ordre);
@@ -150,7 +146,7 @@ void boucle_jeu(int socket, char *name)
 		
 	    SDL_RenderPresent(renderer);
         clock_t end = clock();
-        //printf ("%f\n", (double)(end - begin)/CLOCKS_PER_SEC); //in microseconds
+        printf ("%f\n", (double)(end - begin)/CLOCKS_PER_SEC); //in microseconds
 
 	}
 }

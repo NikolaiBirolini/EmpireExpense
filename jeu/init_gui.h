@@ -35,6 +35,7 @@ struct textinfos
     TextInfo *loginText;
     TextInfo *passwordText;
     TextInfo *enemyListText;
+    TextInfo *overlord;
 };
 
 struct textboxes
@@ -57,6 +58,7 @@ struct dropdowns
 struct selectors
 {
     Selector *mainMenuSelector;
+    Selector *inventory;
 };
 
 struct gauges

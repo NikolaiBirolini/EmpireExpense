@@ -5,6 +5,7 @@ void init_main_menu(void)
     main_menu = calloc(sizeof(struct menu), 1);
     main_menu->selector = s_gui->s->mainMenuSelector;
     main_menu->menuDip = init_diplo_menu();
+    main_menu->menuInv = init_inventaire_menu();
 
 }
 
@@ -15,6 +16,14 @@ struct menu_diplo* init_diplo_menu(void)
     dip->diploTextBox = s_gui->tb->diploTextBox;
     dip->on = 0;
     return dip;
+}
+
+struct menu_inventaire* init_inventaire_menu(void)
+{
+    struct menu_inventaire *ret = malloc(sizeof(struct menu_inventaire));
+    ret->on = 0;
+    ret->selector = s_gui->s->inventory;
+    return ret;
 }
 
 void init_speak_bubble(void)
@@ -89,12 +98,6 @@ void display_elipse_and_handle_buttons(struct personnages *moi)
     drawGauge(s_gui->g->my_health, moi->pv, moi->max_pv);
 }
 
-void menu_echange(struct menu *m, struct personnages *perso)
-{
-    m = m;
-    perso = perso;
-}
-
 void menu_action(struct menu *m, struct personnages *perso, struct linked_list *list)
 {
 	m = m;
@@ -102,10 +105,15 @@ void menu_action(struct menu *m, struct personnages *perso, struct linked_list *
 	list = list;
 }
 
-void menu_inventaire(struct menu *m, struct personnages *perso)
+void menu_inventaire(void)
 {
-    m = m;
-    perso = perso;
+    if (lettres->esc)
+        main_menu->menuInv->on = 0;
+    if (lettres->s)
+    	main_menu->menuInv->selector->selectedOption = (main_menu->menuInv->selector->selectedOption + 1) % main_menu->menuInv->selector->numOptions;
+    if (lettres->z)
+	    main_menu->menuInv->selector->selectedOption = (main_menu->menuInv->selector->selectedOption - 1 + main_menu->menuInv->selector->numOptions) % main_menu->menuInv->selector->numOptions;
+    drawSelector(renderer, main_menu->menuInv->selector);
 }
 
 void menu_religion(struct menu *m)
@@ -147,26 +155,34 @@ void speakPerso(struct personnages *moi, char* ordre)
 
 void menu(void)
 {
-	if (lettres->s)
-	    main_menu->selector->selectedOption = (main_menu->selector->selectedOption + 1) % main_menu->selector->numOptions;
-
-	if (lettres->z)
-	    main_menu->selector->selectedOption = (main_menu->selector->selectedOption - 1 + main_menu->selector->numOptions) % main_menu->selector->numOptions;
-
-    if (lettres->esc)
-        main_menu->on = 0;
+    if (main_menu->menuInv->on == 1)
+        menu_inventaire();
+    else if (main_menu->menuDip->on == 1)
+        diplomatic_menu();
     
-    if (lettres->enter)
+    else
     {
-        main_menu->on = 0;
-        //if(main_menu->selector->selectedOption == 0)
-            
-        /*else*/ if(main_menu->selector->selectedOption == 1)
-            main_menu->menuDip->on = 1;
+	    if (lettres->s)
+    	    main_menu->selector->selectedOption = (main_menu->selector->selectedOption + 1) % main_menu->selector->numOptions;
+
+    	if (lettres->z)
+	        main_menu->selector->selectedOption = (main_menu->selector->selectedOption - 1 + main_menu->selector->numOptions) % main_menu->selector->numOptions;
+
+        if (lettres->esc)
+            main_menu->on = 0;
+    
+        if (lettres->enter)
+        {
+            if(main_menu->selector->selectedOption == 0)
+                main_menu->menuInv->on = 1;
+            else if(main_menu->selector->selectedOption == 1)
+                main_menu->menuDip->on = 1;
+        }
+        drawSelector(renderer, main_menu->selector);
         
     }
 
-    drawSelector(renderer, main_menu->selector);
+    
 }
 
 void diplomatic_menu(void)
@@ -178,6 +194,8 @@ void diplomatic_menu(void)
     
 
     char tempEnemyList[99999];
+    char overlord[62] = "overlord : ";
+    strcat (overlord,moi->nom_superieur);
     tempEnemyList[0] = 0;
     for (struct linked_enemie *l = moi->e_list; l != NULL; l=l->next)
 	{
@@ -185,7 +203,9 @@ void diplomatic_menu(void)
         strcat(tempEnemyList, " ");        
     }
     s_gui->ti->enemyListText->text = tempEnemyList;
+    s_gui->ti->overlord->text = overlord;
     drawTextInfo(renderer, s_gui->ti->enemyListText);
+    drawTextInfo(renderer, s_gui->ti->overlord);
 
     SDL_Event event;
 
@@ -251,7 +271,10 @@ void diplomatic_menu(void)
                 }
                 else if(strcmp("Set Overlord", main_menu->menuDip->diploSelect->items[main_menu->menuDip->diploSelect->selectedItem]) == 0)
                 {
-                    sprintf(ordre + strlen(ordre), "%d 10 %s ", moi->id, main_menu->menuDip->diploTextBox->text);
+                    if (strcmp (main_menu->menuDip->diploTextBox->text, "") == 0)
+                        sprintf(ordre + strlen(ordre), "%d 10 %s ", moi->id, moi->nom);
+                    else
+                        sprintf(ordre + strlen(ordre), "%d 10 %s ", moi->id, main_menu->menuDip->diploTextBox->text);
                 }
             }
         }

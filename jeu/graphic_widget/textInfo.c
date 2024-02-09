@@ -21,6 +21,7 @@ void drawTextInfo(SDL_Renderer *renderer, TextInfo *textInfo)
     TTF_SetFontStyle(textInfo->font, (textInfo->isBold ? TTF_STYLE_BOLD : 0) |
                                      (textInfo->isItalic ? TTF_STYLE_ITALIC : 0) |
                                      (textInfo->isUnderlined ? TTF_STYLE_UNDERLINE : 0));
+    
     if (strcmp(textInfo->text, "") != 0)
     {
         SDL_Surface *surface;
@@ -29,13 +30,13 @@ void drawTextInfo(SDL_Renderer *renderer, TextInfo *textInfo)
         else 
             surface = TTF_RenderText_Blended(textInfo->font, textInfo->text, textInfo->textColor);
         SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
+
         SDL_FreeSurface(surface);
-    
         SDL_Rect dstRect = {textInfo->x, textInfo->y, surface->w, surface->h};
         SDL_RenderCopy(renderer, texture, NULL, &dstRect);
-    
         SDL_DestroyTexture(texture);
     }
+    
 }
 
 void initFonts(void)

@@ -47,7 +47,11 @@ struct textinfos *init_textinfos()
 
     to_return->enemyListText = malloc(sizeof(TextInfo));
     initTextInfo(to_return->enemyListText, "Enemy list : ", littleFont, 800, 520, 0, (SDL_Color){0, 0, 0, 255}, 0, 0, 0);
+
+    to_return->overlord = malloc(sizeof(TextInfo));
+    initTextInfo(to_return->overlord, " ", littleFont, 270, 350, 0, (SDL_Color){0, 255, 0, 255}, 0, 0, 0);
     return to_return;
+
 }
 struct textboxes *init_textboxes()
 {
@@ -114,7 +118,22 @@ struct selectors *init_selectors()
     options[4] = malloc(11); strcpy(options[4], "Research");
     options[5] = malloc(11); strcpy(options[5], "Economy");
     options[6] = malloc(11); strcpy(options[6], "Religion");
-    
     to_return->mainMenuSelector = initializeSelector(100, 50, 200, 50, (SDL_Color){75, 0, 130, 255}, (SDL_Color){221, 160, 221, 255}, (SDL_Color){255, 255, 255, 255}, littleFont, options, 7);
+
+    char **options2 = malloc(sizeof(char*)*10);
+    options2[0] = malloc(50); 
+    options2[1] = malloc(50); 
+    options2[2] = malloc(50); 
+    options2[3] = malloc(50); 
+    options2[4] = malloc(50); 
+    options2[5] = malloc(50); 
+    options2[6] = malloc(50); 
+    options2[7] = malloc(50); 
+    options2[8] = malloc(50); 
+    options2[9] = malloc(50); 
+    
+    
+    to_return->inventory = initializeSelector(100, 50, 200, 50, (SDL_Color){75, 0, 130, 255}, (SDL_Color){221, 160, 221, 255}, (SDL_Color){255, 255, 255, 255}, littleFont, options2, 10);
+
     return to_return;
 }

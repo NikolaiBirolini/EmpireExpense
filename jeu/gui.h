@@ -30,11 +30,17 @@ struct menu_diplo {
     TextBox *diploTextBox;
 };
 
+struct menu_inventaire{
+    char on;
+    Selector *selector;
+};
+
 struct menu
 {
     char on;
     struct menu_diplo *menuDip;
     Selector *selector;
+    struct menu_inventaire *menuInv;
 };
 
 void menu(void);
@@ -49,3 +55,4 @@ void gui_event(struct personnages *moi);
 void *cast(void *p);
 void display_elipse_and_handle_buttons(struct personnages *moi);
 void display_selected(struct linked_list *selected, struct personnages *moi, struct formation *f);
+struct menu_inventaire* init_inventaire_menu(void);
