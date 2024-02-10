@@ -32,6 +32,8 @@ struct menu_diplo {
 
 struct menu_inventaire{
     char on;
+    char enter;
+    Selector *actions;
     Selector *selector;
 };
 

@@ -23,6 +23,8 @@ struct menu_inventaire* init_inventaire_menu(void)
     struct menu_inventaire *ret = malloc(sizeof(struct menu_inventaire));
     ret->on = 0;
     ret->selector = s_gui->s->inventory;
+    ret->enter = 0;
+    ret->actions = s_gui->s->inventory_actions;
     return ret;
 }
 
@@ -107,13 +109,41 @@ void menu_action(struct menu *m, struct personnages *perso, struct linked_list *
 
 void menu_inventaire(void)
 {
-    if (lettres->esc)
-        main_menu->menuInv->on = 0;
-    if (lettres->s)
-    	main_menu->menuInv->selector->selectedOption = (main_menu->menuInv->selector->selectedOption + 1) % main_menu->menuInv->selector->numOptions;
-    if (lettres->z)
-	    main_menu->menuInv->selector->selectedOption = (main_menu->menuInv->selector->selectedOption - 1 + main_menu->menuInv->selector->numOptions) % main_menu->menuInv->selector->numOptions;
-    drawSelector(renderer, main_menu->menuInv->selector);
+    if (main_menu->menuInv->enter == 0)
+    {
+        int j = 0;
+        for (struct linked_item *i = moi->i_list; i != NULL; i = i->next)
+        {
+            sprintf(main_menu->menuInv->selector->options[j], "%s %d", i->nom, i->count);
+            j += 1;
+        }
+        while (j < 10)
+        {
+            strcpy(main_menu->menuInv->selector->options[j], "empty slot");
+            j+=1;
+        }
+        if (lettres->esc)
+            main_menu->menuInv->on = 0;
+        if (lettres->s)
+    	    main_menu->menuInv->selector->selectedOption = (main_menu->menuInv->selector->selectedOption + 1) % main_menu->menuInv->selector->numOptions;
+        if (lettres->z)
+    	    main_menu->menuInv->selector->selectedOption = (main_menu->menuInv->selector->selectedOption - 1 + main_menu->menuInv->selector->numOptions) % main_menu->menuInv->selector->numOptions;
+        if (lettres->enter)
+            main_menu->menuInv->enter = 1;
+        drawSelector(renderer, main_menu->menuInv->selector);
+    }
+    else
+    {
+        if (lettres->enter || lettres->esc)
+            main_menu->menuInv->enter = 0;
+        if (lettres->s)
+    	    main_menu->menuInv->actions->selectedOption = (main_menu->menuInv->actions->selectedOption + 1) % main_menu->menuInv->actions->numOptions;
+        if (lettres->z)
+    	    main_menu->menuInv->actions->selectedOption = (main_menu->menuInv->actions->selectedOption - 1 + main_menu->menuInv->actions->numOptions) % main_menu->menuInv->actions->numOptions;
+        drawSelector(renderer, main_menu->menuInv->actions);
+    }
+    
+    
 }
 
 void menu_religion(struct menu *m)

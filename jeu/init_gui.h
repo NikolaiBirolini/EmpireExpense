@@ -59,6 +59,7 @@ struct selectors
 {
     Selector *mainMenuSelector;
     Selector *inventory;
+    Selector *inventory_actions;
 };
 
 struct gauges
