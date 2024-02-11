@@ -41,25 +41,35 @@ void text_input(char *text, unsigned int limite)
 
 
 
-void gestion_touche(void)
+SDL_Event gestion_touche(void)
 {
+	SDL_Event event;
 	if (writing == 1)
 		writing = 0;
 	else
 	{
-		SDL_Event event;
 		while (SDL_PollEvent(&event) != 0)
 		{
+			if (event.type == SDL_TEXTINPUT)
+			    return event;
 			if (event.type == SDL_KEYDOWN)
 			{
-				if (event.key.keysym.sym == SDLK_d || event.key.keysym.sym == SDLK_RIGHT)
+				if (event.key.keysym.sym == SDLK_d)
 					lettres->d = 1;
-				if (event.key.keysym.sym == SDLK_s || event.key.keysym.sym == SDLK_DOWN)
+				if (event.key.keysym.sym == SDLK_RIGHT)
+					lettres->right = 1;
+				if (event.key.keysym.sym == SDLK_s)
 					lettres->s = 1;
-				if (event.key.keysym.sym == SDLK_q || event.key.keysym.sym == SDLK_LEFT)
+				if (event.key.keysym.sym == SDLK_DOWN)
+					lettres->down = 1;
+				if (event.key.keysym.sym == SDLK_q)
 					lettres->q = 1;
-				if (event.key.keysym.sym == SDLK_z || event.key.keysym.sym == SDLK_UP)
+				if (event.key.keysym.sym == SDLK_LEFT)
+					lettres->left = 1;
+				if (event.key.keysym.sym == SDLK_z)
 					lettres->z = 1;
+				if (event.key.keysym.sym == SDLK_UP)
+					lettres->up = 1;
 				if (event.key.keysym.sym == SDLK_e)
 					lettres->e = 1;
 				if (event.key.keysym.sym == SDLK_a)
@@ -139,14 +149,22 @@ void gestion_touche(void)
 			}
 			if (event.type == SDL_KEYUP)
 			{
-				if (event.key.keysym.sym == SDLK_d || event.key.keysym.sym == SDLK_RIGHT)
+				if (event.key.keysym.sym == SDLK_d)
 					lettres->d = 0;
-				if (event.key.keysym.sym == SDLK_s || event.key.keysym.sym == SDLK_DOWN)
+				if (event.key.keysym.sym == SDLK_RIGHT)
+					lettres->right = 0;
+				if (event.key.keysym.sym == SDLK_s)
 					lettres->s = 0;
-				if (event.key.keysym.sym == SDLK_q || event.key.keysym.sym == SDLK_LEFT)
+				if (event.key.keysym.sym == SDLK_DOWN)
+					lettres->down = 0;
+				if (event.key.keysym.sym == SDLK_q)
 					lettres->q = 0;
-				if (event.key.keysym.sym == SDLK_z || event.key.keysym.sym == SDLK_UP)
+				if (event.key.keysym.sym == SDLK_LEFT)
+					lettres->left = 0;
+				if (event.key.keysym.sym == SDLK_z)
 					lettres->z = 0;
+				if (event.key.keysym.sym == SDLK_UP)
+					lettres->up = 0;
 				if (event.key.keysym.sym == SDLK_e)
 					lettres->e = 0;
 				if (event.key.keysym.sym == SDLK_a)
@@ -253,4 +271,5 @@ void gestion_touche(void)
 			}
 		}
 	}
+	return event;
 }

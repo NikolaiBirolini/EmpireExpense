@@ -46,7 +46,7 @@ struct menu
 };
 
 void menu(void);
-void diplomatic_menu(void);
+void diplomatic_menu(SDL_Event event);
 void init_main_menu(void);
 struct menu_diplo* init_diplo_menu(void);
 void init_speak_bubble(void);

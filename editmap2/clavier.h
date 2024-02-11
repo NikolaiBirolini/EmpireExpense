@@ -2,11 +2,15 @@
 #include <SDL2/SDL.h>
 #include "shared_var.h"
 
-void gestion_touche(void);
+SDL_Event gestion_touche(void);
 void text_input(char *text, unsigned int limite);
 
 struct lettres
 {
+    char up;
+    char down;
+    char right;
+    char left;
     char a;
     char b;
     char c;

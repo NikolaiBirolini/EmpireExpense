@@ -185,11 +185,11 @@ void speakPerso(struct personnages *moi, char* ordre)
 
 void menu(void)
 {
+    SDL_Event event = gestion_touche();
     if (main_menu->menuInv->on == 1)
         menu_inventaire();
     else if (main_menu->menuDip->on == 1)
-        diplomatic_menu();
-    
+        diplomatic_menu(event);
     else
     {
 	    if (lettres->s)
@@ -207,22 +207,19 @@ void menu(void)
                 main_menu->menuInv->on = 1;
             else if(main_menu->selector->selectedOption == 1)
                 main_menu->menuDip->on = 1;
+            lettres->enter = 0;
         }
-        drawSelector(renderer, main_menu->selector);
-        
+        drawSelector(renderer, main_menu->selector);   
     }
-
-    
 }
 
-void diplomatic_menu(void)
+void diplomatic_menu(SDL_Event event)
 {
     drawTextBox(renderer, s_gui->tb->bgDiploTextBox, false);
     drawTextBox(renderer, main_menu->menuDip->diploTextBox, true);
     drawDropDown(main_menu->menuDip->diploSelect);
     drawTextInfo(renderer, s_gui->ti->errorText); 
     
-
     char tempEnemyList[99999];
     char overlord[62] = "overlord : ";
     strcat (overlord,moi->nom_superieur);
@@ -237,78 +234,71 @@ void diplomatic_menu(void)
     drawTextInfo(renderer, s_gui->ti->enemyListText);
     drawTextInfo(renderer, s_gui->ti->overlord);
 
-    SDL_Event event;
-
-    while(SDL_PollEvent(&event) != 0)
-    {        
-        if (event.type == SDL_TEXTINPUT) 
-            strncat(main_menu->menuDip->diploTextBox->text, event.text.text, sizeof(main_menu->menuDip->diploTextBox->text) - strlen(main_menu->menuDip->diploTextBox->text) - 1);
-        else if (event.type == SDL_KEYDOWN) 
-        {
-            if (event.key.keysym.sym == SDLK_BACKSPACE) 
-                main_menu->menuDip->diploTextBox->text[strlen(main_menu->menuDip->diploTextBox->text)-1] = 0;
-            else if (event.key.keysym.sym == SDLK_ESCAPE)
-                main_menu->menuDip->on = 0;
-            else if (event.key.keysym.sym == SDLK_UP)
-                main_menu->menuDip->diploSelect->selectedItem = (main_menu->menuDip->diploSelect->selectedItem - 1 + main_menu->menuDip->diploSelect->nbOfItems) % main_menu->menuDip->diploSelect->nbOfItems;
-            else if(event.key.keysym.sym == SDLK_DOWN)
-                main_menu->menuDip->diploSelect->selectedItem = (main_menu->menuDip->diploSelect->selectedItem + 1) % main_menu->menuDip->diploSelect->nbOfItems; 
-            else if (event.key.keysym.sym == SDLK_RETURN) 
-            {  
-                if(strcmp("Add enemy", main_menu->menuDip->diploSelect->items[main_menu->menuDip->diploSelect->selectedItem]) == 0)
-                {
-                    struct personnages* persoToFind = find_perso_by_name(main_menu->menuDip->diploTextBox->text);                      
-                    char is_already_in_list = 0;
+    if (event.type == SDL_TEXTINPUT) 
+        strncat(main_menu->menuDip->diploTextBox->text, event.text.text, sizeof(main_menu->menuDip->diploTextBox->text) - strlen(main_menu->menuDip->diploTextBox->text) - 1);
+    else
+    {
+        if (lettres->back)
+            main_menu->menuDip->diploTextBox->text[strlen(main_menu->menuDip->diploTextBox->text)-1] = 0;
+        else if (lettres->esc) 
+            main_menu->menuDip->on = 0;
+        else if (lettres->up)
+            main_menu->menuDip->diploSelect->selectedItem = (main_menu->menuDip->diploSelect->selectedItem - 1 + main_menu->menuDip->diploSelect->nbOfItems) % main_menu->menuDip->diploSelect->nbOfItems;
+        else if(lettres->down)
+            main_menu->menuDip->diploSelect->selectedItem = (main_menu->menuDip->diploSelect->selectedItem + 1) % main_menu->menuDip->diploSelect->nbOfItems; 
+        else if (lettres->enter)
+        {  
+            if(strcmp("Add enemy", main_menu->menuDip->diploSelect->items[main_menu->menuDip->diploSelect->selectedItem]) == 0)
+            {
+                struct personnages* persoToFind = find_perso_by_name(main_menu->menuDip->diploTextBox->text);                      
+                char is_already_in_list = 0;
     
-                    for (struct linked_enemie *l = moi->e_list; l != NULL; l=l->next)
-                        if (strcmp(main_menu->menuDip->diploTextBox->text, l->nom) == 0)
-                            is_already_in_list = 1;
+                for (struct linked_enemie *l = moi->e_list; l != NULL; l=l->next)
+                    if (strcmp(main_menu->menuDip->diploTextBox->text, l->nom) == 0)
+                        is_already_in_list = 1;
                     
                     
-                    if(persoToFind == NULL || persoToFind == moi || is_already_in_list == 1)
-                    {
-                        s_gui->ti->errorText->x = 500;
-                        s_gui->ti->errorText->y = 500;
-                        s_gui->ti->errorText->text = "invalid username (stupid)";
-                        return;
-                    }
-                    else
-                    {
-                        sprintf(ordre + strlen(ordre), "%d 15 +0 %s ", moi->id, main_menu->menuDip->diploTextBox->text);
-                        s_gui->ti->errorText->text = "";
-                    }
-                }
-                else if(strcmp("Remove enemy", main_menu->menuDip->diploSelect->items[main_menu->menuDip->diploSelect->selectedItem]) == 0)
+                if(persoToFind == NULL || persoToFind == moi || is_already_in_list == 1)
                 {
-                    char is_already_in_list = 0;
-    
-                    for (struct linked_enemie *l = moi->e_list; l != NULL; l=l->next)
-                        if (strcmp(main_menu->menuDip->diploTextBox->text, l->nom) == 0)
-                            is_already_in_list = 1;
-
-                    if(is_already_in_list == 0)
-                    {
-                        s_gui->ti->errorText->x = 500;
-                        s_gui->ti->errorText->y = 500;
-                        s_gui->ti->errorText->text = "invalid username (stupid)";
-                        return;
-                    }
-                    else
-                    {
-                        sprintf(ordre + strlen(ordre), "%d 15 %s ", moi->id, main_menu->menuDip->diploTextBox->text);
-                        s_gui->ti->errorText->text = "";
-                    }
+                    s_gui->ti->errorText->x = 500;
+                    s_gui->ti->errorText->y = 500;
+                    s_gui->ti->errorText->text = "invalid username (stupid)";
+                    return;
                 }
-                else if(strcmp("Set Overlord", main_menu->menuDip->diploSelect->items[main_menu->menuDip->diploSelect->selectedItem]) == 0)
+                else
                 {
-                    if (strcmp (main_menu->menuDip->diploTextBox->text, "") == 0)
-                        sprintf(ordre + strlen(ordre), "%d 10 %s ", moi->id, moi->nom);
-                    else
-                        sprintf(ordre + strlen(ordre), "%d 10 %s ", moi->id, main_menu->menuDip->diploTextBox->text);
+                    sprintf(ordre + strlen(ordre), "%d 15 +0 %s ", moi->id, main_menu->menuDip->diploTextBox->text);
+                    s_gui->ti->errorText->text = "";
                 }
             }
+            else if(strcmp("Remove enemy", main_menu->menuDip->diploSelect->items[main_menu->menuDip->diploSelect->selectedItem]) == 0)
+            {
+                char is_already_in_list = 0;
+                for (struct linked_enemie *l = moi->e_list; l != NULL; l=l->next)
+                    if (strcmp(main_menu->menuDip->diploTextBox->text, l->nom) == 0)
+                        is_already_in_list = 1;
+
+                if(is_already_in_list == 0)
+                {
+                    s_gui->ti->errorText->x = 500;
+                    s_gui->ti->errorText->y = 500;
+                    s_gui->ti->errorText->text = "invalid username (stupid)";
+                    return;
+                }
+                else
+                {
+                    sprintf(ordre + strlen(ordre), "%d 15 %s ", moi->id, main_menu->menuDip->diploTextBox->text);
+                    s_gui->ti->errorText->text = "";
+                }
+            }
+            else if(strcmp("Set Overlord", main_menu->menuDip->diploSelect->items[main_menu->menuDip->diploSelect->selectedItem]) == 0)
+            {
+                if (strcmp (main_menu->menuDip->diploTextBox->text, "") == 0)
+                    sprintf(ordre + strlen(ordre), "%d 10 %s ", moi->id, moi->nom);
+                else
+                    sprintf(ordre + strlen(ordre), "%d 10 %s ", moi->id, main_menu->menuDip->diploTextBox->text);
+            }
+            lettres->enter = 0;
         }
-        else if (event.type == SDL_QUIT) 
-            exit(0);
     }
 }

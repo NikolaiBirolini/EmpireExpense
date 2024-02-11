@@ -20,14 +20,14 @@ void deplacement(struct personnages *moi)
 	int dep = 0;
 
 
-	if (lettres->z == 1)
+	if (lettres->z == 1 || lettres->up)
 	{
 		dep = 1;
 		mvx -= moi->vitesse_dep * sin(moi->angle);
 		mvy += moi->vitesse_dep * cos(moi->angle);
 		
 	}
-	if (lettres->s == 1)
+	if (lettres->s == 1 || lettres->down)
 	{
 		dep = 1;
 		mvx += moi->vitesse_dep * sin(moi->angle);
@@ -45,14 +45,14 @@ void deplacement(struct personnages *moi)
 		mvy -= moi->vitesse_dep * sin(moi->angle);
 		mvx -= moi->vitesse_dep * cos(moi->angle);
 	}
-	if (lettres->q == 1)
+	if (lettres->q == 1 || lettres->left)
 	{
 		if (moi->angle < 0)
 			sprintf (ordre + strlen(ordre), "%d 05 6.28318530718 ", moi->id);
 		else
 			sprintf (ordre + strlen(ordre), "%d 05 -0.1 ", moi->id);
 	}
-	if (lettres->d == 1)
+	if (lettres->d == 1 || lettres->right)
 	{
 		if (moi->angle > 6.28318530718)
 			sprintf (ordre + strlen(ordre), "%d 05 0 ", moi->id);

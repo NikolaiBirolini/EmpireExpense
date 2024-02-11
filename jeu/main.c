@@ -111,10 +111,7 @@ void boucle_jeu(int socket, char *name)
         display_selected(selected, moi, f);
         display_elipse_and_handle_buttons(moi);
         if (main_menu->on == 1)
-        {
-            gestion_touche();
             menu();
-        }
         else if (speakBubble->on == 1)
         {
             speakPerso(moi, ordre);
