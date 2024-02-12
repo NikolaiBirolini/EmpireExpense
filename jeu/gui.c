@@ -109,32 +109,60 @@ void menu_action(struct menu *m, struct personnages *perso, struct linked_list *
 
 void menu_inventaire(void)
 {
+    
+    int j = 0;
+    for (struct linked_item *i = moi->i_list; i != NULL; i = i->next)
+    {
+        sprintf(main_menu->menuInv->selector->options[j], "%s %d", i->nom, i->count);
+        j += 1;
+    }
+    int max = j;
+    while (j < 10)
+    {
+        strcpy(main_menu->menuInv->selector->options[j], "empty slot");
+        j+=1;
+    }
+    drawSelector(renderer, main_menu->menuInv->selector);
     if (main_menu->menuInv->enter == 0)
     {
-        int j = 0;
-        for (struct linked_item *i = moi->i_list; i != NULL; i = i->next)
-        {
-            sprintf(main_menu->menuInv->selector->options[j], "%s %d", i->nom, i->count);
-            j += 1;
-        }
-        while (j < 10)
-        {
-            strcpy(main_menu->menuInv->selector->options[j], "empty slot");
-            j+=1;
-        }
         if (lettres->esc)
             main_menu->menuInv->on = 0;
         if (lettres->s)
     	    main_menu->menuInv->selector->selectedOption = (main_menu->menuInv->selector->selectedOption + 1) % main_menu->menuInv->selector->numOptions;
         if (lettres->z)
     	    main_menu->menuInv->selector->selectedOption = (main_menu->menuInv->selector->selectedOption - 1 + main_menu->menuInv->selector->numOptions) % main_menu->menuInv->selector->numOptions;
-        if (lettres->enter)
+        if (lettres->enter && main_menu->menuInv->selector->selectedOption < max)
             main_menu->menuInv->enter = 1;
-        drawSelector(renderer, main_menu->menuInv->selector);
+        
     }
     else
     {
-        if (lettres->enter || lettres->esc)
+        if (lettres->enter)
+        {
+            if(main_menu->menuInv->actions->selectedOption == 0)//consume
+            {
+
+            }
+            else if (main_menu->menuInv->actions->selectedOption == 1)//equipe
+            {
+            
+            }
+            else if (main_menu->menuInv->actions->selectedOption== 2)//drop
+            {
+                struct linked_item *i = moi->i_list;
+                int a = 0;
+                while (a < main_menu->menuInv->selector->selectedOption && i != NULL)
+                {
+                    a += 1;
+                    i = i->next;
+                }
+                
+                sprintf(ordre+strlen(ordre), "%d 16 %d %s ", moi->id, i->count, i->nom);
+            }
+            main_menu->menuInv->enter = 0;
+
+        }
+        if (lettres->esc)
             main_menu->menuInv->enter = 0;
         if (lettres->s)
     	    main_menu->menuInv->actions->selectedOption = (main_menu->menuInv->actions->selectedOption + 1) % main_menu->menuInv->actions->numOptions;

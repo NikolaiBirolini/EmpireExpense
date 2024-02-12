@@ -139,7 +139,7 @@ struct selectors *init_selectors()
     options3[1] = malloc(15); strcpy(options3[1], "Equip yourself");
     options3[2] = malloc(15); strcpy(options3[2], "Drop");
 
-    to_return->inventory_actions = initializeSelector(100, 100, 250, 50, (SDL_Color){75, 0, 130, 255}, (SDL_Color){221, 160, 221, 255}, (SDL_Color){255, 255, 255, 255}, littleFont, options3, 3);
+    to_return->inventory_actions = initializeSelector(550, 50, 250, 50, (SDL_Color){75, 0, 130, 255}, (SDL_Color){221, 160, 221, 255}, (SDL_Color){255, 255, 255, 255}, littleFont, options3, 3);
 
     return to_return;
 }
