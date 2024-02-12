@@ -158,28 +158,23 @@ void menu_technologie(struct menu *m)
 
 void speakPerso(struct personnages *moi, char* ordre)
 {
-    SDL_Event event;
+    SDL_Event event = gestion_touche();
     drawTextBox(renderer, speakBubble->textBox, true);
-    while(SDL_PollEvent(&event) != 0)
-    {        
-        if (event.type == SDL_TEXTINPUT) 
-            strncat(speakBubble->textBox->text, event.text.text, sizeof(speakBubble->textBox->text) - strlen(speakBubble->textBox->text) - 1);
-        else if (event.type == SDL_KEYDOWN) 
+  
+    if (event.type == SDL_TEXTINPUT) 
+        strncat(speakBubble->textBox->text, event.text.text, sizeof(speakBubble->textBox->text) - strlen(speakBubble->textBox->text) - 1);
+    else 
+    {
+        if (lettres->back)
+            speakBubble->textBox->text[strlen(speakBubble->textBox->text)-1] = 0;
+        else if (lettres->esc)
+            speakBubble->on = 0;
+        else if (lettres->enter)
         {
-            if (event.key.keysym.sym == SDLK_BACKSPACE) 
-                speakBubble->textBox->text[strlen(speakBubble->textBox->text)-1] = 0;
-            else if (event.key.keysym.sym == SDLK_ESCAPE)
-                speakBubble->on = 0;
-            else if (event.key.keysym.sym == SDLK_RETURN)
-            {
-                sprintf (ordre + strlen(ordre), "%d 20 %s\037 ", moi->id, speakBubble->textBox->text);
-                speakBubble->textBox->text[0] = 0;
-                speakBubble->on = 0;
-            }
-            
-        }
-        else if (event.type == SDL_QUIT) 
-            exit(0);
+            sprintf (ordre + strlen(ordre), "%d 20 %s\037 ", moi->id, speakBubble->textBox->text);
+            speakBubble->textBox->text[0] = 0;
+            speakBubble->on = 0;
+        }  
     }
 }
 
@@ -192,10 +187,10 @@ void menu(void)
         diplomatic_menu(event);
     else
     {
-	    if (lettres->s)
+	    if (lettres->s || lettres->down)
     	    main_menu->selector->selectedOption = (main_menu->selector->selectedOption + 1) % main_menu->selector->numOptions;
 
-    	if (lettres->z)
+    	if (lettres->z || lettres->up)
 	        main_menu->selector->selectedOption = (main_menu->selector->selectedOption - 1 + main_menu->selector->numOptions) % main_menu->selector->numOptions;
 
         if (lettres->esc)
