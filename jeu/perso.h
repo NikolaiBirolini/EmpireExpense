@@ -37,6 +37,12 @@ struct personnages
     int animation_2; // ce qu'il est en train de faire
     int chemin_is_set;
     char online;
+    char left_hand[50];
+    char right_hand[50];
+    char headgear[50];
+    char tunic[50];
+    char pant[50];
+    char shoes[50];
     ///////////////////////////////////////
     char animation_time;
     int speak_timer;

@@ -35,6 +35,7 @@ struct menu_inventaire{
     char enter;
     Selector *actions;
     Selector *selector;
+    Selector *equipement;
 };
 
 struct menu

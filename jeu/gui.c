@@ -6,7 +6,6 @@ void init_main_menu(void)
     main_menu->selector = s_gui->s->mainMenuSelector;
     main_menu->menuDip = init_diplo_menu();
     main_menu->menuInv = init_inventaire_menu();
-
 }
 
 struct menu_diplo* init_diplo_menu(void)
@@ -25,6 +24,13 @@ struct menu_inventaire* init_inventaire_menu(void)
     ret->selector = s_gui->s->inventory;
     ret->enter = 0;
     ret->actions = s_gui->s->inventory_actions;
+    ret->equipement = s_gui->s->equipement;
+    ret->equipement->options[0] = moi->left_hand;
+    ret->equipement->options[1] = moi->right_hand;
+    ret->equipement->options[2] = moi->headgear;
+    ret->equipement->options[3] = moi->tunic;
+    ret->equipement->options[4] = moi->pant;
+    ret->equipement->options[5] = moi->shoes;
     return ret;
 }
 
@@ -123,13 +129,14 @@ void menu_inventaire(void)
         j+=1;
     }
     drawSelector(renderer, main_menu->menuInv->selector);
+    drawSelector(renderer, main_menu->menuInv->equipement);
     if (main_menu->menuInv->enter == 0)
     {
         if (lettres->esc)
             main_menu->menuInv->on = 0;
-        if (lettres->s)
+        if (lettres->s || lettres->down)
     	    main_menu->menuInv->selector->selectedOption = (main_menu->menuInv->selector->selectedOption + 1) % main_menu->menuInv->selector->numOptions;
-        if (lettres->z)
+        if (lettres->z || lettres->up)
     	    main_menu->menuInv->selector->selectedOption = (main_menu->menuInv->selector->selectedOption - 1 + main_menu->menuInv->selector->numOptions) % main_menu->menuInv->selector->numOptions;
         if (lettres->enter && main_menu->menuInv->selector->selectedOption < max)
             main_menu->menuInv->enter = 1;
@@ -164,9 +171,9 @@ void menu_inventaire(void)
         }
         if (lettres->esc)
             main_menu->menuInv->enter = 0;
-        if (lettres->s)
+        if (lettres->s || lettres->down)
     	    main_menu->menuInv->actions->selectedOption = (main_menu->menuInv->actions->selectedOption + 1) % main_menu->menuInv->actions->numOptions;
-        if (lettres->z)
+        if (lettres->z || lettres->up)
     	    main_menu->menuInv->actions->selectedOption = (main_menu->menuInv->actions->selectedOption - 1 + main_menu->menuInv->actions->numOptions) % main_menu->menuInv->actions->numOptions;
         drawSelector(renderer, main_menu->menuInv->actions);
     }

@@ -60,6 +60,7 @@ struct selectors
     Selector *mainMenuSelector;
     Selector *inventory;
     Selector *inventory_actions;
+    Selector *equipement;
 };
 
 struct gauges

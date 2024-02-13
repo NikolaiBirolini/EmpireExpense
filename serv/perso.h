@@ -40,6 +40,13 @@ struct personnages
     int animation;
 	int animation_2;
     char chemin_is_set;
+    char left_hand[50];
+    char right_hand[50];
+    char headgear[50];
+    char tunic[50];
+    char pant[50];
+    char shoes[50];
+
     
     /////////////
 	struct personnages *next;

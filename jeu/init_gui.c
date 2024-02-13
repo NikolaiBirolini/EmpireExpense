@@ -141,5 +141,15 @@ struct selectors *init_selectors()
 
     to_return->inventory_actions = initializeSelector(550, 50, 250, 50, (SDL_Color){75, 0, 130, 255}, (SDL_Color){221, 160, 221, 255}, (SDL_Color){255, 255, 255, 255}, littleFont, options3, 3);
 
+    char **options4 = malloc(sizeof(char*)*6);
+    /*options4[0] = malloc(50); 
+    options4[1] = malloc(50); 
+    options4[2] = malloc(50); 
+    options4[3] = malloc(50); 
+    options4[4] = malloc(50); 
+    options4[5] = malloc(50); */
+
+    to_return->equipement = initializeSelector(1000, 250, 250, 50, (SDL_Color){75, 0, 130, 255}, (SDL_Color){221, 160, 221, 255}, (SDL_Color){255, 255, 255, 255}, littleFont, options4, 6);
+
     return to_return;
 }
