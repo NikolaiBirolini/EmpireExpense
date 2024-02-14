@@ -1,5 +1,5 @@
 #pragma once
-#include "perso.h"
+#include "../perso.h"
 
 struct linked_item
 {

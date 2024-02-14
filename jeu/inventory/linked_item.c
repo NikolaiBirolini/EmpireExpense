@@ -1,4 +1,4 @@
-#include "inventaire.h"
+#include "linked_item.h"
 
 struct linked_item *use(struct linked_item *item, struct personnages *p)
 {

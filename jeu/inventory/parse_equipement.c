@@ -1,4 +1,4 @@
-#include "stat.h"
+#include "parse_equipement.h"
 
 void actualise_stat(struct personnages *p)
 {

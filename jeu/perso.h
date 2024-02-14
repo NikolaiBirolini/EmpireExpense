@@ -73,7 +73,7 @@ struct linked_list
 #include "net.h"
 #include "diplo.h"
 #include "init_sprite.h"
-#include "stat.h"
+#include "inventory/parse_equipement.h"
 #include "parseur.h"
 #include "select_sprite.h"
 

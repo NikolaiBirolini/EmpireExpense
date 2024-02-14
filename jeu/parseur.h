@@ -1,7 +1,7 @@
 #ifndef PARSEUR
 #define PARSEUR
 #include "perso.h"
-#include "inventaire.h"
+#include "inventory/linked_item.h"
 
 #include <stdlib.h>
 #include <string.h>

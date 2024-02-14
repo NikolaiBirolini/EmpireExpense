@@ -146,26 +146,47 @@ void menu_inventaire(void)
     {
         if (lettres->enter)
         {
+            struct linked_item *i = moi->i_list;
+            int a = 0;
+            while (a < main_menu->menuInv->selector->selectedOption && i != NULL)
+            {
+                a += 1;
+                i = i->next;
+            }
             if(main_menu->menuInv->actions->selectedOption == 0)//consume
             {
 
             }
             else if (main_menu->menuInv->actions->selectedOption == 1)//equipe
             {
-            
-            }
-            else if (main_menu->menuInv->actions->selectedOption== 2)//drop
-            {
-                struct linked_item *i = moi->i_list;
-                int a = 0;
-                while (a < main_menu->menuInv->selector->selectedOption && i != NULL)
+                if (strcmp(i->nom, "leather_helmet") == 0)
                 {
-                    a += 1;
-                    i = i->next;
+                    if (strcmp(moi->headgear, "empty") != 0)
+                        sprintf(ordre+strlen(ordre), "%d 16 +1 %s ", moi->id, moi->headgear);
+                    sprintf(ordre+strlen(ordre), "%d 27 leather_helmet %d 16 1 leather_helmet ", moi->id, moi->id);
                 }
-                
+                else if (strcmp(i->nom, "leather_jacket")== 0)
+                {
+                    if (strcmp(moi->tunic, "empty") != 0)
+                        sprintf(ordre+strlen(ordre), "%d 16 +1 %s ", moi->id, moi->tunic);
+                    sprintf(ordre+strlen(ordre), "%d 28 leather_jacket %d 16 1 leather_jacket ", moi->id, moi->id);
+                }
+                else if (strcmp(i->nom, "leather_pants")==0)
+                {
+                    if (strcmp(moi->pant, "empty") != 0)
+                        sprintf(ordre+strlen(ordre), "%d 16 +1 %s ", moi->id, moi->pant);
+                    sprintf(ordre+strlen(ordre), "%d 29 leather_pants %d 16 1 leather_pants ", moi->id, moi->id);
+                }
+
+                else if (strcmp(i->nom, "leather_boots") == 0)
+                {
+                    if (strcmp(moi->shoes, "empty") != 0)
+                        sprintf(ordre+strlen(ordre), "%d 16 +1 %s ", moi->id, moi->shoes);
+                    sprintf(ordre+strlen(ordre), "%d 30 leather_boots %d 16 1 leather_boots ", moi->id, moi->id);
+                }
+            }   
+            else if (main_menu->menuInv->actions->selectedOption== 2)//drop
                 sprintf(ordre+strlen(ordre), "%d 16 %d %s ", moi->id, i->count, i->nom);
-            }
             main_menu->menuInv->enter = 0;
 
         }
