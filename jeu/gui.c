@@ -106,11 +106,9 @@ void display_elipse_and_handle_buttons(struct personnages *moi)
     drawGauge(s_gui->g->my_health, moi->pv, moi->max_pv);
 }
 
-void menu_action(struct menu *m, struct personnages *perso, struct linked_list *list)
+void menu_trade(void)
 {
-	m = m;
-	perso = perso;
-	list = list;
+
 }
 
 void menu_inventaire(void)
