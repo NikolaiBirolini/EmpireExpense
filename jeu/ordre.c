@@ -16,6 +16,11 @@ struct linked_list *select(struct linked_list *selected)
 			}
 		}
 	}
+	else if(lettres->Mouse_Mclick == 1)
+	{
+		free_linked(selected, 0);
+		selected = NULL;
+	}
 	return selected;
 }
 
