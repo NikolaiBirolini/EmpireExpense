@@ -25,6 +25,7 @@ struct buttons
     Button *play;
     pictureButton *menu;
     pictureButton *music;
+    pictureButton *event_popup;
 };
 
 struct textinfos
@@ -61,6 +62,7 @@ struct selectors
     Selector *inventory;
     Selector *inventory_actions;
     Selector *equipement;
+    Selector *inventory_trade;
 };
 
 struct gauges

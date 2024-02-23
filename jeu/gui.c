@@ -1,38 +1,48 @@
 #include "gui.h"
 
+int min(int a, int b)
+{
+    if (a < b)
+        return a;
+    return b;
+}
+
 void init_main_menu(void)
 {
     main_menu = calloc(sizeof(struct menu), 1);
     main_menu->selector = s_gui->s->mainMenuSelector;
-    main_menu->menuDip = init_diplo_menu();
-    main_menu->menuInv = init_inventaire_menu();
+    main_menu->menuDip = malloc(sizeof(struct menu_diplo));
+    main_menu->menuInv = malloc(sizeof(struct menu_inventaire));
+    main_menu->menuTrad = malloc(sizeof(struct menu_trade));
+
+    main_menu->menuDip->diploSelect = s_gui->d->diploSelector;
+    main_menu->menuDip->diploTextBox = s_gui->tb->diploTextBox;
+    main_menu->menuDip->on = 0;
+
+    main_menu->menuInv->on = 0;
+    main_menu->menuInv->selector = s_gui->s->inventory;
+    main_menu->menuInv->enter = 0;
+    main_menu->menuInv->actions = s_gui->s->inventory_actions;
+    main_menu->menuInv->equipement = s_gui->s->equipement;
+    main_menu->menuInv->equipement->options[0] = moi->left_hand;
+    main_menu->menuInv->equipement->options[1] = moi->right_hand;
+    main_menu->menuInv->equipement->options[2] = moi->headgear;
+    main_menu->menuInv->equipement->options[3] = moi->tunic;
+    main_menu->menuInv->equipement->options[4] = moi->pant;
+    main_menu->menuInv->equipement->options[5] = moi->shoes;
+
+
+    main_menu->menuTrad->on = 0;
+    main_menu->menuTrad->selector2 = s_gui->s->inventory_trade;
+    main_menu->menuTrad->tab = -1;
+    main_menu->menuTrad->count1 = 1;
+    main_menu->menuTrad->count2 = 1;
+    ////
+    e_menu = calloc(sizeof(struct menu_event), 1);
 }
 
-struct menu_diplo* init_diplo_menu(void)
-{
-    struct menu_diplo *dip = calloc(sizeof(struct menu_diplo), 1);
-    dip->diploSelect = s_gui->d->diploSelector;
-    dip->diploTextBox = s_gui->tb->diploTextBox;
-    dip->on = 0;
-    return dip;
-}
 
-struct menu_inventaire* init_inventaire_menu(void)
-{
-    struct menu_inventaire *ret = malloc(sizeof(struct menu_inventaire));
-    ret->on = 0;
-    ret->selector = s_gui->s->inventory;
-    ret->enter = 0;
-    ret->actions = s_gui->s->inventory_actions;
-    ret->equipement = s_gui->s->equipement;
-    ret->equipement->options[0] = moi->left_hand;
-    ret->equipement->options[1] = moi->right_hand;
-    ret->equipement->options[2] = moi->headgear;
-    ret->equipement->options[3] = moi->tunic;
-    ret->equipement->options[4] = moi->pant;
-    ret->equipement->options[5] = moi->shoes;
-    return ret;
-}
+
 
 void init_speak_bubble(void)
 {
@@ -108,6 +118,100 @@ void display_elipse_and_handle_buttons(struct personnages *moi)
 
 void menu_trade(void)
 {
+    struct personnages *chosen = NULL;
+    float distance_chosen = 9;
+    for (struct linked_list *l = list; l != NULL; l=l->next)
+    {
+        
+        float s_distance = (l->p->x - moi->x)*(l->p->x - moi->x)+(l->p->y - moi->y)*(l->p->y - moi->y);
+        if (s_distance < distance_chosen)
+        {
+            char is_enemie = 0;
+            for (struct linked_enemie *ll = l->p->e_list; ll != NULL; ll=ll->next)
+                if (strcmp(ll->nom, moi->nom) == 0)
+                    is_enemie = 1;
+            if (is_enemie == 0)
+            {
+                chosen = l->p;
+                distance_chosen = s_distance;
+            }
+        }
+    }
+    if (chosen != NULL)
+    {
+        int j = 0;
+        for (struct linked_item *i = moi->i_list; i != NULL; i = i->next)
+        {
+            sprintf(main_menu->menuInv->selector->options[j], "%s %d/%d", i->nom, min(main_menu->menuTrad->count1, i->count), i->count);
+            j += 1;
+        }
+        int max1 = j;
+        while (j < 10)
+        {
+            strcpy(main_menu->menuInv->selector->options[j], "empty slot");
+            j+=1;
+        }
+        drawSelector(renderer, main_menu->menuInv->selector);
+        j = 0;
+        for (struct linked_item *i = chosen->i_list; i != NULL; i = i->next)
+        {
+            sprintf(main_menu->menuTrad->selector2->options[j], "%s %d/%d", i->nom, min(main_menu->menuTrad->count2, i->count), i->count);
+            j += 1;
+        }
+        int max2 = j;
+        while (j < 10)
+        {
+            strcpy(main_menu->menuTrad->selector2->options[j], "empty slot");
+            j+=1;
+        }
+        drawSelector(renderer, main_menu->menuTrad->selector2);
+        if (lettres->esc)
+            main_menu->menuTrad->on = 0;
+        if (main_menu->menuTrad->tab == -1)
+        {
+            if (lettres->s || lettres->down)
+                main_menu->menuInv->selector->selectedOption = (main_menu->menuInv->selector->selectedOption + 1) % max1;
+            if (main_menu->menuTrad->tab == -1)
+    	        main_menu->menuInv->selector->selectedOption = (main_menu->menuInv->selector->selectedOption - 1 + main_menu->menuInv->selector->numOptions) % max1;
+            if (lettres->d || lettres->right)
+                main_menu->menuTrad->count1 += 1;
+            if (lettres->q || lettres->left)
+                main_menu->menuTrad->count1 -= 1;
+        }
+        else
+        {
+            if (lettres->s || lettres->down)
+                main_menu->menuTrad->selector2->selectedOption = (main_menu->menuTrad->selector2->selectedOption + 1) % max2;
+            if (main_menu->menuTrad->tab == -1)
+    	        main_menu->menuTrad->selector2->selectedOption = (main_menu->menuTrad->selector2->selectedOption - 1 + main_menu->menuTrad->selector2->numOptions) % max2;
+            if (lettres->d || lettres->right)
+                main_menu->menuTrad->count2 += 1;
+            if (lettres->q || lettres->left)
+                main_menu->menuTrad->count2 -= 1;
+        }
+        if (lettres->tab)
+            main_menu->menuTrad->tab *= -1;
+        if (lettres->enter)
+        {
+            struct linked_item *i = moi->i_list;
+            int a = 0;
+            while (a < main_menu->menuInv->selector->selectedOption && i != NULL)
+            {
+                a += 1;
+                i = i->next;
+            }
+            int b = 0;
+            struct linked_item *i2 = chosen->i_list;
+            while (a < main_menu->menuTrad->selector2->selectedOption && i != NULL)
+            {
+                b += 1;
+                i2 = i2->next;
+            }
+            sprintf (ordre + strlen(ordre), "%d 17 %s %d 18 %d %d %d 19 %d %d ", chosen->id, moi->nom, chosen->id, a, min(i->count, main_menu->menuTrad->count1), chosen->id, b, min(i2->count, main_menu->menuTrad->count2));
+        }
+    }
+    else
+        main_menu->menuTrad->on = 0;
 
 }
 
@@ -232,6 +336,13 @@ void speakPerso(struct personnages *moi, char* ordre)
     }
 }
 
+void event_menu(void)
+{
+    SDL_Event event = gestion_touche();
+    if (lettres->esc)
+        e_menu->on = 0;
+}
+
 void menu(void)
 {
     SDL_Event event = gestion_touche();
@@ -239,6 +350,8 @@ void menu(void)
         menu_inventaire();
     else if (main_menu->menuDip->on == 1)
         diplomatic_menu(event);
+    else if (main_menu->menuTrad->on == 1)
+        menu_trade();
     else
     {
 	    if (lettres->s || lettres->down)
@@ -256,6 +369,8 @@ void menu(void)
                 main_menu->menuInv->on = 1;
             else if(main_menu->selector->selectedOption == 1)
                 main_menu->menuDip->on = 1;
+            else if(main_menu->selector->selectedOption == 2)
+                main_menu->menuTrad->on = 1;
             lettres->enter = 0;
         }
         drawSelector(renderer, main_menu->selector);   
@@ -350,4 +465,11 @@ void diplomatic_menu(SDL_Event event)
             lettres->enter = 0;
         }
     }
+}
+
+char there_is_event(void)
+{
+    if (strcmp(moi->echange_player, "none") == 0)
+        return 0;
+    return 1;
 }

@@ -24,6 +24,9 @@ struct buttons *init_buttons()
     
     to_return->menu = malloc(sizeof(Button));
     initPictureButton(to_return->menu, 50, 50, 35, 35, "img/textures/graphical_widget_img/main_menu_button/menu_button_not_pressed.png", "img/textures/graphical_widget_img/main_menu_button/menu_button_pressed.png");
+
+    to_return->event_popup = malloc(sizeof(Button));
+    initPictureButton(to_return->event_popup, 100, 50, 35, 35, "img/textures/graphical_widget_img/main_menu_button/menu_button_not_pressed.png", "img/textures/graphical_widget_img/main_menu_button/menu_button_pressed.png");
     return to_return;
 }
 struct textinfos *init_textinfos()
@@ -143,8 +146,21 @@ struct selectors *init_selectors()
 
     char **options4 = malloc(sizeof(char*)*6);
 
-
     to_return->equipement = initializeSelector(850, 50, 250, 50, (SDL_Color){75, 0, 130, 255}, (SDL_Color){221, 160, 221, 255}, (SDL_Color){255, 255, 255, 255}, littleFont, options4, 6);
+
+    char **options5 = malloc(sizeof(char*)*10);
+    options5[0] = malloc(50); 
+    options5[1] = malloc(50); 
+    options5[2] = malloc(50); 
+    options5[3] = malloc(50); 
+    options5[4] = malloc(50); 
+    options5[5] = malloc(50); 
+    options5[6] = malloc(50); 
+    options5[7] = malloc(50); 
+    options5[8] = malloc(50); 
+    options5[9] = malloc(50); 
+    
+    to_return->inventory_trade = initializeSelector(550, 50, 400, 50, (SDL_Color){75, 0, 130, 255}, (SDL_Color){221, 160, 221, 255}, (SDL_Color){255, 255, 255, 255}, littleFont, options5, 10);
 
     return to_return;
 }

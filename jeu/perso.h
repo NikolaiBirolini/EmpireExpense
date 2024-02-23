@@ -31,7 +31,9 @@ struct personnages
     struct linked_item *i_list;
     char echange_player[50];
     int item1;
+    int count_item1;
     int item2;
+    int count_item2;
     char speak[90];
     int animation; // gestion frame
     int animation_2; // ce qu'il est en train de faire

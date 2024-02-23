@@ -42,7 +42,7 @@ void drawTextInfo(SDL_Renderer *renderer, TextInfo *textInfo)
 void initFonts(void)
 {
     TTF_Init();
-    littleFont = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 20);
-    bigFont = TTF_OpenFont("fonts/connection_menu/BruceForeverRegular.ttf", 25);
-    font = TTF_OpenFont("fonts/connection_menu/Ancient Medium.ttf", 24);
+    littleFont = TTF_OpenFont("img/fonts/BruceForeverRegular.ttf", 20);
+    bigFont = TTF_OpenFont("img/fonts/BruceForeverRegular.ttf", 25);
+    font = TTF_OpenFont("img/fonts/Ancient Medium.ttf", 24);
 }

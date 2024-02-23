@@ -22,6 +22,7 @@ extern TTF_Font *bigFont;
 extern TTF_Font *font;
 extern struct speak *speakBubble;
 extern struct menu *main_menu;
+extern struct menu_event *e_menu;
 extern char should_i_call_my_computer_work;
 extern struct personnages *moi;
 #define order_size 2000

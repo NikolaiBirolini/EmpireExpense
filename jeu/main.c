@@ -98,7 +98,6 @@ void boucle_jeu(int socket, char *name)
 	struct linked_list *selected = NULL;
 	struct formation *f= malloc(sizeof(struct formation));
     init_main_menu();
-    init_diplo_menu();
     init_speak_bubble();
 	bool done = false;
     
@@ -117,6 +116,8 @@ void boucle_jeu(int socket, char *name)
             speakPerso(moi, ordre);
             lettres->t = 0;
         }
+        else if (e_menu->on == 1)
+            event_menu();
         else
         {
             gestion_touche();
@@ -127,6 +128,13 @@ void boucle_jeu(int socket, char *name)
                 main_menu->on = 1;
             else if(lettres->t == 1)
                 speakBubble->on = 1;
+            else if (there_is_event()) 
+            {
+                drawPictureButton(s_gui->b->event_popup);
+                if (lettres->e)
+                    e_menu->on = 1;
+            }
+
         }
         if (should_i_call_my_computer_work == '1')
         {

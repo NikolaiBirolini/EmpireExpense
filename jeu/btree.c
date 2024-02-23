@@ -1,5 +1,5 @@
 #include "btree.h"
-
+/*
 struct node *append_node(struct node *root, char *nom, char *father, char j)
 {
     if (father == NULL)
@@ -222,3 +222,4 @@ void append_requierment(struct node *root, char *name, char *req1, char *req2, c
         r->other_requierment1 = r3;
     }
 }
+*/
