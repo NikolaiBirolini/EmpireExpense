@@ -149,6 +149,7 @@ void print(struct linked_item *e)
 
 void echange_item(struct personnages *perso1, struct personnages *perso2)
 {
+	/*
 	struct linked_item *obj1 = get_item_n(perso1->item2, perso1->i_list); //le tiens
 	struct linked_item *obj2 = get_item_n(perso1->item1, perso2->i_list);
 	perso1->echange_player[0] = 0;
@@ -160,5 +161,5 @@ void echange_item(struct personnages *perso1, struct personnages *perso2)
 	else if (obj1 == NULL && obj2 != NULL)
 		sprintf (ordre + strlen(ordre), "%d 16 +1 %s %d 16 -1 %s ", perso1->id, obj2->nom, perso2->id, obj2->nom);
 	else if (obj2 == NULL && obj1 != NULL)    
-		sprintf (ordre + strlen(ordre), "%d 16 +1 %s %d 16 -1 %s ", perso2->id, obj1->nom, perso1->id, obj1->nom);
+		sprintf (ordre + strlen(ordre), "%d 16 +1 %s %d 16 -1 %s ", perso2->id, obj1->nom, perso1->id, obj1->nom);*/
 }

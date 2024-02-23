@@ -122,18 +122,20 @@ void menu_trade(void)
     float distance_chosen = 9;
     for (struct linked_list *l = list; l != NULL; l=l->next)
     {
-        
-        float s_distance = (l->p->x - moi->x)*(l->p->x - moi->x)+(l->p->y - moi->y)*(l->p->y - moi->y);
-        if (s_distance < distance_chosen)
+        if (l->p != moi)
         {
-            char is_enemie = 0;
-            for (struct linked_enemie *ll = l->p->e_list; ll != NULL; ll=ll->next)
-                if (strcmp(ll->nom, moi->nom) == 0)
-                    is_enemie = 1;
-            if (is_enemie == 0)
+            float s_distance = (l->p->x - moi->x)*(l->p->x - moi->x)+(l->p->y - moi->y)*(l->p->y - moi->y);
+            if (s_distance < distance_chosen)
             {
-                chosen = l->p;
-                distance_chosen = s_distance;
+                char is_enemie = 0;
+                for (struct linked_enemie *ll = l->p->e_list; ll != NULL; ll=ll->next)
+                    if (strcmp(ll->nom, moi->nom) == 0)
+                        is_enemie = 1;
+                if (is_enemie == 0)
+                {
+                    chosen = l->p;
+                    distance_chosen = s_distance;
+                }
             }
         }
     }
@@ -145,7 +147,6 @@ void menu_trade(void)
             sprintf(main_menu->menuInv->selector->options[j], "%s %d/%d", i->nom, min(main_menu->menuTrad->count1, i->count), i->count);
             j += 1;
         }
-        int max1 = j;
         while (j < 10)
         {
             strcpy(main_menu->menuInv->selector->options[j], "empty slot");
@@ -158,7 +159,6 @@ void menu_trade(void)
             sprintf(main_menu->menuTrad->selector2->options[j], "%s %d/%d", i->nom, min(main_menu->menuTrad->count2, i->count), i->count);
             j += 1;
         }
-        int max2 = j;
         while (j < 10)
         {
             strcpy(main_menu->menuTrad->selector2->options[j], "empty slot");
@@ -170,9 +170,9 @@ void menu_trade(void)
         if (main_menu->menuTrad->tab == -1)
         {
             if (lettres->s || lettres->down)
-                main_menu->menuInv->selector->selectedOption = (main_menu->menuInv->selector->selectedOption + 1) % max1;
-            if (main_menu->menuTrad->tab == -1)
-    	        main_menu->menuInv->selector->selectedOption = (main_menu->menuInv->selector->selectedOption - 1 + main_menu->menuInv->selector->numOptions) % max1;
+                main_menu->menuInv->selector->selectedOption = (main_menu->menuInv->selector->selectedOption + 1) % main_menu->menuInv->selector->numOptions;
+            if (lettres->z || lettres->up)
+    	        main_menu->menuInv->selector->selectedOption = (main_menu->menuInv->selector->selectedOption - 1 + main_menu->menuInv->selector->numOptions) % main_menu->menuInv->selector->numOptions;
             if (lettres->d || lettres->right)
                 main_menu->menuTrad->count1 += 1;
             if (lettres->q || lettres->left)
@@ -181,9 +181,9 @@ void menu_trade(void)
         else
         {
             if (lettres->s || lettres->down)
-                main_menu->menuTrad->selector2->selectedOption = (main_menu->menuTrad->selector2->selectedOption + 1) % max2;
-            if (main_menu->menuTrad->tab == -1)
-    	        main_menu->menuTrad->selector2->selectedOption = (main_menu->menuTrad->selector2->selectedOption - 1 + main_menu->menuTrad->selector2->numOptions) % max2;
+                main_menu->menuTrad->selector2->selectedOption = (main_menu->menuTrad->selector2->selectedOption + 1) % main_menu->menuTrad->selector2->numOptions;
+            if (lettres->z || lettres->up)
+    	        main_menu->menuTrad->selector2->selectedOption = (main_menu->menuTrad->selector2->selectedOption - 1 + main_menu->menuTrad->selector2->numOptions) % main_menu->menuTrad->selector2->numOptions;
             if (lettres->d || lettres->right)
                 main_menu->menuTrad->count2 += 1;
             if (lettres->q || lettres->left)
@@ -200,14 +200,19 @@ void menu_trade(void)
                 a += 1;
                 i = i->next;
             }
-            int b = 0;
+            a = 0;
             struct linked_item *i2 = chosen->i_list;
             while (a < main_menu->menuTrad->selector2->selectedOption && i != NULL)
             {
-                b += 1;
+                a += 1;
                 i2 = i2->next;
             }
-            sprintf (ordre + strlen(ordre), "%d 17 %s %d 18 %d %d %d 19 %d %d ", chosen->id, moi->nom, chosen->id, a, min(i->count, main_menu->menuTrad->count1), chosen->id, b, min(i2->count, main_menu->menuTrad->count2));
+            if (i != NULL && i2 != NULL)
+                sprintf (ordre + strlen(ordre), "%d 17 %s %d 18 %s %d %d 19 %s %d ", chosen->id, moi->nom, chosen->id, i->nom, min(i->count, main_menu->menuTrad->count1), chosen->id, i2->nom, min(i2->count, main_menu->menuTrad->count2));
+            else if (i != NULL)
+                sprintf (ordre + strlen(ordre), "%d 17 %s %d 18 %s %d %d 19 none 0 ", chosen->id, moi->nom, chosen->id, i->nom, min(i->count, main_menu->menuTrad->count1), chosen->id);
+            else if (i2 != NULL)
+                sprintf (ordre + strlen(ordre), "%d 17 %s %d 18 none 0 %d 19 %s %d ", chosen->id, moi->nom, chosen->id, chosen->id, i2->nom, min(i2->count, main_menu->menuTrad->count2));
         }
     }
     else

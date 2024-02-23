@@ -33,9 +33,9 @@ struct personnages
     struct linked_enemie *e_list;
     struct linked_item *i_list;
     char echange_player[50];
-    int item1;
+    char item1[50];
     int count_item1;
-    int item2;
+    char item2[50];
     int count_item2;
     char online;
     char speak[90];
