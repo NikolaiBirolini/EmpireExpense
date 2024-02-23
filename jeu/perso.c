@@ -1,6 +1,15 @@
 #include "perso.h"
 #include "shared_var.h"
 
+
+int getSizeLinkedList(struct linked_list *list)
+{
+	int size = 0;
+	for (struct linked_list *l = list; l != NULL; l = l->next)
+		size++;
+	return size;
+}
+
 void free_linked(struct linked_list *list, char free_content)
 {
 	if (list != NULL)
