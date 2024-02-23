@@ -35,13 +35,23 @@ void commande(struct linked_list *selected, struct personnages *moi, struct form
 		float x = ((float)lettres->Mouse_pos_x + 2*(float)lettres->Mouse_pos_y-1800)/44 + (float)screenx;
 		float y = (2*(float)lettres->Mouse_pos_y - (float)lettres->Mouse_pos_x)/44 + (float)screeny;
 
-
 		
+
 		int i = 0;
 		int j = 0;
+
+		int pers = 0;
+
+		SDL_bool selectMoreThanOne = SDL_FALSE;
+		if (getSizeLinkedList(selected) > 1)
+		    selectMoreThanOne = SDL_TRUE;
+
 		for (struct linked_list *a = selected; a != NULL; a = a->next)
 		{
 			//printf ("%s\n", a->p->nom);
+
+			if(selectMoreThanOne && pers != 0)
+				x = x + 3; 
 			
 			if (strcmp(a->p->nom_superieur, moi->nom) == 0)
 			{
@@ -54,8 +64,9 @@ void commande(struct linked_list *selected, struct personnages *moi, struct form
 					j++;
 				}
 			}
-			
+			pers++;
 		}
 		lettres->Mouse_Rclick = 0;
+		pers = 0;
 	}
 }

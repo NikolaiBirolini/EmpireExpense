@@ -91,4 +91,5 @@ struct linked_list *death(void);
 struct linked_list *remove_from_linked_list(struct linked_list *list, struct personnages *to_rem);
 struct personnages *find_perso_by_name(char *name);
 struct linked_list *clean_selected(struct linked_list *list);
+int getSizeLinkedList(struct linked_list *list);
 void fix_some_shit(void);
