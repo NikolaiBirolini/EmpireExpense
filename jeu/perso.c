@@ -8,12 +8,24 @@ void free_linked(struct linked_list *list, char free_content)
 		free_linked(list->next, free_content);
 		if (free_content == 1)
 		{
+			
 			free(list->p);
 			//free_linked_char(list->p->e_list);
 			free_linked_item(list->p->i_list);
 		}
 		free(list);
 	}
+	//while (list != NULL)
+    //{
+    //    struct linked_list *temp = list;  
+	//	if (free_content == 1)
+	//    {	
+	//    	free(temp->p);
+	//    	free_linked_item(temp->p->i_list);
+	//    }    
+    //    free(temp);
+	//	list = list->next;                   
+    //}
 }
 
 char exist_in_linked(struct linked_list *list, struct personnages *to_test)

@@ -146,8 +146,8 @@ void boucle_jeu(int socket, char *name)
 	    fix_some_shit();
 	    send_orders(socket);
 	    recv_order(socket);
+        selected = clean_selected(selected);
 	    list = death();
-	    selected = clean_selected(selected);
 		
 	    SDL_RenderPresent(renderer);
         clock_t end = clock();
