@@ -252,7 +252,7 @@ void ia_man(struct linked_list *parcour)
     }
     if (strcmp(parcour->p->echange_player, "none") != 0)
     {
-        sprintf (ordre + strlen(ordre), "%d 20 [Votre proposition est ininteressante] %d 17 none ", parcour->p->id, parcour->p->id);
+        sprintf (ordre + strlen(ordre), "d 20 votre proposition est ininteressante\037 %d 17 none none 0 none 0 ", parcour->p->id, parcour->p->id);
         parcour->p->speak_timer = 1350;
     }
     if (parcour->p->faim == 50)

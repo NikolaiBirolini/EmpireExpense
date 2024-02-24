@@ -255,8 +255,6 @@ void parse_order(char *line)
                 }
                 p->echange_player[j] = 0;
                 i++;
-                break;
-            case 18:
                 j = 0;
                 while (line[i] != ' ')
                 {
@@ -270,8 +268,6 @@ void parse_order(char *line)
                 while(line[i] != ' ')
                     i++;
                 i++;
-                break;
-            case 19:
                 j = 0;
                 while (line[i] != ' ')
                 {

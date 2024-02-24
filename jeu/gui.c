@@ -202,17 +202,17 @@ void menu_trade(void)
             }
             a = 0;
             struct linked_item *i2 = chosen->i_list;
-            while (a < main_menu->menuTrad->selector2->selectedOption && i != NULL)
+            while (a < main_menu->menuTrad->selector2->selectedOption && i2 != NULL)
             {
                 a += 1;
                 i2 = i2->next;
             }
             if (i != NULL && i2 != NULL)
-                sprintf (ordre + strlen(ordre), "%d 17 %s %d 18 %s %d %d 19 %s %d ", chosen->id, moi->nom, chosen->id, i->nom, min(i->count, main_menu->menuTrad->count1), chosen->id, i2->nom, min(i2->count, main_menu->menuTrad->count2));
+                sprintf (ordre + strlen(ordre), "%d 17 %s %s %d %s %d ", chosen->id, moi->nom, i->nom, min(i->count, main_menu->menuTrad->count1), i2->nom, min(i2->count, main_menu->menuTrad->count2));
             else if (i != NULL)
-                sprintf (ordre + strlen(ordre), "%d 17 %s %d 18 %s %d %d 19 none 0 ", chosen->id, moi->nom, chosen->id, i->nom, min(i->count, main_menu->menuTrad->count1), chosen->id);
+                sprintf (ordre + strlen(ordre), "%d 17 %s %s %d none 0 ", chosen->id, moi->nom, i->nom, min(i->count, main_menu->menuTrad->count1));
             else if (i2 != NULL)
-                sprintf (ordre + strlen(ordre), "%d 17 %s %d 18 none 0 %d 19 %s %d ", chosen->id, moi->nom, chosen->id, chosen->id, i2->nom, min(i2->count, main_menu->menuTrad->count2));
+                sprintf (ordre + strlen(ordre), "%d 17 %s none 0 %s %d ", chosen->id, moi->nom, i2->nom, min(i2->count, main_menu->menuTrad->count2));
         }
     }
     else
