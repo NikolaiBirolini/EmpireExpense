@@ -49,6 +49,7 @@ struct textboxes
     TextBox *bgPrintErrorTextBox;
     TextBox *diploTextBox;
     TextBox *bgDiploTextBox;
+    TextBox *bgEventTextBox;
 };
 
 struct dropdowns
@@ -63,6 +64,7 @@ struct selectors
     Selector *inventory_actions;
     Selector *equipement;
     Selector *inventory_trade;
+    Selector *trade_porposal;
 };
 
 struct gauges

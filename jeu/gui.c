@@ -74,7 +74,7 @@ void gui_event(struct personnages *moi)
     //speak bubble
     for (struct linked_list *p = list; p != NULL; p = p->next)
 	{
-        if (strlen(p->p->speak) > 2)
+        if (strlen(p->p->speak) > 1)
         {
             TextInfo bubble = {p->p->speak,  littleFont, 
             (p->p->x - screenx - p->p->y + screeny) * 22 + 850, 
@@ -114,6 +114,15 @@ void display_elipse_and_handle_buttons(struct personnages *moi)
     s_gui->b->menu->isPressed = main_menu->on;
     drawPictureButton(s_gui->b->menu);
     drawGauge(s_gui->g->my_health, moi->pv, moi->max_pv);
+    if (there_is_event()) 
+    {
+        drawPictureButton(s_gui->b->event_popup);
+        if (lettres->e)
+            e_menu->on = 1;
+        if (lettres->Mouse_Lclick == 1 && lettres->Mouse_pos_x > 100 && lettres->Mouse_pos_x < 135 && lettres->Mouse_pos_y > 50 && lettres->Mouse_pos_y < 85)
+            e_menu->on = !e_menu->on;
+
+        }
 }
 
 void menu_trade(void)
@@ -346,6 +355,30 @@ void event_menu(void)
     SDL_Event event = gestion_touche();
     if (lettres->esc)
         e_menu->on = 0;
+    drawTextBox(renderer, s_gui->tb->bgEventTextBox, false);
+    char text[300];
+    sprintf (text, "%s propose you to trade %d %s against %d %s", moi->echange_player, moi->count_item1, moi->item1, moi->count_item2, moi->item2);
+    TextInfo text_display = {text,  littleFont, 200, 150,0,{255, 255, 255, 255}, 0,0,0};
+    drawSelector(renderer, s_gui->s->trade_porposal);
+    drawTextInfo(renderer, &text_display);
+    if (lettres->s || lettres->down)
+    	s_gui->s->trade_porposal->selectedOption = (s_gui->s->trade_porposal->selectedOption + 1) % s_gui->s->trade_porposal->numOptions;
+    if (lettres->z || lettres->up)
+	    s_gui->s->trade_porposal->selectedOption = (s_gui->s->trade_porposal->selectedOption - 1 + s_gui->s->trade_porposal->numOptions) % s_gui->s->trade_porposal->numOptions;
+    if (lettres->enter == 1)
+    {
+        if(s_gui->s->trade_porposal->selectedOption == 0)
+            echange_item(moi, find_perso_by_name(moi->echange_player));
+        else if(s_gui->s->trade_porposal->selectedOption == 1)
+            sprintf (ordre + strlen(ordre), "%d 17 none none 0 none 0 ", moi->id); // decline
+        else
+        {
+            sprintf (ordre + strlen(ordre), "%d 17 none none 0 none 0 ", moi->id); // decline
+            main_menu->on = 1;
+            main_menu->menuTrad->on = 1;
+        }
+        e_menu->on = 0;
+    }
 }
 
 void menu(void)

@@ -128,13 +128,6 @@ void boucle_jeu(int socket, char *name)
                 main_menu->on = 1;
             else if(lettres->t == 1)
                 speakBubble->on = 1;
-            else if (there_is_event()) 
-            {
-                drawPictureButton(s_gui->b->event_popup);
-                if (lettres->e)
-                    e_menu->on = 1;
-            }
-
         }
         if (should_i_call_my_computer_work == '1')
         {

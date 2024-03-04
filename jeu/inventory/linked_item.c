@@ -149,17 +149,41 @@ void print(struct linked_item *e)
 
 void echange_item(struct personnages *perso1, struct personnages *perso2)
 {
-	/*
-	struct linked_item *obj1 = get_item_n(perso1->item2, perso1->i_list); //le tiens
-	struct linked_item *obj2 = get_item_n(perso1->item1, perso2->i_list);
-	perso1->echange_player[0] = 0;
-	strcat(perso1->echange_player, "none");
-	if (obj1 != NULL && obj2 != NULL)
+	char p1get=0; char p2get = 0;
+	if (strcmp(perso1->item1, "none") == 0)
 	{
-		sprintf (ordre + strlen(ordre), "%d 16 +1 %s %d 16 +1 %s %d 16 -1 %s %d 16 -1 %s ", perso1->id, obj2->nom, perso2->id, obj1->nom, perso1->id, obj1->nom, perso2->id, obj2->nom);
+		return;
 	}
-	else if (obj1 == NULL && obj2 != NULL)
-		sprintf (ordre + strlen(ordre), "%d 16 +1 %s %d 16 -1 %s ", perso1->id, obj2->nom, perso2->id, obj2->nom);
-	else if (obj2 == NULL && obj1 != NULL)    
-		sprintf (ordre + strlen(ordre), "%d 16 +1 %s %d 16 -1 %s ", perso2->id, obj1->nom, perso1->id, obj1->nom);*/
+	else if (strcmp(perso1->item2, "none") == 0)
+	{
+		return;
+	}
+	else
+	{
+	
+		for (struct linked_item *p = perso1->i_list; p != NULL; p =p->next)
+			if (strcmp(p->nom, perso1->item2) == 0 && p->count >= perso1->count_item2)
+				p1get = 1;
+		for (struct linked_item *p = perso2->i_list; p != NULL; p =p->next)
+			if (strcmp(p->nom, perso1->item1) == 0 && p->count >= perso1->count_item1)
+				p2get = 1;
+		if (p1get == 1 && p2get == 1)
+		{
+			printf ("%d 16 +%d %s %d 16 +%d %s %d 16 %d %s %d 16 %d %s %d 17 none none 0 none 0 ", 
+			perso1->id, perso1->count_item2, perso1->item2, 
+			perso2->id, perso1->count_item1, perso1->item1,
+			perso1->id, perso1->count_item1, perso1->item1, 
+			perso2->id, perso1->count_item2, perso1->item2,
+			moi->id);
+			sprintf (ordre + strlen(ordre), "%d 16 +%d %s %d 16 +%d %s %d 16 %d %s %d 16 %d %s %d 17 none none 0 none 0 ", 
+			perso1->id, perso1->count_item2, perso1->item2, 
+			perso2->id, perso1->count_item1, perso1->item1,
+			perso1->id, perso1->count_item1, perso1->item1, 
+			perso2->id, perso1->count_item2, perso1->item2,
+			moi->id);
+		}
+		else
+			sprintf (ordre + strlen(ordre), "%d 17 none none 0 none 0 ", moi->id);
+	}
+	
 }

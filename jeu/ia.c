@@ -46,11 +46,19 @@ void my_computer_work(struct personnages *moi)
         if (l->p->online != '1')
         {
             if ( i >= nb_player_lower_id * ai_per_player && i < nb_player_lower_id * ai_per_player + ai_per_player)
+            {
                 l->p->my_computer_work = 1;
+                //printf("1 : %s\n", l->p->nom);
+            }
             else
+            {
                 l->p->my_computer_work = 0;
+                //printf("0 : %s\n", l->p->nom);
+            }
             i += 1;
         }
+        else
+            l->p->my_computer_work = 0;
     }
 }
 
@@ -252,7 +260,7 @@ void ia_man(struct linked_list *parcour)
     }
     if (strcmp(parcour->p->echange_player, "none") != 0)
     {
-        sprintf (ordre + strlen(ordre), "d 20 votre proposition est ininteressante\037 %d 17 none none 0 none 0 ", parcour->p->id, parcour->p->id);
+        sprintf (ordre + strlen(ordre), "%d 20 votre proposition est ininteressante\037 %d 17 none none 0 none 0 ", parcour->p->id, parcour->p->id);
         parcour->p->speak_timer = 1350;
     }
     if (parcour->p->faim == 50)

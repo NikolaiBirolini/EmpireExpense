@@ -22,6 +22,7 @@ struct linked_item *exist_in_linked_item(struct linked_item *e, char *cmp)
 
 struct linked_item *append_in_inventory(char *name, struct linked_item *p, int n)
 {
+	printf ("%s %d\n", name, n);
 	if (p == NULL)
 	{
 		p = malloc(sizeof(struct linked_item));

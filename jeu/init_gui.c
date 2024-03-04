@@ -84,6 +84,8 @@ struct textboxes *init_textboxes()
     to_return->bgDiploTextBox = malloc(sizeof(TextBox));
     initTextBox(to_return->bgDiploTextBox, 200, 350, 1100, 300, (SDL_Color){165, 132, 86, 255}, (SDL_Color){165, 132, 86, 255}, (SDL_Color){165, 132, 86, 255}, littleFont, false);
     
+    to_return->bgEventTextBox = malloc(sizeof(TextBox));
+    initTextBox(to_return->bgEventTextBox, 150, 100, 1100, 300, (SDL_Color){165, 132, 86, 255}, (SDL_Color){165, 132, 86, 255}, (SDL_Color){165, 132, 86, 255}, littleFont, false);
     return to_return;
 }
 struct gauges *init_gauges()
@@ -161,6 +163,13 @@ struct selectors *init_selectors()
     options5[9] = malloc(50); 
     
     to_return->inventory_trade = initializeSelector(550, 50, 400, 50, (SDL_Color){75, 0, 130, 255}, (SDL_Color){221, 160, 221, 255}, (SDL_Color){255, 255, 255, 255}, littleFont, options5, 10);
+
+    char **options6 = malloc(sizeof(char*)*3);
+    options6[0] = malloc(14); strcpy(options6[0], "accept");
+    options6[1] = malloc(14); strcpy(options6[1], "decline");
+    options6[2] = malloc(14); strcpy(options6[2], "counter offer");
+
+    to_return->trade_porposal = initializeSelector(150, 200, 400, 50, (SDL_Color){75, 0, 130, 255}, (SDL_Color){221, 160, 221, 255}, (SDL_Color){255, 255, 255, 255}, littleFont, options6, 3);
 
     return to_return;
 }
