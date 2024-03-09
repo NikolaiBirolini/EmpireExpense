@@ -4,4 +4,6 @@
 3 10 niko 4.000000 4.000000 -1.000000 908.785156 0 0 209 civil niko niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] [epee 1 Protections_de_cuir 1 fruit 10] ee
 4 10 none 2.00000 15.000000 -1.000000 908.785156 0 0 209 civil bench niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] [epee 1 Protections_de_cuir 1 fruit 10]
 5 10 none 17.00000 15.000000 -1.000000 908.785156 0 0 209 civil cigar niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] [epee 1 Protections_de_cuir 1 fruit 10]
+6 10 none 3.00000 15.000000 -1.000000 908.785156 0 0 209 civil petitBat niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] [epee 1 Protections_de_cuir 1 fruit 10]
+7 10 none 5.00000 15.000000 -1.000000 908.785156 0 0 209 civil et niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] [epee 1 Protections_de_cuir 1 fruit 10]
 
