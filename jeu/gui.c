@@ -37,6 +37,7 @@ void init_main_menu(void)
     main_menu->menuTrad->tab = -1;
     main_menu->menuTrad->count1 = 1;
     main_menu->menuTrad->count2 = 1;
+
     ////
     e_menu = calloc(sizeof(struct menu_event), 1);
 }
@@ -150,6 +151,8 @@ void menu_trade(void)
     }
     if (chosen != NULL)
     {
+        s_gui->ti->echange_player->text =  chosen->nom;
+        drawTextInfo(renderer, s_gui->ti->echange_player);
         int j = 0;
         for (struct linked_item *i = moi->i_list; i != NULL; i = i->next)
         {
@@ -352,6 +355,12 @@ void speakPerso(struct personnages *moi, char* ordre)
 
 void event_menu(void)
 {
+    struct personnages *echange_player = find_perso_by_name(moi->echange_player);
+    if (echange_player == NULL || (echange_player->x - moi->x)*(echange_player->x - moi->x)+(echange_player->y - moi->y)*(echange_player->y - moi->y) > 9)
+    {
+        sprintf (ordre + strlen(ordre), "%d 17 none none 0 none 0 ", moi->id); // decline
+        e_menu->on = 0;
+    }
     SDL_Event event = gestion_touche();
     if (lettres->esc)
         e_menu->on = 0;

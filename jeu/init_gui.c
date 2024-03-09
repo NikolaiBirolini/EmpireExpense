@@ -27,6 +27,8 @@ struct buttons *init_buttons()
 
     to_return->event_popup = malloc(sizeof(Button));
     initPictureButton(to_return->event_popup, 100, 50, 35, 35, "img/textures/graphical_widget_img/main_menu_button/menu_button_not_pressed.png", "img/textures/graphical_widget_img/main_menu_button/menu_button_pressed.png");
+
+
     return to_return;
 }
 struct textinfos *init_textinfos()
@@ -52,7 +54,10 @@ struct textinfos *init_textinfos()
     initTextInfo(to_return->enemyListText, "Enemy list : ", littleFont, 800, 520, 0, (SDL_Color){0, 0, 0, 255}, 0, 0, 0);
 
     to_return->overlord = malloc(sizeof(TextInfo));
-    initTextInfo(to_return->overlord, " ", littleFont, 270, 350, 0, (SDL_Color){0, 255, 0, 255}, 0, 0, 0);
+    initTextInfo(to_return->overlord, NULL, littleFont, 270, 350, 0, (SDL_Color){0, 255, 0, 255}, 0, 0, 0);
+
+    to_return->echange_player = malloc(sizeof(TextInfo));
+    initTextInfo(to_return->echange_player, NULL, littleFont, 600, 10, 0, (SDL_Color){0, 255, 0, 255}, 0, 0, 0);
     return to_return;
 
 }

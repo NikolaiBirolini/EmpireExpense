@@ -20,49 +20,45 @@ struct linked_item *exist_in_linked_item(struct linked_item *e, char *cmp)
 	return NULL;
 }
 
-struct linked_item *append_in_inventory(char *name, struct linked_item *p, int n)
+void print_inventory(struct personnages *p)
 {
-	printf ("%s %d\n", name, n);
+	for (struct linked_item *i = p->i_list; i != NULL; i =i->next)
+		printf ("%s %s %d\n", p->nom, i->nom, i->count);
+}
+
+struct linked_item *append_in_inventory(char *name, struct linked_item *p, int n)
+{	
 	if (p == NULL)
 	{
 		p = malloc(sizeof(struct linked_item));
-		p->nom[0] = 0;
+		strcpy(p->nom, name);
 		p->count = n;
-		strcat(p->nom, name);
 		p->next = NULL;
 		return p;
 	}
 	else
 	{
 		struct linked_item *parcour = p;
-		while (parcour->next != NULL)
+		struct linked_item *last = p;
+		while (parcour != NULL)
 		{
-			parcour = parcour->next;
+			last = parcour;
 			if (strcmp(parcour->nom, name) == 0)
 			{
 				int max = count(name);
-				if (max > parcour->count)
+				while (max > parcour->count && n > 0)
 				{
-					int b = max - parcour->count;
-					if (b >= n)
-					{
-						parcour->count += n;
-						return p;
-					}
-					else
-					{
-						parcour->count = max;
-						n -= b;
-					}
+					parcour->count += 1;
+					n -= 1;
 				}
 			}
+			parcour = parcour->next;
 		}
 		struct linked_item *new = malloc(sizeof(struct linked_item));
-		new->nom[0] = 0;
+		strcpy(new->nom, name);
 		new->count = n;
-		strcat(new->nom, name);
 		new->next = NULL;
-		parcour->next = new;
+		last->next = new;
 		return p;
 	}
 }

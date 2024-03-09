@@ -37,6 +37,7 @@ struct textinfos
     TextInfo *passwordText;
     TextInfo *enemyListText;
     TextInfo *overlord;
+    TextInfo *echange_player;
 };
 
 struct textboxes

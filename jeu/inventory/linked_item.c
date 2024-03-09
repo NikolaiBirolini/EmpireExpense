@@ -149,18 +149,42 @@ void print(struct linked_item *e)
 
 void echange_item(struct personnages *perso1, struct personnages *perso2)
 {
-	char p1get=0; char p2get = 0;
+	
 	if (strcmp(perso1->item1, "none") == 0)
 	{
-		return;
+		for (struct linked_item *p = perso1->i_list; p != NULL; p =p->next)
+		{
+			if (strcmp(p->nom, perso1->item2) == 0 && p->count >= perso1->count_item2)
+			{
+
+				sprintf (ordre + strlen(ordre), "%d 16 +%d %s %d 16 %d %s %d 17 none none 0 none 0 ", 
+				perso2->id, perso1->count_item2, perso1->item2,
+				perso1->id, perso1->count_item2, perso1->item2, 
+				moi->id);
+				return;
+			}
+		}
+		sprintf (ordre + strlen(ordre), "%d 17 none none 0 none 0 ", moi->id);
 	}
 	else if (strcmp(perso1->item2, "none") == 0)
 	{
-		return;
+		for (struct linked_item *p = perso2->i_list; p != NULL; p =p->next)
+		{
+			if (strcmp(p->nom, perso1->item1) == 0 && p->count >= perso1->count_item1)
+			{
+
+				sprintf (ordre + strlen(ordre), "%d 16 +%d %s %d 16 %d %s %d 17 none none 0 none 0 ", 
+				perso1->id, perso1->count_item1, perso1->item1, 
+				perso2->id, perso1->count_item1, perso1->item1,
+				moi->id);
+				return;
+			}
+		}
+		sprintf (ordre + strlen(ordre), "%d 17 none none 0 none 0 ", moi->id);
 	}
 	else
 	{
-	
+		char p1get=0; char p2get = 0;
 		for (struct linked_item *p = perso1->i_list; p != NULL; p =p->next)
 			if (strcmp(p->nom, perso1->item2) == 0 && p->count >= perso1->count_item2)
 				p1get = 1;
@@ -169,17 +193,11 @@ void echange_item(struct personnages *perso1, struct personnages *perso2)
 				p2get = 1;
 		if (p1get == 1 && p2get == 1)
 		{
-			printf ("%d 16 +%d %s %d 16 +%d %s %d 16 %d %s %d 16 %d %s %d 17 none none 0 none 0 ", 
-			perso1->id, perso1->count_item2, perso1->item2, 
-			perso2->id, perso1->count_item1, perso1->item1,
-			perso1->id, perso1->count_item1, perso1->item1, 
-			perso2->id, perso1->count_item2, perso1->item2,
-			moi->id);
 			sprintf (ordre + strlen(ordre), "%d 16 +%d %s %d 16 +%d %s %d 16 %d %s %d 16 %d %s %d 17 none none 0 none 0 ", 
-			perso1->id, perso1->count_item2, perso1->item2, 
-			perso2->id, perso1->count_item1, perso1->item1,
 			perso1->id, perso1->count_item1, perso1->item1, 
 			perso2->id, perso1->count_item2, perso1->item2,
+			perso1->id, perso1->count_item2, perso1->item2, 
+			perso2->id, perso1->count_item1, perso1->item1,
 			moi->id);
 		}
 		else
