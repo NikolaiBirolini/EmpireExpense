@@ -2,6 +2,7 @@
 #include "clavier.h"
 #include "perso.h"
 #include "collision.h"
+#include "formation.h"
 
 struct formation
 {

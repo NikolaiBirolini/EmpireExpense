@@ -34,26 +34,31 @@ void commande(struct linked_list *selected, struct personnages *moi, struct form
 
 		float x = ((float)lettres->Mouse_pos_x + 2*(float)lettres->Mouse_pos_y-1800)/44 + (float)screenx;
 		float y = (2*(float)lettres->Mouse_pos_y - (float)lettres->Mouse_pos_x)/44 + (float)screeny;
-
+        moi->ordrex = x;
+		moi->ordrey = y;
 		int i = 0;
 		int j = 0;
 		int pers = 0;
+
+		int c = 1;
 
 		SDL_bool selectMoreThanOne = SDL_FALSE;
 		if (getSizeLinkedList(selected) > 1)
 		    selectMoreThanOne = SDL_TRUE;
 
+		square(selected , x, y);
+
 		for (struct linked_list *a = selected; a != NULL; a = a->next)
 		{
 			//printf ("%s\n", a->p->nom);
 
-			if(selectMoreThanOne && pers != 0)
+			if(selectMoreThanOne && pers != 0 && c !=1)
 				x = x + 3; 
 			
 			if (strcmp(a->p->nom_superieur, moi->nom) == 0)
 			{
 				// Perso parametre 3 = x et parametre 4 tu le mets à y
-				sprintf (ordre + strlen(ordre), "%d 03 %f %d 04 %f ", a->p->id, x, a->p->id, y);
+				sprintf (ordre + strlen(ordre), "%d 03 %f %d 04 %f ", a->p->id, a->p->ordrex, a->p->id, a->p->ordrey);
 				i++;
 				if (i > f->n_par_lignes)
 				{
