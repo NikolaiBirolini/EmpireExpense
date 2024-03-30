@@ -93,6 +93,7 @@ void boucle_jeu(int socket, char *name)
     free(ground);
     list = recv_map(socket);
     moi = find_perso_by_name(name);	
+    init_filled();
     screenx = moi->x;
     screeny = moi->y;
 	struct linked_list *selected = NULL;
