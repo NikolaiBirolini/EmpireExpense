@@ -64,7 +64,6 @@ void my_computer_work(struct personnages *moi)
 
 void ia(void)
 {
-    rebuild_filled();
     for (struct linked_list *parcour = list; parcour != NULL; parcour = parcour->next)
     {
         if (parcour->p->my_computer_work == 1)
