@@ -11,9 +11,9 @@
 
 struct path
 {
-    int value;
+    float value;
     char walkable;
-    char already;
+    float already;
     int prev;
 };
 
