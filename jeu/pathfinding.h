@@ -11,9 +11,9 @@
 
 struct path
 {
-    int value;
+    float value;
     char walkable;
-    char already;
+    float already;
     int prev;
 };
 
@@ -22,3 +22,5 @@ void createArray(struct personnages *p);
 int find_next(struct path *array);
 void generate_around(struct path *array, int src, struct personnages *p);
 char findpath(struct personnages *p);
+void init_filled(void);
+void rebuild_filled(void);

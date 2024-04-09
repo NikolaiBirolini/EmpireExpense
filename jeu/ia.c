@@ -203,7 +203,7 @@ void ia_man(struct linked_list *parcour)
         sprintf (ordre + strlen(ordre), "%d 00 -1 ", parcour->p->id);
     if (parcour->p->ordrex > 0)
     {
-        if (pow(parcour->p->ordrex - parcour->p->x,2) +  pow(parcour->p->ordrey - parcour->p->y,2) < 1)
+        if (pow(parcour->p->ordrex - parcour->p->x,2) +  pow(parcour->p->ordrey - parcour->p->y,2) < 0.25)
         {
             sprintf (ordre + strlen(ordre), "%d 03 -1 ", parcour->p->id);
             parcour->p->chemin_is_set = 0;
@@ -220,6 +220,16 @@ void ia_man(struct linked_list *parcour)
                 sprintf (ordre + strlen(ordre), "%d 02 -%f %d 05 3,1416 ", parcour->p->id, parcour->p->vitesse_dep, parcour->p->id);
             else if (src + max_x == dst)
                 sprintf (ordre + strlen(ordre), "%d 02 +%f %d 05 0 ", parcour->p->id, parcour->p->vitesse_dep, parcour->p->id);
+            
+            if (src + 1 + max_x == dst)
+                sprintf (ordre + strlen(ordre), "%d 01 +%f %d 02 +%f %d 05 5.4978 ", parcour->p->id, parcour->p->vitesse_dep*0.707, parcour->p->id,parcour->p->vitesse_dep*0.707, parcour->p->id);
+            else if (src + 1 - max_x == dst)
+                sprintf (ordre + strlen(ordre), "%d 01 +%f %d 02 -%f %d 05 3.927 ", parcour->p->id, parcour->p->vitesse_dep*0.707, parcour->p->id,parcour->p->vitesse_dep*0.707, parcour->p->id);
+            else if (src - 1 + max_x == dst)
+                sprintf (ordre + strlen(ordre), "%d 01 -%f %d 02 +%f %d 05 0.7854 ", parcour->p->id, parcour->p->vitesse_dep*0.707, parcour->p->id,parcour->p->vitesse_dep*0.707, parcour->p->id);
+            else if (src -1 - max_x == dst)
+                sprintf (ordre + strlen(ordre), "%d 01 -%f %d 02 -%f %d 05 2,3562 ", parcour->p->id, parcour->p->vitesse_dep*0.707, parcour->p->id,parcour->p->vitesse_dep*0.707, parcour->p->id);
+
         }
         else
         {
