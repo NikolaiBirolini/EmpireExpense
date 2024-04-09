@@ -14,53 +14,28 @@ void deplacement(struct personnages *moi)
 	screenx = moi->x + to_add_x;
 	screeny = moi->y + to_add_y;
 
-	float mvx = 0;
-	float mvy = 0;
-
-	int dep = 0;
+	
 
 
-	if (lettres->z == 1 || lettres->up)
-	{
-		dep = 1;
-		mvx -= moi->vitesse_dep * sin(moi->angle);
-		mvy += moi->vitesse_dep * cos(moi->angle);
+	if (lettres->d == 1)
+		sprintf (ordre + strlen(ordre), "%d 01 +%f %d 02 -%f %d 05 3.927 ", moi->id, moi->vitesse_dep * 0.707, moi->id, moi->vitesse_dep * 0.707, moi->id);
+	else if (lettres->q == 1)
+		sprintf (ordre + strlen(ordre), "%d 01 -%f %d 02 +%f %d 05 0.7854 ", moi->id, moi->vitesse_dep * 0.707, moi->id, moi->vitesse_dep * 0.707, moi->id);
+	else if (lettres->z == 1 )
+		sprintf (ordre + strlen(ordre), "%d 01 -%f %d 02 -%f %d 05 2.3562 ", moi->id, moi->vitesse_dep * 0.707, moi->id, moi->vitesse_dep * 0.707, moi->id);
+	else if (lettres->x == 1)
+		sprintf (ordre + strlen(ordre), "%d 01 +%f %d 02 +%f %d 05 5.4978 ", moi->id, moi->vitesse_dep * 0.707, moi->id, moi->vitesse_dep * 0.707, moi->id);
+	else if (lettres->a == 1)
+		sprintf (ordre + strlen(ordre), "%d 01 -%f %d 05 1.5708 ", moi->id, moi->vitesse_dep, moi->id); 
+	else if (lettres->e == 1)
+		sprintf (ordre + strlen(ordre), "%d 02 -%f %d 05 3,1416 ", moi->id, moi->vitesse_dep, moi->id);
+	else if (lettres->c == 1)
+		sprintf (ordre + strlen(ordre), "%d 01 +%f %d 05 4,7124 ", moi->id, moi->vitesse_dep, moi->id);
+	else if (lettres->w == 1)
+		sprintf (ordre + strlen(ordre), "%d 02 +%f %d 05 0 ", moi->id, moi->vitesse_dep, moi->id);
+	
 		
-	}
-	if (lettres->s == 1 || lettres->down)
-	{
-		dep = 1;
-		mvx += moi->vitesse_dep * sin(moi->angle);
-		mvy -= moi->vitesse_dep * cos(moi->angle);
-	}
-	if (lettres->a == 1)
-	{
-		dep = 1;
-		mvy += moi->vitesse_dep * sin(moi->angle);
-		mvx += moi->vitesse_dep * cos(moi->angle);
-	}
-	if (lettres->e == 1)
-	{
-		dep = 1;
-		mvy -= moi->vitesse_dep * sin(moi->angle);
-		mvx -= moi->vitesse_dep * cos(moi->angle);
-	}
-	if (lettres->q == 1 || lettres->left)
-	{
-		if (moi->angle < 0)
-			sprintf (ordre + strlen(ordre), "%d 05 6.28318530718 ", moi->id);
-		else
-			sprintf (ordre + strlen(ordre), "%d 05 -0.1 ", moi->id);
-	}
-	if (lettres->d == 1 || lettres->right)
-	{
-		if (moi->angle > 6.28318530718)
-			sprintf (ordre + strlen(ordre), "%d 05 0 ", moi->id);
-		else
-			sprintf (ordre + strlen(ordre), "%d 05 +0.1 ", moi->id);
-	}
+	
 		
-	if (dep == 1)
-		sprintf (ordre + strlen(ordre), "%d 01 +%f %d 02 +%f ", moi->id, mvx, moi->id, mvy);
 
 }
