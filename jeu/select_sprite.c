@@ -14,7 +14,7 @@ SDL_Texture *select_good_img(struct personnages *perso)
 	float angle = perso->angle;
 	if (strcmp(perso->skin, "ship1") == 0)
 		return img->s->ship1haut;
-	if (strcmp(perso->skin, "chateau") == 0)
+	/*if (strcmp(perso->skin, "chateau") == 0)
 	{
 		if (angle < 15 || angle >= 345)
 			return img->s->chateauDos;
@@ -58,7 +58,7 @@ SDL_Texture *select_good_img(struct personnages *perso)
 		else if (angle < 255 && angle >= 225)
 			return img->s->tourGaucheFace;
 		return img->s->tourGauche;
-	}
+	}*/
 	if (strncmp(perso->skin, "arbre", 5) == 0)
 	{
 		if (perso->skin[5] == '1')
@@ -68,29 +68,29 @@ SDL_Texture *select_good_img(struct personnages *perso)
 		return img->s->fruit;
 	if (strcmp(perso->skin, "flag_zone") == 0)
 	{
-		if (angle < 15 || angle >= 345)
+		if (angle == 'a')
             return img->s->drapeauBlancFace_dos;
-        else if (angle < 45 && angle >= 15)
+        else if (angle == 'b')
             return img->s->drapeauBlancDosDroite;
-        else if (angle < 75 && angle >= 45)
+        else if (angle == 'c')
             return img->s->drapeauBlancDroiteDos;
-        else if (angle < 105 && angle >= 75)
+        else if (angle == 'd')
             return img->s->drapeauBlancDroite;
-        else if (angle < 135 && angle >= 105)
+        else if (angle == 'e')
             return img->s->drapeauBlancDroiteFace;
-        else if (angle < 165 && angle >= 135)
+        else if (angle == 'f')
             return img->s->drapeauBlancFaceDroite;
-        else if (angle < 195 && angle >= 165)
+        else if (angle == 'g')
             return img->s->drapeauBlancFace_dos;
-        else if (angle < 225 && angle >= 195)
+        else if (angle == 'h')
             return img->s->drapeauBlancFaceGauche;
-        else if (angle < 255 && angle >= 225)
+        else if (angle == 'i')
             return img->s->drapeauBlancGaucheFace;
-        else if (angle < 285 && angle >= 255)
+        else if (angle == 'j')
             return img->s->drapeauBlancGauche;
-        else if (angle < 315 && angle >= 285)
+        else if (angle == 'k')
             return img->s->drapeauBlancGaucheDos;
-        else if (angle < 345 && angle >= 315)
+        else if (angle == 'l')
             return img->s->drapeauBlancDosGauche;
 	}
 	perso->animation_time += 1;
@@ -106,164 +106,164 @@ SDL_Texture *select_good_img(struct personnages *perso)
 	{
 		if (perso->animation == 0)
 		{
-			if (angle >= 1.77264454579 && angle < 2.29624332139)
+			if (angle == 'a')
 				return img->s->hoFaDoRien;
-			else if (angle >= 2.29624332139 && angle < 2.81984209699)
+			else if (angle == 'a')
 				return img->s->hoFaDoDrRien;
-			else if (angle >= 2.81984209699 && angle < 3.34344087259)
+			else if (angle == 'b')
 				return img->s->hoFaDrDoRien;
-			else if (angle >= 3.34344087259 && angle < 3.86703964818)
+			else if (angle == 'c')
 				return img->s->hoFaDrRien;
-			else if (angle >= 3.86703964818 && angle < 4.39063842378)
+			else if (angle == 'd')
 				return img->s->hoFaDrFaRien;
-			else if (angle >= 4.39063842378 && angle < 4.91423719938)
+			else if (angle == 'e')
 				return img->s->hoFaFaDrRien;
-			else if (angle >= 4.91423719938 && angle < 5.43783597498)
+			else if (angle == 'f')
 				return img->s->hoFaFaRien;
-			else if (angle >= 5.4378359749 && angle < 5.96143475058)
+			else if (angle == 'g')
 				return img->s->hoFaFaGaRien;
-			else if (angle >= 5.96143475058 || angle < 0.2018482189)
+			else if (angle == 'h')
 				return img->s->hoFaGaFaRien;
-			else if (angle >= 0.20184821899 && angle < 0.72544699459)
+			else if (angle == 'i')
 				return img->s->hoFaGaRien;
-			else if (angle >= 0.72544699459 && angle < 1.24904577019)
+			else if (angle == 'j')
 				return img->s->hoFaGaDoRien;
-			else if (angle >= 1.24904577019 && angle < 1.77264454579)
+			else if (angle == 'k')
 				return img->s->hoFaDoGaRien;
 		}
 		else if (perso->animation == 1)
 		{
-			if (angle >= 1.77264454579 && angle < 2.29624332139)
+			if (angle == 'a')
 				return img->s->hoFaDoMa1;
-			else if (angle >= 2.29624332139 && angle < 2.81984209699)
+			else if (angle == 'b')
 				return img->s->hoFaDoDrMa1;
-			else if (angle >= 2.81984209699 && angle < 3.34344087259)
+			else if (angle == 'c')
 				return img->s->hoFaDrDoMa1;
-			else if (angle >= 3.34344087259 && angle < 3.86703964818)
+			else if (angle == 'd')
 				return img->s->hoFaDrMa1;
-			else if (angle >= 3.86703964818 && angle < 4.39063842378)
+			else if (angle == 'e')
 				return img->s->hoFaDrFaMa1;
-			else if (angle >= 4.39063842378 && angle < 4.91423719938)
+			else if (angle == 'f')
 				return img->s->hoFaFaDrMa1;
-			else if (angle >= 4.91423719938 && angle < 5.43783597498)
+			else if (angle == 'g')
 				return img->s->hoFaFaMa1;
-			else if (angle >= 5.4378359749 && angle < 5.96143475058)
+			else if (angle == 'h')
 				return img->s->hoFaFaGaMa1;
-			else if (angle >= 5.96143475058 || angle < 0.2018482189)
+			else if (angle == 'i')
 				return img->s->hoFaGaFaMa1;
-			else if (angle >= 0.20184821899 && angle < 0.72544699459)
+			else if (angle == 'j')
 				return img->s->hoFaGaMa1;
-			else if (angle >= 0.72544699459 && angle < 1.24904577019)
+			else if (angle == 'k')
 				return img->s->hoFaGaDoMa1;
-			else if (angle >= 1.24904577019 && angle < 1.77264454579)
+			else if (angle == 'l')
 				return img->s->hoFaDoGaMa1;
 		}
 		else if (perso->animation == 2)
 		{
-			if (angle >= 1.77264454579 && angle < 2.29624332139)
+			if (angle == 'a')
 				return img->s->hoFaDoMa2;
-			else if (angle >= 2.29624332139 && angle < 2.81984209699)
+			else if (angle == 'b')
 				return img->s->hoFaDoDrMa2;
-			else if (angle >= 2.81984209699 && angle < 3.34344087259)
+			else if (angle == 'c')
 				return img->s->hoFaDrDoMa2;
-			else if (angle >= 3.34344087259 && angle < 3.86703964818)
+			else if (angle == 'd')
 				return img->s->hoFaDrMa2;
-			else if (angle >= 3.86703964818 && angle < 4.39063842378)
+			else if (angle == 'e')
 				return img->s->hoFaDrFaMa2;
-			else if (angle >= 4.39063842378 && angle < 4.91423719938)
+			else if (angle == 'f')
 				return img->s->hoFaFaDrMa2;
-			else if (angle >= 4.91423719938 && angle < 5.43783597498)
+			else if (angle == 'g')
 				return img->s->hoFaFaMa2;
-			else if (angle >= 5.4378359749 && angle < 5.96143475058)
+			else if (angle == 'h')
 				return img->s->hoFaFaGaMa2;
-			else if (angle >= 5.96143475058 || angle < 0.2018482189)
+			else if (angle == 'i')
 				return img->s->hoFaGaFaMa2;
-			else if (angle >= 0.20184821899 && angle < 0.72544699459)
+			else if (angle == 'j')
 				return img->s->hoFaGaMa2;
-			else if (angle >= 0.72544699459 && angle < 1.24904577019)
+			else if (angle == 'k')
 				return img->s->hoFaGaDoMa2;
-			else if (angle >= 1.24904577019 && angle < 1.77264454579)
+			else if (angle == 'l')
 				return img->s->hoFaDoGaMa2;
 		}
 		else if (perso->animation == 3)
 		{
-			if (angle >= 1.77264454579 && angle < 2.29624332139)
+			if (angle == 'a')
 				return img->s->hoFaDoMa3;
-			else if (angle >= 2.29624332139 && angle < 2.81984209699)
+			else if (angle == 'b')
 				return img->s->hoFaDoDrMa3;
-			else if (angle >= 2.81984209699 && angle < 3.34344087259)
+			else if (angle == 'c')
 				return img->s->hoFaDrDoMa3;
-			else if (angle >= 3.34344087259 && angle < 3.86703964818)
+			else if (angle == 'd')
 				return img->s->hoFaDrMa3;
-			else if (angle >= 3.86703964818 && angle < 4.39063842378)
+			else if (angle == 'e')
 				return img->s->hoFaDrFaMa3;
-			else if (angle >= 4.39063842378 && angle < 4.91423719938)
+			else if (angle == 'f')
 				return img->s->hoFaFaDrMa3;
-			else if (angle >= 4.91423719938 && angle < 5.43783597498)
+			else if (angle == 'g')
 				return img->s->hoFaFaMa3;
-			else if (angle >= 5.4378359749 && angle < 5.96143475058)
+			else if (angle == 'h')
 				return img->s->hoFaFaGaMa3;
-			else if (angle >= 5.96143475058 || angle < 0.2018482189)
+			else if (angle == 'i')
 				return img->s->hoFaGaFaMa3;
-			else if (angle >= 0.20184821899 && angle < 0.72544699459)
+			else if (angle == 'j')
 				return img->s->hoFaGaMa3;
-			else if (angle >= 0.72544699459 && angle < 1.24904577019)
+			else if (angle == 'k')
 				return img->s->hoFaGaDoMa3;
-			else if (angle >= 1.24904577019 && angle < 1.77264454579)
+			else if (angle == 'l')
 				return img->s->hoFaDoGaMa3;
 		}
 		else if (perso->animation == 4)
 		{
-			if (angle >= 1.77264454579 && angle < 2.29624332139)
+			if (angle == 'a')
 				return img->s->hoFaDoMa4;
-			else if (angle >= 2.29624332139 && angle < 2.81984209699)
+			else if (angle == 'b')
 				return img->s->hoFaDoDrMa4;
-			else if (angle >= 2.81984209699 && angle < 3.34344087259)
+			else if (angle == 'c')
 				return img->s->hoFaDrDoMa4;
-			else if (angle >= 3.34344087259 && angle < 3.86703964818)
+			else if (angle == 'd')
 				return img->s->hoFaDrMa4;
-			else if (angle >= 3.86703964818 && angle < 4.39063842378)
+			else if (angle == 'e')
 				return img->s->hoFaDrFaMa4;
-			else if (angle >= 4.39063842378 && angle < 4.91423719938)
+			else if (angle == 'f')
 				return img->s->hoFaFaDrMa4;
-			else if (angle >= 4.91423719938 && angle < 5.43783597498)
+			else if (angle == 'g')
 				return img->s->hoFaFaMa4;
-			else if (angle >= 5.4378359749 && angle < 5.96143475058)
+			else if (angle == 'h')
 				return img->s->hoFaFaGaMa4;
-			else if (angle >= 5.96143475058 || angle < 0.2018482189)
+			else if (angle == 'i')
 				return img->s->hoFaGaFaMa4;
-			else if (angle >= 0.20184821899 && angle < 0.72544699459)
+			else if (angle == 'j')
 				return img->s->hoFaGaMa4;
-			else if (angle >= 0.72544699459 && angle < 1.24904577019)
+			else if (angle == 'k')
 				return img->s->hoFaGaDoMa4;
-			else if (angle >= 1.24904577019 && angle < 1.77264454579)
+			else if (angle == 'l')
 				return img->s->hoFaDoGaMa4;
 		}
 		else
 		{
-			if (angle >= 1.77264454579 && angle < 2.29624332139)
+			if (angle == 'a')
 				return img->s->hoFaDoMa5;
-			else if (angle >= 2.29624332139 && angle < 2.81984209699)
+			else if (angle == 'b')
 				return img->s->hoFaDoDrMa5;
-			else if (angle >= 2.81984209699 && angle < 3.34344087259)
+			else if (angle == 'c')
 				return img->s->hoFaDrDoMa5;
-			else if (angle >= 3.34344087259 && angle < 3.86703964818)
+			else if (angle == 'd')
 				return img->s->hoFaDrMa5;
-			else if (angle >= 3.86703964818 && angle < 4.39063842378)
+			else if (angle == 'e')
 				return img->s->hoFaDrFaMa5;
-			else if (angle >= 4.39063842378 && angle < 4.91423719938)
+			else if (angle == 'f')
 				return img->s->hoFaFaDrMa5;
-			else if (angle >= 4.91423719938 && angle < 5.43783597498)
+			else if (angle == 'g')
 				return img->s->hoFaFaMa5;
-			else if (angle >= 5.4378359749 && angle < 5.96143475058)
+			else if (angle == 'h')
 				return img->s->hoFaFaGaMa5;
-			else if (angle >= 5.96143475058 || angle < 0.2018482189)
+			else if (angle == 'i')
 				return img->s->hoFaGaFaMa5;
-			else if (angle >= 0.20184821899 && angle < 0.72544699459)
+			else if (angle == 'j')
 				return img->s->hoFaGaMa5;
-			else if (angle >= 0.72544699459 && angle < 1.24904577019)
+			else if (angle == 'k')
 				return img->s->hoFaGaDoMa5;
-			else if (angle >= 1.24904577019 && angle < 1.77264454579)
+			else if (angle == 'l')
 				return img->s->hoFaDoGaMa5;
 		}
 	}
@@ -271,95 +271,98 @@ SDL_Texture *select_good_img(struct personnages *perso)
 	{
 		if (perso->animation == 0)
 		{
-			if (angle < 23 || angle > 337)
+			if (angle == 'a')
 				return img->s->hoArDoMa1;
-			else if (angle < 69  &&  angle >= 23)
+			else if (angle == 'b')
 				return img->s->hoArDdMa1;
-			else if (angle >= 69  &&  angle < 114)
+			else if (angle == 'c')
 				return img->s->hoArDrMa1;
-			else if (angle < 159  &&  angle >= 114)
+			else if (angle == 'd')
 				return img->s->hoArDfMa1;
-			else if (angle >= 159  &&  angle < 204)
+			else if (angle == 'e')
 				return img->s->hoArFaMa1;
-			else if (angle < 249  &&  angle >= 204)
+			else if (angle == 'f')
 				return img->s->hoArGfMa1;
-			else if (angle >= 249  &&  angle < 294)
+			else if (angle == 'g')
 				return img->s->hoArGaMa1;
-			return img->s->hoArGdMa1;
+			else if (angle == 'h')
+				return img->s->hoArGdMa1;
 		}
 		else if (perso->animation == 2)
 		{
-			if (angle < 23 || angle > 337)
+			if (angle == 'a')
 				return img->s->hoArDoMa2;
-			else if (angle < 69  &&  angle >= 23)
+			else if (angle == 'b')
 				return img->s->hoArDdMa2;
-			else if (angle >= 69  &&  angle < 114)
+			else if (angle == 'c')
 				return img->s->hoArDrMa2;
-			else if (angle >= 69  &&  angle < 114)
-				return img->s->hoArDrMa2;
-			else if (angle < 159  &&  angle >= 114)
+			else if (angle == 'd')
 				return img->s->hoArDfMa2;
-			else if (angle >= 159  &&  angle < 204)
+			else if (angle == 'e')
 				return img->s->hoArFaMa2;
-			else if (angle < 249  &&  angle >= 204)
+			else if (angle == 'f')
 				return img->s->hoArGfMa2;
-			else if (angle >= 249  &&  angle < 294)
+			else if (angle == 'g')
 				return img->s->hoArGaMa2;
-			return img->s->hoArGdMa2;
+			else if (angle == 'h')
+				return img->s->hoArGdMa2;
 		}
 		else if (perso->animation == 3)
 		{
-			if (angle < 23 || angle > 337)
+			if (angle == 'a')
 				return img->s->hoArDoMa3;
-			else if (angle < 69  &&  angle >= 23)
+			else if (angle == 'b')
 				return img->s->hoArDdMa3;
-			else if (angle >= 69  &&  angle < 114)
+			else if (angle == 'c')
 				return img->s->hoArDrMa3;
-			else if (angle < 159  &&  angle >= 114)
+			else if (angle == 'd')
 				return img->s->hoArDfMa3;
-			else if (angle >= 159  &&  angle < 204)
+			else if (angle == 'e')
 				return img->s->hoArFaMa3;
-			else if (angle < 249  &&  angle >= 204)
+			else if (angle == 'f')
 				return img->s->hoArGfMa3;
-			else if (angle >= 249  &&  angle < 294)
+			else if (angle == 'g')
 				return img->s->hoArGaMa3;
-			return img->s->hoArGdMa3;
+			else if (angle == 'h')
+				return img->s->hoArGdMa3;
 		}
 		else if (perso->animation == 4)
 		{
-			if (angle < 23 || angle > 337)
+			if (angle == 'a')
 				return img->s->hoArDoMa4;
-			else if (angle < 69  &&  angle >= 23)
+			else if (angle == 'b')
 				return img->s->hoArDdMa4;
-			else if (angle >= 69  &&  angle < 114)
+			else if (angle == 'c')
 				return img->s->hoArDrMa4;
-			else if (angle < 159  &&  angle >= 114)
+			else if (angle == 'd')
 				return img->s->hoArDfMa4;
-			else if (angle >= 159  &&  angle < 204)
+			else if (angle == 'e')
 				return img->s->hoArFaMa4;
-			else if (angle < 249  &&  angle >= 204)
+			else if (angle == 'f')
 				return img->s->hoArGfMa4;
-			else if (angle >= 249  &&  angle < 294)
+			else if (angle == 'g')
 				return img->s->hoArGaMa4;
-			return img->s->hoArGdMa4;
+			else if (angle == 'h')
+				return img->s->hoArGdMa4;
 		}
 		else
 		{
-			if (angle < 23 || angle > 337)
+			if (angle == 'b')
 				return img->s->hoArDoMa5;
-			else if (angle < 69  &&  angle >= 23)
+			else if (angle == 'b')
 				return img->s->hoArDdMa5;
-			else if (angle >= 69  &&  angle < 114)
+			else if (angle == 'c')
 				return img->s->hoArDrMa5;
-			else if (angle < 159  &&  angle >= 114)
+			else if (angle == 'd')
 				return img->s->hoArDfMa5;
-			else if (angle >= 159  &&  angle < 204)
+			else if (angle == 'e')
 				return img->s->hoArFaMa5;
-			else if (angle < 249  &&  angle >= 204)
+			else if (angle == 'f')
 				return img->s->hoArGfMa5;
-			else if (angle >= 249  &&  angle < 294)
+			else if (angle == 'g')
 				return img->s->hoArGaMa5;
-			return img->s->hoArGdMa5;
+			else if (angle == 'h')
+				return img->s->hoArGdMa5;
 		}
 	}
 	return img->s->hoArGdMa5;

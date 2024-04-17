@@ -86,21 +86,8 @@ void parse_order(char *line)
                 i++;
                 break;
             case 5:
-                if (line[i] == '+')
-                {
-                    i++;
-                    p->angle += atof(&line[i]);
-                }
-                else if (line[i] == '-')
-                {
-                    i++;
-                    p->angle -= atof(&line[i]);
-                }
-                else
-                    p->angle = atof(&line[i]);
-                while(line[i] != ' ')
-                    i++;
-                i++;
+                p->angle = line[i];
+                i += 2;
                 break;
             case 6:
                 p->timer_dom = atoi(&line[i]);
@@ -397,7 +384,7 @@ void parse_new(struct personnages *p, char *line)
     char tmpI[10];
     char tmpF[30];
     char tmpN[50];
-    sscanf(line, "%d %d %s %f %f %f %f %f %d %d %s %s %s %s %s %d %s %s %d %s %d %d %d %c %s %s %s %s %s %s %n", 
+    sscanf(line, "%d %d %s %f %f %f %f %c %d %d %s %s %s %s %s %d %s %s %d %s %d %d %d %c %s %s %s %s %s %s %n", 
     &p->id, &p->pv, p->nom_de_compte, &p->x, &p->y, &p->ordrex, &p->ordrey, &p->angle, &p->timer_dom, &p->faim, p->skin, p->nom, 
     p->nom_superieur, p->titre, p->religion, &p->nb_vassaux, p->echange_player, p->item1, &p->count_item1, p->item2, &p->count_item2, &p->animation, &p->animation_2, 
     &p->chemin_is_set, p->left_hand, p->right_hand, p->headgear, p->tunic, p->pant, p->shoes, &i);

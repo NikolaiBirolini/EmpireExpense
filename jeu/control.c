@@ -18,21 +18,21 @@ void deplacement(struct personnages *moi)
 
 
 	if (lettres->d == 1)
-		sprintf (ordre + strlen(ordre), "%d 01 +%f %d 02 -%f %d 05 3.927 ", moi->id, moi->vitesse_dep * 0.707, moi->id, moi->vitesse_dep * 0.707, moi->id);
+		sprintf (ordre + strlen(ordre), "%d 01 +%f %d 02 -%f %d 05 d ", moi->id, moi->vitesse_dep * 0.707, moi->id, moi->vitesse_dep * 0.707, moi->id);
 	else if (lettres->q == 1)
-		sprintf (ordre + strlen(ordre), "%d 01 -%f %d 02 +%f %d 05 0.7854 ", moi->id, moi->vitesse_dep * 0.707, moi->id, moi->vitesse_dep * 0.707, moi->id);
+		sprintf (ordre + strlen(ordre), "%d 01 -%f %d 02 +%f %d 05 k ", moi->id, moi->vitesse_dep * 0.707, moi->id, moi->vitesse_dep * 0.707, moi->id);
 	else if (lettres->z == 1 )
-		sprintf (ordre + strlen(ordre), "%d 01 -%f %d 02 -%f %d 05 2.3562 ", moi->id, moi->vitesse_dep * 0.707, moi->id, moi->vitesse_dep * 0.707, moi->id);
+		sprintf (ordre + strlen(ordre), "%d 01 -%f %d 02 -%f %d 05 a ", moi->id, moi->vitesse_dep * 0.707, moi->id, moi->vitesse_dep * 0.707, moi->id);
 	else if (lettres->x == 1)
-		sprintf (ordre + strlen(ordre), "%d 01 +%f %d 02 +%f %d 05 5.4978 ", moi->id, moi->vitesse_dep * 0.707, moi->id, moi->vitesse_dep * 0.707, moi->id);
+		sprintf (ordre + strlen(ordre), "%d 01 +%f %d 02 +%f %d 05 g ", moi->id, moi->vitesse_dep * 0.707, moi->id, moi->vitesse_dep * 0.707, moi->id);
 	else if (lettres->a == 1)
-		sprintf (ordre + strlen(ordre), "%d 01 -%f %d 05 1.5708 ", moi->id, moi->vitesse_dep, moi->id); 
+		sprintf (ordre + strlen(ordre), "%d 01 -%f %d 05 j ", moi->id, moi->vitesse_dep, moi->id); 
 	else if (lettres->e == 1)
-		sprintf (ordre + strlen(ordre), "%d 02 -%f %d 05 3,1416 ", moi->id, moi->vitesse_dep, moi->id);
+		sprintf (ordre + strlen(ordre), "%d 02 -%f %d 05 b ", moi->id, moi->vitesse_dep, moi->id);
 	else if (lettres->c == 1)
-		sprintf (ordre + strlen(ordre), "%d 01 +%f %d 05 4,7124 ", moi->id, moi->vitesse_dep, moi->id);
+		sprintf (ordre + strlen(ordre), "%d 01 +%f %d 05 e ", moi->id, moi->vitesse_dep, moi->id);
 	else if (lettres->w == 1)
-		sprintf (ordre + strlen(ordre), "%d 02 +%f %d 05 0 ", moi->id, moi->vitesse_dep, moi->id);
+		sprintf (ordre + strlen(ordre), "%d 02 +%f %d 05 h ", moi->id, moi->vitesse_dep, moi->id);
 	
 		
 	

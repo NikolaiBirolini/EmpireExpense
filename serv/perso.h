@@ -21,7 +21,7 @@ struct personnages
     float y;
     float ordrex;
     float ordrey;
-    float angle;
+    char angle;
     int timer_dom;
     int faim;
     char skin[50];
