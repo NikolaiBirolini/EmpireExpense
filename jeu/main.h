@@ -22,6 +22,7 @@
 #include "shared_var.h"
 #include "arg_parse.h"
 #include <time.h>
+#include <sys/time.h>
 #include "display.h"
 #include "initWorld.h"
 #include "graphic_widget/button.h"

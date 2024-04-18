@@ -100,13 +100,19 @@ void boucle_jeu(int socket, char *name)
     init_main_menu();
     init_speak_bubble();
 	bool done = false;
-    
+    //struct timeval start, end;
+    //struct timeval sstart, eend;
 	while(!done)
 	{
-        clock_t begin = clock();
-		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        //gettimeofday(&start, NULL);
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
+        //gettimeofday(&sstart, NULL);
 	    display_all(moi);
+        /*gettimeofday(&eend, NULL);
+        double elapsedTime = (eend.tv_sec - sstart.tv_sec) * 1000.0;      // sec to ms
+        elapsedTime += (eend.tv_usec - sstart.tv_usec) / 1000.0;
+        fprintf(stderr, "display = %5.3fms \n", elapsedTime);*/
         display_selected(selected, moi, f);
         display_elipse_and_handle_buttons(moi);
         if (main_menu->on == 1)
@@ -122,7 +128,7 @@ void boucle_jeu(int socket, char *name)
         {
             gestion_touche();
             deplacement(moi);
-	        selected = select(selected);
+	        selected = select_char(selected);
 	        commande(selected, moi, f);
             if (lettres->m)
                 main_menu->on = 1;
@@ -143,8 +149,10 @@ void boucle_jeu(int socket, char *name)
 	    list = death();
 		
 	    SDL_RenderPresent(renderer);
-        clock_t end = clock();
-        //printf ("%f\n", CLOCKS_PER_SEC/(double)(end - begin)); //in microseconds
+        /*gettimeofday(&end, NULL);
+        double elapsedTime = (end.tv_sec - start.tv_sec) * 1000.0;      // sec to ms
+        elapsedTime += (end.tv_usec - start.tv_usec) / 1000.0;
+        fprintf(stderr, "total = %5.3fms \n", elapsedTime);*/
 
 	}
 }

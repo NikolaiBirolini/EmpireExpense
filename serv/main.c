@@ -117,8 +117,10 @@ int main(int argc, char **argv)
 	char *order = calloc(10000, 1);
 	
 	//debout boucle, on suppose que la carte est initialisée.
+    struct timeval start, end;
 	while (1)
     {
+        gettimeofday(&start, NULL);
         int n, i;
         n = epoll_wait (efd, events, MAXEVENTS, 0);
         for (i = 0; i < n; i++)
@@ -245,6 +247,7 @@ int main(int argc, char **argv)
                         }
                         else
 						{
+                            //printf ("[%s]\n", buf);
 							parse_order(buf); 
 						}
                     }
@@ -265,7 +268,7 @@ int main(int argc, char **argv)
         }
 		time = clock();
         t2 = (float)(time / (CLOCKS_PER_SEC / 60));
-        if (t2 - t >= 1)
+        if (t2 - t >= 3)
         {
         	t = t2;
             collision();
@@ -273,10 +276,14 @@ int main(int argc, char **argv)
             for (int i = 4; i < MAXEVENTS + 5;i++)
             	if (statut[i] == 1)
 				{
-					//printf("%d : [%s %s]\n", i, order, order + 20);
+					printf("%d : [%s %s]\n", i, order, order + 20);
                 	send(i, order, size + 20, MSG_NOSIGNAL);
 				}
-           remove_perso();
+            remove_perso();
+            gettimeofday(&end, NULL);
+            double elapsedTime = (end.tv_sec - start.tv_sec) * 1000.0;      // sec to ms
+            elapsedTime += (end.tv_usec - start.tv_usec) / 1000.0;
+            //printf ("elapsedTime = %5.3fms \n", elapsedTime);
 		}
     }
 

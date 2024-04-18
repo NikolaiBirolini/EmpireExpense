@@ -21,6 +21,7 @@ void bubble_sort_perso()
 
 void display_ground(int x, int y, int xto, int yto)
 {
+	SDL_Rect position;
 	x += 1;
 	if (x == max_x)
 	{
@@ -35,11 +36,11 @@ void display_ground(int x, int y, int xto, int yto)
 	}
 	while (x != xto || y != yto)
 	{
-	    SDL_Rect position = {(x-screenx-y+screeny) * 22 + 878, (x-screenx + y-screeny) * 11 + 450 - ground_altitude[x + y * max_x], 0, 0};
-        SDL_Texture *affiche = ground_texture[x + y * max_x];
-        position.h = 22;
+	    position.x = (x-screenx-y+screeny) * 22 + 878;
+		position.y = (x-screenx + y-screeny) * 11 + 450 - ground_altitude[x + y * max_x];
 		position.w = 44;
-        SDL_RenderCopy(renderer, affiche, NULL, &position);
+		position.h = 22;
+        SDL_RenderCopy(renderer, ground_texture[x + y * max_x], NULL, &position);
 
 		for (int i = 0; i < ground_altitude[x + y * max_x]; i++)
 		{	

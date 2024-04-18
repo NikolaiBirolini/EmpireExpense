@@ -96,9 +96,9 @@ SDL_Texture *select_good_img(struct personnages *perso)
 	perso->animation_time += 1;
 	if (perso->animation_time > 8)
 	{
-		sprintf (ordre + strlen(ordre), "%d 21 %d ", perso->id, perso->animation + 1);
-		if (perso->animation >= 5)
-			sprintf (ordre + strlen(ordre), "%d 21 1 ", perso->id);
+		//sprintf (ordre + strlen(ordre), "%d 21 %d ", perso->id, perso->animation + 1);
+		//if (perso->animation >= 5)
+			//sprintf (ordre + strlen(ordre), "%d 21 1 ", perso->id);
 		perso->animation_time = 0;
 	}
 

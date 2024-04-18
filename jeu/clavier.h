@@ -3,7 +3,6 @@
 #include "shared_var.h"
 
 SDL_Event gestion_touche(void);
-void text_input(char *text, unsigned int limite);
 
 struct lettres
 {

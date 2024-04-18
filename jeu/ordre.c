@@ -1,6 +1,6 @@
 #include "ordre.h"
 
-struct linked_list *select(struct linked_list *selected)
+struct linked_list *select_char(struct linked_list *selected)
 {	
 	if (lettres->Mouse_Lclick == 1)
 	{

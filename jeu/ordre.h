@@ -10,5 +10,5 @@ struct formation
     int n_par_lignes;
 };
 
-struct linked_list *select(struct linked_list *selected);
+struct linked_list *select_char(struct linked_list *selected);
 void commande(struct linked_list *selected, struct personnages *moi, struct formation *f);
