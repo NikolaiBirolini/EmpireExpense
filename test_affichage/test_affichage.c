@@ -1,21 +1,39 @@
 #include <stdio.h>
-#include <time.h>
+#include <SDL2/SDL.h>
 
 int main() {
-    
-    struct timespec start, end;
-    clock_gettime(CLOCK_MONOTONIC, &start);
+    SDL_Init(SDL_INIT_VIDEO);
 
-    for (int i = 1; i <= 1000000; ++i) 
-    {
+    SDL_Window* window = SDL_CreateWindow("SDL TEST", SDL_WINDOWPOS_UNDEFINED, 
+                                          SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_SHOWN);
+    if (window == NULL) {
+        printf("Window creation error : %s\n", SDL_GetError());
+        return 1;
     }
 
-    clock_gettime(CLOCK_MONOTONIC, &end);
+    SDL_Event event;
+    int running = 1;
+    Uint32 start_time = SDL_GetTicks();
+    while (running) {
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_QUIT) {
+                running = 0;
+            }
+        }
+        SDL_SetRenderDrawColor(SDL_GetRenderer(window), 0, 0, 0, 255);
+        SDL_RenderClear(SDL_GetRenderer(window));
 
-    double duration_ms = (end.tv_sec - start.tv_sec) * 1000.0 +
-                         (end.tv_nsec - start.tv_nsec) / 1000000.0;
+        SDL_RenderPresent(SDL_GetRenderer(window));
 
-    printf("Delay : %.2f ms.\n", duration_ms);
+        Uint32 end_time = SDL_GetTicks();
+        double duration_ms = end_time - start_time;
+        printf("Delay : %.2f ms.\n", duration_ms);
+
+        running = 0;
+    }
+
+    SDL_DestroyWindow(window);
+    SDL_Quit();
 
     return 0;
 }
