@@ -1,15 +1,67 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 
-int main() {
-    SDL_Init(SDL_INIT_VIDEO);
 
-    SDL_Window* window = SDL_CreateWindow("SDL TEST", SDL_WINDOWPOS_UNDEFINED, 
-                                          SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_SHOWN);
+
+SDL_Window* window = NULL;
+SDL_Renderer* renderer = NULL;
+SDL_Texture* image_texture = NULL;
+SDL_Surface* image_surface = NULL;
+
+int init() 
+{
+    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+        printf("SDL initialization error: %s\n", SDL_GetError());
+        return 0;
+    }
+
+    window = SDL_CreateWindow("SDL TEST", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_SHOWN);
     if (window == NULL) {
-        printf("Window creation error : %s\n", SDL_GetError());
+        printf("Window creation error: %s\n", SDL_GetError());
+        SDL_Quit();
         return 1;
     }
+
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    if (renderer == NULL) {
+        printf("Renderer creation error: %s\n", SDL_GetError());
+        SDL_DestroyWindow(window);
+        SDL_Quit();
+        return 1;
+    }
+
+    image_surface = SDL_LoadBMP("dosDroiteRien.bmp");
+    if (image_surface == NULL) {
+        printf("Failed to load image: %s\n", SDL_GetError());
+        SDL_DestroyRenderer(renderer);
+        SDL_DestroyWindow(window);
+        SDL_Quit();
+        return 1;
+    }
+
+    image_texture = SDL_CreateTextureFromSurface(renderer, image_surface);
+    if (image_texture == NULL) {
+        printf("Failed to create texture: %s\n", SDL_GetError());
+        SDL_FreeSurface(image_surface);
+        SDL_DestroyRenderer(renderer);
+        SDL_DestroyWindow(window);
+        SDL_Quit();
+        return 1;
+    }
+
+    SDL_FreeSurface(image_surface);
+
+    return 0;
+}
+
+
+int main() 
+{
+
+    if (init())
+        return 1;
+
+    SDL_Rect dest_rect = {0, 0, image_surface->w, image_surface->h};
 
     SDL_Event event;
     int running = 1;
@@ -22,7 +74,7 @@ int main() {
         }
         SDL_SetRenderDrawColor(SDL_GetRenderer(window), 0, 0, 0, 255);
         SDL_RenderClear(SDL_GetRenderer(window));
-
+        SDL_RenderCopy(renderer, image_texture, NULL, &dest_rect);
         SDL_RenderPresent(SDL_GetRenderer(window));
 
         Uint32 end_time = SDL_GetTicks();
