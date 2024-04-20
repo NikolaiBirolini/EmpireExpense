@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 
-
-
 SDL_Window* window = NULL;
 SDL_Renderer* renderer = NULL;
 SDL_Texture* image_texture = NULL;
@@ -61,8 +59,6 @@ int main()
     if (init())
         return 1;
 
-    SDL_Rect dest_rect = {0, 0, image_surface->w, image_surface->h};
-
     SDL_Event event;
     int running = 1;
     Uint32 start_time = SDL_GetTicks();
@@ -72,9 +68,15 @@ int main()
                 running = 0;
             }
         }
+
         SDL_SetRenderDrawColor(SDL_GetRenderer(window), 0, 0, 0, 255);
         SDL_RenderClear(SDL_GetRenderer(window));
-        SDL_RenderCopy(renderer, image_texture, NULL, &dest_rect);
+        for(int i = 0; i<10; ++i)
+        {
+            SDL_Rect dest_rect = {10*i, 5*i, image_surface->w, image_surface->h};
+            SDL_RenderCopy(renderer, image_texture, NULL, &dest_rect);
+
+        }
         SDL_RenderPresent(SDL_GetRenderer(window));
 
         Uint32 end_time = SDL_GetTicks();
