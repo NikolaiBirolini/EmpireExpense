@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
+#include <time.h>
 
 SDL_Window* window = NULL;
 SDL_Renderer* renderer = NULL;
@@ -65,7 +66,7 @@ void affichage_1()
 
         SDL_SetRenderDrawColor(SDL_GetRenderer(window), 0, 0, 0, 255);
         SDL_RenderClear(SDL_GetRenderer(window));
-        for(int i = 0; i<10; ++i)
+        for(int i = 0; i<100; ++i)
         {
             SDL_Rect dest_rect = {10*i, 5*i, image_surface->w, image_surface->h};
             SDL_RenderCopy(renderer, image_texture, NULL, &dest_rect);
@@ -74,22 +75,37 @@ void affichage_1()
         SDL_RenderPresent(SDL_GetRenderer(window));
         running = 0;
     }
-
-    SDL_DestroyWindow(window);
 }
 
+Uint32 calculateMean(Uint32 tab[50])
+{
+    Uint32 ttl = 0;
+    for (int i = 0; i<50; i++)
+    {
+        ttl = ttl + tab[i];
+    }
+    return ttl/50;
+}
 
 int main() 
 {
+    Uint32 start_time, end_time;
+    Uint32 duration_ms;
+    Uint32 mesure[50];
 
-    if (init())
-        return 1;
-
-    Uint32 start_time = SDL_GetTicks();
-    affichage_1(); 
-    Uint32 end_time = SDL_GetTicks();
-    double duration_ms = end_time - start_time;
-    printf("Delay Affichage 1 : %.2f ms.\n", duration_ms);   
+    for(int nb; nb < 50 ; nb++)
+    {
+        if (init())
+            return 1;
+        start_time = SDL_GetTicks();
+        affichage_1(); 
+        end_time = SDL_GetTicks();
+        duration_ms = end_time - start_time;
+        //printf("Debug : %.2d ms.\n", duration_ms);   
+        mesure[nb] = duration_ms; 
+    }
+    
+    printf("Delay Affichage 1 : %.2d ms.\n", calculateMean(mesure));   
 
     SDL_Quit();
 
