@@ -52,16 +52,10 @@ int init()
     return 0;
 }
 
-
-int main() 
+void affichage_1()
 {
-
-    if (init())
-        return 1;
-
     SDL_Event event;
     int running = 1;
-    Uint32 start_time = SDL_GetTicks();
     while (running) {
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) {
@@ -78,15 +72,25 @@ int main()
 
         }
         SDL_RenderPresent(SDL_GetRenderer(window));
-
-        Uint32 end_time = SDL_GetTicks();
-        double duration_ms = end_time - start_time;
-        printf("Delay : %.2f ms.\n", duration_ms);
-
         running = 0;
     }
 
     SDL_DestroyWindow(window);
+}
+
+
+int main() 
+{
+
+    if (init())
+        return 1;
+
+    Uint32 start_time = SDL_GetTicks();
+    affichage_1(); 
+    Uint32 end_time = SDL_GetTicks();
+    double duration_ms = end_time - start_time;
+    printf("Delay Affichage 1 : %.2f ms.\n", duration_ms);   
+
     SDL_Quit();
 
     return 0;
