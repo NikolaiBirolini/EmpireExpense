@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c11
-LDFLAGS = -lSDL2 -lrt
+LDFLAGS = -lSDL2 -lrt -lSDL2_image
 
 SRC = test_affichage.c
 OBJ = $(SRC:.c=.o)
