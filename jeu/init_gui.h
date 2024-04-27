@@ -25,7 +25,8 @@ struct buttons
     Button *play;
     pictureButton *menu;
     pictureButton *music;
-    pictureButton *event_popup;
+    pictureButton *accept_trade;
+    pictureButton *manage_formation;
 };
 
 struct textinfos

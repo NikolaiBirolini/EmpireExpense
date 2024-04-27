@@ -42,5 +42,6 @@ SDL_Event gestion_touche(void)
 			}
 		}
 	}
+	//lettres->keystates = SDL_GetKeyboardState(NULL);
 	return event;
 }

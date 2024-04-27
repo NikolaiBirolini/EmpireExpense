@@ -16,6 +16,6 @@ TTF_Font *bigFont;
 TTF_Font *font;
 struct menu *main_menu;
 struct speak *speakBubble;
-struct menu_event *e_menu;
+struct cond_menu *menu_cond;
 char should_i_call_my_computer_work;
 struct personnages *moi;

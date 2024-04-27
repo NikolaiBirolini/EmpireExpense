@@ -55,21 +55,22 @@ struct menu
     struct menu_trade* menuTrad;
 };
 
-struct menu_event
+struct cond_menu
 {
-    char on;
+    char accept_trade;
+    char formation;
 };
 
-void menu(void);
-void event_menu();
+void menu(SDL_Event event);
+void accept_trade(void);
 void diplomatic_menu(SDL_Event event);
 void init_main_menu(void);
 void init_speak_bubble(void);
 void init_life_gauge(void);
-void speakPerso(struct personnages *moi, char* ordre);
+void speakPerso(struct personnages *moi, char* ordre, SDL_Event event);
 void printSpeakBubble(struct personnages *perso, TextInfo* textInfo, TextBox* textBox, char* on);
 void gui_event(struct personnages *moi);
 void *cast(void *p);
-void display_elipse_and_handle_buttons(struct personnages *moi);
+void display_elipse_and_handle_buttons();
 void display_selected(struct linked_list *selected, struct personnages *moi, struct formation *f);
-char there_is_event(void);
+char conditional_menu(struct linked_list *selected);

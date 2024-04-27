@@ -3,6 +3,7 @@
 int main(int argc, char *argv[])
 {
     lettres = calloc(sizeof(struct lettres), 1);
+    lettres->keystates = SDL_GetKeyboardState(NULL);
     SDL_Init(SDL_INIT_VIDEO);
     window = SDL_CreateWindow("Empire Expense",
             SDL_WINDOWPOS_UNDEFINED,
@@ -105,6 +106,7 @@ void boucle_jeu(int socket, char *name)
 	while(!done)
 	{
         //gettimeofday(&start, NULL);
+	    SDL_Event event = gestion_touche();
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
         //gettimeofday(&sstart, NULL);
@@ -115,24 +117,21 @@ void boucle_jeu(int socket, char *name)
         fprintf(stderr, "display = %5.3fms \n", elapsedTime);*/
         display_selected(selected, moi, f);
         display_elipse_and_handle_buttons(moi);
-        if (main_menu->on == 1)
-            menu();
+
+        if (conditional_menu(selected) == 1)
+            done = done;
         else if (speakBubble->on == 1)
-        {
-            speakPerso(moi, ordre);
-            lettres->t = 0;
-        }
-        else if (e_menu->on == 1)
-            event_menu();
+            speakPerso(moi, ordre, event);
+        else if (main_menu->on == 1)
+            menu(event);
         else
         {
-            gestion_touche();
             deplacement(moi);
 	        selected = select_char(selected);
 	        commande(selected, moi, f);
-            if (lettres->m)
+            if(lettres->keystates[SDL_SCANCODE_SEMICOLON])
                 main_menu->on = 1;
-            else if(lettres->t == 1)
+            if(lettres->keystates[SDL_SCANCODE_T])
                 speakBubble->on = 1;
         }
         if (should_i_call_my_computer_work == '1')
@@ -201,7 +200,7 @@ char *log_menu(int socket)
             {
                 int mouseX, mouseY;
                 SDL_GetMouseState(&mouseX, &mouseY);
-                if (( lettres->enter == 1 || (mouseX >= s_gui->b->play->buttonRect.x && mouseX <= s_gui->b->play->buttonRect.x + s_gui->b->play->buttonRect.w && mouseY >= s_gui->b->play->buttonRect.y && mouseY <= s_gui->b->play->buttonRect.y + s_gui->b->play->buttonRect.h)) && s_gui->tb->loginTextBox->text[0] != 0 && s_gui->tb->passwordTextBox->text[0] != 0) 
+                if (mouseX >= s_gui->b->play->buttonRect.x && mouseX <= s_gui->b->play->buttonRect.x + s_gui->b->play->buttonRect.w && mouseY >= s_gui->b->play->buttonRect.y && mouseY <= s_gui->b->play->buttonRect.y + s_gui->b->play->buttonRect.h && s_gui->tb->loginTextBox->text[0] != 0 && s_gui->tb->passwordTextBox->text[0] != 0) 
                 {
                     s_gui->b->play->isPressed = true;
                     done = sendLoginDataToServer(s_gui->tb->loginTextBox->text, s_gui->tb->passwordTextBox->text, socket, 101, 0);

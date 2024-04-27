@@ -25,8 +25,11 @@ struct buttons *init_buttons()
     to_return->menu = malloc(sizeof(Button));
     initPictureButton(to_return->menu, 50, 50, 35, 35, "img/textures/graphical_widget_img/main_menu_button/menu_button_not_pressed.png", "img/textures/graphical_widget_img/main_menu_button/menu_button_pressed.png");
 
-    to_return->event_popup = malloc(sizeof(Button));
-    initPictureButton(to_return->event_popup, 100, 50, 35, 35, "img/textures/graphical_widget_img/main_menu_button/menu_button_not_pressed.png", "img/textures/graphical_widget_img/main_menu_button/menu_button_pressed.png");
+    to_return->accept_trade = malloc(sizeof(Button));
+    initPictureButton(to_return->accept_trade, 100, 50, 35, 35, "img/textures/graphical_widget_img/main_menu_button/menu_button_not_pressed.png", "img/textures/graphical_widget_img/main_menu_button/menu_button_pressed.png");
+
+    to_return->manage_formation = malloc(sizeof(Button));
+    initPictureButton(to_return->manage_formation, 150, 50, 35, 35, "img/textures/graphical_widget_img/main_menu_button/menu_button_not_pressed.png", "img/textures/graphical_widget_img/main_menu_button/menu_button_pressed.png");
 
 
     return to_return;
