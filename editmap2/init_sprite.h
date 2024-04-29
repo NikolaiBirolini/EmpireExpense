@@ -7,7 +7,6 @@ struct img
 {
     struct textures *t;
     struct skin *s;
-    struct lettres_img *li;
     struct gui_sprite *g;
 };
 
@@ -206,80 +205,7 @@ struct gui_sprite
 };
 
 
-struct lettres_img
-{
-    SDL_Texture *a;
-    SDL_Texture *b;
-    SDL_Texture *c;
-    SDL_Texture *d;
-    SDL_Texture *e;
-    SDL_Texture *f;
-    SDL_Texture *g;
-    SDL_Texture *h;
-    SDL_Texture *i;
-    SDL_Texture *j;
-    SDL_Texture *k;
-    SDL_Texture *l;
-    SDL_Texture *m;
-    SDL_Texture *n;
-    SDL_Texture *o;
-    SDL_Texture *p;
-    SDL_Texture *q;
-    SDL_Texture *r;
-    SDL_Texture *s;
-    SDL_Texture *t;
-    SDL_Texture *u;
-    SDL_Texture *v;
-    SDL_Texture *w;
-    SDL_Texture *x;
-    SDL_Texture *y;
-    SDL_Texture *z;
-    SDL_Texture *k0;
-    SDL_Texture *k1;
-    SDL_Texture *k2;
-    SDL_Texture *k3;
-    SDL_Texture *k4;
-    SDL_Texture *k5;
-    SDL_Texture *k6;
-    SDL_Texture *k7;
-    SDL_Texture *k8;
-    SDL_Texture *k9;
-    SDL_Texture *sup;
-    SDL_Texture *tirret;
-    SDL_Texture *tirret_bas;
-    SDL_Texture *slash;
-    SDL_Texture *point;
-    SDL_Texture *A;
-    SDL_Texture *B;
-    SDL_Texture *C;
-    SDL_Texture *D;
-    SDL_Texture *E;
-    SDL_Texture *F;
-    SDL_Texture *G;
-    SDL_Texture *H;
-    SDL_Texture *I;
-    SDL_Texture *J;
-    SDL_Texture *K;
-    SDL_Texture *L;
-    SDL_Texture *M;
-    SDL_Texture *N;
-    SDL_Texture *O;
-    SDL_Texture *P;
-    SDL_Texture *Q;
-    SDL_Texture *R;
-    SDL_Texture *S;
-    SDL_Texture *T;
-    SDL_Texture *U;
-    SDL_Texture *V;
-    SDL_Texture *W;
-    SDL_Texture *X;
-    SDL_Texture *Y;
-    SDL_Texture *Z;
-    SDL_Texture *espace;
-};
-
 struct img *init_img();
 struct textures *init_textures();
 struct skin *init_skin();
-struct lettres_img *init_lettre();
 struct gui_sprite *init_gui_sprite();

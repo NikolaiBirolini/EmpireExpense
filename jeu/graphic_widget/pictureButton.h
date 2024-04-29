@@ -16,7 +16,7 @@ typedef struct {
     bool isPressed;
 } pictureButton;
 
-void initPictureButton(pictureButton* button, int x, int y, int width, int height, const char* defaultImagePath, const char* pressedImagePath);
+void initPictureButton(pictureButton* button, int x, int y, int width, int height, SDL_Texture* defaultPicture, SDL_Texture* pressed);
 
 // Function to draw a button
 void drawPictureButton(pictureButton *button);

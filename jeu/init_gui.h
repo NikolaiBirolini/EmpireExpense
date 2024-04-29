@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL2/SDL.h>
 #include <stdlib.h>
+#include "init_sprite.h"
 #include "shared_var.h"
 #include "graphic_widget/button.h"
 #include "graphic_widget/gauge.h"

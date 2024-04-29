@@ -201,7 +201,10 @@ struct gui_sprite
     SDL_Texture *moins;
     SDL_Texture *elipse;
     SDL_Texture *selecteur;
-    SDL_Texture *menuButton;
+    SDL_Texture *main_menu_button;
+    SDL_Texture *pressed_main_menu_button;
+    SDL_Texture *sound_button;
+    SDL_Texture *pressed_sound_button;
 };
 
 

@@ -20,16 +20,16 @@ struct buttons *init_buttons()
     initButton(to_return->play, 700, 180, 100, 45, (SDL_Color){45, 165, 100, 255}, (SDL_Color){136, 0, 21, 255}, font, (SDL_Color){0, 0, 0, 255}, "PLAY");
     
     to_return->music = malloc(sizeof(Button));
-    initPictureButton(to_return->music, 1700, 800, 80, 80, "img/textures/graphical_widget_img/noise_button/default_son.png", "img/textures/graphical_widget_img/noise_button/pressed_son.png");
+    initPictureButton(to_return->music, 1700, 800, 80, 80, img->g->sound_button, img->g->pressed_sound_button);
     
     to_return->menu = malloc(sizeof(Button));
-    initPictureButton(to_return->menu, 50, 50, 35, 35, "img/textures/graphical_widget_img/main_menu_button/menu_button_not_pressed.png", "img/textures/graphical_widget_img/main_menu_button/menu_button_pressed.png");
+    initPictureButton(to_return->menu, 50, 50, 35, 35, img->g->main_menu_button, img->g->pressed_main_menu_button);
 
     to_return->accept_trade = malloc(sizeof(Button));
-    initPictureButton(to_return->accept_trade, 100, 50, 35, 35, "img/textures/graphical_widget_img/main_menu_button/menu_button_not_pressed.png", "img/textures/graphical_widget_img/main_menu_button/menu_button_pressed.png");
+    initPictureButton(to_return->accept_trade, 100, 50, 35, 35,img->g->main_menu_button, img->g->pressed_main_menu_button);
 
     to_return->manage_formation = malloc(sizeof(Button));
-    initPictureButton(to_return->manage_formation, 150, 50, 35, 35, "img/textures/graphical_widget_img/main_menu_button/menu_button_not_pressed.png", "img/textures/graphical_widget_img/main_menu_button/menu_button_pressed.png");
+    initPictureButton(to_return->manage_formation, 150, 50, 35, 35,img->g->main_menu_button, img->g->pressed_main_menu_button);
 
 
     return to_return;
