@@ -502,12 +502,47 @@ void diplomatic_menu(SDL_Event event)
     }
 }
 
+void manage_formation_menu(void)
+{
+    drawPictureButton(s_gui->b->manage_formation_lines);
+    drawPictureButton(s_gui->b->manage_formation_lines_minus_space);
+    drawPictureButton(s_gui->b->manage_formation_lines_plus_space);
+    drawPictureButton(s_gui->b->manage_formation_lines_minus_nbperline);
+    drawPictureButton(s_gui->b->manage_formation_lines_plus_nbperline);
+
+    drawPictureButton(s_gui->b->manage_formation_splitted_lines);
+    drawPictureButton(s_gui->b->manage_formation_splitted_lines_minus_space);
+    drawPictureButton(s_gui->b->manage_formation_splitted_lines_plus_space);
+    drawPictureButton(s_gui->b->manage_formation_splitted_lines_minus_nbperline);
+    drawPictureButton(s_gui->b->manage_formation_splitted_lines_plus_nbperline);
+
+    drawPictureButton(s_gui->b->manage_formation_square);
+    drawPictureButton(s_gui->b->manage_formation_square_minus_space);
+    drawPictureButton(s_gui->b->manage_formation_square_plus_space);
+    drawPictureButton(s_gui->b->manage_formation_square_minus_nbperline);
+    drawPictureButton(s_gui->b->manage_formation_square_plus_nbperline);
+
+    drawPictureButton(s_gui->b->manage_formation_triangle);
+    drawPictureButton(s_gui->b->manage_formation_triangle_minus_space);
+    drawPictureButton(s_gui->b->manage_formation_triangle_plus_space);
+    drawPictureButton(s_gui->b->manage_formation_triangle_minus_nbperline);
+    drawPictureButton(s_gui->b->manage_formation_triangle_plus_nbperline);
+    if (lettres->keystates[SDL_SCANCODE_ESCAPE])
+        menu_cond->formation = 0;
+    
+}
+
 char conditional_menu(struct linked_list *selected)
 {
     char to_ret=  0;
     if (menu_cond->accept_trade == 1)
     {
         accept_trade();
+        to_ret = 1;
+    }
+    else if (menu_cond->formation == 1)
+    {
+        manage_formation_menu();
         to_ret = 1;
     }
     if (strcmp(moi->echange_player, "none") != 0)

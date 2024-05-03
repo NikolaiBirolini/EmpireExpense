@@ -28,6 +28,26 @@ struct buttons
     pictureButton *music;
     pictureButton *accept_trade;
     pictureButton *manage_formation;
+    pictureButton *manage_formation_lines;
+    pictureButton *manage_formation_lines_minus_space;
+    pictureButton *manage_formation_lines_plus_space;
+    pictureButton *manage_formation_lines_minus_nbperline;
+    pictureButton *manage_formation_lines_plus_nbperline;
+    pictureButton *manage_formation_splitted_lines;
+    pictureButton *manage_formation_splitted_lines_minus_space;
+    pictureButton *manage_formation_splitted_lines_plus_space;
+    pictureButton *manage_formation_splitted_lines_minus_nbperline;
+    pictureButton *manage_formation_splitted_lines_plus_nbperline;
+    pictureButton *manage_formation_square;
+    pictureButton *manage_formation_square_minus_space;
+    pictureButton *manage_formation_square_plus_space;
+    pictureButton *manage_formation_square_minus_nbperline;
+    pictureButton *manage_formation_square_plus_nbperline;
+    pictureButton *manage_formation_triangle;
+    pictureButton *manage_formation_triangle_minus_space;
+    pictureButton *manage_formation_triangle_plus_space;
+    pictureButton *manage_formation_triangle_minus_nbperline;
+    pictureButton *manage_formation_triangle_plus_nbperline;
 };
 
 struct textinfos

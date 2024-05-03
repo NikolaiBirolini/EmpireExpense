@@ -911,6 +911,27 @@ struct gui_sprite *init_gui_sprite()
     a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
     to_return->sound_button = SDL_CreateTextureFromSurface(renderer, a);
     SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/gui/buttons/lines.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->lines = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+    a = SDL_LoadBMP("img/gui/buttons/square.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->square = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+    a = SDL_LoadBMP("img/gui/buttons/triangle.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->triangle = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+    a = SDL_LoadBMP("img/gui/buttons/splitted.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->splited_lines = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
     return to_return;
 }
 

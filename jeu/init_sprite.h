@@ -205,6 +205,10 @@ struct gui_sprite
     SDL_Texture *pressed_main_menu_button;
     SDL_Texture *sound_button;
     SDL_Texture *pressed_sound_button;
+    SDL_Texture *square;
+    SDL_Texture *triangle;
+    SDL_Texture *lines;
+    SDL_Texture *splited_lines;
 };
 
 

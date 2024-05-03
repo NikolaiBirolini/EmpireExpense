@@ -74,3 +74,4 @@ void *cast(void *p);
 void display_elipse_and_handle_buttons();
 void display_selected(struct linked_list *selected, struct personnages *moi, struct formation *f);
 char conditional_menu(struct linked_list *selected);
+void manage_formation_menu(void);
