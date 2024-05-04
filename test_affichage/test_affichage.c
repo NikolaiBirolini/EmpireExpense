@@ -45,6 +45,8 @@ int init()
         return 1;
     }
 
+    image_surface_perso = SDL_ConvertSurfaceFormat(image_surface_perso, SDL_GetWindowPixelFormat(window), 0);
+
     image_texture_perso = SDL_CreateTextureFromSurface(renderer, image_surface_perso);
     if (image_texture_perso == NULL) {
         printf("Failed to create texture: %s\n", SDL_GetError());
@@ -66,6 +68,8 @@ int init()
         SDL_Quit();
         return 1;
     }
+
+    image_surface_texture = SDL_ConvertSurfaceFormat(image_surface_texture, SDL_GetWindowPixelFormat(window), 0);
 
     image_texture_texture = SDL_CreateTextureFromSurface(renderer, image_surface_texture);
     if (image_texture_texture == NULL) {
@@ -222,6 +226,37 @@ void affichage_3()
 
         }
         
+        running = 0;
+    }
+}
+
+
+void affichage_4()
+{
+    SDL_Event event;
+    int running = 1;
+    while (running) {
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_QUIT) {
+                running = 0;
+            }
+        }
+
+        SDL_SetRenderDrawColor(SDL_GetRenderer(window), 0, 0, 0, 255);
+        SDL_RenderClear(SDL_GetRenderer(window));
+        for(int i = 0; i<100; ++i)
+        {
+            SDL_Rect dest_rect_perso = {10*i, 5*i, image_surface_perso->w, image_surface_perso->h};
+            SDL_RenderCopy(renderer, image_texture_perso, NULL, &dest_rect_perso);
+
+            SDL_Rect dest_rect_texture = {20*i, 10*i, image_surface_texture->w, image_surface_texture->h};
+            SDL_RenderCopy(renderer, image_texture_texture, NULL, &dest_rect_texture);
+
+            //SDL_Rect dest_rect_grosse = {10*i, 2*i, image_surface_grosse->w, image_surface_grosse->h};
+            //SDL_RenderCopy(renderer, image_texture_grosse, NULL, &dest_rect_grosse);
+
+        }
+        SDL_RenderPresent(SDL_GetRenderer(window));
         running = 0;
     }
 }
