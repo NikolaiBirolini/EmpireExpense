@@ -1,6 +1,6 @@
 #include "display.h"
 #include "shared_var.h"
-#include "gui.h"
+#include "gui/gui.h"
 
 void bubble_sort_perso()
 {

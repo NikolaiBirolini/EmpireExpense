@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <err.h>
 #include "clavier.h"
-#include "gui.h"
+#include "gui/gui.h"
 #include "net.h"
 #include "perso.h"
 #include "control.h"
@@ -14,7 +14,7 @@
 #include "map.h"
 #include <fcntl.h>
 #include "init_sprite.h"
-#include "init_gui.h"
+#include "gui/init_gui.h"
 #include "chiffrement.h"
 #include "pathfinding.h"
 #include "init_sound.h"

@@ -37,6 +37,11 @@ struct buttons *init_buttons()
     initPictureButton(to_return->manage_formation_lines_plus_nbperline, 300, 100, 35, 35,img->g->plus, img->g->plus);
     to_return->manage_formation_lines_minus_nbperline = malloc(sizeof(Button));
     initPictureButton(to_return->manage_formation_lines_minus_nbperline, 350, 100, 35, 35,img->g->moins, img->g->moins);
+    to_return->manage_formation_lines_plus_spaceline = malloc(sizeof(Button));
+    initPictureButton(to_return->manage_formation_lines_plus_spaceline, 400, 100, 35, 35,img->g->plus, img->g->plus);
+    to_return->manage_formation_lines_minus_spaceline = malloc(sizeof(Button));
+    initPictureButton(to_return->manage_formation_lines_minus_spaceline, 450, 100, 35, 35,img->g->moins, img->g->moins);
+
     to_return->manage_formation_splitted_lines = malloc(sizeof(Button));
     initPictureButton(to_return->manage_formation_splitted_lines, 150, 150, 35, 35,img->g->splited_lines, img->g->splited_lines);
     to_return->manage_formation_splitted_lines_plus_space = malloc(sizeof(Button));
@@ -47,6 +52,10 @@ struct buttons *init_buttons()
     initPictureButton(to_return->manage_formation_splitted_lines_plus_nbperline, 300, 150, 35, 35,img->g->plus, img->g->plus);
     to_return->manage_formation_splitted_lines_minus_nbperline = malloc(sizeof(Button));
     initPictureButton(to_return->manage_formation_splitted_lines_minus_nbperline, 350, 150, 35, 35,img->g->moins, img->g->moins);
+    to_return->manage_formation_splitted_lines_plus_spaceline = malloc(sizeof(Button));
+    initPictureButton(to_return->manage_formation_splitted_lines_plus_spaceline, 400, 150, 35, 35,img->g->plus, img->g->plus);
+    to_return->manage_formation_splitted_lines_minus_spaceline = malloc(sizeof(Button));
+    initPictureButton(to_return->manage_formation_splitted_lines_minus_spaceline, 450, 150, 35, 35,img->g->moins, img->g->moins);
 
     to_return->manage_formation_triangle = malloc(sizeof(Button));
     initPictureButton(to_return->manage_formation_triangle, 150, 200, 35, 35,img->g->triangle, img->g->triangle);
@@ -58,6 +67,10 @@ struct buttons *init_buttons()
     initPictureButton(to_return->manage_formation_triangle_plus_nbperline, 300, 200, 35, 35,img->g->plus, img->g->plus);
     to_return->manage_formation_triangle_minus_nbperline = malloc(sizeof(Button));
     initPictureButton(to_return->manage_formation_triangle_minus_nbperline, 350, 200, 35, 35,img->g->moins, img->g->moins);
+    to_return->manage_formation_triangle_plus_spaceline = malloc(sizeof(Button));
+    initPictureButton(to_return->manage_formation_triangle_plus_spaceline, 400, 200, 35, 35,img->g->plus, img->g->plus);
+    to_return->manage_formation_triangle_minus_spaceline = malloc(sizeof(Button));
+    initPictureButton(to_return->manage_formation_triangle_minus_spaceline, 450, 200, 35, 35,img->g->moins, img->g->moins);
     
     to_return->manage_formation_square = malloc(sizeof(Button));
     initPictureButton(to_return->manage_formation_square, 150, 250, 35, 35,img->g->square, img->g->square);
@@ -69,6 +82,10 @@ struct buttons *init_buttons()
     initPictureButton(to_return->manage_formation_square_plus_nbperline, 300, 250, 35, 35,img->g->plus, img->g->plus);
     to_return->manage_formation_square_minus_nbperline = malloc(sizeof(Button));
     initPictureButton(to_return->manage_formation_square_minus_nbperline, 350, 250, 35, 35,img->g->moins, img->g->moins);
+    to_return->manage_formation_square_plus_spaceline = malloc(sizeof(Button));
+    initPictureButton(to_return->manage_formation_square_plus_spaceline, 400, 250, 35, 35,img->g->plus, img->g->plus);
+    to_return->manage_formation_square_minus_spaceline = malloc(sizeof(Button));
+    initPictureButton(to_return->manage_formation_square_minus_spaceline, 450, 250, 35, 35,img->g->moins, img->g->moins);
     
     
 

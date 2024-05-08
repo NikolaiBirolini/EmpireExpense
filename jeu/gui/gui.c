@@ -353,10 +353,10 @@ void accept_trade(void)
     if (echange_player == NULL || (echange_player->x - moi->x)*(echange_player->x - moi->x)+(echange_player->y - moi->y)*(echange_player->y - moi->y) > 9)
     {
         sprintf (ordre + strlen(ordre), "%d 17 none none 0 none 0 ", moi->id); // decline
-        menu_cond->accept_trade = 0;
+        menu_cond->accept_trade = -1;
     }
     if (lettres->keystates[SDL_SCANCODE_ESCAPE])
-        menu_cond->accept_trade = 0;
+        menu_cond->accept_trade = -1;
     drawTextBox(renderer, s_gui->tb->bgEventTextBox, false);
     char text[300];
     sprintf (text, "%s propose you to trade %d %s against %d %s", moi->echange_player, moi->count_item1, moi->item1, moi->count_item2, moi->item2);
@@ -379,7 +379,7 @@ void accept_trade(void)
             main_menu->on = 1;
             main_menu->menuTrad->on = 1;
         }
-        menu_cond->accept_trade = 0;
+        menu_cond->accept_trade = -1;
     }
 }
 
@@ -509,26 +509,34 @@ void manage_formation_menu(void)
     drawPictureButton(s_gui->b->manage_formation_lines_plus_space);
     drawPictureButton(s_gui->b->manage_formation_lines_minus_nbperline);
     drawPictureButton(s_gui->b->manage_formation_lines_plus_nbperline);
+    drawPictureButton(s_gui->b->manage_formation_lines_minus_spaceline);
+    drawPictureButton(s_gui->b->manage_formation_lines_plus_spaceline);
 
     drawPictureButton(s_gui->b->manage_formation_splitted_lines);
     drawPictureButton(s_gui->b->manage_formation_splitted_lines_minus_space);
     drawPictureButton(s_gui->b->manage_formation_splitted_lines_plus_space);
     drawPictureButton(s_gui->b->manage_formation_splitted_lines_minus_nbperline);
     drawPictureButton(s_gui->b->manage_formation_splitted_lines_plus_nbperline);
+    drawPictureButton(s_gui->b->manage_formation_splitted_lines_minus_spaceline);
+    drawPictureButton(s_gui->b->manage_formation_splitted_lines_plus_spaceline);
 
     drawPictureButton(s_gui->b->manage_formation_square);
     drawPictureButton(s_gui->b->manage_formation_square_minus_space);
     drawPictureButton(s_gui->b->manage_formation_square_plus_space);
     drawPictureButton(s_gui->b->manage_formation_square_minus_nbperline);
     drawPictureButton(s_gui->b->manage_formation_square_plus_nbperline);
+    drawPictureButton(s_gui->b->manage_formation_square_minus_spaceline);
+    drawPictureButton(s_gui->b->manage_formation_square_plus_spaceline);
 
     drawPictureButton(s_gui->b->manage_formation_triangle);
     drawPictureButton(s_gui->b->manage_formation_triangle_minus_space);
     drawPictureButton(s_gui->b->manage_formation_triangle_plus_space);
     drawPictureButton(s_gui->b->manage_formation_triangle_minus_nbperline);
     drawPictureButton(s_gui->b->manage_formation_triangle_plus_nbperline);
+    drawPictureButton(s_gui->b->manage_formation_triangle_minus_spaceline);
+    drawPictureButton(s_gui->b->manage_formation_triangle_plus_spaceline);
     if (lettres->keystates[SDL_SCANCODE_ESCAPE])
-        menu_cond->formation = 0;
+        menu_cond->formation = -1;
     
 }
 
@@ -548,25 +556,20 @@ char conditional_menu(struct linked_list *selected)
     if (strcmp(moi->echange_player, "none") != 0)
     {
         s_gui->b->accept_trade->isPressed = 1;
-        
         if (lettres->keystates[SDL_SCANCODE_L])
-        {
             menu_cond->accept_trade = 1;
-        }
-        //if (lettres->Mouse_Lclick == 1 && lettres->Mouse_pos_x > 100 && lettres->Mouse_pos_x < 135 && lettres->Mouse_pos_y > 50 && lettres->Mouse_pos_y < 85)
-          //  menu_cond->accept_trade *= -1;
-
+        if (lettres->Mouse_Lclick == 1 && lettres->Mouse_pos_x > s_gui->b->accept_trade->x && lettres->Mouse_pos_x < s_gui->b->accept_trade->x + s_gui->b->accept_trade->width && lettres->Mouse_pos_y > s_gui->b->accept_trade->y && lettres->Mouse_pos_y < s_gui->b->accept_trade->y + s_gui->b->accept_trade->width)
+            menu_cond->accept_trade *= -1;
     }
     else 
         s_gui->b->accept_trade->isPressed = 0;
     if (selected != NULL )
     {
         s_gui->b->manage_formation->isPressed = 1;
-        
         if (lettres->keystates[SDL_SCANCODE_K])
-        {
             menu_cond->formation = 1;
-        }
+        if (lettres->Mouse_Lclick == 1 && lettres->Mouse_pos_x > s_gui->b->manage_formation->x && lettres->Mouse_pos_x < s_gui->b->manage_formation->x + s_gui->b->manage_formation->width && lettres->Mouse_pos_y > s_gui->b->manage_formation->y && lettres->Mouse_pos_y < s_gui->b->manage_formation->y + s_gui->b->manage_formation->width)
+            menu_cond->formation *= -1;
     }
     else
         s_gui->b->manage_formation->isPressed = 0;

@@ -1,15 +1,15 @@
 #pragma once
 #include <SDL2/SDL.h>
 #include <stdlib.h>
-#include "init_sprite.h"
-#include "shared_var.h"
-#include "graphic_widget/button.h"
-#include "graphic_widget/gauge.h"
-#include "graphic_widget/pictureButton.h"
-#include "graphic_widget/textBox.h"
-#include "graphic_widget/textInfo.h"
-#include "graphic_widget/dropDown.h"
-#include "graphic_widget/menuSelector.h"
+#include "../init_sprite.h"
+#include "../shared_var.h"
+#include "../graphic_widget/button.h"
+#include "../graphic_widget/gauge.h"
+#include "../graphic_widget/pictureButton.h"
+#include "../graphic_widget/textBox.h"
+#include "../graphic_widget/textInfo.h"
+#include "../graphic_widget/dropDown.h"
+#include "../graphic_widget/menuSelector.h"
 
 struct s_gui
 {
@@ -33,21 +33,30 @@ struct buttons
     pictureButton *manage_formation_lines_plus_space;
     pictureButton *manage_formation_lines_minus_nbperline;
     pictureButton *manage_formation_lines_plus_nbperline;
+    pictureButton *manage_formation_lines_minus_spaceline;
+    pictureButton *manage_formation_lines_plus_spaceline;
+
     pictureButton *manage_formation_splitted_lines;
     pictureButton *manage_formation_splitted_lines_minus_space;
     pictureButton *manage_formation_splitted_lines_plus_space;
     pictureButton *manage_formation_splitted_lines_minus_nbperline;
     pictureButton *manage_formation_splitted_lines_plus_nbperline;
+    pictureButton *manage_formation_splitted_lines_minus_spaceline;
+    pictureButton *manage_formation_splitted_lines_plus_spaceline;
     pictureButton *manage_formation_square;
     pictureButton *manage_formation_square_minus_space;
     pictureButton *manage_formation_square_plus_space;
     pictureButton *manage_formation_square_minus_nbperline;
     pictureButton *manage_formation_square_plus_nbperline;
+    pictureButton *manage_formation_square_minus_spaceline;
+    pictureButton *manage_formation_square_plus_spaceline;
     pictureButton *manage_formation_triangle;
     pictureButton *manage_formation_triangle_minus_space;
     pictureButton *manage_formation_triangle_plus_space;
     pictureButton *manage_formation_triangle_minus_nbperline;
     pictureButton *manage_formation_triangle_plus_nbperline;
+    pictureButton *manage_formation_triangle_minus_spaceline;
+    pictureButton *manage_formation_triangle_plus_spaceline;
 };
 
 struct textinfos
