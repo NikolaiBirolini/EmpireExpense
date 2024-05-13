@@ -469,10 +469,26 @@ void manage_formation_menu(void)
     drawPictureButton(menu_cond->manage_formation_columns_minus_space);
     drawPictureButton(menu_cond->manage_formation_columns_plus_space);
 
+    if (lettres->Mouse_Lclick == 1)
+    {
+        if (lettres->Mouse_pos_x > menu_cond->manage_formation_lines_minus_space->x && lettres->Mouse_pos_x < menu_cond->manage_formation_lines_minus_space->x + menu_cond->manage_formation_lines_minus_space->width && lettres->Mouse_pos_y > menu_cond->manage_formation_lines_minus_space->y && lettres->Mouse_pos_y < menu_cond->manage_formation_lines_minus_space->y + menu_cond->manage_formation_lines_minus_space->width)
+            menu_cond->space_lines -= 0.2;
+        else if (lettres->Mouse_pos_x > menu_cond->manage_formation_lines_plus_space->x && lettres->Mouse_pos_x < menu_cond->manage_formation_lines_plus_space->x + menu_cond->manage_formation_lines_plus_space->width && lettres->Mouse_pos_y > menu_cond->manage_formation_lines_plus_space->y && lettres->Mouse_pos_y < menu_cond->manage_formation_lines_plus_space->y + menu_cond->manage_formation_lines_plus_space->width)
+            menu_cond->space_lines += 0.2;
+        else if (lettres->Mouse_pos_x > menu_cond->manage_formation_nbperline_minus->x && lettres->Mouse_pos_x < menu_cond->manage_formation_nbperline_minus->x + menu_cond->manage_formation_nbperline_minus->width && lettres->Mouse_pos_y > menu_cond->manage_formation_nbperline_minus->y && lettres->Mouse_pos_y < menu_cond->manage_formation_nbperline_minus->y + menu_cond->manage_formation_nbperline_minus->width)
+            menu_cond->nb_per_lines -= 1;
+        else if (lettres->Mouse_pos_x > menu_cond->manage_formation_nbperline_plus->x && lettres->Mouse_pos_x < menu_cond->manage_formation_nbperline_plus->x + menu_cond->manage_formation_nbperline_plus->width && lettres->Mouse_pos_y > menu_cond->manage_formation_nbperline_plus->y && lettres->Mouse_pos_y < menu_cond->manage_formation_nbperline_plus->y + menu_cond->manage_formation_nbperline_plus->width)
+            menu_cond->nb_per_lines += 1;
+        else if (lettres->Mouse_pos_x > menu_cond->manage_formation_columns_minus_space->x && lettres->Mouse_pos_x < menu_cond->manage_formation_columns_minus_space->x + menu_cond->manage_formation_columns_minus_space->width && lettres->Mouse_pos_y > menu_cond->manage_formation_columns_minus_space->y && lettres->Mouse_pos_y < menu_cond->manage_formation_columns_minus_space->y + menu_cond->manage_formation_columns_minus_space->width)
+            menu_cond->space_columns -= 0.2;
+        else if (lettres->Mouse_pos_x > menu_cond->manage_formation_columns_plus_space->x && lettres->Mouse_pos_x < menu_cond->manage_formation_columns_plus_space->x + menu_cond->manage_formation_columns_plus_space->width && lettres->Mouse_pos_y > menu_cond->manage_formation_columns_plus_space->y && lettres->Mouse_pos_y < menu_cond->manage_formation_columns_plus_space->y + menu_cond->manage_formation_columns_plus_space->width)
+            menu_cond->space_columns += 0.2;
+        
+    }
    
     sprintf(menu_cond->txt_formation_space_lines, "%.1fm", menu_cond->space_lines);
     sprintf(menu_cond->txt_formation_space_columns, "%.1fm", menu_cond->space_columns);
-    sprintf(menu_cond->txt_formation_nb_per_lines, "%dm", menu_cond->nb_per_lines);
+    sprintf(menu_cond->txt_formation_nb_per_lines, "%d", menu_cond->nb_per_lines);
 
 
     

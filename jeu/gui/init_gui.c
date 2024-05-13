@@ -89,8 +89,8 @@ void init_main_menu(void)
     menu_cond->formation = -1;
 
     initTextInfo(&menu_cond->formation_space_lines, menu_cond->txt_formation_space_lines, littleFont, 250, 150, 0, (SDL_Color){0, 255, 0, 255}, 0, 0, 0);
-    initTextInfo(&menu_cond->formation_space_columns, menu_cond->txt_formation_space_columns , littleFont, 250, 200, 0, (SDL_Color){0, 255, 0, 255}, 0, 0, 0);
-    initTextInfo(&menu_cond->formation_nb_per_lines, menu_cond->txt_formation_nb_per_lines, littleFont, 250, 250, 0, (SDL_Color){0, 255, 0, 255}, 0, 0, 0);
+    initTextInfo(&menu_cond->formation_space_columns, menu_cond->txt_formation_space_columns , littleFont, 250, 250, 0, (SDL_Color){0, 255, 0, 255}, 0, 0, 0);
+    initTextInfo(&menu_cond->formation_nb_per_lines, menu_cond->txt_formation_nb_per_lines, littleFont, 250, 200, 0, (SDL_Color){0, 255, 0, 255}, 0, 0, 0);
 
     menu_cond->manage_formation_lines = malloc(sizeof(Button));
     initPictureButton(menu_cond->manage_formation_lines, 150, 100, 35, 35,img->g->lines, img->g->lines);
@@ -108,13 +108,13 @@ void init_main_menu(void)
     menu_cond->manage_formation_lines_minus_space = malloc(sizeof(Button));
     initPictureButton(menu_cond->manage_formation_lines_minus_space, 200, 150, 35, 35,img->g->moins, img->g->moins);
     menu_cond->manage_formation_nbperline_minus = malloc(sizeof(Button));
-    initPictureButton(menu_cond->manage_formation_nbperline_minus, 150, 200, 35, 35,img->g->plus, img->g->plus);
+    initPictureButton(menu_cond->manage_formation_nbperline_minus, 150, 200, 35, 35,img->g->moins, img->g->moins);
     menu_cond->manage_formation_nbperline_plus = malloc(sizeof(Button));
-    initPictureButton(menu_cond->manage_formation_nbperline_plus, 200, 200, 35, 35,img->g->moins, img->g->moins);
+    initPictureButton(menu_cond->manage_formation_nbperline_plus, 200, 200, 35, 35,img->g->plus, img->g->plus);
     menu_cond->manage_formation_columns_minus_space = malloc(sizeof(Button));
-    initPictureButton(menu_cond->manage_formation_columns_minus_space, 150,250, 35, 35,img->g->plus, img->g->plus);
+    initPictureButton(menu_cond->manage_formation_columns_minus_space, 150,250, 35, 35,img->g->moins, img->g->moins);
     menu_cond->manage_formation_columns_plus_space = malloc(sizeof(Button));
-    initPictureButton(menu_cond->manage_formation_columns_plus_space, 200, 250, 35, 35,img->g->moins, img->g->moins);
+    initPictureButton(menu_cond->manage_formation_columns_plus_space, 200, 250, 35, 35,img->g->plus, img->g->plus);
    
     menu_cond->accept_trade = malloc(sizeof(Button));
     initPictureButton(menu_cond->accept_trade, 100, 50, 35, 35,img->g->main_menu_button, img->g->pressed_main_menu_button);
