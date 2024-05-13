@@ -15,7 +15,6 @@ int main(int argc, char *argv[])
         printf ("no sound\n");
     initFonts();
     img = init_img();
-    s_gui = init_gui();
     sons = init_sound();
     Mix_PlayMusic(sons->menu, 1);
 
@@ -122,7 +121,7 @@ void boucle_jeu(int socket, char *name)
             done = done;
         else if (speakBubble->on == 1)
             speakPerso(moi, ordre, event);
-        else if (main_menu->on == 1)
+        else if (main_menu->on.isPressed == 1)
             menu(event);
         else
         {
@@ -130,7 +129,7 @@ void boucle_jeu(int socket, char *name)
 	        selected = select_char(selected);
 	        commande(selected, moi, f);
             if(lettres->keystates[SDL_SCANCODE_SEMICOLON])
-                main_menu->on = 1;
+                main_menu->on.isPressed = 1;
             if(lettres->keystates[SDL_SCANCODE_T])
                 speakBubble->on = 1;
         }
@@ -169,23 +168,41 @@ char *log_menu(int socket)
     bool done = false;  
     bool writeLogin = true;
 	bool writePsswd = false;
+    Button play;
+    initButton(&play, 700, 180, 100, 45, (SDL_Color){45, 165, 100, 255}, (SDL_Color){136, 0, 21, 255}, font, (SDL_Color){0, 0, 0, 255}, "PLAY");
+    pictureButton music;
+    initPictureButton(&music, 1700, 800, 80, 80, img->g->sound_button, img->g->pressed_sound_button);
+    TextInfo errorText;
+    initTextInfo(&errorText, "INVALID CREDENTIALS, please retry", littleFont, 80, 400, 700, (SDL_Color){255, 255, 255, 255}, 0, 0, 0);
+    TextInfo loginText;
+    initTextInfo(&loginText, "Login", littleFont, 100, 70, 0, (SDL_Color){0, 0, 0, 255}, 1, 1, 0);
+    TextInfo passwordText;
+    initTextInfo(&passwordText, "Password", bigFont, 100, 150, 0, (SDL_Color){0, 0, 0, 255}, 1, 1, 0);
+    TextBox loginTextBox;
+    initTextBox(&loginTextBox, 100, 100, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, littleFont, false);
+    TextBox passwordTextBox;
+    initTextBox(&passwordTextBox, 100, 180, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, littleFont, true);
+	TextBox unusedTextBox;
+    initTextBox(&unusedTextBox, 80, 60, 760, 200, (SDL_Color){150, 100, 135, 255}, (SDL_Color){150, 100, 135, 255}, (SDL_Color){0, 0, 0, 255}, littleFont, false);
+    TextBox bgPrintErrorTextBox;
+    initTextBox(&bgPrintErrorTextBox, 80, 400, 760, 400, (SDL_Color){255, 165, 0, 255}, (SDL_Color){139, 69, 19, 255}, (SDL_Color){0, 0, 0, 255}, bigFont, false);
 
     while (!done)
     {
         SDL_RenderClear(renderer);
         SDL_RenderCopy(renderer, img->t->fond, NULL, NULL);
-        drawTextBox(renderer, s_gui->tb->unusedTextBox, false); 
-        drawButton(s_gui->b->play);
-        drawTextBox(renderer, s_gui->tb->loginTextBox, writeLogin); 
-        drawTextBox(renderer, s_gui->tb->passwordTextBox, writePsswd);
-        drawTextInfo(renderer, s_gui->ti->loginText);
-        drawTextInfo(renderer, s_gui->ti->passwordText);
-        drawTextBox(renderer, s_gui->tb->bgPrintErrorTextBox, false);
-        drawTextInfo(renderer, s_gui->ti->errorText);  
-        drawPictureButton(s_gui->b->music);
+        drawTextBox(renderer, &unusedTextBox, false); 
+        drawButton(&play);
+        drawTextBox(renderer, &loginTextBox, writeLogin); 
+        drawTextBox(renderer, &passwordTextBox, writePsswd);
+        drawTextInfo(renderer, &loginText);
+        drawTextInfo(renderer, &passwordText);
+        drawTextBox(renderer, &bgPrintErrorTextBox, false);  
+        drawPictureButton(&music);
+        drawTextInfo(renderer, &errorText);
         
         //drawPictureButton( &betrayedCesar);
-        s_gui->b->play->isPressed = false;
+        play.isPressed = false;
         while(SDL_PollEvent(&event) != 0)
         { 
             if (event.type == SDL_QUIT) 
@@ -200,32 +217,32 @@ char *log_menu(int socket)
             {
                 int mouseX, mouseY;
                 SDL_GetMouseState(&mouseX, &mouseY);
-                if (mouseX >= s_gui->b->play->buttonRect.x && mouseX <= s_gui->b->play->buttonRect.x + s_gui->b->play->buttonRect.w && mouseY >= s_gui->b->play->buttonRect.y && mouseY <= s_gui->b->play->buttonRect.y + s_gui->b->play->buttonRect.h && s_gui->tb->loginTextBox->text[0] != 0 && s_gui->tb->passwordTextBox->text[0] != 0) 
+                if (mouseX >= play.buttonRect.x && mouseX <= play.buttonRect.x + play.buttonRect.w && mouseY >= play.buttonRect.y && mouseY <= play.buttonRect.y + play.buttonRect.h && loginTextBox.text[0] != 0 && passwordTextBox.text[0] != 0) 
                 {
-                    s_gui->b->play->isPressed = true;
-                    done = sendLoginDataToServer(s_gui->tb->loginTextBox->text, s_gui->tb->passwordTextBox->text, socket, 101, 0);
+                    play.isPressed = true;
+                    done = sendLoginDataToServer(loginTextBox.text, passwordTextBox.text, socket, 101, 0);
                     if (!done)
-                        s_gui->ti->errorText->text = "INVALID CREDENTIALS, please retry";   
+                         strcpy (errorText.text, "INVALID CREDENTIALS, please retry");   
                     else
-                        s_gui->ti->errorText->text = "";
+                        errorText.text[0] = 0;   
                 }
-                else if (mouseX >= s_gui->tb->loginTextBox->x && mouseX <= s_gui->tb->loginTextBox->x + s_gui->tb->loginTextBox->width &&
-                        mouseY >= s_gui->tb->loginTextBox->y && mouseY <= s_gui->tb->loginTextBox->y + s_gui->tb->loginTextBox->height) 
+                else if (mouseX >= loginTextBox.x && mouseX <= loginTextBox.x + loginTextBox.width &&
+                        mouseY >= loginTextBox.y && mouseY <= loginTextBox.y + loginTextBox.height) 
                 {
                     writeLogin = true;
                     writePsswd = false;
                 }
-                else if (mouseX >= s_gui->tb->passwordTextBox->x && mouseX <= s_gui->tb->passwordTextBox->x + s_gui->tb->passwordTextBox->width &&
-                        mouseY >= s_gui->tb->passwordTextBox->y && mouseY <= s_gui->tb->passwordTextBox->y + s_gui->tb->passwordTextBox->height) 
+                else if (mouseX >= passwordTextBox.x && mouseX <= passwordTextBox.x + passwordTextBox.width &&
+                        mouseY >= passwordTextBox.y && mouseY <= passwordTextBox.y + passwordTextBox.height) 
                 {
                     writePsswd = true;
                     writeLogin = false;		
                 }
-                else if (mouseX >= s_gui->b->music->x && mouseX <= s_gui->b->music->x + s_gui->b->music->width &&
-                        mouseY >= s_gui->b->music->y && mouseY <= s_gui->b->music->y + s_gui->b->music->height)
+                else if (mouseX >= music.x && mouseX <= music.x + music.width &&
+                        mouseY >= music.y && mouseY <= music.y + music.height)
                 {
-                    s_gui->b->music->isPressed = !s_gui->b->music->isPressed;
-                    if(s_gui->b->music->isPressed)
+                    music.isPressed = !music.isPressed;
+                    if(music.isPressed)
                     {
                         stopMusic();
                     }
@@ -246,29 +263,29 @@ char *log_menu(int socket)
                 if (event.key.keysym.sym == SDLK_RETURN) 
                 {
                     char *to_send = calloc(101,1);
-                    chiffrage(s_gui->tb->passwordTextBox->text, s_gui->tb->loginTextBox->text);
-                    sprintf (to_send, "%s %s", s_gui->tb->loginTextBox->text, s_gui->tb->passwordTextBox->text);
+                    chiffrage(passwordTextBox.text, loginTextBox.text);
+                    sprintf (to_send, "%s %s", loginTextBox.text, passwordTextBox.text);
                     done = communicateWithServer(socket, to_send, 101, 0);
                     if (!done)
-                        s_gui->ti->errorText->text = "INVALID CREDENTIALS, please retry";   
+                         strcpy (errorText.text, "INVALID CREDENTIALS, please retry");   
                     else
-                        s_gui->ti->errorText->text = "";
+                        errorText.text[0] = 0;
                 }
             }
 
             if(writePsswd)
                 if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
-                    handleTextInput(s_gui->tb->passwordTextBox, event);
+                    handleTextInput(&passwordTextBox, event);
 
             if(writeLogin)
                 if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
-                    handleTextInput(s_gui->tb->loginTextBox, event);
+                    handleTextInput(&loginTextBox, event);
         }
         SDL_RenderPresent(renderer);
         SDL_Delay(10);
     }
     char *name = calloc(50, 1);
-    strcat(name, s_gui->tb->loginTextBox->text);
+    strcat(name, loginTextBox.text);
     return name;
 }
 
@@ -276,7 +293,24 @@ int menu_connection()
 {
     SDL_Event event;
     int socket = -1;
-
+    Button play;
+    initButton(&play, 700, 180, 100, 45, (SDL_Color){45, 165, 100, 255}, (SDL_Color){136, 0, 21, 255}, font, (SDL_Color){0, 0, 0, 255}, "PLAY");
+    pictureButton music;
+    initPictureButton(&music, 1700, 800, 80, 80, img->g->sound_button, img->g->pressed_sound_button);
+    TextInfo errorText;
+    initTextInfo(&errorText, "INVALID CREDENTIALS, please retry", littleFont, 80, 400, 700, (SDL_Color){255, 255, 255, 255}, 0, 0, 0);
+    TextInfo IpText;
+    initTextInfo(&IpText, "IP Address", littleFont, 100, 70, 0, (SDL_Color){0, 0, 0, 255}, 1, 1, 0);
+    TextInfo PortText;
+    initTextInfo(&PortText, "Port", littleFont, 100, 150, 0, (SDL_Color){0, 0, 0, 255},1, 1, 0);
+    TextBox IpTextBox;
+    initTextBox(&IpTextBox, 100, 100, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, bigFont, false);
+    TextBox PortTextBox;
+    initTextBox(&PortTextBox, 100, 180, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, bigFont, false);
+    TextBox bgPrintErrorTextBox;
+    initTextBox(&bgPrintErrorTextBox, 80, 400, 760, 400, (SDL_Color){255, 165, 0, 255}, (SDL_Color){139, 69, 19, 255}, (SDL_Color){0, 0, 0, 255}, bigFont, false);
+    TextBox unusedTextBox;
+    initTextBox(&unusedTextBox, 80, 60, 760, 200, (SDL_Color){150, 100, 135, 255}, (SDL_Color){150, 100, 135, 255}, (SDL_Color){0, 0, 0, 255}, littleFont, false);
 	bool writeIp = true;
 	bool writePort = false;
 
@@ -284,17 +318,17 @@ int menu_connection()
     {
         SDL_RenderClear(renderer);
         SDL_RenderCopy(renderer, img->t->fond, NULL, NULL);
-        drawTextBox(renderer, s_gui->tb->unusedTextBox, false); 
-        drawTextBox(renderer, s_gui->tb->bgPrintErrorTextBox, false);
-        drawTextInfo(renderer, s_gui->ti->errorText);  
-        drawButton(s_gui->b->play);
-        drawTextBox(renderer, s_gui->tb->IpTextBox, writeIp); 
-        drawTextBox(renderer, s_gui->tb->PortTextBox, writePort);
-        drawTextInfo(renderer, s_gui->ti->IpText);
-        drawTextInfo(renderer, s_gui->ti->PortText);
-        drawPictureButton(s_gui->b->music);
+        drawTextBox(renderer, &unusedTextBox, false); 
+        drawTextBox(renderer, &bgPrintErrorTextBox, false);  
+        drawButton(&play);
+        drawTextBox(renderer, &IpTextBox, writeIp); 
+        drawTextBox(renderer, &PortTextBox, writePort);
+        drawTextInfo(renderer, &IpText);
+        drawTextInfo(renderer, &PortText);
+        drawPictureButton(&music);
+        drawTextInfo(renderer, &errorText);
         //drawPictureButton( &primeCesar);
-        s_gui->b->play->isPressed = false;
+        play.isPressed = false;
 
         while(SDL_PollEvent(&event) != 0)
         { 
@@ -310,21 +344,21 @@ int menu_connection()
             {
                 int mouseX, mouseY;
                 SDL_GetMouseState(&mouseX, &mouseY);
-                if ((mouseX >= s_gui->b->play->buttonRect.x && mouseX <= s_gui->b->play->buttonRect.x + s_gui->b->play->buttonRect.w && mouseY >= s_gui->b->play->buttonRect.y && mouseY <= s_gui->b->play->buttonRect.y + s_gui->b->play->buttonRect.h) && (s_gui->tb->IpTextBox->text[0] != 0 && s_gui->tb->PortTextBox->text[0] != 0)) 
+                if ((mouseX >= play.buttonRect.x && mouseX <= play.buttonRect.x + play.buttonRect.w && mouseY >= play.buttonRect.y && mouseY <= play.buttonRect.y + play.buttonRect.h) && (IpTextBox.text[0] != 0 && PortTextBox.text[0] != 0)) 
                 {
-                    s_gui->b->play->isPressed = true;
-                    socket = try_connect(s_gui->tb->IpTextBox->text, s_gui->tb->PortTextBox->text);
+                    play.isPressed = true;
+                    socket = try_connect(IpTextBox.text, PortTextBox.text);
                     if (socket == -1)
-                        s_gui->ti->errorText->text = "Server not found, INVALID ADDRESS";   
+                        strcpy (errorText.text, "INVALID CREDENTIALS, please retry");   
                     else
-                        s_gui->ti->errorText->text = "";
+                        errorText.text[0] = 0;
                 }
 
-				else if (mouseX >= s_gui->b->music->x && mouseX <= s_gui->b->music->x + s_gui->b->music->width &&
-                    mouseY >= s_gui->b->music->y && mouseY <= s_gui->b->music->y + s_gui->b->music->height) 
+				else if (mouseX >= music.x && mouseX <= music.x + music.width &&
+                    mouseY >= music.y && mouseY <= music.y + music.height) 
 	        	{
-	        		s_gui->b->music->isPressed = !s_gui->b->music->isPressed;
-					if(s_gui->b->music->isPressed)
+	        		music.isPressed = !music.isPressed;
+					if(music.isPressed)
 						stopMusic();
 					else
 					{
@@ -333,14 +367,14 @@ int menu_connection()
 					}
 	        	}
 	        	
-				else if (mouseX >= s_gui->tb->IpTextBox->x && mouseX <= s_gui->tb->IpTextBox->x + s_gui->tb->IpTextBox->width &&
-                    mouseY >= s_gui->tb->IpTextBox->y && mouseY <= s_gui->tb->IpTextBox->y + s_gui->tb->IpTextBox->height) 
+				else if (mouseX >= IpTextBox.x && mouseX <= IpTextBox.x + IpTextBox.width &&
+                    mouseY >= IpTextBox.y && mouseY <= IpTextBox.y + IpTextBox.height) 
 	        	{
 	        		writeIp = true;
 					writePort = false;
 	        	}
-				else if (mouseX >= s_gui->tb->PortTextBox->x && mouseX <= s_gui->tb->PortTextBox->x + s_gui->tb->PortTextBox->width &&
-                    mouseY >= s_gui->tb->PortTextBox->y && mouseY <= s_gui->tb->PortTextBox->y + s_gui->tb->PortTextBox->height) 
+				else if (mouseX >= PortTextBox.x && mouseX <= PortTextBox.x + PortTextBox.width &&
+                    mouseY >= PortTextBox.y && mouseY <= PortTextBox.y + PortTextBox.height) 
 	        	{
 					writePort = true;
 					writeIp = false;		
@@ -355,21 +389,21 @@ int menu_connection()
                 }
                 if (event.key.keysym.sym == SDLK_RETURN)
                 { 
-                    socket = try_connect(s_gui->tb->IpTextBox->text, s_gui->tb->PortTextBox->text);
+                    socket = try_connect(IpTextBox.text, PortTextBox.text);
                     if (socket == -1)
-                        s_gui->ti->errorText->text = "Server not found, INVALID ADDRESS";   
+                        strcpy (errorText.text, "INVALID CREDENTIALS, please retry");   
                     else
-                        s_gui->ti->errorText->text = "";
+                        errorText.text[0] = 0;
                 }
             }
 
             if(writePort)
                 if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
-                    handleTextInput(s_gui->tb->PortTextBox, event);
+                    handleTextInput(&PortTextBox, event);
 
 			if(writeIp)
 				if (event.type == SDL_TEXTINPUT || event.type == SDL_KEYDOWN)
-		        	handleTextInput(s_gui->tb->IpTextBox, event);
+		        	handleTextInput(&IpTextBox, event);
 		}
 	    SDL_RenderPresent(renderer);
 		SDL_Delay(10);

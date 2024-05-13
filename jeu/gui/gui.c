@@ -7,56 +7,6 @@ int min(int a, int b)
     return b;
 }
 
-void init_main_menu(void)
-{
-    main_menu = calloc(sizeof(struct menu), 1);
-    main_menu->selector = s_gui->s->mainMenuSelector;
-    main_menu->menuDip = malloc(sizeof(struct menu_diplo));
-    main_menu->menuInv = malloc(sizeof(struct menu_inventaire));
-    main_menu->menuTrad = malloc(sizeof(struct menu_trade));
-
-    main_menu->menuDip->diploSelect = s_gui->d->diploSelector;
-    main_menu->menuDip->diploTextBox = s_gui->tb->diploTextBox;
-    main_menu->menuDip->on = 0;
-
-    main_menu->menuInv->on = 0;
-    main_menu->menuInv->selector = s_gui->s->inventory;
-    main_menu->menuInv->enter = 0;
-    main_menu->menuInv->actions = s_gui->s->inventory_actions;
-    main_menu->menuInv->equipement = s_gui->s->equipement;
-    main_menu->menuInv->equipement->options[0] = moi->left_hand;
-    main_menu->menuInv->equipement->options[1] = moi->right_hand;
-    main_menu->menuInv->equipement->options[2] = moi->headgear;
-    main_menu->menuInv->equipement->options[3] = moi->tunic;
-    main_menu->menuInv->equipement->options[4] = moi->pant;
-    main_menu->menuInv->equipement->options[5] = moi->shoes;
-
-
-    main_menu->menuTrad->on = 0;
-    main_menu->menuTrad->selector2 = s_gui->s->inventory_trade;
-    main_menu->menuTrad->tab = -1;
-    main_menu->menuTrad->count1 = 1;
-    main_menu->menuTrad->count2 = 1;
-
-    ////
-    menu_cond = malloc(sizeof(struct cond_menu));
-    menu_cond->accept_trade = -1;
-    menu_cond->formation = -1;
-}
-
-
-
-
-void init_speak_bubble(void)
-{
-    speakBubble = calloc(sizeof(struct speak), 1);
-    speakBubble->textBox = calloc(sizeof(TextBox), 1);
-    speakBubble->textInfo = calloc(sizeof(TextInfo), 1);
-    speakBubble->on = 0;
-
-    initTextBox(speakBubble->textBox, 100, 180, 558, 45, (SDL_Color){0, 0, 0, 255}, (SDL_Color){255, 255, 255, 255}, (SDL_Color){0, 0, 0, 255}, bigFont, false);
-}
-
 void gui_event(struct personnages *moi) 
 {
 	SDL_Rect position;
@@ -113,16 +63,17 @@ void display_elipse_and_handle_buttons()
     
     //SDL_RenderCopy(renderer, img->g->menuButton, NULL, &position);
     if (lettres->Mouse_Lclick == 1 && lettres->Mouse_pos_x > 50 && lettres->Mouse_pos_x < 85 && lettres->Mouse_pos_y > 50 && lettres->Mouse_pos_y < 85)
-        main_menu->on = !main_menu->on;
-    s_gui->b->menu->isPressed = main_menu->on;
-    drawPictureButton(s_gui->b->menu);
-    drawGauge(s_gui->g->my_health, moi->pv, moi->max_pv);
+        main_menu->on.isPressed = !main_menu->on.isPressed;
+    drawPictureButton( &main_menu->on);
+    drawGauge(&my_stats_display->my_health, moi->pv, moi->max_pv);
 }
 
 void menu_trade(void)
 {
     struct personnages *chosen = NULL;
     float distance_chosen = 9;
+    TextInfo echange_player;
+    initTextInfo(&echange_player, NULL, littleFont, 600, 10, 0, (SDL_Color){0, 255, 0, 255}, 0, 0, 0);
     for (struct linked_list *l = list; l != NULL; l=l->next)
     {
         if (l->p != moi)
@@ -144,8 +95,8 @@ void menu_trade(void)
     }
     if (chosen != NULL)
     {
-        s_gui->ti->echange_player->text =  chosen->nom;
-        drawTextInfo(renderer, s_gui->ti->echange_player);
+        echange_player.text =  chosen->nom;
+        drawTextInfo(renderer, &echange_player);
         int j = 0;
         for (struct linked_item *i = moi->i_list; i != NULL; i = i->next)
         {
@@ -339,7 +290,6 @@ void speakPerso(struct personnages *moi, char* ordre, SDL_Event event)
             speakBubble->on = 0;
         else if (lettres->keystates[SDL_SCANCODE_RETURN])
         {
-            printf ("test\n");
             sprintf (ordre + strlen(ordre), "%d 20 %s\037 ", moi->id, speakBubble->textBox->text);
             speakBubble->textBox->text[0] = 0;
             speakBubble->on = 0;
@@ -353,33 +303,33 @@ void accept_trade(void)
     if (echange_player == NULL || (echange_player->x - moi->x)*(echange_player->x - moi->x)+(echange_player->y - moi->y)*(echange_player->y - moi->y) > 9)
     {
         sprintf (ordre + strlen(ordre), "%d 17 none none 0 none 0 ", moi->id); // decline
-        menu_cond->accept_trade = -1;
+        menu_cond->acceptTrade = -1;
     }
     if (lettres->keystates[SDL_SCANCODE_ESCAPE])
-        menu_cond->accept_trade = -1;
-    drawTextBox(renderer, s_gui->tb->bgEventTextBox, false);
+        menu_cond->acceptTrade = -1;
+    drawTextBox(renderer, &menu_cond->bgEventTextBox, false);
     char text[300];
     sprintf (text, "%s propose you to trade %d %s against %d %s", moi->echange_player, moi->count_item1, moi->item1, moi->count_item2, moi->item2);
     TextInfo text_display = {text,  littleFont, 200, 150,0,{255, 255, 255, 255}, 0,0,0};
-    drawSelector(renderer, s_gui->s->trade_porposal);
+    drawSelector(renderer, menu_cond->selector_accept_trade);
     drawTextInfo(renderer, &text_display);
     if (lettres->keystates[SDL_SCANCODE_S] || lettres->keystates[SDL_SCANCODE_DOWN])
-    	s_gui->s->trade_porposal->selectedOption = (s_gui->s->trade_porposal->selectedOption + 1) % s_gui->s->trade_porposal->numOptions;
+    	menu_cond->selector_accept_trade->selectedOption = (menu_cond->selector_accept_trade->selectedOption + 1) % menu_cond->selector_accept_trade->numOptions;
     if (lettres->keystates[SDL_SCANCODE_Z] || lettres->keystates[SDL_SCANCODE_UP])
-	    s_gui->s->trade_porposal->selectedOption = (s_gui->s->trade_porposal->selectedOption - 1 + s_gui->s->trade_porposal->numOptions) % s_gui->s->trade_porposal->numOptions;
+	    menu_cond->selector_accept_trade->selectedOption = (menu_cond->selector_accept_trade->selectedOption - 1 + menu_cond->selector_accept_trade->numOptions) % menu_cond->selector_accept_trade->numOptions;
     if (lettres->keystates[SDL_SCANCODE_RETURN] == 1)
     {
-        if(s_gui->s->trade_porposal->selectedOption == 0)
+        if(menu_cond->selector_accept_trade->selectedOption == 0)
             echange_item(moi, find_perso_by_name(moi->echange_player));
-        else if(s_gui->s->trade_porposal->selectedOption == 1)
+        else if(menu_cond->selector_accept_trade->selectedOption == 1)
             sprintf (ordre + strlen(ordre), "%d 17 none none 0 none 0 ", moi->id); // decline
         else
         {
             sprintf (ordre + strlen(ordre), "%d 17 none none 0 none 0 ", moi->id); // decline
-            main_menu->on = 1;
+            main_menu->on.isPressed = 1;
             main_menu->menuTrad->on = 1;
         }
-        menu_cond->accept_trade = -1;
+        menu_cond->acceptTrade = -1;
     }
 }
 
@@ -398,7 +348,7 @@ void menu(SDL_Event event)
     	if (lettres->keystates[SDL_SCANCODE_Z] || lettres->keystates[SDL_SCANCODE_UP])
 	        main_menu->selector->selectedOption = (main_menu->selector->selectedOption - 1 + main_menu->selector->numOptions) % main_menu->selector->numOptions;
         if (lettres->keystates[SDL_SCANCODE_ESCAPE])
-            main_menu->on = 0;
+            main_menu->on.isPressed = 0;
     
         if (lettres->keystates[SDL_SCANCODE_RETURN])
         {
@@ -415,31 +365,34 @@ void menu(SDL_Event event)
 
 void diplomatic_menu(SDL_Event event)
 {
-    drawTextBox(renderer, s_gui->tb->bgDiploTextBox, false);
-    drawTextBox(renderer, main_menu->menuDip->diploTextBox, true);
+    drawTextBox(renderer, &main_menu->menuDip->bgDiploTextBox, false);
+    drawTextBox(renderer, &main_menu->menuDip->diploTextBox, true);
     drawDropDown(main_menu->menuDip->diploSelect);
-    drawTextInfo(renderer, s_gui->ti->errorText); 
+    drawTextInfo(renderer, &main_menu->menuDip->errorText); 
     
     char tempEnemyList[99999];
-    char overlord[62] = "overlord : ";
-    strcat (overlord,moi->nom_superieur);
+    char overlord_string[62] = "overlord : ";
+    TextInfo enemyListText;
+    initTextInfo(&enemyListText, tempEnemyList, littleFont, 800, 520, 0, (SDL_Color){0, 0, 0, 255}, 0, 0, 0);
+    TextInfo overlord;
+    initTextInfo(&overlord, overlord_string, littleFont, 270, 350, 0, (SDL_Color){0, 255, 0, 255}, 0, 0, 0);
+    
+    strcat (overlord_string,moi->nom_superieur);
     tempEnemyList[0] = 0;
     for (struct linked_enemie *l = moi->e_list; l != NULL; l=l->next)
 	{
         strcat(tempEnemyList, l->nom);
         strcat(tempEnemyList, " ");        
     }
-    s_gui->ti->enemyListText->text = tempEnemyList;
-    s_gui->ti->overlord->text = overlord;
-    drawTextInfo(renderer, s_gui->ti->enemyListText);
-    drawTextInfo(renderer, s_gui->ti->overlord);
+    drawTextInfo(renderer, &enemyListText);
+    drawTextInfo(renderer, &overlord);
 
     if (event.type == SDL_TEXTINPUT) 
-        strncat(main_menu->menuDip->diploTextBox->text, event.text.text, sizeof(main_menu->menuDip->diploTextBox->text) - strlen(main_menu->menuDip->diploTextBox->text) - 1);
+        strncat(main_menu->menuDip->diploTextBox.text, event.text.text, sizeof(main_menu->menuDip->diploTextBox.text) - strlen(main_menu->menuDip->diploTextBox.text) - 1);
     else
     {
         if (lettres->keystates[SDL_SCANCODE_AC_BACK])
-            main_menu->menuDip->diploTextBox->text[strlen(main_menu->menuDip->diploTextBox->text)-1] = 0;
+            main_menu->menuDip->diploTextBox.text[strlen(main_menu->menuDip->diploTextBox.text)-1] = 0;
         else if (lettres->keystates[SDL_SCANCODE_ESCAPE])
             main_menu->menuDip->on = 0;
         else if (lettres->keystates[SDL_SCANCODE_UP])
@@ -450,53 +403,53 @@ void diplomatic_menu(SDL_Event event)
         {  
             if(strcmp("Add enemy", main_menu->menuDip->diploSelect->items[main_menu->menuDip->diploSelect->selectedItem]) == 0)
             {
-                struct personnages* persoToFind = find_perso_by_name(main_menu->menuDip->diploTextBox->text);                      
+                struct personnages* persoToFind = find_perso_by_name(main_menu->menuDip->diploTextBox.text);                      
                 char is_already_in_list = 0;
     
                 for (struct linked_enemie *l = moi->e_list; l != NULL; l=l->next)
-                    if (strcmp(main_menu->menuDip->diploTextBox->text, l->nom) == 0)
+                    if (strcmp(main_menu->menuDip->diploTextBox.text, l->nom) == 0)
                         is_already_in_list = 1;
                     
                     
                 if(persoToFind == NULL || persoToFind == moi || is_already_in_list == 1)
                 {
-                    s_gui->ti->errorText->x = 500;
-                    s_gui->ti->errorText->y = 500;
-                    s_gui->ti->errorText->text = "invalid username (stupid)";
+                    main_menu->menuDip->errorText.x = 500;
+                    main_menu->menuDip->errorText.y = 500;
+                    strcpy (main_menu->menuDip->errorText.text, "invalid username (stupid)");   
                     return;
                 }
                 else
                 {
-                    sprintf(ordre + strlen(ordre), "%d 15 +0 %s ", moi->id, main_menu->menuDip->diploTextBox->text);
-                    s_gui->ti->errorText->text = "";
+                    sprintf(ordre + strlen(ordre), "%d 15 +0 %s ", moi->id, main_menu->menuDip->diploTextBox.text);
+                    main_menu->menuDip->errorText.text[0] = 0;
                 }
             }
             else if(strcmp("Remove enemy", main_menu->menuDip->diploSelect->items[main_menu->menuDip->diploSelect->selectedItem]) == 0)
             {
                 char is_already_in_list = 0;
                 for (struct linked_enemie *l = moi->e_list; l != NULL; l=l->next)
-                    if (strcmp(main_menu->menuDip->diploTextBox->text, l->nom) == 0)
+                    if (strcmp(main_menu->menuDip->diploTextBox.text, l->nom) == 0)
                         is_already_in_list = 1;
 
                 if(is_already_in_list == 0)
                 {
-                    s_gui->ti->errorText->x = 500;
-                    s_gui->ti->errorText->y = 500;
-                    s_gui->ti->errorText->text = "invalid username (stupid)";
+                    main_menu->menuDip->errorText.x = 500;
+                    main_menu->menuDip->errorText.y = 500;
+                    strcpy (main_menu->menuDip->errorText.text, "invalid username (stupid)");  
                     return;
                 }
                 else
                 {
-                    sprintf(ordre + strlen(ordre), "%d 15 %s ", moi->id, main_menu->menuDip->diploTextBox->text);
-                    s_gui->ti->errorText->text = "";
+                    sprintf(ordre + strlen(ordre), "%d 15 %s ", moi->id, main_menu->menuDip->diploTextBox.text);
+                    main_menu->menuDip->errorText.text[0] = 0;
                 }
             }
             else if(strcmp("Set Overlord", main_menu->menuDip->diploSelect->items[main_menu->menuDip->diploSelect->selectedItem]) == 0)
             {
-                if (strcmp (main_menu->menuDip->diploTextBox->text, "") == 0)
+                if (strcmp (main_menu->menuDip->diploTextBox.text, "") == 0)
                     sprintf(ordre + strlen(ordre), "%d 10 %s ", moi->id, moi->nom);
                 else
-                    sprintf(ordre + strlen(ordre), "%d 10 %s ", moi->id, main_menu->menuDip->diploTextBox->text);
+                    sprintf(ordre + strlen(ordre), "%d 10 %s ", moi->id, main_menu->menuDip->diploTextBox.text);
             }
         }
     }
@@ -504,37 +457,30 @@ void diplomatic_menu(SDL_Event event)
 
 void manage_formation_menu(void)
 {
-    drawPictureButton(s_gui->b->manage_formation_lines);
-    drawPictureButton(s_gui->b->manage_formation_lines_minus_space);
-    drawPictureButton(s_gui->b->manage_formation_lines_plus_space);
-    drawPictureButton(s_gui->b->manage_formation_lines_minus_nbperline);
-    drawPictureButton(s_gui->b->manage_formation_lines_plus_nbperline);
-    drawPictureButton(s_gui->b->manage_formation_lines_minus_spaceline);
-    drawPictureButton(s_gui->b->manage_formation_lines_plus_spaceline);
+    drawPictureButton(menu_cond->manage_formation_lines);
+    drawPictureButton(menu_cond->manage_formation_splitted_lines);
+    drawPictureButton(menu_cond->manage_formation_square);
+    drawPictureButton(menu_cond->manage_formation_triangle);
 
-    drawPictureButton(s_gui->b->manage_formation_splitted_lines);
-    drawPictureButton(s_gui->b->manage_formation_splitted_lines_minus_space);
-    drawPictureButton(s_gui->b->manage_formation_splitted_lines_plus_space);
-    drawPictureButton(s_gui->b->manage_formation_splitted_lines_minus_nbperline);
-    drawPictureButton(s_gui->b->manage_formation_splitted_lines_plus_nbperline);
-    drawPictureButton(s_gui->b->manage_formation_splitted_lines_minus_spaceline);
-    drawPictureButton(s_gui->b->manage_formation_splitted_lines_plus_spaceline);
+    drawPictureButton(menu_cond->manage_formation_lines_minus_space);
+    drawPictureButton(menu_cond->manage_formation_lines_plus_space);
+    drawPictureButton(menu_cond->manage_formation_nbperline_minus);
+    drawPictureButton(menu_cond->manage_formation_nbperline_plus);
+    drawPictureButton(menu_cond->manage_formation_columns_minus_space);
+    drawPictureButton(menu_cond->manage_formation_columns_plus_space);
 
-    drawPictureButton(s_gui->b->manage_formation_square);
-    drawPictureButton(s_gui->b->manage_formation_square_minus_space);
-    drawPictureButton(s_gui->b->manage_formation_square_plus_space);
-    drawPictureButton(s_gui->b->manage_formation_square_minus_nbperline);
-    drawPictureButton(s_gui->b->manage_formation_square_plus_nbperline);
-    drawPictureButton(s_gui->b->manage_formation_square_minus_spaceline);
-    drawPictureButton(s_gui->b->manage_formation_square_plus_spaceline);
+   
+    sprintf(menu_cond->txt_formation_space_lines, "%.1fm", menu_cond->space_lines);
+    sprintf(menu_cond->txt_formation_space_columns, "%.1fm", menu_cond->space_columns);
+    sprintf(menu_cond->txt_formation_nb_per_lines, "%dm", menu_cond->nb_per_lines);
 
-    drawPictureButton(s_gui->b->manage_formation_triangle);
-    drawPictureButton(s_gui->b->manage_formation_triangle_minus_space);
-    drawPictureButton(s_gui->b->manage_formation_triangle_plus_space);
-    drawPictureButton(s_gui->b->manage_formation_triangle_minus_nbperline);
-    drawPictureButton(s_gui->b->manage_formation_triangle_plus_nbperline);
-    drawPictureButton(s_gui->b->manage_formation_triangle_minus_spaceline);
-    drawPictureButton(s_gui->b->manage_formation_triangle_plus_spaceline);
+
+    
+    drawTextInfo(renderer, &menu_cond->formation_space_lines); 
+    drawTextInfo(renderer, &menu_cond->formation_space_columns); 
+    drawTextInfo(renderer, &menu_cond->formation_nb_per_lines); 
+ 
+
     if (lettres->keystates[SDL_SCANCODE_ESCAPE])
         menu_cond->formation = -1;
     
@@ -543,7 +489,7 @@ void manage_formation_menu(void)
 char conditional_menu(struct linked_list *selected)
 {
     char to_ret=  0;
-    if (menu_cond->accept_trade == 1)
+    if (menu_cond->acceptTrade == 1)
     {
         accept_trade();
         to_ret = 1;
@@ -555,25 +501,25 @@ char conditional_menu(struct linked_list *selected)
     }
     if (strcmp(moi->echange_player, "none") != 0)
     {
-        s_gui->b->accept_trade->isPressed = 1;
+        menu_cond->accept_trade->isPressed = 1;
         if (lettres->keystates[SDL_SCANCODE_L])
-            menu_cond->accept_trade = 1;
-        if (lettres->Mouse_Lclick == 1 && lettres->Mouse_pos_x > s_gui->b->accept_trade->x && lettres->Mouse_pos_x < s_gui->b->accept_trade->x + s_gui->b->accept_trade->width && lettres->Mouse_pos_y > s_gui->b->accept_trade->y && lettres->Mouse_pos_y < s_gui->b->accept_trade->y + s_gui->b->accept_trade->width)
-            menu_cond->accept_trade *= -1;
+            menu_cond->acceptTrade = 1;
+        if (lettres->Mouse_Lclick == 1 && lettres->Mouse_pos_x > menu_cond->accept_trade->x && lettres->Mouse_pos_x < menu_cond->accept_trade->x + menu_cond->accept_trade->width && lettres->Mouse_pos_y > menu_cond->accept_trade->y && lettres->Mouse_pos_y < menu_cond->accept_trade->y + menu_cond->accept_trade->width)
+            menu_cond->acceptTrade *= -1;
     }
     else 
-        s_gui->b->accept_trade->isPressed = 0;
+        menu_cond->accept_trade->isPressed = 0;
     if (selected != NULL )
     {
-        s_gui->b->manage_formation->isPressed = 1;
+        menu_cond->manage_formation->isPressed = 1;
         if (lettres->keystates[SDL_SCANCODE_K])
             menu_cond->formation = 1;
-        if (lettres->Mouse_Lclick == 1 && lettres->Mouse_pos_x > s_gui->b->manage_formation->x && lettres->Mouse_pos_x < s_gui->b->manage_formation->x + s_gui->b->manage_formation->width && lettres->Mouse_pos_y > s_gui->b->manage_formation->y && lettres->Mouse_pos_y < s_gui->b->manage_formation->y + s_gui->b->manage_formation->width)
+        if (lettres->Mouse_Lclick == 1 && lettres->Mouse_pos_x > menu_cond->manage_formation->x && lettres->Mouse_pos_x < menu_cond->manage_formation->x + menu_cond->manage_formation->width && lettres->Mouse_pos_y > menu_cond->manage_formation->y && lettres->Mouse_pos_y < menu_cond->manage_formation->y + menu_cond->manage_formation->width)
             menu_cond->formation *= -1;
     }
     else
-        s_gui->b->manage_formation->isPressed = 0;
-    drawPictureButton(s_gui->b->accept_trade);
-    drawPictureButton(s_gui->b->manage_formation);
+        menu_cond->manage_formation->isPressed = 0;
+    drawPictureButton(menu_cond->accept_trade);
+    drawPictureButton(menu_cond->manage_formation);
     return to_ret;
 }

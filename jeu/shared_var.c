@@ -14,8 +14,10 @@ struct linked_list *list;
 TTF_Font *littleFont;
 TTF_Font *bigFont;
 TTF_Font *font;
-struct menu *main_menu;
 struct speak *speakBubble;
+struct menu *main_menu;
 struct cond_menu *menu_cond;
+struct main_char_stats *my_stats_display;
+
 char should_i_call_my_computer_work;
 struct personnages *moi;

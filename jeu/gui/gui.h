@@ -15,6 +15,7 @@
 #include "../shared_var.h"
 #include "../graphic_widget/gauge.h"
 #include "../graphic_widget/dropDown.h"
+#include "../graphic_widget/pictureButton.h"
 
 struct speak
 {
@@ -27,7 +28,9 @@ struct menu_diplo {
     char on;
     Selector *selector;
     DropDown *diploSelect;
-    TextBox *diploTextBox;
+    TextBox bgDiploTextBox;
+    TextBox diploTextBox;
+    TextInfo errorText;
 };
 
 struct menu_inventaire{
@@ -48,25 +51,51 @@ struct menu_trade{
 
 struct menu
 {
-    char on;
+    pictureButton on;
     struct menu_diplo *menuDip;
     Selector *selector;
     struct menu_inventaire *menuInv;
     struct menu_trade* menuTrad;
 };
 
+struct main_char_stats
+{
+    Gauge my_health;
+};
+
 struct cond_menu
 {
-    char accept_trade;
+    char acceptTrade;
     char formation;
+    Selector *selector_accept_trade;
+    float space_lines;
+    float space_columns;
+    int nb_per_lines;
+    TextBox bgEventTextBox;
+    char txt_formation_space_lines[10];
+    char txt_formation_space_columns[10];
+    char txt_formation_nb_per_lines[10];
+    TextInfo formation_space_lines;
+    TextInfo formation_space_columns;
+    TextInfo formation_nb_per_lines;
+
+    pictureButton *manage_formation_lines;
+    pictureButton *manage_formation_splitted_lines;
+    pictureButton *manage_formation_triangle;
+    pictureButton *manage_formation_square;
+    pictureButton *manage_formation_lines_minus_space;
+    pictureButton *manage_formation_lines_plus_space;
+    pictureButton *manage_formation_nbperline_minus;
+    pictureButton *manage_formation_nbperline_plus;
+    pictureButton *manage_formation_columns_minus_space;
+    pictureButton *manage_formation_columns_plus_space;
+    pictureButton *accept_trade;
+    pictureButton *manage_formation;
 };
 
 void menu(SDL_Event event);
 void accept_trade(void);
 void diplomatic_menu(SDL_Event event);
-void init_main_menu(void);
-void init_speak_bubble(void);
-void init_life_gauge(void);
 void speakPerso(struct personnages *moi, char* ordre, SDL_Event event);
 void printSpeakBubble(struct personnages *perso, TextInfo* textInfo, TextBox* textBox, char* on);
 void gui_event(struct personnages *moi);
