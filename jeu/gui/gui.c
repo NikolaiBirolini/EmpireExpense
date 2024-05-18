@@ -16,7 +16,7 @@ void gui_event(struct personnages *moi)
 	{
         position.x = (moi->ordrex - screenx - moi->ordrey + screeny) * 22 + 850;
         position.y = (moi->ordrex - screenx - screeny + moi->ordrey) * 11 + 400 - ground_altitude[(int)moi->ordrex + (int)moi->ordrey * max_x],
-        position.w = 100; position.h =  100;
+        position.w = 25; position.h =  25;
 		if (powf(moi->x - moi->ordrex, 2) + powf(moi->y - moi->ordrey, 2) < 9)
         {
 			sprintf (ordre + strlen(ordre), "%d 03 -1 ", moi->id);
@@ -38,15 +38,13 @@ void gui_event(struct personnages *moi)
     }
 }
 
-void display_selected(struct linked_list *selected, struct personnages *moi, struct formation *f)
+void display_selected(struct linked_list *selected)
 {
     for (struct linked_list *p = selected; p != NULL; p = p->next)
     {
         SDL_Rect position2 = {p->p->screenx-1, p->p->screeny-1, p->p->sizescreenx + 1,p->p->sizescreeny + 1};
         SDL_RenderCopy(renderer, img->g->selecteur, NULL, &position2);
     }
-    moi = moi;
-    f = f;
     //TextInfo text_my_stats = {"pv\nqdsf", littleFont, 1100, 100, 0, {0, 0, 0, 255}, 1, 1, 0};
     //drawTextInfo(renderer, &text_my_stats);
 }
@@ -457,44 +455,79 @@ void diplomatic_menu(SDL_Event event)
 
 void manage_formation_menu(void)
 {
-    drawPictureButton(menu_cond->manage_formation_lines);
-    drawPictureButton(menu_cond->manage_formation_splitted_lines);
-    drawPictureButton(menu_cond->manage_formation_square);
-    drawPictureButton(menu_cond->manage_formation_triangle);
-
-    drawPictureButton(menu_cond->manage_formation_lines_minus_space);
-    drawPictureButton(menu_cond->manage_formation_lines_plus_space);
-    drawPictureButton(menu_cond->manage_formation_nbperline_minus);
-    drawPictureButton(menu_cond->manage_formation_nbperline_plus);
-    drawPictureButton(menu_cond->manage_formation_columns_minus_space);
-    drawPictureButton(menu_cond->manage_formation_columns_plus_space);
+    drawPictureButton(&menu_cond->manage_formation_lines);
+    drawPictureButton(&menu_cond->manage_formation_splitted_lines);
+    drawPictureButton(&menu_cond->manage_formation_square);
+    drawPictureButton(&menu_cond->manage_formation_triangle);
+    drawPictureButton(&menu_cond->manage_formation_lines_minus_space);
+    drawPictureButton(&menu_cond->manage_formation_lines_plus_space);
+    drawPictureButton(&menu_cond->manage_formation_nbperline_minus);
+    drawPictureButton(&menu_cond->manage_formation_nbperline_plus);
+    drawPictureButton(&menu_cond->manage_formation_columns_minus_space);
+    drawPictureButton(&menu_cond->manage_formation_columns_plus_space);
+    drawPictureButton(&menu_cond->manage_formation_minus_angle);
+    drawPictureButton(&menu_cond->manage_formation_plus_angle);
 
     if (lettres->Mouse_Lclick == 1)
     {
-        if (lettres->Mouse_pos_x > menu_cond->manage_formation_lines_minus_space->x && lettres->Mouse_pos_x < menu_cond->manage_formation_lines_minus_space->x + menu_cond->manage_formation_lines_minus_space->width && lettres->Mouse_pos_y > menu_cond->manage_formation_lines_minus_space->y && lettres->Mouse_pos_y < menu_cond->manage_formation_lines_minus_space->y + menu_cond->manage_formation_lines_minus_space->width)
+        if (lettres->Mouse_pos_x > menu_cond->manage_formation_lines.x && lettres->Mouse_pos_x < menu_cond->manage_formation_lines.x + menu_cond->manage_formation_lines.width && lettres->Mouse_pos_y > menu_cond->manage_formation_lines.y && lettres->Mouse_pos_y < menu_cond->manage_formation_lines.y + menu_cond->manage_formation_lines.width)
+        {
+            menu_cond->manage_formation_lines.isPressed = 1;
+            menu_cond->manage_formation_splitted_lines.isPressed = 0;
+            menu_cond->manage_formation_square.isPressed = 0;
+            menu_cond->manage_formation_triangle.isPressed = 0;
+        }
+        if (lettres->Mouse_pos_x > menu_cond->manage_formation_splitted_lines.x && lettres->Mouse_pos_x < menu_cond->manage_formation_splitted_lines.x + menu_cond->manage_formation_splitted_lines.width && lettres->Mouse_pos_y > menu_cond->manage_formation_splitted_lines.y && lettres->Mouse_pos_y < menu_cond->manage_formation_splitted_lines.y + menu_cond->manage_formation_splitted_lines.width)
+        {
+            menu_cond->manage_formation_lines.isPressed = 0;
+            menu_cond->manage_formation_splitted_lines.isPressed = 1;
+            menu_cond->manage_formation_square.isPressed = 0;
+            menu_cond->manage_formation_triangle.isPressed = 0;
+        }
+        if (lettres->Mouse_pos_x > menu_cond->manage_formation_square.x && lettres->Mouse_pos_x < menu_cond->manage_formation_square.x + menu_cond->manage_formation_square.width && lettres->Mouse_pos_y > menu_cond->manage_formation_square.y && lettres->Mouse_pos_y < menu_cond->manage_formation_square.y + menu_cond->manage_formation_square.width)
+        {
+            menu_cond->manage_formation_lines.isPressed = 0;
+            menu_cond->manage_formation_splitted_lines.isPressed = 0;
+            menu_cond->manage_formation_square.isPressed = 1;
+            menu_cond->manage_formation_triangle.isPressed = 0;
+        }
+        if (lettres->Mouse_pos_x > menu_cond->manage_formation_triangle.x && lettres->Mouse_pos_x < menu_cond->manage_formation_triangle.x + menu_cond->manage_formation_triangle.width && lettres->Mouse_pos_y > menu_cond->manage_formation_triangle.y && lettres->Mouse_pos_y < menu_cond->manage_formation_triangle.y + menu_cond->manage_formation_triangle.width)
+        {
+            menu_cond->manage_formation_lines.isPressed = 0;
+            menu_cond->manage_formation_splitted_lines.isPressed = 0;
+            menu_cond->manage_formation_square.isPressed = 0;
+            menu_cond->manage_formation_triangle.isPressed = 1;
+        }
+        else if (lettres->Mouse_pos_x > menu_cond->manage_formation_lines_minus_space.x && lettres->Mouse_pos_x < menu_cond->manage_formation_lines_minus_space.x + menu_cond->manage_formation_lines_minus_space.width && lettres->Mouse_pos_y > menu_cond->manage_formation_lines_minus_space.y && lettres->Mouse_pos_y < menu_cond->manage_formation_lines_minus_space.y + menu_cond->manage_formation_lines_minus_space.width)
             menu_cond->space_lines -= 0.2;
-        else if (lettres->Mouse_pos_x > menu_cond->manage_formation_lines_plus_space->x && lettres->Mouse_pos_x < menu_cond->manage_formation_lines_plus_space->x + menu_cond->manage_formation_lines_plus_space->width && lettres->Mouse_pos_y > menu_cond->manage_formation_lines_plus_space->y && lettres->Mouse_pos_y < menu_cond->manage_formation_lines_plus_space->y + menu_cond->manage_formation_lines_plus_space->width)
+        else if (lettres->Mouse_pos_x > menu_cond->manage_formation_lines_plus_space.x && lettres->Mouse_pos_x < menu_cond->manage_formation_lines_plus_space.x + menu_cond->manage_formation_lines_plus_space.width && lettres->Mouse_pos_y > menu_cond->manage_formation_lines_plus_space.y && lettres->Mouse_pos_y < menu_cond->manage_formation_lines_plus_space.y + menu_cond->manage_formation_lines_plus_space.width)
             menu_cond->space_lines += 0.2;
-        else if (lettres->Mouse_pos_x > menu_cond->manage_formation_nbperline_minus->x && lettres->Mouse_pos_x < menu_cond->manage_formation_nbperline_minus->x + menu_cond->manage_formation_nbperline_minus->width && lettres->Mouse_pos_y > menu_cond->manage_formation_nbperline_minus->y && lettres->Mouse_pos_y < menu_cond->manage_formation_nbperline_minus->y + menu_cond->manage_formation_nbperline_minus->width)
+        else if (lettres->Mouse_pos_x > menu_cond->manage_formation_nbperline_minus.x && lettres->Mouse_pos_x < menu_cond->manage_formation_nbperline_minus.x + menu_cond->manage_formation_nbperline_minus.width && lettres->Mouse_pos_y > menu_cond->manage_formation_nbperline_minus.y && lettres->Mouse_pos_y < menu_cond->manage_formation_nbperline_minus.y + menu_cond->manage_formation_nbperline_minus.width)
             menu_cond->nb_per_lines -= 1;
-        else if (lettres->Mouse_pos_x > menu_cond->manage_formation_nbperline_plus->x && lettres->Mouse_pos_x < menu_cond->manage_formation_nbperline_plus->x + menu_cond->manage_formation_nbperline_plus->width && lettres->Mouse_pos_y > menu_cond->manage_formation_nbperline_plus->y && lettres->Mouse_pos_y < menu_cond->manage_formation_nbperline_plus->y + menu_cond->manage_formation_nbperline_plus->width)
+        else if (lettres->Mouse_pos_x > menu_cond->manage_formation_nbperline_plus.x && lettres->Mouse_pos_x < menu_cond->manage_formation_nbperline_plus.x + menu_cond->manage_formation_nbperline_plus.width && lettres->Mouse_pos_y > menu_cond->manage_formation_nbperline_plus.y && lettres->Mouse_pos_y < menu_cond->manage_formation_nbperline_plus.y + menu_cond->manage_formation_nbperline_plus.width)
             menu_cond->nb_per_lines += 1;
-        else if (lettres->Mouse_pos_x > menu_cond->manage_formation_columns_minus_space->x && lettres->Mouse_pos_x < menu_cond->manage_formation_columns_minus_space->x + menu_cond->manage_formation_columns_minus_space->width && lettres->Mouse_pos_y > menu_cond->manage_formation_columns_minus_space->y && lettres->Mouse_pos_y < menu_cond->manage_formation_columns_minus_space->y + menu_cond->manage_formation_columns_minus_space->width)
+        else if (lettres->Mouse_pos_x > menu_cond->manage_formation_columns_minus_space.x && lettres->Mouse_pos_x < menu_cond->manage_formation_columns_minus_space.x + menu_cond->manage_formation_columns_minus_space.width && lettres->Mouse_pos_y > menu_cond->manage_formation_columns_minus_space.y && lettres->Mouse_pos_y < menu_cond->manage_formation_columns_minus_space.y + menu_cond->manage_formation_columns_minus_space.width)
             menu_cond->space_columns -= 0.2;
-        else if (lettres->Mouse_pos_x > menu_cond->manage_formation_columns_plus_space->x && lettres->Mouse_pos_x < menu_cond->manage_formation_columns_plus_space->x + menu_cond->manage_formation_columns_plus_space->width && lettres->Mouse_pos_y > menu_cond->manage_formation_columns_plus_space->y && lettres->Mouse_pos_y < menu_cond->manage_formation_columns_plus_space->y + menu_cond->manage_formation_columns_plus_space->width)
+        else if (lettres->Mouse_pos_x > menu_cond->manage_formation_columns_plus_space.x && lettres->Mouse_pos_x < menu_cond->manage_formation_columns_plus_space.x + menu_cond->manage_formation_columns_plus_space.width && lettres->Mouse_pos_y > menu_cond->manage_formation_columns_plus_space.y && lettres->Mouse_pos_y < menu_cond->manage_formation_columns_plus_space.y + menu_cond->manage_formation_columns_plus_space.width)
             menu_cond->space_columns += 0.2;
+        else if (lettres->Mouse_pos_x > menu_cond->manage_formation_minus_angle.x && lettres->Mouse_pos_x < menu_cond->manage_formation_minus_angle.x + menu_cond->manage_formation_minus_angle.width && lettres->Mouse_pos_y > menu_cond->manage_formation_minus_angle.y && lettres->Mouse_pos_y < menu_cond->manage_formation_minus_angle.y + menu_cond->manage_formation_minus_angle.width)
+            menu_cond->angle -= 45;
+        else if (lettres->Mouse_pos_x > menu_cond->manage_formation_plus_angle.x && lettres->Mouse_pos_x < menu_cond->manage_formation_plus_angle.x + menu_cond->manage_formation_plus_angle.width && lettres->Mouse_pos_y > menu_cond->manage_formation_plus_angle.y && lettres->Mouse_pos_y < menu_cond->manage_formation_plus_angle.y + menu_cond->manage_formation_plus_angle.width)
+            menu_cond->angle += 45;
         
     }
    
     sprintf(menu_cond->txt_formation_space_lines, "%.1fm", menu_cond->space_lines);
     sprintf(menu_cond->txt_formation_space_columns, "%.1fm", menu_cond->space_columns);
     sprintf(menu_cond->txt_formation_nb_per_lines, "%d", menu_cond->nb_per_lines);
+    sprintf(menu_cond->txt_formation_angle, "%d", menu_cond->angle);
 
 
-    
     drawTextInfo(renderer, &menu_cond->formation_space_lines); 
     drawTextInfo(renderer, &menu_cond->formation_space_columns); 
     drawTextInfo(renderer, &menu_cond->formation_nb_per_lines); 
+    drawTextInfo(renderer, &menu_cond->formation_angle); 
+
  
 
     if (lettres->keystates[SDL_SCANCODE_ESCAPE])
@@ -517,25 +550,25 @@ char conditional_menu(struct linked_list *selected)
     }
     if (strcmp(moi->echange_player, "none") != 0)
     {
-        menu_cond->accept_trade->isPressed = 1;
+        menu_cond->accept_trade.isPressed = 1;
         if (lettres->keystates[SDL_SCANCODE_L])
             menu_cond->acceptTrade = 1;
-        if (lettres->Mouse_Lclick == 1 && lettres->Mouse_pos_x > menu_cond->accept_trade->x && lettres->Mouse_pos_x < menu_cond->accept_trade->x + menu_cond->accept_trade->width && lettres->Mouse_pos_y > menu_cond->accept_trade->y && lettres->Mouse_pos_y < menu_cond->accept_trade->y + menu_cond->accept_trade->width)
+        if (lettres->Mouse_Lclick == 1 && lettres->Mouse_pos_x > menu_cond->accept_trade.x && lettres->Mouse_pos_x < menu_cond->accept_trade.x + menu_cond->accept_trade.width && lettres->Mouse_pos_y > menu_cond->accept_trade.y && lettres->Mouse_pos_y < menu_cond->accept_trade.y + menu_cond->accept_trade.width)
             menu_cond->acceptTrade *= -1;
     }
     else 
-        menu_cond->accept_trade->isPressed = 0;
+        menu_cond->accept_trade.isPressed = 0;
     if (selected != NULL )
     {
-        menu_cond->manage_formation->isPressed = 1;
+        menu_cond->manage_formation.isPressed = 1;
         if (lettres->keystates[SDL_SCANCODE_K])
             menu_cond->formation = 1;
-        if (lettres->Mouse_Lclick == 1 && lettres->Mouse_pos_x > menu_cond->manage_formation->x && lettres->Mouse_pos_x < menu_cond->manage_formation->x + menu_cond->manage_formation->width && lettres->Mouse_pos_y > menu_cond->manage_formation->y && lettres->Mouse_pos_y < menu_cond->manage_formation->y + menu_cond->manage_formation->width)
+        if (lettres->Mouse_Lclick == 1 && lettres->Mouse_pos_x > menu_cond->manage_formation.x && lettres->Mouse_pos_x < menu_cond->manage_formation.x + menu_cond->manage_formation.width && lettres->Mouse_pos_y > menu_cond->manage_formation.y && lettres->Mouse_pos_y < menu_cond->manage_formation.y + menu_cond->manage_formation.width)
             menu_cond->formation *= -1;
     }
     else
-        menu_cond->manage_formation->isPressed = 0;
-    drawPictureButton(menu_cond->accept_trade);
-    drawPictureButton(menu_cond->manage_formation);
+        menu_cond->manage_formation.isPressed = 0;
+    drawPictureButton(&menu_cond->accept_trade);
+    drawPictureButton(&menu_cond->manage_formation);
     return to_ret;
 }

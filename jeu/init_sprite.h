@@ -209,6 +209,10 @@ struct gui_sprite
     SDL_Texture *triangle;
     SDL_Texture *lines;
     SDL_Texture *splited_lines;
+    SDL_Texture *pressed_square;
+    SDL_Texture *pressed_triangle;
+    SDL_Texture *pressed_lines;
+    SDL_Texture *pressed_splited_lines;
 };
 
 

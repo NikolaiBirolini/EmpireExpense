@@ -24,49 +24,46 @@ struct linked_list *select_char(struct linked_list *selected)
 	return selected;
 }
 
-void commande(struct linked_list *selected, struct personnages *moi, struct formation *f)
+void commande(struct linked_list *selected)
 {
-	f = f;
-	if (lettres->Mouse_Rclick == 1)
+	if (selected != NULL)
 	{
-		//float x = (lettres->Mouse_pos_x  + 2*lettres->Mouse_pos_y + 44*screenx - 1500)/44;
-		//float y = (2*lettres->Mouse_pos_y - lettres->Mouse_pos_x + 44*screeny - 500)/44;
+		SDL_Rect position;
+		position.w = 25;
+		position.h = 25;
+		if (menu_cond->manage_formation_lines.isPressed == 1)
+		{
+			float x = ((float)lettres->Mouse_pos_x + 2*(float)lettres->Mouse_pos_y-1800)/44 + (float)screenx;
+			float y = (2*(float)lettres->Mouse_pos_y - (float)lettres->Mouse_pos_x)/44 + (float)screeny;
+			int n = 0;
+			for (struct linked_list *a = selected; a != NULL; a = a->next)
+			{
+				position.x = (x - screenx - y + screeny) * 22 + 900 - position.w / 2;
+				position.y = (x - screenx - screeny  + y) * 11 + 450 - position.h - ground_altitude[(int)x + (int)y * max_x];
+				SDL_RenderCopy(renderer, img->g->croix_inverse, NULL, &position);
+				x += menu_cond->space_columns*cos(menu_cond->angle/57.3);
+				y -= menu_cond->space_columns*sin(menu_cond->angle/57.3);
+				menu_cond->angle = lettres->wheel;
+				n += 1;
+				if (n == menu_cond->nb_per_lines)
+				{
+					n = 0;
+					x = ((float)lettres->Mouse_pos_x + 2*(float)lettres->Mouse_pos_y-1800)/44 + (float)screenx;
+					x += menu_cond->space_lines*sin(menu_cond->angle/57.3);
+					y += menu_cond->space_lines*cos(menu_cond->angle/57.3);	
+				}
+				if (lettres->Mouse_Rclick == 1)
+				{
+					sprintf (ordre + strlen(ordre), "%d 03 %f %d 04 %f ", selected->p->id, x, selected->p->id, y);
+				}
+			}
 
-		float x = ((float)lettres->Mouse_pos_x + 2*(float)lettres->Mouse_pos_y-1800)/44 + (float)screenx;
-		float y = (2*(float)lettres->Mouse_pos_y - (float)lettres->Mouse_pos_x)/44 + (float)screeny;
+		}
+	}
+}
+		
 
 		
 
-		int i = 0;
-		int j = 0;
 
-		int pers = 0;
 
-		SDL_bool selectMoreThanOne = SDL_FALSE;
-		if (getSizeLinkedList(selected) > 1)
-		    selectMoreThanOne = SDL_TRUE;
-
-		for (struct linked_list *a = selected; a != NULL; a = a->next)
-		{
-			//printf ("%s\n", a->p->nom);
-
-			if(selectMoreThanOne && pers != 0)
-				x = x + 3; 
-			
-			if (strcmp(a->p->nom_superieur, moi->nom) == 0)
-			{
-				// Perso parametre 3 = x et parametre 4 tu le mets à y
-				sprintf (ordre + strlen(ordre), "%d 03 %f %d 04 %f ", a->p->id, x, a->p->id, y);
-				i++;
-				if (i > f->n_par_lignes)
-				{
-					i = 0;
-					j++;
-				}
-			}
-			pers++;
-		}
-		lettres->Mouse_Rclick = 0;
-		pers = 0;
-	}
-}

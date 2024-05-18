@@ -2,6 +2,7 @@
 #include "clavier.h"
 #include "perso.h"
 #include "collision.h"
+#include "gui/gui.h"
 
 struct formation
 {
@@ -11,4 +12,4 @@ struct formation
 };
 
 struct linked_list *select_char(struct linked_list *selected);
-void commande(struct linked_list *selected, struct personnages *moi, struct formation *f);
+void commande(struct linked_list *selected);

@@ -12,4 +12,5 @@ struct lettres
     char Mouse_Rclick;
     char Mouse_Mclick;
     const Uint8* keystates;
+    int wheel;
 };

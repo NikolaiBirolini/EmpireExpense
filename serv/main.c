@@ -276,7 +276,7 @@ int main(int argc, char **argv)
             for (int i = 4; i < MAXEVENTS + 5;i++)
             	if (statut[i] == 1)
 				{
-					printf("%d : [%s %s]\n", i, order, order + 20);
+				//	printf("%d : [%s %s]\n", i, order, order + 20);
                 	send(i, order, size + 20, MSG_NOSIGNAL);
 				}
             remove_perso();

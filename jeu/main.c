@@ -3,6 +3,7 @@
 int main(int argc, char *argv[])
 {
     lettres = calloc(sizeof(struct lettres), 1);
+    lettres->wheel = 0;
     lettres->keystates = SDL_GetKeyboardState(NULL);
     SDL_Init(SDL_INIT_VIDEO);
     window = SDL_CreateWindow("Empire Expense",
@@ -96,7 +97,7 @@ void boucle_jeu(int socket, char *name)
     screenx = moi->x;
     screeny = moi->y;
 	struct linked_list *selected = NULL;
-	struct formation *f= malloc(sizeof(struct formation));
+//	struct formation *f= malloc(sizeof(struct formation));
     init_main_menu();
     init_speak_bubble();
 	bool done = false;
@@ -114,7 +115,7 @@ void boucle_jeu(int socket, char *name)
         double elapsedTime = (eend.tv_sec - sstart.tv_sec) * 1000.0;      // sec to ms
         elapsedTime += (eend.tv_usec - sstart.tv_usec) / 1000.0;
         fprintf(stderr, "display = %5.3fms \n", elapsedTime);*/
-        display_selected(selected, moi, f);
+        display_selected(selected);
         display_elipse_and_handle_buttons(moi);
 
         if (conditional_menu(selected) == 1)
@@ -127,7 +128,7 @@ void boucle_jeu(int socket, char *name)
         {
             deplacement(moi);
 	        selected = select_char(selected);
-	        commande(selected, moi, f);
+	        commande(selected);
             if(lettres->keystates[SDL_SCANCODE_SEMICOLON])
                 main_menu->on.isPressed = 1;
             if(lettres->keystates[SDL_SCANCODE_T])
