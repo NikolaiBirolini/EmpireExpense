@@ -26,6 +26,7 @@ struct linked_list *select_char(struct linked_list *selected)
 
 void commande(struct linked_list *selected)
 {
+	menu_cond->angle = lettres->wheel;
 	if (selected != NULL)
 	{
 		SDL_Rect position;
@@ -36,6 +37,7 @@ void commande(struct linked_list *selected)
 			float x = ((float)lettres->Mouse_pos_x + 2*(float)lettres->Mouse_pos_y-1800)/44 + (float)screenx;
 			float y = (2*(float)lettres->Mouse_pos_y - (float)lettres->Mouse_pos_x)/44 + (float)screeny;
 			int n = 0;
+			int line = 0;
 			for (struct linked_list *a = selected; a != NULL; a = a->next)
 			{
 				position.x = (x - screenx - y + screeny) * 22 + 900 - position.w / 2;
@@ -43,21 +45,114 @@ void commande(struct linked_list *selected)
 				SDL_RenderCopy(renderer, img->g->croix_inverse, NULL, &position);
 				x += menu_cond->space_columns*cos(menu_cond->angle/57.3);
 				y -= menu_cond->space_columns*sin(menu_cond->angle/57.3);
-				menu_cond->angle = lettres->wheel;
 				n += 1;
 				if (n == menu_cond->nb_per_lines)
 				{
 					n = 0;
+					line += 1;
 					x = ((float)lettres->Mouse_pos_x + 2*(float)lettres->Mouse_pos_y-1800)/44 + (float)screenx;
-					x += menu_cond->space_lines*sin(menu_cond->angle/57.3);
-					y += menu_cond->space_lines*cos(menu_cond->angle/57.3);	
+					y = (2*(float)lettres->Mouse_pos_y - (float)lettres->Mouse_pos_x)/44 + (float)screeny;
+					x += menu_cond->space_lines*sin(menu_cond->angle/57.3)*line;
+					y += menu_cond->space_lines*cos(menu_cond->angle/57.3)*line;	
 				}
 				if (lettres->Mouse_Rclick == 1)
-				{
-					sprintf (ordre + strlen(ordre), "%d 03 %f %d 04 %f ", selected->p->id, x, selected->p->id, y);
-				}
+					sprintf (ordre + strlen(ordre), "%d 03 %f %d 04 %f ", a->p->id, x, a->p->id, y);
+				
 			}
-
+		}
+		else if (menu_cond->manage_formation_square.isPressed == 1)
+		{
+			float x = ((float)lettres->Mouse_pos_x + 2*(float)lettres->Mouse_pos_y-1800)/44 + (float)screenx;
+			float y = (2*(float)lettres->Mouse_pos_y - (float)lettres->Mouse_pos_x)/44 + (float)screeny;
+			int n = 0;
+			int nb_per_lines = menu_cond->nb_per_lines;
+			struct linked_list *a = selected;
+			while (a != NULL)
+			{
+				while (a != NULL && nb_per_lines > n)
+				{
+					position.x = (x - screenx - y + screeny) * 22 + 900 - position.w / 2;
+					position.y = (x - screenx - screeny  + y) * 11 + 450 - position.h - ground_altitude[(int)x + (int)y * max_x];
+					SDL_RenderCopy(renderer, img->g->croix_inverse, NULL, &position);
+					x += menu_cond->space_columns*cos(menu_cond->angle/57.3);
+					y -= menu_cond->space_columns*sin(menu_cond->angle/57.3);
+					n += 1;
+					if (lettres->Mouse_Rclick == 1)
+						sprintf (ordre + strlen(ordre), "%d 03 %f %d 04 %f ", a->p->id, x, a->p->id, y);
+					a = a->next;
+				}
+				n = 0;
+				while (a != NULL && nb_per_lines > n)
+				{
+					position.x = (x - screenx - y + screeny) * 22 + 900 - position.w / 2;
+					position.y = (x - screenx - screeny  + y) * 11 + 450 - position.h - ground_altitude[(int)x + (int)y * max_x];
+					SDL_RenderCopy(renderer, img->g->croix_inverse, NULL, &position);
+					x += menu_cond->space_lines*sin(menu_cond->angle/57.3);
+					y += menu_cond->space_lines*cos(menu_cond->angle/57.3);
+					n += 1;
+					if (lettres->Mouse_Rclick == 1)
+						sprintf (ordre + strlen(ordre), "%d 03 %f %d 04 %f ", a->p->id, x, a->p->id, y);
+					a = a->next;
+				}
+				n = 0;
+				while (a != NULL && nb_per_lines > n)
+				{
+					position.x = (x - screenx - y + screeny) * 22 + 900 - position.w / 2;
+					position.y = (x - screenx - screeny  + y) * 11 + 450 - position.h - ground_altitude[(int)x + (int)y * max_x];
+					SDL_RenderCopy(renderer, img->g->croix_inverse, NULL, &position);
+					x -= menu_cond->space_columns*cos(menu_cond->angle/57.3);
+					y += menu_cond->space_columns*sin(menu_cond->angle/57.3);
+					n += 1;
+					if (lettres->Mouse_Rclick == 1)
+						sprintf (ordre + strlen(ordre), "%d 03 %f %d 04 %f ", a->p->id, x, a->p->id, y);
+					a = a->next;
+				}
+				n = 0;
+				while (a != NULL && nb_per_lines > n)
+				{
+					position.x = (x - screenx - y + screeny) * 22 + 900 - position.w / 2;
+					position.y = (x - screenx - screeny  + y) * 11 + 450 - position.h - ground_altitude[(int)x + (int)y * max_x];
+					SDL_RenderCopy(renderer, img->g->croix_inverse, NULL, &position);
+					x -= menu_cond->space_lines*sin(menu_cond->angle/57.3);
+					y -= menu_cond->space_lines*cos(menu_cond->angle/57.3);
+					n += 1;
+					if (lettres->Mouse_Rclick == 1)
+						sprintf (ordre + strlen(ordre), "%d 03 %f %d 04 %f ", a->p->id, x, a->p->id, y);
+					a = a->next;
+				}
+				n = 0;
+				nb_per_lines -= 1;
+			}
+		}
+		else if (menu_cond->manage_formation_triangle.isPressed == 1)
+		{
+			float x = ((float)lettres->Mouse_pos_x + 2*(float)lettres->Mouse_pos_y-1800)/44 + (float)screenx;
+			float y = (2*(float)lettres->Mouse_pos_y - (float)lettres->Mouse_pos_x)/44 + (float)screeny;
+			int n = 0;
+			int line = 0;
+			for (struct linked_list *a = selected; a != NULL; a = a->next)
+			{
+				position.x = (x - screenx - y + screeny) * 22 + 900 - position.w / 2;
+				position.y = (x - screenx - screeny  + y) * 11 + 450 - position.h - ground_altitude[(int)x + (int)y * max_x];
+				SDL_RenderCopy(renderer, img->g->croix_inverse, NULL, &position);
+				x += menu_cond->space_columns*cos(menu_cond->angle/57.3);
+				y -= menu_cond->space_columns*sin(menu_cond->angle/57.3);
+				n += 1;
+				if (n == pow(2, line))
+				{
+					n = 0;
+					line += 1;
+					x = ((float)lettres->Mouse_pos_x + 2*(float)lettres->Mouse_pos_y-1800)/44 + (float)screenx;
+					y = (2*(float)lettres->Mouse_pos_y - (float)lettres->Mouse_pos_x)/44 + (float)screeny;
+					x += menu_cond->space_lines*sin(menu_cond->angle/57.3)*line;
+					y += menu_cond->space_lines*cos(menu_cond->angle/57.3)*line;
+					x -= menu_cond->space_columns*cos(menu_cond->angle/57.3)*(pow(2, line-1)-0.5);
+					y += menu_cond->space_columns*sin(menu_cond->angle/57.3)*(pow(2, line-1)-0.5);
+				}
+				if (lettres->Mouse_Rclick == 1)
+					sprintf (ordre + strlen(ordre), "%d 03 %f %d 04 %f ", a->p->id, x, a->p->id, y);
+				
+			}
 		}
 	}
 }
