@@ -33,11 +33,10 @@ void createArray(struct personnages *p)
     }
     for(struct linked_list *parcour = list; parcour != NULL; parcour = parcour->next)
     {
-        if (parcour->p != p && (strncmp(parcour->p->skin, "arbre", 5) == 0 || strcmp(parcour->p->skin, "fantassin") == 0 || strcmp(parcour->p->skin, "fantassin") == 0))
-        {
-         
+        if ((strncmp(parcour->p->skin, "arbre", 5) == 0))
             p->chemin[(int)parcour->p->x + max_x*(int)parcour->p->y].walkable = 0;
-        }
+        else if (parcour->p != p && strcmp(parcour->p->skin, "fantassin") == 0)
+            p->chemin[(int)parcour->p->x + max_x*(int)parcour->p->y].walkable = 5;
     }
 }
 
@@ -91,9 +90,9 @@ void generate_around(struct path *array, int src, struct personnages *p)
     int ysrc = (int)floor(src / max_x);
     array[src].already = -array[src].already;
     //printf ("%d %d %d %d\n", filled[src+1], filled[src-1], filled[src-max_x], filled[src+max_x]);
-    if (xsrc < max_x - 1 && array[src + 1].walkable == 1)
+    if (xsrc < max_x - 1 && array[src + 1].walkable > 0)
     {
-        int a = 1 + array[src].already + sqrtf(pow(xsrc + 1 - (int)p->x, 2) + pow(ysrc - (int)p->y,2));
+        int a = array[src + 1].walkable + array[src].already + sqrtf(pow(xsrc + 1 - (int)p->x, 2) + pow(ysrc - (int)p->y,2));
         if (array[src + 1].already < 0 || a < array[src + 1].value)
         {            
             array[src + 1].value = a;
@@ -101,9 +100,9 @@ void generate_around(struct path *array, int src, struct personnages *p)
             array[src + 1].prev = src;
         }
     }
-    if (xsrc > 0 && array[src - 1].walkable == 1)
+    if (xsrc > 0 && array[src - 1].walkable > 0)
     {
-        int a = 1 + array[src].already + sqrtf(pow(xsrc - 1 - (int)p->x,2) + pow(ysrc - (int)p->y,2));
+        int a = array[src + 1].walkable + array[src].already + sqrtf(pow(xsrc - 1 - (int)p->x,2) + pow(ysrc - (int)p->y,2));
         if (array[src - 1].already < 0 || a < array[src - 1].value)
         {
             array[src - 1].value = a;
@@ -111,9 +110,9 @@ void generate_around(struct path *array, int src, struct personnages *p)
             array[src - 1].prev = src;
         }
     }
-    if (ysrc > 0 && array[src - max_x].walkable == 1)
+    if (ysrc > 0 && array[src - max_x].walkable > 0)
     {
-        int a = 1 + array[src].already  + sqrtf(pow(xsrc - (int)p->x,2) + pow(ysrc - 1 - (int)p->y,2));
+        int a = array[src + 1].walkable + array[src].already  + sqrtf(pow(xsrc - (int)p->x,2) + pow(ysrc - 1 - (int)p->y,2));
         if (array[src - max_x].already < 0 || a < array[src - max_x].value)
         {
             array[src - max_x].value = a;
@@ -121,9 +120,9 @@ void generate_around(struct path *array, int src, struct personnages *p)
             array[src - max_x].prev = src;
         }
     }
-    if (ysrc < max_y - 1 && array[src + max_x].walkable == 1)
+    if (ysrc < max_y - 1 && array[src + max_x].walkable > 0)
     {
-        int a = 1 + array[src].already + sqrtf(pow(xsrc - (int)p->x,2) + pow(ysrc + 1 - (int)p->y,2));
+        int a = array[src + 1].walkable + array[src].already + sqrtf(pow(xsrc - (int)p->x,2) + pow(ysrc + 1 - (int)p->y,2));
         if (array[src + max_x].already < 0 || a < array[src + max_x].value)
         {
             array[src + max_x].value = a;
@@ -132,9 +131,9 @@ void generate_around(struct path *array, int src, struct personnages *p)
         }
     }
     //
-    if (xsrc < max_x - 1 && array[src + 1].walkable == 1 && ysrc > 0 && array[src - max_x].walkable == 1 && array[src - max_x + 1].walkable == 1)
+    if (xsrc < max_x - 1 && array[src + 1].walkable > 0 && ysrc > 0 && array[src - max_x].walkable == 1 && array[src - max_x + 1].walkable > 0)
     {
-        int a = 1.414 + array[src].already + sqrtf(pow(xsrc + 1 - (int)p->x,2) + pow(ysrc - 1 - (int)p->y,2));
+        int a = 1.414*array[src + 1].walkable + array[src].already + sqrtf(pow(xsrc + 1 - (int)p->x,2) + pow(ysrc - 1 - (int)p->y,2));
         if (array[src - max_x + 1].already < 0 || a < array[src - max_x + 1].value)
         {
             array[src - max_x + 1].value = a;
@@ -142,9 +141,9 @@ void generate_around(struct path *array, int src, struct personnages *p)
             array[src - max_x + 1].prev = src;
         }
     }
-    if (xsrc > 0 && array[src - 1].walkable == 1 && ysrc > 0 && array[src - max_x].walkable == 1 && array[src - max_x - 1].walkable == 1)
+    if (xsrc > 0 && array[src - 1].walkable > 0 && ysrc > 0 && array[src - max_x].walkable == 1 && array[src - max_x - 1].walkable > 0)
     {
-        int a = 1.414 + array[src].already + sqrtf(pow(xsrc - 1 - (int)p->x,2) + pow(ysrc - 1 - (int)p->y,2));
+        int a = 1.414*array[src + 1].walkable + array[src].already + sqrtf(pow(xsrc - 1 - (int)p->x,2) + pow(ysrc - 1 - (int)p->y,2));
         if (array[src - max_x - 1].already < 0 || a < array[src - max_x - 1].value)
         {
             array[src - max_x - 1].value = a;
@@ -152,9 +151,9 @@ void generate_around(struct path *array, int src, struct personnages *p)
             array[src - max_x - 1].prev = src;
         }
     }
-    if (xsrc < max_x - 1 && array[src + 1].walkable == 1 && ysrc < max_y - 1 && array[src + max_x].walkable == 1 && array[src + max_x + 1].walkable == 1)
+    if (xsrc < max_x - 1 && array[src + 1].walkable > 0 && ysrc < max_y - 1 && array[src + max_x].walkable == 1 && array[src + max_x + 1].walkable > 0)
     {
-        int a = 1.414 + array[src].already + sqrtf(pow(xsrc + 1 - (int)p->x,2) + pow(ysrc + 1 - (int)p->y,2));
+        int a = 1.414*array[src + 1].walkable + array[src].already + sqrtf(pow(xsrc + 1 - (int)p->x,2) + pow(ysrc + 1 - (int)p->y,2));
         if (array[src + max_x + 1].already < 0 || a < array[src + max_x + 1].value)
         {
             array[src + max_x + 1].value = a;
@@ -162,9 +161,9 @@ void generate_around(struct path *array, int src, struct personnages *p)
             array[src + max_x + 1].prev = src;
         }
     }
-    if (xsrc > 0 && array[src - 1].walkable == 1 && ysrc < max_y - 1 && array[src + max_x].walkable == 1 && array[src + max_x - 1].walkable == 1)
+    if (xsrc > 0 && array[src - 1].walkable > 0 && ysrc < max_y - 1 && array[src + max_x].walkable == 1 && array[src + max_x - 1].walkable > 0)
     {
-        int a = 1.414 + array[src].already + sqrtf(pow(xsrc - 1 - (int)p->x,2) + pow(ysrc + 1 - (int)p->y,2));
+        int a = 1.414*array[src + 1].walkable + array[src].already + sqrtf(pow(xsrc - 1 - (int)p->x,2) + pow(ysrc + 1 - (int)p->y,2));
         if (array[src + max_x - 1].already < 0 || a < array[src + max_x - 1].value)
         {
             array[src + max_x - 1].value = a;
