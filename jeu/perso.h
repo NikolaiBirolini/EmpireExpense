@@ -81,6 +81,7 @@ struct linked_list
 
 
 char exist_in_linked(struct linked_list *list, struct personnages *to_test);
+struct linked_list *copy_linked(struct linked_list *list);
 struct linked_list *append_in_linked(struct linked_list *list,struct personnages *p);
 struct linked_list *append_perso(char **line);
 void disp_perso_list(struct personnages *moi);

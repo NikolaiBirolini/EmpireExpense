@@ -107,7 +107,7 @@ void speakPerso(struct personnages *moi, char* ordre, SDL_Event event);
 void printSpeakBubble(struct personnages *perso, TextInfo* textInfo, TextBox* textBox, char* on);
 void gui_event(struct personnages *moi);
 void *cast(void *p);
-void display_elipse_and_handle_buttons();
+void display_elipse_and_personal_datas();
 void display_selected(struct linked_list *selected);
 char conditional_menu(struct linked_list *selected);
 void manage_formation_menu(void);

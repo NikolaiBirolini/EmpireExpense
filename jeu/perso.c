@@ -10,6 +10,28 @@ int getSizeLinkedList(struct linked_list *list)
 	return size;
 }
 
+struct linked_list *copy_linked(struct linked_list *list)
+{
+	if (list == NULL)
+		return NULL;
+	struct linked_list *head = malloc(sizeof(struct linked_list));
+	struct linked_list *parcour = head;
+	while (list != NULL)
+	{
+		parcour->p = list->p;
+		if (list->next == NULL)
+			parcour->next = NULL;
+		else
+		{
+			parcour->next = malloc(sizeof(struct linked_list));
+			parcour = parcour->next;
+		}
+		list = list->next;
+	}
+	return head;
+}
+
+
 void free_linked(struct linked_list *list, char free_content)
 {
 	if (list != NULL)
@@ -24,6 +46,7 @@ void free_linked(struct linked_list *list, char free_content)
 		}
 		free(list);
 	}
+	
 	//while (list != NULL)
     //{
     //    struct linked_list *temp = list;  

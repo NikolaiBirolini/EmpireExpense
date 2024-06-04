@@ -96,7 +96,7 @@ void boucle_jeu(int socket, char *name)
     moi = find_perso_by_name(name);	
     screenx = moi->x;
     screeny = moi->y;
-	struct linked_list *selected = NULL;
+	struct linked_list *selected[11] = {0};
 //	struct formation *f= malloc(sizeof(struct formation));
     init_main_menu();
     init_speak_bubble();
@@ -115,10 +115,10 @@ void boucle_jeu(int socket, char *name)
         double elapsedTime = (eend.tv_sec - sstart.tv_sec) * 1000.0;      // sec to ms
         elapsedTime += (eend.tv_usec - sstart.tv_usec) / 1000.0;
         fprintf(stderr, "display = %5.3fms \n", elapsedTime);*/
-        display_selected(selected);
-        display_elipse_and_handle_buttons(moi);
+        display_selected(selected[0]);
+        display_elipse_and_personal_datas(moi);
 
-        if (conditional_menu(selected) == 1)
+        if (conditional_menu(selected[0]) == 1)
             done = done;
         else if (speakBubble->on == 1)
             speakPerso(moi, ordre, event);
@@ -127,8 +127,8 @@ void boucle_jeu(int socket, char *name)
         else
         {
             deplacement(moi);
-	        selected = select_char(selected);
-	        commande(selected);
+	        select_char(selected);
+	        commande(selected[0]);
             if(lettres->keystates[SDL_SCANCODE_SEMICOLON])
                 main_menu->on.isPressed = 1;
             if(lettres->keystates[SDL_SCANCODE_T])
@@ -144,7 +144,11 @@ void boucle_jeu(int socket, char *name)
 	    fix_some_shit();
 	    send_orders(socket);
 	    recv_order(socket);
-        selected = clean_selected(selected);
+        for (int i = 0; 11>i;i++)
+        {
+            //  printf ("%d\n", i);ss
+            clean_selected(selected[i]);
+        }
 	    list = death();
 		
 	    SDL_RenderPresent(renderer);

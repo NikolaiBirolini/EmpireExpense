@@ -21,11 +21,11 @@ void init_main_menu(void)
     main_menu->menuDip->on = 0;
     initTextInfo(&main_menu->menuDip->errorText, "                                  ", littleFont, 80, 400, 700, (SDL_Color){255, 255, 255, 255}, 0, 0, 0);
     char **options1 = malloc(sizeof(char*)*5);
-    options1[0] = malloc(15); strcpy(options[0], "Set Overlord");
-    options1[1] = malloc(15); strcpy(options[1], "Add ally");
-    options1[2] = malloc(15); strcpy(options[2], "Remove ally");
-    options1[3] = malloc(15); strcpy(options[3], "Add enemy");
-    options1[4] = malloc(15); strcpy(options[4], "Remove enemy");
+    options1[0] = malloc(15); strcpy(options1[0], "Set Overlord");
+    options1[1] = malloc(15); strcpy(options1[1], "Add ally");
+    options1[2] = malloc(15); strcpy(options1[2], "Remove ally");
+    options1[3] = malloc(15); strcpy(options1[3], "Add enemy");
+    options1[4] = malloc(15); strcpy(options1[4], "Remove enemy");
     main_menu->menuDip->diploSelect = malloc(sizeof(DropDown));
     initDropDown(main_menu->menuDip->diploSelect, 300, 400, 5, 300, 80, options1,
                   (SDL_Color) {255, 255, 255, 255}, (SDL_Color) {169, 169, 169, 255}, (SDL_Color){0, 0, 0, 255}, littleFont);

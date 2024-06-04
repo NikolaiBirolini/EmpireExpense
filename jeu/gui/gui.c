@@ -49,9 +49,12 @@ void display_selected(struct linked_list *selected)
     //drawTextInfo(renderer, &text_my_stats);
 }
 
-void display_elipse_and_handle_buttons()
+void display_elipse_and_personal_datas()
 {
     SDL_Rect position = {0, 0, 1800, 900};
+    char energy_text[20] = "energy : ";
+    TextInfo energy = {energy_text, littleFont, 50, 850, 0, (SDL_Color){0, 0, 0, 255}, 0, 0, 0};
+    sprintf (energy_text + 9, "%d", moi->faim);
     SDL_RenderCopy(renderer, img->g->elipse, NULL, &position);
     position.x = 50;
     position.y = 50;
@@ -64,14 +67,15 @@ void display_elipse_and_handle_buttons()
         main_menu->on.isPressed = !main_menu->on.isPressed;
     drawPictureButton( &main_menu->on);
     drawGauge(&my_stats_display->my_health, moi->pv, moi->max_pv);
+    drawTextInfo(renderer, &energy);
+
 }
 
 void menu_trade(void)
 {
     struct personnages *chosen = NULL;
     float distance_chosen = 9;
-    TextInfo echange_player;
-    initTextInfo(&echange_player, NULL, littleFont, 600, 10, 0, (SDL_Color){0, 255, 0, 255}, 0, 0, 0);
+    TextInfo echange_player = {NULL, littleFont, 600, 10, 0, (SDL_Color){0, 255, 0, 255}, 0, 0, 0};
     for (struct linked_list *l = list; l != NULL; l=l->next)
     {
         if (l->p != moi)

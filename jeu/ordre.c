@@ -1,6 +1,6 @@
 #include "ordre.h"
 
-struct linked_list *select_char(struct linked_list *selected)
+void select_char(struct linked_list *selected[11])
 {	
 	if (lettres->Mouse_Lclick == 1)
 	{
@@ -9,19 +9,125 @@ struct linked_list *select_char(struct linked_list *selected)
 			if (lettres->Mouse_pos_x > a->p->screenx && lettres->Mouse_pos_x < a->p->screenx + a->p->sizescreenx &&
 				lettres->Mouse_pos_y > a->p->screeny && lettres->Mouse_pos_y < a->p->screeny + a->p->sizescreeny)
 			{
-				if (exist_in_linked(selected, a->p) == 0)
-					selected = append_in_linked(selected, a->p);
+				if (exist_in_linked(selected[0], a->p) == 0)
+					selected[0] = append_in_linked(selected[0], a->p);
 				else
-					selected  = remove_from_linked_list(selected, a->p);
+					selected[0] = remove_from_linked_list(selected[0], a->p);
 			}
 		}
 	}
 	else if(lettres->Mouse_Mclick == 1)
 	{
-		free_linked(selected, 0);
-		selected = NULL;
+		free_linked(selected[0], 0);
+		selected[0] = NULL;
+	}	
+	if(lettres->keystates[SDL_SCANCODE_LSHIFT])
+	{
+		if(lettres->keystates[SDL_SCANCODE_1])
+		{
+			free_linked(selected[1], 0);
+			selected[1] = copy_linked(selected[0]);
+		}	
+		if(lettres->keystates[SDL_SCANCODE_2])
+		{
+			free_linked(selected[2], 0);
+			selected[2] = copy_linked(selected[0]);
+		}
+		if(lettres->keystates[SDL_SCANCODE_3])
+		{
+			free_linked(selected[3], 0);
+			selected[3] = copy_linked(selected[0]);
+
+		}
+		if(lettres->keystates[SDL_SCANCODE_4])
+		{
+			free_linked(selected[4], 0);
+			selected[4] = copy_linked(selected[0]);
+		}
+		if(lettres->keystates[SDL_SCANCODE_5])
+		{
+			free_linked(selected[5], 0);
+			selected[5] = copy_linked(selected[0]);
+		}
+		if(lettres->keystates[SDL_SCANCODE_6])
+		{
+			free_linked(selected[6], 0);
+			selected[6] = copy_linked(selected[0]);
+		}
+		if(lettres->keystates[SDL_SCANCODE_7])
+		{
+			free_linked(selected[7], 0);
+			selected[7] = copy_linked(selected[0]);
+		}
+		if(lettres->keystates[SDL_SCANCODE_8])
+		{
+			free_linked(selected[8], 0);
+			selected[8] = copy_linked(selected[0]);
+		}
+		if(lettres->keystates[SDL_SCANCODE_9])
+		{
+			free_linked(selected[9], 0);
+			selected[9] = copy_linked(selected[0]);
+		}
+		if(lettres->keystates[SDL_SCANCODE_0])
+		{
+			free_linked(selected[10], 0);
+			selected[10] = copy_linked(selected[0]);
+		}
 	}
-	return selected;
+	else
+	{
+		if(lettres->keystates[SDL_SCANCODE_1])
+		{
+			free_linked(selected[0], 0);
+			selected[0] = copy_linked(selected[1]);
+		}	
+		if(lettres->keystates[SDL_SCANCODE_2])
+		{
+			free_linked(selected[0], 0);
+			selected[0] = copy_linked(selected[2]);
+		}
+		if(lettres->keystates[	SDL_SCANCODE_3])
+		{
+			free_linked(selected[0], 0);
+			selected[0] = copy_linked(selected[3]);
+		}
+		if(lettres->keystates[SDL_SCANCODE_4])
+		{
+			free_linked(selected[0], 0);
+			selected[0] = copy_linked(selected[4]);
+		}
+		if(lettres->keystates[SDL_SCANCODE_5])
+		{
+			free_linked(selected[0], 0);
+			selected[0] = copy_linked(selected[5]);
+		}
+		if(lettres->keystates[SDL_SCANCODE_6])
+		{
+			free_linked(selected[0], 0);
+			selected[0] = copy_linked(selected[6]);
+		}
+		if(lettres->keystates[SDL_SCANCODE_7])
+		{
+			free_linked(selected[0], 0);
+			selected[0] = copy_linked(selected[7]);
+		}
+		if(lettres->keystates[SDL_SCANCODE_8])
+		{
+			free_linked(selected[0], 0);
+			selected[0] = copy_linked(selected[8]);
+		}
+		if(lettres->keystates[SDL_SCANCODE_9])
+		{
+			free_linked(selected[0], 0);
+			selected[0] = copy_linked(selected[9]);
+		}
+		if(lettres->keystates[SDL_SCANCODE_0])
+		{
+			free_linked(selected[0], 0);
+			selected[0] = copy_linked(selected[10]);
+		}
+	}
 }
 
 void commande(struct linked_list *selected)
