@@ -36,16 +36,16 @@ void display_ground(int x, int y, int xto, int yto)
 	}
 	while (x != xto || y != yto)
 	{
-	    position.x = (x-screenx-y+screeny) * 22 + 878;
-		position.y = (x-screenx + y-screeny) * 11 + 450 - ground_altitude[x + y * max_x];
-		position.w = 44;
-		position.h = 22;
+	    position.x = (x-moi->x - y+moi->y) * 34 + 866;
+		position.y = (x-moi->x + y-moi->y) * 17 + 450 - ground_altitude[x + y * max_x];
+		position.w = 68;
+		position.h = 34;
         SDL_RenderCopy(renderer, ground_texture[x + y * max_x], NULL, &position);
 
 		for (int i = 0; i < ground_altitude[x + y * max_x]; i++)
 		{	
-			SDL_RenderDrawLine(renderer, position.x, position.y+i+11, position.x+22, position.y+22+i);
-			SDL_RenderDrawLine(renderer, position.x+22, position.y+i+22, position.x+44, position.y+11+i);
+			SDL_RenderDrawLine(renderer, position.x, position.y+i+17, position.x+34, position.y+68+i);
+			SDL_RenderDrawLine(renderer, position.x+34, position.y+i+34, position.x+68, position.y+17+i);
 		}
 		
 	
@@ -60,11 +60,10 @@ void display_ground(int x, int y, int xto, int yto)
 }
 
 
-void display_all(struct personnages *moi)
+void display_all(void)
 {	
 	SDL_SetRenderDrawColor(renderer, 74, 71,51,0);
 	bubble_sort_perso();
-	moi = moi;
 	SDL_Rect position;
 	SDL_Texture *affiche;
 	int yfrom = 0;
@@ -79,8 +78,8 @@ void display_all(struct personnages *moi)
 		char test = how_display(parcour->p->skin);
 		if (test == 0)
 		{
-			position.x = (parcour->p->x - screenx - parcour->p->y + screeny) * 22 + 900 - position.w / 2;
-			position.y = (parcour->p->x - screenx - screeny + parcour->p->y) * 11 + 450 - position.h - ground_altitude[(int)parcour->p->x + (int)parcour->p->y * max_x];
+			position.x = (parcour->p->x - moi->x - parcour->p->y + moi->y) * 34 + 900 - position.w/2;
+			position.y = (parcour->p->x - moi->x + parcour->p->y - moi->y) * 17 + 450 - position.h - ground_altitude[(int)parcour->p->x + (int)parcour->p->y * max_x];
 			parcour->p->screenx = position.x;
 			parcour->p->screeny = position.y;
 			parcour->p->sizescreenx = position.w;

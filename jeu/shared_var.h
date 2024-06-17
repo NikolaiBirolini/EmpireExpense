@@ -3,8 +3,6 @@
 #include <SDL2/SDL_ttf.h>
 #include "graphic_widget/gauge.h"
 
-extern float screenx;
-extern float screeny;
 extern SDL_Texture **ground_texture;
 extern int *ground_altitude;
 extern struct img *img;
@@ -12,7 +10,7 @@ extern struct s_gui *s_gui;
 extern SDL_Renderer *renderer;
 extern SDL_Window *window;
 #define screensizex 1800
-#define screensizey 1000
+#define screensizey 900
 extern int max_x;
 extern int max_y;
 extern struct lettres *lettres;

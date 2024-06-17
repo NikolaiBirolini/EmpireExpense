@@ -14,8 +14,8 @@ void gui_event(struct personnages *moi)
     //ordre de deplacement	
 	if (moi->ordrex != -1)
 	{
-        position.x = (moi->ordrex - screenx - moi->ordrey + screeny) * 22 + 850;
-        position.y = (moi->ordrex - screenx - screeny + moi->ordrey) * 11 + 400 - ground_altitude[(int)moi->ordrex + (int)moi->ordrey * max_x],
+        position.x = (moi->ordrex - moi->ordrey) * 34 + 850;
+        position.y = (moi->ordrex + moi->ordrey) * 17 + 400 - ground_altitude[(int)moi->ordrex + (int)moi->ordrey * max_x],
         position.w = 25; position.h =  25;
 		if (powf(moi->x - moi->ordrex, 2) + powf(moi->y - moi->ordrey, 2) < 9)
         {
@@ -30,8 +30,8 @@ void gui_event(struct personnages *moi)
         if (strlen(p->p->speak) > 1)
         {
             TextInfo bubble = {p->p->speak,  littleFont, 
-            (p->p->x - screenx - p->p->y + screeny) * 22 + 850, 
-            (p->p->x - screenx - screeny + p->p->y) * 11 + 360 - ground_altitude[(int)p->p->x + (int)p->p->y * max_x],
+            (p->p->x - p->p->y) * 34 + 850, 
+            (p->p->x + p->p->y) * 17 + 360 - ground_altitude[(int)p->p->x + (int)p->p->y * max_x],
             0,{255, 255, 255, 255}, 0,0,0};
             drawTextInfo(renderer, &bubble);
         }

@@ -1,18 +1,10 @@
 #include "control.h"
 extern struct lettres *lettres;
 
-float to_add_x = 0;
-float to_add_y = 0;
-char gd = 0;
-char hb = 0;
-
 void deplacement(struct personnages *moi)
 {
 	if (moi->faim < 0)
 		sprintf (ordre + strlen(ordre), "%d 00 -1 ", moi->id);
-
-	screenx = moi->x + to_add_x;
-	screeny = moi->y + to_add_y;
 
 	
 

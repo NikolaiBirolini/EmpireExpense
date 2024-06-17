@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     window = SDL_CreateWindow("Empire Expense",
             SDL_WINDOWPOS_UNDEFINED,
             SDL_WINDOWPOS_UNDEFINED,
-            1800,900,
+            screensizex,screensizey,
             SDL_WINDOW_OPENGL);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
@@ -94,8 +94,6 @@ void boucle_jeu(int socket, char *name)
     free(ground);
     list = recv_map(socket);
     moi = find_perso_by_name(name);	
-    screenx = moi->x;
-    screeny = moi->y;
 	struct linked_list *selected[11] = {0};
 //	struct formation *f= malloc(sizeof(struct formation));
     init_main_menu();
@@ -110,7 +108,7 @@ void boucle_jeu(int socket, char *name)
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
         //gettimeofday(&sstart, NULL);
-	    display_all(moi);
+	    display_all();
         /*gettimeofday(&eend, NULL);
         double elapsedTime = (eend.tv_sec - sstart.tv_sec) * 1000.0;      // sec to ms
         elapsedTime += (eend.tv_usec - sstart.tv_usec) / 1000.0;

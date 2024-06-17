@@ -52,7 +52,6 @@ char findpath(struct personnages *p)
     p->chemin[dst].value = fabs(p->ordrex - p->x) + fabs(p->ordrey - p->y);
     while (src != dst)
     {
-        printf ("ouiii\n");
         generate_around(p->chemin, dst, p);
         //print_array(p);
 

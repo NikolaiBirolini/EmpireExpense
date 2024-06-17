@@ -203,9 +203,8 @@ void ia_man(struct linked_list *parcour)
         sprintf (ordre + strlen(ordre), "%d 00 -1 ", parcour->p->id);
     if (parcour->p->ordrex > 0)
     {
-        if (pow(parcour->p->ordrex - parcour->p->x,2) +  pow(parcour->p->ordrey - parcour->p->y,2) < 1)
+        if (pow(parcour->p->ordrex - parcour->p->x,2) +  pow(parcour->p->ordrey - parcour->p->y,2) < 0.5)
         {
-            printf ("arrived\n");
             sprintf (ordre + strlen(ordre), "%d 03 -1 %d 01 %f %d 02 %f ", parcour->p->id, parcour->p->id, parcour->p->ordrex, parcour->p->id, parcour->p->ordrey);
             parcour->p->chemin_is_set = 0;
         }
@@ -213,7 +212,7 @@ void ia_man(struct linked_list *parcour)
         {
             int src = (int)parcour->p->y * max_x + (int)parcour->p->x;
             int dst = parcour->p->chemin[src].prev;
-            printf ("%d %d\n", src,dst);
+
             if (src + 1 == dst)
                 sprintf (ordre + strlen(ordre), "%d 01 +%f %d 05 e ", parcour->p->id, parcour->p->vitesse_dep, parcour->p->id);
             else if (src - 1 == dst)
@@ -222,8 +221,7 @@ void ia_man(struct linked_list *parcour)
                 sprintf (ordre + strlen(ordre), "%d 02 -%f %d 05 b ", parcour->p->id, parcour->p->vitesse_dep, parcour->p->id);
             else if (src + max_x == dst)
                 sprintf (ordre + strlen(ordre), "%d 02 +%f %d 05 h ", parcour->p->id, parcour->p->vitesse_dep, parcour->p->id);
-            
-            if (src + 1 + max_x == dst)
+            else if (src + 1 + max_x == dst)
                 sprintf (ordre + strlen(ordre), "%d 01 +%f %d 02 +%f %d 05 g ", parcour->p->id, parcour->p->vitesse_dep*0.707, parcour->p->id,parcour->p->vitesse_dep*0.707, parcour->p->id);
             else if (src + 1 - max_x == dst)
                 sprintf (ordre + strlen(ordre), "%d 01 +%f %d 02 -%f %d 05 d ", parcour->p->id, parcour->p->vitesse_dep*0.707, parcour->p->id,parcour->p->vitesse_dep*0.707, parcour->p->id);
@@ -231,11 +229,21 @@ void ia_man(struct linked_list *parcour)
                 sprintf (ordre + strlen(ordre), "%d 01 -%f %d 02 +%f %d 05 k ", parcour->p->id, parcour->p->vitesse_dep*0.707, parcour->p->id,parcour->p->vitesse_dep*0.707, parcour->p->id);
             else if (src -1 - max_x == dst)
                 sprintf (ordre + strlen(ordre), "%d 01 -%f %d 02 -%f %d 05 a ", parcour->p->id, parcour->p->vitesse_dep*0.707, parcour->p->id,parcour->p->vitesse_dep*0.707, parcour->p->id);
+            else
+            {
+                if (parcour->p->ordrex > parcour->p->x)
+                    sprintf (ordre + strlen(ordre), "%d 01 +%f ", parcour->p->id, parcour->p->vitesse_dep);
+                else if (parcour->p->ordrex < parcour->p->x)
+                    sprintf (ordre + strlen(ordre), "%d 01 -%f ", parcour->p->id, parcour->p->vitesse_dep);
+                else if (parcour->p->ordrey > parcour->p->y)
+                    sprintf (ordre + strlen(ordre), "%d 02 +%f ", parcour->p->id, parcour->p->vitesse_dep);
+                else if (parcour->p->ordrey < parcour->p->y)
+                    sprintf (ordre + strlen(ordre), "%d 02 -%f ", parcour->p->id, parcour->p->vitesse_dep);
+            }
 
         }
         else
         {
-            printf ("impossible\n");
             sprintf (ordre + strlen(ordre), "%d 03 -1 ", parcour->p->id);
             parcour->p->chemin_is_set = 0;
         }
