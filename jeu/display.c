@@ -44,7 +44,7 @@ void display_ground(int x, int y, int xto, int yto)
 
 		for (int i = 0; i < ground_altitude[x + y * max_x]; i++)
 		{	
-			SDL_RenderDrawLine(renderer, position.x, position.y+i+17, position.x+34, position.y+68+i);
+			SDL_RenderDrawLine(renderer, position.x, position.y+i+17, position.x+34, position.y+34+i);
 			SDL_RenderDrawLine(renderer, position.x+34, position.y+i+34, position.x+68, position.y+17+i);
 		}
 		

@@ -187,7 +187,7 @@ void ia_ship(struct linked_list *parcour)
        }
        }
        parcour->p->vitesse_dep -= 1;
-       }
+       }z
        if (strcmp(parcour->p->echange_player, "none") != 0)
        {
        struct personnages *p = find_perso_by_name(list, parcour->p->echange_player);
@@ -203,7 +203,7 @@ void ia_man(struct linked_list *parcour)
         sprintf (ordre + strlen(ordre), "%d 00 -1 ", parcour->p->id);
     if (parcour->p->ordrex > 0)
     {
-        if (pow(parcour->p->ordrex - parcour->p->x,2) +  pow(parcour->p->ordrey - parcour->p->y,2) < 0.5)
+        if (pow(parcour->p->ordrex - parcour->p->x,2) +  pow(parcour->p->ordrey - parcour->p->y,2) < 2 * parcour->p->vitesse_dep )
         {
             sprintf (ordre + strlen(ordre), "%d 03 -1 %d 01 %f %d 02 %f ", parcour->p->id, parcour->p->id, parcour->p->ordrex, parcour->p->id, parcour->p->ordrey);
             parcour->p->chemin_is_set = 0;
