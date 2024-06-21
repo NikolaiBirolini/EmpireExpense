@@ -23,8 +23,13 @@ int main(int argc, char *argv[])
     char* ip = NULL;
     char* port = NULL;
     struct arguments arguments;
+
+    arguments.address = NULL;
+    arguments.login = NULL;
+    arguments.password = NULL;
+
     argp_parse(&argp, argc, argv, 0, 0, &arguments);
-    if (arguments.address) 
+    if (arguments.address != NULL) 
         validAddress = extractIPAndPort(arguments.address, &ip, &port); 
     bool guiMode = areArgumentsInitialized(arguments); 
 
@@ -176,7 +181,7 @@ char *log_menu(int socket)
     pictureButton music;
     initPictureButton(&music, 1700, 800, 80, 80, img->g->sound_button, img->g->pressed_sound_button);
     TextInfo errorText;
-    initTextInfo(&errorText, "INVALID CREDENTIALS, please retry", littleFont, 80, 400, 700, (SDL_Color){255, 255, 255, 255}, 0, 0, 0);
+    initTextInfo(&errorText, "", littleFont, 80, 400, 700, (SDL_Color){255, 255, 255, 255}, 0, 0, 0);
     TextInfo loginText;
     initTextInfo(&loginText, "Login", littleFont, 100, 70, 0, (SDL_Color){0, 0, 0, 255}, 1, 1, 0);
     TextInfo passwordText;
@@ -225,9 +230,15 @@ char *log_menu(int socket)
                     play.isPressed = true;
                     done = sendLoginDataToServer(loginTextBox.text, passwordTextBox.text, socket, 101, 0);
                     if (!done)
-                         strcpy (errorText.text, "INVALID CREDENTIALS, please retry");   
+                    {
+                        char* errorLine = "INVALID credentials, please retry";
+                        errorText.text = (char *) malloc(strlen(errorLine)+1);
+                        strcpy (errorText.text, errorLine);
+                    }   
                     else
-                        errorText.text[0] = 0;   
+                    {
+                        errorText.text = "";
+                    } 
                 }
                 else if (mouseX >= loginTextBox.x && mouseX <= loginTextBox.x + loginTextBox.width &&
                         mouseY >= loginTextBox.y && mouseY <= loginTextBox.y + loginTextBox.height) 
@@ -270,9 +281,15 @@ char *log_menu(int socket)
                     sprintf (to_send, "%s %s", loginTextBox.text, passwordTextBox.text);
                     done = communicateWithServer(socket, to_send, 101, 0);
                     if (!done)
-                         strcpy (errorText.text, "INVALID CREDENTIALS, please retry");   
+                    {
+                        char* errorLine = "INVALID credentials, please retry";
+                        errorText.text = (char *) malloc(strlen(errorLine)+1);
+                        strcpy (errorText.text, errorLine);
+                    }   
                     else
-                        errorText.text[0] = 0;
+                    {
+                        errorText.text = "";
+                    }
                 }
             }
 
@@ -301,7 +318,7 @@ int menu_connection()
     pictureButton music;
     initPictureButton(&music, 1700, 800, 80, 80, img->g->sound_button, img->g->pressed_sound_button);
     TextInfo errorText;
-    initTextInfo(&errorText, "INVALID CREDENTIALS, please retry", littleFont, 80, 400, 700, (SDL_Color){255, 255, 255, 255}, 0, 0, 0);
+    initTextInfo(&errorText, "", littleFont, 80, 400, 700, (SDL_Color){255, 255, 255, 255}, 0, 0, 0);
     TextInfo IpText;
     initTextInfo(&IpText, "IP Address", littleFont, 100, 70, 0, (SDL_Color){0, 0, 0, 255}, 1, 1, 0);
     TextInfo PortText;
@@ -352,9 +369,15 @@ int menu_connection()
                     play.isPressed = true;
                     socket = try_connect(IpTextBox.text, PortTextBox.text);
                     if (socket == -1)
-                        strcpy (errorText.text, "INVALID CREDENTIALS, please retry");   
+                    {
+                        char* errorLine = "INVALID credentials, please retry";
+                        errorText.text = (char *) malloc(strlen(errorLine)+1);
+                        strcpy (errorText.text, errorLine);
+                    }   
                     else
-                        errorText.text[0] = 0;
+                    {
+                        errorText.text = "";
+                    }
                 }
 
 				else if (mouseX >= music.x && mouseX <= music.x + music.width &&
@@ -394,9 +417,15 @@ int menu_connection()
                 { 
                     socket = try_connect(IpTextBox.text, PortTextBox.text);
                     if (socket == -1)
-                        strcpy (errorText.text, "INVALID CREDENTIALS, please retry");   
+                    {
+                        char* errorLine = "INVALID IP Address or port, please retry";
+                        errorText.text = (char *) malloc(strlen(errorLine)+1);
+                        strcpy (errorText.text, errorLine);
+                    }   
                     else
-                        errorText.text[0] = 0;
+                    {
+                        errorText.text = "";
+                    }
                 }
             }
 
