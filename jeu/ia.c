@@ -203,7 +203,7 @@ void ia_man(struct linked_list *parcour)
         sprintf (ordre + strlen(ordre), "%d 00 -1 ", parcour->p->id);
     if (parcour->p->ordrex > 0)
     {
-        if (pow(parcour->p->ordrex - parcour->p->x,2) +  pow(parcour->p->ordrey - parcour->p->y,2) < 2 * parcour->p->vitesse_dep )
+        if (pow(parcour->p->ordrex - parcour->p->x,2) +  pow(parcour->p->ordrey - parcour->p->y,2) < parcour->p->vitesse_dep )
         {
             sprintf (ordre + strlen(ordre), "%d 03 -1 %d 01 %f %d 02 %f ", parcour->p->id, parcour->p->id, parcour->p->ordrex, parcour->p->id, parcour->p->ordrey);
             parcour->p->chemin_is_set = 0;
@@ -232,13 +232,13 @@ void ia_man(struct linked_list *parcour)
             else
             {
                 if (parcour->p->ordrex > parcour->p->x)
-                    sprintf (ordre + strlen(ordre), "%d 01 +%f ", parcour->p->id, parcour->p->vitesse_dep);
+                    sprintf (ordre + strlen(ordre), "%d 01 +%f %d 05 e ", parcour->p->id, parcour->p->vitesse_dep, parcour->p->id);
                 else if (parcour->p->ordrex < parcour->p->x)
-                    sprintf (ordre + strlen(ordre), "%d 01 -%f ", parcour->p->id, parcour->p->vitesse_dep);
-                else if (parcour->p->ordrey > parcour->p->y)
-                    sprintf (ordre + strlen(ordre), "%d 02 +%f ", parcour->p->id, parcour->p->vitesse_dep);
+                    sprintf (ordre + strlen(ordre), "%d 01 -%f %d 05 j ", parcour->p->id, parcour->p->vitesse_dep, parcour->p->id);
+                if (parcour->p->ordrey > parcour->p->y)
+                    sprintf (ordre + strlen(ordre), "%d 02 +%f %d 05 b ", parcour->p->id, parcour->p->vitesse_dep, parcour->p->id);
                 else if (parcour->p->ordrey < parcour->p->y)
-                    sprintf (ordre + strlen(ordre), "%d 02 -%f ", parcour->p->id, parcour->p->vitesse_dep);
+                    sprintf (ordre + strlen(ordre), "%d 02 -%f %d 05 h ", parcour->p->id, parcour->p->vitesse_dep, parcour->p->id);
             }
 
         }

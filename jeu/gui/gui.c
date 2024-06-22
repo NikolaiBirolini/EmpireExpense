@@ -211,7 +211,6 @@ void menu_inventaire(void)
     {
         if (lettres->keystates[SDL_SCANCODE_RETURN])
         {
-            printf ("test\n");
             struct linked_item *i = moi->i_list;
             int a = 0;
             while (a < main_menu->menuInv->selector->selectedOption && i != NULL)
@@ -221,7 +220,10 @@ void menu_inventaire(void)
             }
             if(main_menu->menuInv->actions->selectedOption == 0)//consume
             {
-
+                if (strcmp(i->nom, "fruit") == 0)
+                {
+                    sprintf(ordre+strlen(ordre), "%d 16 1 %s %d 07 1000", moi->id, i->nom, moi->id);
+                }
             }
             else if (main_menu->menuInv->actions->selectedOption == 1)//equipe
             {

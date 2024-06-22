@@ -132,8 +132,11 @@ int main(int argc, char **argv)
                 if (statut[events[i].data.fd] == 1)
                 {
                     struct personnages *p = have_char(c_names[events[i].data.fd]);
-                    p->online = '0';
-                    p->a_bouger = 1;
+                    if (p != NULL)
+                    {
+                        p->online = '0';
+                        p->a_bouger = 1;
+                    }
                 }
                 close (events[i].data.fd);
 				statut[events[i].data.fd] = 0;
@@ -258,8 +261,11 @@ int main(int argc, char **argv)
                     if (statut[events[i].data.fd] == 1)
                     {
                         struct personnages *p = have_char(c_names[events[i].data.fd]);
-                        p->online = '0';
-                        p->a_bouger = 1;
+                        if (p != NULL)
+                        {
+                            p->online = '0';
+                            p->a_bouger = 1;
+                        }
                     }
 					statut[events[i].data.fd] = 0;
                     close (events[i].data.fd);

@@ -44,11 +44,13 @@ void parse_order(char *line)
                 {
                     i++;
                     p->moved_x += atof(&line[i]);
+                    p->faim -= 1;
                 }
                 else if (line[i] == '-')
                 {
                     i++;
                     p->moved_x -= atof(&line[i]);
+                    p->faim -= 1;
                 }
                 else
                     p->x = atof(&line[i]);
@@ -61,11 +63,13 @@ void parse_order(char *line)
                 {
                     i++;
                     p->moved_y += atof(&line[i]);
+                    p->faim -= 1;
                 }
                 else if (line[i] == '-')
                 {
                     i++;
                     p->moved_y -= atof(&line[i]);
+                    p->faim -= 1;
                 }
                 else
                     p->y = atof(&line[i]);
@@ -96,7 +100,7 @@ void parse_order(char *line)
                 i++;
                 break;
             case 7:
-                p->faim = atoi(&line[i]);
+                p->faim += atoi(&line[i]);
                 while(line[i] != ' ')
                     i++;
                 i++;

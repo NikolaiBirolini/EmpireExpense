@@ -56,11 +56,13 @@ void collision(void)
                 {
                     p->x += pp->moved_x;
                     p->y += pp->moved_y;
+                    p->a_bouger = 1; 
                 }
                 if (allowed_to_move(pp, pp->x, pp->y, p->moved_x, p->moved_y) == 1)
                 {
                     pp->x += p->moved_x;
                     pp->y += p->moved_y;
+                    pp->a_bouger = 1;   
                 }
             }
         } 
