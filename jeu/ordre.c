@@ -138,9 +138,25 @@ void commande(struct linked_list *selected)
 		SDL_Rect position;
 		position.w = 25;
 		position.h = 25;
+
 		float x = ((float)lettres->Mouse_pos_x + 2*(float)lettres->Mouse_pos_y-1800)/68 + (float)moi->x;
 		float y = (2*(float)lettres->Mouse_pos_y - (float)lettres->Mouse_pos_x)/68 + (float)moi->y;
-		///printf ("%f %f\n", x,y);
+		float x2 = x;
+		float y2 = y;
+		for (int i = 0; i < 10; i++)
+		{
+			position.x = (x2 - moi->x - y2 + moi->y) * 34 + 900;
+			position.y = (x2 - moi->x - moi->y  + y2) * 17 + 450 - ground_altitude[(int)x2 + (int)y2 * max_x];
+			if (abs(lettres->Mouse_pos_y-position.y) < 34)
+			{ 	
+				x = x2;
+				y = y2;
+			}
+			x2 += 1;
+			y2 += 1;
+		}
+		x2 = x;
+		y2 = y;
 		if (menu_cond->manage_formation_lines.isPressed == 1)
 		{
 			int n = 0;
@@ -159,8 +175,8 @@ void commande(struct linked_list *selected)
 				{
 					n = 0;
 					line += 1;
-					x = ((float)lettres->Mouse_pos_x + 2*(float)lettres->Mouse_pos_y-1800)/68 + (float)moi->x;
-					y = (2*(float)lettres->Mouse_pos_y - (float)lettres->Mouse_pos_x)/68 + (float)moi->y;
+					x = x2;
+					y = y2;
 					x += menu_cond->space_lines*sin(menu_cond->angle/57.3)*line;
 					y += menu_cond->space_lines*cos(menu_cond->angle/57.3)*line;	
 				}
@@ -246,8 +262,8 @@ void commande(struct linked_list *selected)
 				{
 					n = 0;
 					line += 1;
-					x = ((float)lettres->Mouse_pos_x + 2*(float)lettres->Mouse_pos_y-1800)/68 + (float)moi->x;
-					y = (2*(float)lettres->Mouse_pos_y - (float)lettres->Mouse_pos_x)/68 + (float)moi->y;
+					x = x2;
+					y = y2;
 					x += menu_cond->space_lines*sin(menu_cond->angle/57.3)*line;
 					y += menu_cond->space_lines*cos(menu_cond->angle/57.3)*line;
 					x -= menu_cond->space_columns*cos(menu_cond->angle/57.3)*(pow(2, line-1)-0.5);
@@ -280,8 +296,8 @@ void commande(struct linked_list *selected)
 				{
 					n = 0;
 					line += 1;
-					x = ((float)lettres->Mouse_pos_x + 2*(float)lettres->Mouse_pos_y-1800)/68 + (float)moi->x;
-					y = (2*(float)lettres->Mouse_pos_y - (float)lettres->Mouse_pos_x)/68 + (float)moi->y;
+					x = x2;
+					y = y2;
 					x += menu_cond->space_lines*sin(menu_cond->angle/57.3)*line;
 					y += menu_cond->space_lines*cos(menu_cond->angle/57.3)*line;	
 				}
