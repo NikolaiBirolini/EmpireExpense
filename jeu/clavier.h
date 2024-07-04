@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL2/SDL.h>
 #include "shared_var.h"
+#include "gui/gui.h"
 
 SDL_Event gestion_touche(void);
 

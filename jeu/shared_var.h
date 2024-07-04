@@ -9,6 +9,7 @@ extern struct img *img;
 extern struct s_gui *s_gui;
 extern SDL_Renderer *renderer;
 extern SDL_Window *window;
+extern struct textInput  *text;
 #define screensizex 1800
 #define screensizey 900
 extern int max_x;

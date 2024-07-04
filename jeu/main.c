@@ -106,10 +106,16 @@ void boucle_jeu(int socket, char *name)
 	bool done = false;
     //struct timeval start, end;
     //struct timeval sstart, eend;
+    SDL_Event event;
+    text = calloc(sizeof(struct textInput), 1);
+    text->textToPrint = (char *)malloc(strlen(event.text.text) + 1);
+    text->on = 0;
+    text->key = (SDL_Keycode *)malloc(sizeof(SDL_Keycode));
+
 	while(!done)
 	{
         //gettimeofday(&start, NULL);
-	    SDL_Event event = gestion_touche();
+	    event = gestion_touche();
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
         //gettimeofday(&sstart, NULL);

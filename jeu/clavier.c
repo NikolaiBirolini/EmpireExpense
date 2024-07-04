@@ -3,6 +3,7 @@
 SDL_Event gestion_touche(void)
 {
 	SDL_Event event;
+
 	while (SDL_PollEvent(&event) != 0)
 	{
 		if (event.type == SDL_MOUSEMOTION)
@@ -32,11 +33,25 @@ SDL_Event gestion_touche(void)
 		{
 			lettres->wheel += event.wheel.y*5;
 		}
+		
+		if (event.type == SDL_TEXTINPUT)
+		{
+			strcpy(text->textToPrint, event.text.text);
+			text->on=1;
+		
+		}
+		if (event.type == SDL_KEYDOWN) 
+        {
+            *text->key = event.key.keysym.sym;
+        }
 		if (event.type == SDL_QUIT)
 		{
-			SDL_Quit();
-			exit(0);
+		    SDL_Quit();
+		    exit(0);
 		}
+		//printf("textClavier : %s \n", text_input_event->eventOut->text.text);
+		//else
+		    //text_input_event->on = 0;
 	}
 	//lettres->keystates = SDL_GetKeyboardState(NULL);
 	return event;

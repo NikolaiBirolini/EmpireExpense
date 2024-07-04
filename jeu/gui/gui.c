@@ -266,8 +266,6 @@ void menu_inventaire(void)
     	    main_menu->menuInv->actions->selectedOption = (main_menu->menuInv->actions->selectedOption - 1 + main_menu->menuInv->actions->numOptions) % main_menu->menuInv->actions->numOptions;
         drawSelector(renderer, main_menu->menuInv->actions);
     }
-    
-    
 }
 
 void menu_religion(struct menu *m)
@@ -284,20 +282,24 @@ void speakPerso(struct personnages *moi, char* ordre, SDL_Event event)
 {
     drawTextBox(renderer, speakBubble->textBox, true);
   
-    if (event.type == SDL_TEXTINPUT) 
-        strncat(speakBubble->textBox->text, event.text.text, sizeof(speakBubble->textBox->text) - strlen(speakBubble->textBox->text) - 1);
+    if (text->on != 0)
+    {
+        strncat(speakBubble->textBox->text, text->textToPrint, sizeof(speakBubble->textBox->text) - strlen(speakBubble->textBox->text) - 1);
+        text->on = 0;
+    }
     else 
     {
-        if (lettres->keystates[SDL_SCANCODE_AC_BACK])
+        if (*text->key == SDLK_BACKSPACE)
             speakBubble->textBox->text[strlen(speakBubble->textBox->text)-1] = 0;
-        else if (lettres->keystates[SDL_SCANCODE_ESCAPE])
+        else if (*text->key == SDLK_ESCAPE)
             speakBubble->on = 0;
-        else if (lettres->keystates[SDL_SCANCODE_RETURN])
+        else if (*text->key == SDLK_RETURN)
         {
             sprintf (ordre + strlen(ordre), "%d 20 %s\037 ", moi->id, speakBubble->textBox->text);
             speakBubble->textBox->text[0] = 0;
             speakBubble->on = 0;
-        }  
+        } 
+        *text->key = NULL;
     }
 }
 
@@ -391,13 +393,16 @@ void diplomatic_menu(SDL_Event event)
     drawTextInfo(renderer, &enemyListText);
     drawTextInfo(renderer, &overlord);
 
-    if (event.type == SDL_TEXTINPUT) 
-        strncat(main_menu->menuDip->diploTextBox.text, event.text.text, sizeof(main_menu->menuDip->diploTextBox.text) - strlen(main_menu->menuDip->diploTextBox.text) - 1);
+    if (text->on != 0)
+    {
+        strncat(main_menu->menuDip->diploTextBox.text, text->textToPrint, sizeof(main_menu->menuDip->diploTextBox.text) - strlen(main_menu->menuDip->diploTextBox.text) - 1);
+        text->on = 0;
+    }
     else
     {
-        if (lettres->keystates[SDL_SCANCODE_AC_BACK])
+        if (*text->key == SDLK_BACKSPACE)
             main_menu->menuDip->diploTextBox.text[strlen(main_menu->menuDip->diploTextBox.text)-1] = 0;
-        else if (lettres->keystates[SDL_SCANCODE_ESCAPE])
+        else if (*text->key == SDLK_ESCAPE)
             main_menu->menuDip->on = 0;
         else if (lettres->keystates[SDL_SCANCODE_UP])
             main_menu->menuDip->diploSelect->selectedItem = (main_menu->menuDip->diploSelect->selectedItem - 1 + main_menu->menuDip->diploSelect->nbOfItems) % main_menu->menuDip->diploSelect->nbOfItems;
@@ -419,7 +424,8 @@ void diplomatic_menu(SDL_Event event)
                 {
                     main_menu->menuDip->errorText.x = 500;
                     main_menu->menuDip->errorText.y = 500;
-                    strcpy (main_menu->menuDip->errorText.text, "invalid username (stupid)");   
+                    strcpy (main_menu->menuDip->errorText.text, "invalid username (stupid)");
+                    *text->key = NULL;   
                     return;
                 }
                 else
@@ -439,7 +445,8 @@ void diplomatic_menu(SDL_Event event)
                 {
                     main_menu->menuDip->errorText.x = 500;
                     main_menu->menuDip->errorText.y = 500;
-                    strcpy (main_menu->menuDip->errorText.text, "invalid username (stupid)");  
+                    strcpy (main_menu->menuDip->errorText.text, "invalid username (stupid)"); 
+                    *text->key = NULL; 
                     return;
                 }
                 else
@@ -456,6 +463,7 @@ void diplomatic_menu(SDL_Event event)
                     sprintf(ordre + strlen(ordre), "%d 10 %s ", moi->id, main_menu->menuDip->diploTextBox.text);
             }
         }
+        *text->key = NULL;
     }
 }
 

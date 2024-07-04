@@ -24,6 +24,13 @@ struct speak
     TextInfo *textInfo;
 };
 
+struct textInput
+{
+    char on;
+    char* textToPrint;
+    SDL_Keycode* key;
+};
+
 struct menu_diplo {
     char on;
     Selector *selector;
