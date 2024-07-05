@@ -9,64 +9,18 @@ char how_display(char *skin)
 	return 0;
 }
 
-SDL_Texture *select_good_img(struct personnages *perso)
+SDL_Texture *select_good_img(char skin[50], float angle, int animation)
 {
-	float angle = perso->angle;
-	if (strcmp(perso->skin, "ship1") == 0)
+	if (strcmp(skin, "ship1") == 0)
 		return img->s->ship1haut;
-	/*if (strcmp(perso->skin, "chateau") == 0)
+	if (strncmp(skin, "arbre", 5) == 0)
 	{
-		if (angle < 15 || angle >= 345)
-			return img->s->chateauDos;
-		else if (angle < 45 && angle >= 15)
-			return img->s->chateauDosDroite;
-		else if (angle < 75 && angle >= 45)
-			return img->s->chateauDroiteDos;
-		else if (angle < 105 && angle >= 75)
-			return img->s->chateauDroite;
-		else if (angle < 135 && angle >= 105)
-			return img->s->chateauDroiteFace;
-		else if (angle < 165 && angle >= 135)
-			return img->s->chateauFaceDroite;
-		else if (angle < 195 && angle >= 165)
-			return img->s->chateauFace;
-		else if (angle < 225 && angle >= 195)
-			return img->s->chateauFaceGauche;
-		else if (angle < 255 && angle >= 225)
-			return img->s->chateauGaucheFace;
-		else if (angle < 285 && angle >= 255)
-			return img->s->chateauGauche;
-		else if (angle < 315 && angle >= 285)
-			return img->s->chateauGaucheDos;
-		else if (angle < 345 && angle >= 315)
-			return img->s->chateauDosGauche;
-	}
-	if (strcmp(perso->skin, "tour") == 0)
-	{
-		if (angle < 75 || angle >= 285)
-			return img->s->tourDos;
-		else if (angle < 105 && angle >= 75)
-			return img->s->tourDroite;
-		else if (angle < 135 && angle >= 105)
-			return img->s->tourDroiteFace;
-		else if (angle < 165 && angle >= 135)
-			return img->s->tourFaceDroite;
-		else if (angle < 195 && angle >= 165)
-			return img->s->tourFace;
-		else if (angle < 225 && angle >= 195)
-			return img->s->tourFaceGauche;
-		else if (angle < 255 && angle >= 225)
-			return img->s->tourGaucheFace;
-		return img->s->tourGauche;
-	}*/
-	if (strncmp(perso->skin, "arbre", 5) == 0)
-	{
-		if (perso->skin[5] == '1')
+		if (skin[5] == '1')
 			return img->s->arbre1;
 	}
-	if (strncmp(perso->skin, "fruit", 5) == 0)
+	if (strncmp(skin, "fruit", 5) == 0)
 		return img->s->fruit;
-	if (strcmp(perso->skin, "flag_zone") == 0)
+	if (strcmp(skin, "white_flag") == 0)
 	{
 		if (angle == 'a')
             return img->s->drapeauBlancFace_dos;
@@ -93,18 +47,9 @@ SDL_Texture *select_good_img(struct personnages *perso)
         else if (angle == 'l')
             return img->s->drapeauBlancDosGauche;
 	}
-	perso->animation_time += 1;
-	if (perso->animation_time > 8)
+	if (strcmp(skin, "sword") == 0)
 	{
-		//sprintf (ordre + strlen(ordre), "%d 21 %d ", perso->id, perso->animation + 1);
-		//if (perso->animation >= 5)
-			//sprintf (ordre + strlen(ordre), "%d 21 1 ", perso->id);
-		perso->animation_time = 0;
-	}
-
-	if (strcmp(perso->skin, "fantassin") == 0)
-	{
-		if (perso->animation == 0)
+		if (animation == 0)
 		{
 			if (angle == 'a')
 				return img->s->hoFaDoRien;
@@ -131,7 +76,7 @@ SDL_Texture *select_good_img(struct personnages *perso)
 			else if (angle == 'k')
 				return img->s->hoFaDoGaRien;
 		}
-		else if (perso->animation == 1)
+		else if (animation == 1)
 		{
 			if (angle == 'a')
 				return img->s->hoFaDoMa1;
@@ -158,7 +103,7 @@ SDL_Texture *select_good_img(struct personnages *perso)
 			else if (angle == 'l')
 				return img->s->hoFaDoGaMa1;
 		}
-		else if (perso->animation == 2)
+		else if (animation == 2)
 		{
 			if (angle == 'a')
 				return img->s->hoFaDoMa2;
@@ -185,7 +130,7 @@ SDL_Texture *select_good_img(struct personnages *perso)
 			else if (angle == 'l')
 				return img->s->hoFaDoGaMa2;
 		}
-		else if (perso->animation == 3)
+		else if (animation == 3)
 		{
 			if (angle == 'a')
 				return img->s->hoFaDoMa3;
@@ -212,7 +157,7 @@ SDL_Texture *select_good_img(struct personnages *perso)
 			else if (angle == 'l')
 				return img->s->hoFaDoGaMa3;
 		}
-		else if (perso->animation == 4)
+		else if (animation == 4)
 		{
 			if (angle == 'a')
 				return img->s->hoFaDoMa4;
@@ -267,9 +212,9 @@ SDL_Texture *select_good_img(struct personnages *perso)
 				return img->s->hoFaDoGaMa5;
 		}
 	}
-	if (strcmp(perso->skin, "archer") == 0)
+	if (strcmp(skin, "bow") == 0)
 	{
-		if (perso->animation == 0)
+		if (animation == 0)
 		{
 			if (angle == 'a')
 				return img->s->hoArDoMa1;
@@ -288,7 +233,7 @@ SDL_Texture *select_good_img(struct personnages *perso)
 			else if (angle == 'h')
 				return img->s->hoArGdMa1;
 		}
-		else if (perso->animation == 2)
+		else if (animation == 2)
 		{
 			if (angle == 'a')
 				return img->s->hoArDoMa2;
@@ -307,7 +252,7 @@ SDL_Texture *select_good_img(struct personnages *perso)
 			else if (angle == 'h')
 				return img->s->hoArGdMa2;
 		}
-		else if (perso->animation == 3)
+		else if (animation == 3)
 		{
 			if (angle == 'a')
 				return img->s->hoArDoMa3;
@@ -326,7 +271,7 @@ SDL_Texture *select_good_img(struct personnages *perso)
 			else if (angle == 'h')
 				return img->s->hoArGdMa3;
 		}
-		else if (perso->animation == 4)
+		else if (animation == 4)
 		{
 			if (angle == 'a')
 				return img->s->hoArDoMa4;
