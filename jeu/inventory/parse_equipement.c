@@ -28,6 +28,7 @@ void actualise_stat(struct personnages *p)
 		}
 	}
 	
+	list_disp = deleteKey(p->id);
 	if (strcmp(p->skin, "man") == 0)
 	{
 		int max_pv = 10;
@@ -40,17 +41,36 @@ void actualise_stat(struct personnages *p)
 		{
 			porte_dom = 200;
 			dom = 5;
-			p->to_display[0].img = select_good_img("bow", p->angle, p->animation);
+			struct to_disp *new = malloc(sizeof(struct to_disp));
+			new->img = select_good_img("bow", p->angle, p->animation);
+			new->x = p->x;
+			new->y = p->y;
+			new->id = p->id;
+			new->next = NULL;
+			sortedInsert(new);
+			
 		}
 		else if (strcmp(p->right_hand, "sword") == 0)
 		{
 			porte_dom = 20;
 			dom = 7;
-			p->to_display[0].img = select_good_img("sword", p->angle, p->animation);
+			struct to_disp *new = malloc(sizeof(struct to_disp));
+			new->img = select_good_img("sword", p->angle, p->animation);
+			new->x = p->x;
+			new->y = p->y;
+			new->id = p->id;
+			new->next = NULL;
+			sortedInsert(new);
 		}
 		else // default 
 		{
-			p->to_display[0].img = select_good_img("sword", p->angle, p->animation);
+			struct to_disp *new = malloc(sizeof(struct to_disp));
+			new->img = select_good_img("sword", p->angle, p->animation);
+			new->x = p->x;
+			new->y = p->y;
+			new->id = p->id;
+			new->next = NULL;
+			sortedInsert(new);
 		} 
 		p->max_pv = max_pv;
 		p->vitesse_dom = vitesse_dom;
@@ -65,6 +85,7 @@ void actualise_stat(struct personnages *p)
 
 void init_stat(struct personnages *p)
 {
+	list_disp = deleteKey(p->id);
 	p->sur_plancher = NULL;
 	p->speak_timer = 0;
 	p->faim_time = 0;
@@ -98,7 +119,13 @@ void init_stat(struct personnages *p)
 	}
 	else if (strcmp(p->skin, "basic_wooden_house") == 0)
 	{
-		p->to_display[0].img = select_good_img("basic_wooden_house", p->angle, p->animation);
+		struct to_disp *new = malloc(sizeof(struct to_disp));
+		new->img = select_good_img("basic_wooden_house", p->angle, p->animation);
+		new->x = p->x;
+		new->y = p->y;
+		new->id = p->id;
+		new->next = NULL;
+		sortedInsert(new);
 		p->max_pv = 1000;
 		p->dom = 0;
 		p->poid = 1000;
@@ -107,7 +134,13 @@ void init_stat(struct personnages *p)
 	}
 	else if (strcmp(p->skin, "white_flag") == 0)
 	{
-		p->to_display[0].img = select_good_img("white_flag", p->angle, p->animation);
+		struct to_disp *new = malloc(sizeof(struct to_disp));
+		new->img = select_good_img("white_flag", p->angle, p->animation);
+		new->x = p->x;
+		new->y = p->y;
+		new->id = p->id;
+		new->next = NULL;
+		sortedInsert(new);
 		p->max_pv = 99999;
 		p->dom = 0;
 		p->poid = 10000;

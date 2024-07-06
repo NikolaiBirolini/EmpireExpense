@@ -9,6 +9,7 @@ SDL_Renderer *renderer;
 SDL_Window *window;
 struct lettres *lettres;
 struct linked_list *list;
+struct to_disp *list_disp;
 TTF_Font *littleFont;
 TTF_Font *bigFont;
 TTF_Font *font;

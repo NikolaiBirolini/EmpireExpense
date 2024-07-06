@@ -8,13 +8,7 @@
 #include "sys/socket.h"
 #include "netinet/in.h"
 #include "arpa/inet.h"
-
-struct to_disp
-{
-    SDL_Texture* img;
-    int x;
-    int y;
-};
+#include "linked_display.h"
 
 struct personnages
 {
@@ -53,7 +47,6 @@ struct personnages
     char pant[50];
     char shoes[50];
     ///////////////////////////////////////
-    struct to_disp to_display[10];
     char animation_time;
     int speak_timer;
     int faim_time; 
@@ -79,8 +72,6 @@ struct linked_list
     struct personnages *p;
     struct linked_list *next;
 };
-
-
 
 #include "net.h"
 #include "diplo.h"

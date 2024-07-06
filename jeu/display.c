@@ -2,7 +2,7 @@
 #include "shared_var.h"
 #include "gui/gui.h"
 
-void bubble_sort_perso()
+/*void bubble_sort_perso()
 {
 	for (struct linked_list *par = list; par != NULL; par = par->next)
 	{
@@ -16,7 +16,7 @@ void bubble_sort_perso()
 			}
 		}
 	}
-}
+}*/
 
 
 void display_ground(int x, int y, int xto, int yto)
@@ -63,27 +63,27 @@ void display_ground(int x, int y, int xto, int yto)
 void display_all(void)
 {	
 	SDL_SetRenderDrawColor(renderer, 74, 71,51,0);
-	bubble_sort_perso();
+	//bubble_sort_perso();
 	SDL_Rect position;
 	int yfrom = 0;
     int xfrom = -1;
-	for (struct linked_list *parcour = list; parcour != NULL; parcour=parcour->next)
+	for (struct to_disp *parcour = list_disp; parcour != NULL; parcour=parcour->next)
 	{	
-		display_ground(xfrom, yfrom, (int)parcour->p->x, (int)parcour->p->y);
-		xfrom = (int)parcour->p->x;
-		yfrom = (int)parcour->p->y;
-		SDL_QueryTexture(parcour->p->to_display[0].img, NULL, NULL, &position.w, &position.h);
-		char test = how_display(parcour->p->skin);
-		if (test == 0)
-		{
-			position.x = (parcour->p->x - moi->x - parcour->p->y + moi->y) * 34 + 900 - position.w/2;
-			position.y = (parcour->p->x - moi->x + parcour->p->y - moi->y) * 17 + 450 - position.h - ground_altitude[(int)parcour->p->x + (int)parcour->p->y * max_x];
-			parcour->p->screenx = position.x;
-			parcour->p->screeny = position.y;
-			parcour->p->sizescreenx = position.w;
-			parcour->p->sizescreeny = position.h;
-			SDL_RenderCopy(renderer, parcour->p->to_display->img, NULL, &position);
-		}
+		display_ground(xfrom, yfrom, (int)parcour->x, (int)parcour->y);
+		xfrom = (int)parcour->x;
+		yfrom = (int)parcour->y;
+		SDL_QueryTexture(parcour->img, NULL, NULL, &position.w, &position.h);
+		//char test = how_display(parcour->skin);
+		//if (test == 0)
+		//{
+			position.x = (parcour->x - moi->x - parcour->y + moi->y) * 34 + 900 - position.w/2;
+			position.y = (parcour->x - moi->x + parcour->y - moi->y) * 17 + 450 - position.h - ground_altitude[(int)parcour->x + (int)parcour->y * max_x];
+			//parcour->p->screenx = position.x;
+			//parcour->p->screeny = position.y;
+			//parcour->p->sizescreenx = position.w;
+			//parcour->p->sizescreeny = position.h;
+			SDL_RenderCopy(renderer, parcour->img, NULL, &position);
+		//}
 	}
 	display_ground(xfrom, yfrom, max_x-1, max_y-1);
 }

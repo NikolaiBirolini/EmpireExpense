@@ -9,7 +9,7 @@ char how_display(char *skin)
 	return 0;
 }
 
-SDL_Texture *select_good_img(char skin[50], float angle, int animation)
+SDL_Texture *select_good_img(char *skin, float angle, int animation)
 {
 	if (strcmp(skin, "ship1") == 0)
 		return img->s->ship1haut;

@@ -35,7 +35,7 @@ void createArray(struct personnages *p)
     {
         if ((strncmp(parcour->p->skin, "arbre", 5) == 0))
             p->chemin[(int)parcour->p->x + max_x*(int)parcour->p->y].walkable = 0;
-        else if (parcour->p != p && strcmp(parcour->p->skin, "fantassin") == 0)
+        else if (parcour->p != p && strcmp(parcour->p->skin, "man") == 0)
             p->chemin[(int)parcour->p->x + max_x*(int)parcour->p->y].walkable = 5;
     }
 }

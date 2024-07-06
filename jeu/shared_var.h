@@ -16,6 +16,7 @@ extern int max_x;
 extern int max_y;
 extern struct lettres *lettres;
 extern struct linked_list *list;
+extern struct to_disp *list_disp;
 extern TTF_Font *littleFont;
 extern TTF_Font *bigFont;
 extern TTF_Font *font;
