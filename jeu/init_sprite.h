@@ -169,27 +169,9 @@ struct skin
     SDL_Texture *legume;
     SDL_Texture *arbre1;
 
-    SDL_Texture *chateauFace;
-    SDL_Texture *chateauFaceGauche;
-    SDL_Texture *chateauGaucheFace;
-    SDL_Texture *chateauGauche;
-    SDL_Texture *chateauGaucheDos;
-    SDL_Texture *chateauDosGauche;
-    SDL_Texture *chateauDos;
-    SDL_Texture *chateauDosDroite;
-    SDL_Texture *chateauDroiteDos;
-    SDL_Texture *chateauDroite;
-    SDL_Texture *chateauDroiteFace;
-    SDL_Texture *chateauFaceDroite;
-
-    SDL_Texture *tourFace;
-    SDL_Texture *tourFaceGauche;
-    SDL_Texture *tourGaucheFace;
-    SDL_Texture *tourGauche;
-    SDL_Texture *tourDos;
-    SDL_Texture *tourDroite;
-    SDL_Texture *tourDroiteFace;
-    SDL_Texture *tourFaceDroite;
+    SDL_Texture *wooden_house_3x3_faceline1;
+    SDL_Texture *wooden_house_3x3_faceline2;
+    SDL_Texture *wooden_house_3x3_faceline3;
 };
 
 struct gui_sprite

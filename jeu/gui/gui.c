@@ -30,8 +30,8 @@ void gui_event(struct personnages *moi)
         if (strlen(p->p->speak) > 1)
         {
             TextInfo bubble = {p->p->speak,  littleFont, 
-            (p->p->x - p->p->y) * 34 + 850, 
-            (p->p->x + p->p->y) * 17 + 360 - ground_altitude[(int)p->p->x + (int)p->p->y * max_x],
+            (p->p->x - moi->x - p->p->y +  moi->y) * 34 + 900, 
+            (p->p->x - moi->x + p->p->y - moi->y) * 17 + 350 - ground_altitude[(int)p->p->x + (int)p->p->y * max_x],
             0,{255, 255, 255, 255}, 0,0,0};
             drawTextInfo(renderer, &bubble);
         }

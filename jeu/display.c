@@ -65,7 +65,6 @@ void display_all(void)
 	SDL_SetRenderDrawColor(renderer, 74, 71,51,0);
 	bubble_sort_perso();
 	SDL_Rect position;
-	SDL_Texture *affiche;
 	int yfrom = 0;
     int xfrom = -1;
 	for (struct linked_list *parcour = list; parcour != NULL; parcour=parcour->next)
@@ -73,8 +72,7 @@ void display_all(void)
 		display_ground(xfrom, yfrom, (int)parcour->p->x, (int)parcour->p->y);
 		xfrom = (int)parcour->p->x;
 		yfrom = (int)parcour->p->y;
-		affiche = select_good_img(parcour->p);
-		SDL_QueryTexture(affiche, NULL, NULL, &position.w, &position.h);
+		SDL_QueryTexture(parcour->p->to_display[0].img, NULL, NULL, &position.w, &position.h);
 		char test = how_display(parcour->p->skin);
 		if (test == 0)
 		{
@@ -84,7 +82,7 @@ void display_all(void)
 			parcour->p->screeny = position.y;
 			parcour->p->sizescreenx = position.w;
 			parcour->p->sizescreeny = position.h;
-			SDL_RenderCopy(renderer, affiche, NULL, &position);
+			SDL_RenderCopy(renderer, parcour->p->to_display->img, NULL, &position);
 		}
 	}
 	display_ground(xfrom, yfrom, max_x-1, max_y-1);
