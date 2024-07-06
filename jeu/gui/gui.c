@@ -278,7 +278,7 @@ void menu_technologie(struct menu *m)
     m = m;
 }
 
-void speakPerso(struct personnages *moi, char* ordre, SDL_Event event)
+void speakPerso(struct personnages *moi, char* ordre)
 {
     drawTextBox(renderer, speakBubble->textBox, true);
   
@@ -339,12 +339,12 @@ void accept_trade(void)
     }
 }
 
-void menu(SDL_Event event)
+void menu()
 {
     if (main_menu->menuInv->on == 1)
         menu_inventaire();
     else if (main_menu->menuDip->on == 1)
-        diplomatic_menu(event);
+        diplomatic_menu();
     else if (main_menu->menuTrad->on == 1)
         menu_trade();
     else
@@ -369,7 +369,7 @@ void menu(SDL_Event event)
     }
 }
 
-void diplomatic_menu(SDL_Event event)
+void diplomatic_menu()
 {
     drawTextBox(renderer, &main_menu->menuDip->bgDiploTextBox, false);
     drawTextBox(renderer, &main_menu->menuDip->diploTextBox, true);

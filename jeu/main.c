@@ -130,7 +130,7 @@ void boucle_jeu(int socket, char *name)
         if (conditional_menu(selected[0]) == 1)
             done = done;
         else if (speakBubble->on == 1)
-            speakPerso(moi, ordre, event);
+            speakPerso(moi, ordre);
         else if (main_menu->on.isPressed == 1)
             menu(event);
         else

@@ -107,10 +107,10 @@ struct cond_menu
     pictureButton manage_formation;
 };
 
-void menu(SDL_Event event);
+void menu();
 void accept_trade(void);
-void diplomatic_menu(SDL_Event event);
-void speakPerso(struct personnages *moi, char* ordre, SDL_Event event);
+void diplomatic_menu();
+void speakPerso(struct personnages *moi, char* ordre);
 void printSpeakBubble(struct personnages *perso, TextInfo* textInfo, TextBox* textBox, char* on);
 void gui_event(struct personnages *moi);
 void *cast(void *p);
