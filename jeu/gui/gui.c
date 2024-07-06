@@ -348,6 +348,7 @@ void menu()
         menu_trade();
     else
     {
+        main_menu->menuDip->errorText.text = "\0";
 	    if (lettres->keystates[SDL_SCANCODE_S] || lettres->keystates[SDL_SCANCODE_DOWN])
     	    main_menu->selector->selectedOption = (main_menu->selector->selectedOption + 1) % main_menu->selector->numOptions;
     	if (lettres->keystates[SDL_SCANCODE_Z] || lettres->keystates[SDL_SCANCODE_UP])
@@ -433,7 +434,7 @@ void diplomatic_menu()
                 else
                 {
                     sprintf(ordre + strlen(ordre), "%d 15 +0 %s ", moi->id, main_menu->menuDip->diploTextBox.text);
-                    main_menu->menuDip->errorText.text = "";
+                    main_menu->menuDip->errorText.text = "\0";
                 }
             }
             else if(strcmp("Remove enemy", main_menu->menuDip->diploSelect->items[main_menu->menuDip->diploSelect->selectedItem]) == 0)
@@ -456,7 +457,7 @@ void diplomatic_menu()
                 else
                 {
                     sprintf(ordre + strlen(ordre), "%d 15 %s ", moi->id, main_menu->menuDip->diploTextBox.text);
-                    main_menu->menuDip->errorText.text = "";
+                    main_menu->menuDip->errorText.text = "\0";
                 }
             }
             else if(strcmp("Set Overlord", main_menu->menuDip->diploSelect->items[main_menu->menuDip->diploSelect->selectedItem]) == 0)
