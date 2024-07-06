@@ -299,7 +299,7 @@ void speakPerso(struct personnages *moi, char* ordre)
             speakBubble->textBox->text[0] = 0;
             speakBubble->on = 0;
         } 
-        *text->key = NULL;
+        *text->key = SDLK_UNKNOWN;
     }
 }
 
@@ -428,7 +428,7 @@ void diplomatic_menu()
                     char* errorLine = "Invalid username (stupid)";
                     main_menu->menuDip->errorText.text = (char *) malloc(strlen(errorLine)+1);
                     strcpy (main_menu->menuDip->errorText.text, errorLine); 
-                    *text->key = NULL;
+                    *text->key = SDLK_UNKNOWN;
                     return;
                 }
                 else
@@ -451,7 +451,7 @@ void diplomatic_menu()
                     char* errorLine = "Invalid username (stupid)";
                     main_menu->menuDip->errorText.text = (char *) malloc(strlen(errorLine)+1);
                     strcpy (main_menu->menuDip->errorText.text, errorLine); 
-                    *text->key = NULL; 
+                    *text->key = SDLK_UNKNOWN; 
                     return;
                 }
                 else
@@ -468,7 +468,7 @@ void diplomatic_menu()
                     sprintf(ordre + strlen(ordre), "%d 10 %s ", moi->id, main_menu->menuDip->diploTextBox.text);
             }
         }
-        *text->key = NULL;
+        *text->key = SDLK_UNKNOWN;
     }
 }
 
