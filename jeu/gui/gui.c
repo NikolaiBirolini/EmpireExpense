@@ -462,10 +462,24 @@ void diplomatic_menu()
             }
             else if(strcmp("Set Overlord", main_menu->menuDip->diploSelect->items[main_menu->menuDip->diploSelect->selectedItem]) == 0)
             {
-                if (strcmp (main_menu->menuDip->diploTextBox.text, "") == 0)
-                    sprintf(ordre + strlen(ordre), "%d 10 %s ", moi->id, moi->nom);
+                struct personnages* persoToFind = find_perso_by_name(main_menu->menuDip->diploTextBox.text); 
+                if (persoToFind != NULL)
+                {
+                    if (strcmp (main_menu->menuDip->diploTextBox.text, "") == 0)
+                        sprintf(ordre + strlen(ordre), "%d 10 %s ", moi->id, moi->nom);
+                    else
+                        sprintf(ordre + strlen(ordre), "%d 10 %s ", moi->id, main_menu->menuDip->diploTextBox.text);
+                }
                 else
-                    sprintf(ordre + strlen(ordre), "%d 10 %s ", moi->id, main_menu->menuDip->diploTextBox.text);
+                {
+                    main_menu->menuDip->errorText.x = 500;
+                    main_menu->menuDip->errorText.y = 500;
+                    char* errorLine = "Invalid username (stupid)";
+                    main_menu->menuDip->errorText.text = (char *) malloc(strlen(errorLine)+1);
+                    strcpy (main_menu->menuDip->errorText.text, errorLine); 
+                    *text->key = SDLK_UNKNOWN; 
+                    return;
+                }
             }
         }
         *text->key = SDLK_UNKNOWN;
