@@ -180,7 +180,6 @@ void menu_trade(void)
 
 void menu_inventaire(void)
 {
-    
     int j = 0;
     for (struct linked_item *i = moi->i_list; i != NULL; i = i->next)
     {

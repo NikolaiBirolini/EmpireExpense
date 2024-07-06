@@ -139,9 +139,15 @@ void boucle_jeu(int socket, char *name)
 	        select_char(selected);
 	        commande(selected[0]);
             if(lettres->keystates[SDL_SCANCODE_SEMICOLON])
+            {
                 main_menu->on.isPressed = 1;
+                text->textToPrint[0] = '\0';
+            }
             if(lettres->keystates[SDL_SCANCODE_T])
+            {
                 speakBubble->on = 1;
+                text->textToPrint[0] = '\0';
+            }
         }
         if (should_i_call_my_computer_work == '1')
         {

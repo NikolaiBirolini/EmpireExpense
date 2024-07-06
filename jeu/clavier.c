@@ -33,12 +33,10 @@ SDL_Event gestion_touche(void)
 		{
 			lettres->wheel += event.wheel.y*5;
 		}
-		
 		if (event.type == SDL_TEXTINPUT)
 		{
 			strcpy(text->textToPrint, event.text.text);
 			text->on=1;
-		
 		}
 		if (event.type == SDL_KEYDOWN) 
         {
@@ -49,10 +47,6 @@ SDL_Event gestion_touche(void)
 		    SDL_Quit();
 		    exit(0);
 		}
-		//printf("textClavier : %s \n", text_input_event->eventOut->text.text);
-		//else
-		    //text_input_event->on = 0;
 	}
-	//lettres->keystates = SDL_GetKeyboardState(NULL);
 	return event;
 }
