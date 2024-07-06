@@ -414,6 +414,7 @@ void diplomatic_menu()
             {
                 struct personnages* persoToFind = find_perso_by_name(main_menu->menuDip->diploTextBox.text);                      
                 char is_already_in_list = 0;
+                printf("Perso trouve %s \n", persoToFind->nom);
     
                 for (struct linked_enemie *l = moi->e_list; l != NULL; l=l->next)
                     if (strcmp(main_menu->menuDip->diploTextBox.text, l->nom) == 0)
@@ -424,14 +425,16 @@ void diplomatic_menu()
                 {
                     main_menu->menuDip->errorText.x = 500;
                     main_menu->menuDip->errorText.y = 500;
-                    strcpy (main_menu->menuDip->errorText.text, "invalid username (stupid)");
-                    *text->key = NULL;   
+                    char* errorLine = "Invalid username (stupid)";
+                    main_menu->menuDip->errorText.text = (char *) malloc(strlen(errorLine)+1);
+                    strcpy (main_menu->menuDip->errorText.text, errorLine); 
+                    *text->key = NULL;
                     return;
                 }
                 else
                 {
                     sprintf(ordre + strlen(ordre), "%d 15 +0 %s ", moi->id, main_menu->menuDip->diploTextBox.text);
-                    main_menu->menuDip->errorText.text[0] = 0;
+                    main_menu->menuDip->errorText.text = "";
                 }
             }
             else if(strcmp("Remove enemy", main_menu->menuDip->diploSelect->items[main_menu->menuDip->diploSelect->selectedItem]) == 0)
@@ -445,14 +448,16 @@ void diplomatic_menu()
                 {
                     main_menu->menuDip->errorText.x = 500;
                     main_menu->menuDip->errorText.y = 500;
-                    strcpy (main_menu->menuDip->errorText.text, "invalid username (stupid)"); 
+                    char* errorLine = "Invalid username (stupid)";
+                    main_menu->menuDip->errorText.text = (char *) malloc(strlen(errorLine)+1);
+                    strcpy (main_menu->menuDip->errorText.text, errorLine); 
                     *text->key = NULL; 
                     return;
                 }
                 else
                 {
                     sprintf(ordre + strlen(ordre), "%d 15 %s ", moi->id, main_menu->menuDip->diploTextBox.text);
-                    main_menu->menuDip->errorText.text[0] = 0;
+                    main_menu->menuDip->errorText.text = "";
                 }
             }
             else if(strcmp("Set Overlord", main_menu->menuDip->diploSelect->items[main_menu->menuDip->diploSelect->selectedItem]) == 0)

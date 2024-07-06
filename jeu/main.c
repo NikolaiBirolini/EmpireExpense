@@ -165,7 +165,7 @@ void boucle_jeu(int socket, char *name)
         double elapsedTime = (end.tv_sec - start.tv_sec) * 1000.0;      // sec to ms
         elapsedTime += (end.tv_usec - start.tv_usec) / 1000.0;
         fprintf(stderr, "total = %5.3fms \n", elapsedTime);*/
-
+        //*text->key = NULL;  
 	}
 }
 
