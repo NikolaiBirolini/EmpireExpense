@@ -277,6 +277,8 @@ int main(int argc, char **argv)
         if (t2 - t >= 6)
         {
         	t = t2;
+            if (should_i_actualise_building_altitude == 1)
+                actualise_building_altitude();
             collision();
             int size = generate_order(order);
             for (int i = 4; i < MAXEVENTS + 5;i++)

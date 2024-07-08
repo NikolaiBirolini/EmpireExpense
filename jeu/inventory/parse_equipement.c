@@ -47,6 +47,8 @@ void actualise_stat(struct personnages *p)
 			new->y = p->y;
 			new->id = p->id;
 			new->next = NULL;
+			new->offset_x = 900;
+			new->offset_y = 450;
 			sortedInsert(new);
 			
 		}
@@ -60,6 +62,8 @@ void actualise_stat(struct personnages *p)
 			new->y = p->y;
 			new->id = p->id;
 			new->next = NULL;
+			new->offset_x = 900;
+			new->offset_y = 450;
 			sortedInsert(new);
 		}
 		else // default 
@@ -70,6 +74,8 @@ void actualise_stat(struct personnages *p)
 			new->y = p->y;
 			new->id = p->id;
 			new->next = NULL;
+			new->offset_x = 900;
+			new->offset_y = 450;
 			sortedInsert(new);
 		} 
 		p->max_pv = max_pv;
@@ -120,12 +126,34 @@ void init_stat(struct personnages *p)
 	else if (strcmp(p->skin, "basic_wooden_house") == 0)
 	{
 		struct to_disp *new = malloc(sizeof(struct to_disp));
-		new->img = select_good_img("basic_wooden_house", p->angle, p->animation);
+		new->img = select_good_img("basic_wooden_house", p->angle, 2);
 		new->x = p->x;
 		new->y = p->y;
 		new->id = p->id;
+		new->offset_x = 866;
+		new->offset_y = 475;
 		new->next = NULL;
 		sortedInsert(new);
+		struct to_disp *new2 = malloc(sizeof(struct to_disp));
+
+		new2->img = select_good_img("basic_wooden_house", p->angle, 1);
+		new2->x = p->x;
+		new2->y = p->y-1;
+		new2->id = p->id;
+		new2->next = NULL;
+		new2->offset_x = 891;
+		new2->offset_y = 441;
+		sortedInsert(new2);
+		struct to_disp *new3 = malloc(sizeof(struct to_disp));
+
+		new3->img = select_good_img("basic_wooden_house", p->angle, 0);
+		new3->x = p->x;
+		new3->y = p->y-2;
+		new3->id = p->id;
+		new3->next = NULL;
+		new3->offset_x = 891;
+		new3->offset_y = 478;
+		sortedInsert(new3);
 		p->max_pv = 1000;
 		p->dom = 0;
 		p->poid = 1000;

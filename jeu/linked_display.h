@@ -10,4 +10,6 @@ struct to_disp
     int line;
     int id;
     struct to_disp* next;
+    int offset_x;
+    int offset_y;
 };

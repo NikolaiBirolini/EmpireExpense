@@ -73,17 +73,18 @@ void display_all(void)
 		xfrom = (int)parcour->x;
 		yfrom = (int)parcour->y;
 		SDL_QueryTexture(parcour->img, NULL, NULL, &position.w, &position.h);
-		//char test = how_display(parcour->skin);
-		//if (test == 0)
-		//{
-			position.x = (parcour->x - moi->x - parcour->y + moi->y) * 34 + 900 - position.w/2;
-			position.y = (parcour->x - moi->x + parcour->y - moi->y) * 17 + 450 - position.h - ground_altitude[(int)parcour->x + (int)parcour->y * max_x];
-			//parcour->p->screenx = position.x;
+
+			position.x = (parcour->x - moi->x - parcour->y + moi->y) * 34 + parcour->offset_x - position.w/2;
+			position.y = (parcour->x - moi->x + parcour->y - moi->y) * 17 + parcour->offset_y - position.h - ground_altitude[(int)parcour->x + (int)parcour->y * max_x];
+
+			//parcour->p->screenx = position.x;x
 			//parcour->p->screeny = position.y;
 			//parcour->p->sizescreenx = position.w;
 			//parcour->p->sizescreeny = position.h;
-			SDL_RenderCopy(renderer, parcour->img, NULL, &position);
-		//}
+
+		
+		SDL_RenderCopy(renderer, parcour->img, NULL, &position);
+
 	}
 	display_ground(xfrom, yfrom, max_x-1, max_y-1);
 }

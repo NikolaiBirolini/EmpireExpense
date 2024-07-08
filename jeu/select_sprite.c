@@ -310,6 +310,16 @@ SDL_Texture *select_good_img(char *skin, float angle, int animation)
 				return img->s->hoArGdMa5;
 		}
 	}
+	if (strcmp(skin, "basic_wooden_house") == 0)
+	{
+		if (animation == 0)
+			return img->s->wooden_house_3x3_faceline1;
+		if (animation == 1)
+			return img->s->wooden_house_3x3_faceline2;
+		if (animation == 2)
+			return img->s->wooden_house_3x3_faceline3;
+		
+	}
 	return img->s->hoArGdMa5;
 }
 
