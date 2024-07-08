@@ -61,14 +61,12 @@ void display_elipse_and_personal_datas()
     position.h = 35;
     position.w = 35;
     
-    
     //SDL_RenderCopy(renderer, img->g->menuButton, NULL, &position);
     if (lettres->Mouse_Lclick == 1 && lettres->Mouse_pos_x > 50 && lettres->Mouse_pos_x < 85 && lettres->Mouse_pos_y > 50 && lettres->Mouse_pos_y < 85)
         main_menu->on.isPressed = !main_menu->on.isPressed;
     drawPictureButton( &main_menu->on);
     drawGauge(&my_stats_display->my_health, moi->pv, moi->max_pv);
     drawTextInfo(renderer, &energy);
-
 }
 
 void menu_trade(void)
@@ -204,7 +202,6 @@ void menu_inventaire(void)
     	    main_menu->menuInv->selector->selectedOption = (main_menu->menuInv->selector->selectedOption - 1 + main_menu->menuInv->selector->numOptions) % main_menu->menuInv->selector->numOptions;
         if (lettres->keystates[SDL_SCANCODE_RETURN] && main_menu->menuInv->selector->selectedOption < max)
             main_menu->menuInv->enter = 1;
-        
     }
     else
     {
@@ -244,7 +241,6 @@ void menu_inventaire(void)
                         sprintf(ordre+strlen(ordre), "%d 16 +1 %s ", moi->id, moi->pant);
                     sprintf(ordre+strlen(ordre), "%d 29 leather_pants %d 16 1 leather_pants ", moi->id, moi->id);
                 }
-
                 else if (strcmp(i->nom, "leather_boots") == 0)
                 {
                     if (strcmp(moi->shoes, "empty") != 0)
@@ -255,7 +251,6 @@ void menu_inventaire(void)
             else if (main_menu->menuInv->actions->selectedOption== 2)//drop
                 sprintf(ordre+strlen(ordre), "%d 16 %d %s ", moi->id, i->count, i->nom);
             main_menu->menuInv->enter = 0;
-
         }
         if (lettres->keystates[SDL_SCANCODE_ESCAPE])
             main_menu->menuInv->enter = 0;
@@ -414,12 +409,10 @@ void diplomatic_menu()
             {
                 struct personnages* persoToFind = find_perso_by_name(main_menu->menuDip->diploTextBox.text);                      
                 char is_already_in_list = 0;
-                printf("Perso trouve %s \n", persoToFind->nom);
     
                 for (struct linked_enemie *l = moi->e_list; l != NULL; l=l->next)
                     if (strcmp(main_menu->menuDip->diploTextBox.text, l->nom) == 0)
                         is_already_in_list = 1;
-                    
                     
                 if(persoToFind == NULL || persoToFind == moi || is_already_in_list == 1)
                 {
@@ -451,7 +444,7 @@ void diplomatic_menu()
                     char* errorLine = "Invalid username (stupid)";
                     main_menu->menuDip->errorText.text = (char *) malloc(strlen(errorLine)+1);
                     strcpy (main_menu->menuDip->errorText.text, errorLine); 
-                    *text->key = SDLK_UNKNOWN; 
+                    *text->key = SDLK_UNKNOWN;
                     return;
                 }
                 else
@@ -476,8 +469,8 @@ void diplomatic_menu()
                     main_menu->menuDip->errorText.y = 500;
                     char* errorLine = "Invalid username (stupid)";
                     main_menu->menuDip->errorText.text = (char *) malloc(strlen(errorLine)+1);
-                    strcpy (main_menu->menuDip->errorText.text, errorLine); 
-                    *text->key = SDLK_UNKNOWN; 
+                    strcpy (main_menu->menuDip->errorText.text, errorLine);
+                    *text->key = SDLK_UNKNOWN;
                     return;
                 }
             }
@@ -555,13 +548,10 @@ void manage_formation_menu(void)
     sprintf(menu_cond->txt_formation_nb_per_lines, "%d", menu_cond->nb_per_lines);
     sprintf(menu_cond->txt_formation_angle, "%d", menu_cond->angle);
 
-
     drawTextInfo(renderer, &menu_cond->formation_space_lines); 
     drawTextInfo(renderer, &menu_cond->formation_space_columns); 
     drawTextInfo(renderer, &menu_cond->formation_nb_per_lines); 
     drawTextInfo(renderer, &menu_cond->formation_angle); 
-
- 
 
     if (lettres->keystates[SDL_SCANCODE_ESCAPE])
         menu_cond->formation = -1;
