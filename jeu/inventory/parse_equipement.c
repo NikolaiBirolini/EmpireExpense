@@ -28,9 +28,9 @@ void actualise_stat(struct personnages *p)
 		}
 	}
 	
-	list_disp = deleteKey(p->id);
 	if (strcmp(p->skin, "man") == 0)
 	{
+		list_disp = deleteKey(p->id);
 		int max_pv = 10;
 		int vitesse_dom = 100;
 		float vitesse_dep = 0.2;
@@ -47,6 +47,7 @@ void actualise_stat(struct personnages *p)
 			new->y = p->y;
 			new->id = p->id;
 			new->next = NULL;
+			new->p = p;
 			new->offset_x = 900;
 			new->offset_y = 450;
 			sortedInsert(new);
@@ -61,6 +62,7 @@ void actualise_stat(struct personnages *p)
 			new->x = p->x;
 			new->y = p->y;
 			new->id = p->id;
+			new->p = p;
 			new->next = NULL;
 			new->offset_x = 900;
 			new->offset_y = 450;
@@ -73,6 +75,7 @@ void actualise_stat(struct personnages *p)
 			new->x = p->x;
 			new->y = p->y;
 			new->id = p->id;
+			new->p = p;
 			new->next = NULL;
 			new->offset_x = 900;
 			new->offset_y = 450;
@@ -132,6 +135,7 @@ void init_stat(struct personnages *p)
 		new->id = p->id;
 		new->offset_x = 866;
 		new->offset_y = 475;
+		new->p = p;
 		new->next = NULL;
 		sortedInsert(new);
 		struct to_disp *new2 = malloc(sizeof(struct to_disp));
@@ -141,6 +145,7 @@ void init_stat(struct personnages *p)
 		new2->y = p->y-1;
 		new2->id = p->id;
 		new2->next = NULL;
+		new2->p = p;
 		new2->offset_x = 891;
 		new2->offset_y = 441;
 		sortedInsert(new2);
@@ -153,6 +158,7 @@ void init_stat(struct personnages *p)
 		new3->next = NULL;
 		new3->offset_x = 891;
 		new3->offset_y = 478;
+		new3->p = p;
 		sortedInsert(new3);
 		p->max_pv = 1000;
 		p->dom = 0;

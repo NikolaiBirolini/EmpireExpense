@@ -19,4 +19,6 @@ struct cond_menu *menu_cond;
 struct main_char_stats *my_stats_display;
 struct textInput  *text;
 char should_i_call_my_computer_work;
+char should_i_actualise_building_altitude;
 struct personnages *moi;
+int *building_altitude;

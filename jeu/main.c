@@ -154,6 +154,10 @@ void boucle_jeu(int socket, char *name)
             my_computer_work(moi);
             should_i_call_my_computer_work = 0;
         }
+        if (should_i_actualise_building_altitude == 1)
+        {
+            actualise_building_altitude();
+        }
 	    ia();
 	    gui_event(moi);
 	    fix_some_shit();

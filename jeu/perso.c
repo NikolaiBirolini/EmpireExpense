@@ -107,6 +107,7 @@ struct linked_list *append_perso(char **line)
 	*line = *line + a;
 	struct linked_list *to_append = malloc(sizeof(struct linked_list));
 	should_i_call_my_computer_work = '1';
+	should_i_actualise_building_altitude = 1;
 	to_append->p = n;
 	to_append->next = NULL;
 
@@ -146,11 +147,13 @@ struct linked_list *death(void)
 		free_linked_enemie(tmp->p->e_list);
 		free_linked_item(tmp->p->i_list);
 		free(tmp->p->chemin);
+		list_disp = deleteKey(tmp->p->id);
 		free(tmp->p);
 		free(tmp);
 		tmp = list;
 		printf ("death\n");
 		should_i_call_my_computer_work = '1';
+		should_i_actualise_building_altitude = 1;
 	}
 	while (tmp != NULL)
 	{
@@ -164,12 +167,14 @@ struct linked_list *death(void)
 		prev->next = tmp->next;
 		free_linked_enemie(tmp->p->e_list);
         free_linked_item(tmp->p->i_list);
+		list_disp = deleteKey(tmp->p->id);
         free(tmp->p->chemin);
         free(tmp->p);
         free(tmp);
 		tmp = prev->next;
 		printf ("death\n");
 		should_i_call_my_computer_work = '1';
+		should_i_actualise_building_altitude = 1;
 	}
 	return list;
 }

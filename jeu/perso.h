@@ -47,6 +47,10 @@ struct personnages
     char pant[50];
     char shoes[50];
     ///////////////////////////////////////
+    float screenx;
+    float screeny;
+    float sizescreenx;
+    float sizescreeny;
     char animation_time;
     int speak_timer;
     int faim_time; 
@@ -60,10 +64,6 @@ struct personnages
     char eau; //O si terrestre 1 si aquatique 2 si les deux
     char plancher;
     struct path *chemin;
-    float screenx;
-    float screeny;
-    float sizescreenx;
-    float sizescreeny;
     char my_computer_work;
 };
 
