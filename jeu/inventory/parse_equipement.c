@@ -48,6 +48,7 @@ void actualise_stat(struct personnages *p)
 			new->id = p->id;
 			new->next = NULL;
 			new->p = p;
+			new->floor = 1;
 			new->offset_x = 900;
 			new->offset_y = 450;
 			sortedInsert(new);
@@ -64,6 +65,7 @@ void actualise_stat(struct personnages *p)
 			new->id = p->id;
 			new->p = p;
 			new->next = NULL;
+			new->floor = 1;
 			new->offset_x = 900;
 			new->offset_y = 450;
 			sortedInsert(new);
@@ -76,6 +78,7 @@ void actualise_stat(struct personnages *p)
 			new->y = p->y;
 			new->id = p->id;
 			new->p = p;
+			new->floor = 1;
 			new->next = NULL;
 			new->offset_x = 900;
 			new->offset_y = 450;
@@ -136,6 +139,7 @@ void init_stat(struct personnages *p)
 		new->offset_x = 866;
 		new->offset_y = 475;
 		new->p = p;
+		new->floor = 0;
 		new->next = NULL;
 		sortedInsert(new);
 		struct to_disp *new2 = malloc(sizeof(struct to_disp));
@@ -146,6 +150,7 @@ void init_stat(struct personnages *p)
 		new2->id = p->id;
 		new2->next = NULL;
 		new2->p = p;
+		new->floor = 0;
 		new2->offset_x = 891;
 		new2->offset_y = 441;
 		sortedInsert(new2);
@@ -157,6 +162,7 @@ void init_stat(struct personnages *p)
 		new3->id = p->id;
 		new3->next = NULL;
 		new3->offset_x = 891;
+		new->floor = 0;
 		new3->offset_y = 478;
 		new3->p = p;
 		sortedInsert(new3);
@@ -173,6 +179,7 @@ void init_stat(struct personnages *p)
 		new->x = p->x;
 		new->y = p->y;
 		new->id = p->id;
+		new->floor = 1;
 		new->next = NULL;
 		sortedInsert(new);
 		p->max_pv = 99999;

@@ -2,7 +2,7 @@
 
 float coo_circle(struct personnages *perso)
 {
-    if (strcmp(perso->skin, "archer") == 0 || strcmp(perso->skin, "civil") == 0 || strcmp(perso->skin, "fantassin") == 0)
+    if (strcmp(perso->skin, "man") == 0)
     {
         return 0.1;
     }

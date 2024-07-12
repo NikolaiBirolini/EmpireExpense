@@ -14,8 +14,8 @@ void gui_event(struct personnages *moi)
     //ordre de deplacement	
 	if (moi->ordrex != -1)
 	{
-        position.x = (moi->ordrex - moi->ordrey) * 34 + 850;
-        position.y = (moi->ordrex + moi->ordrey) * 17 + 400 - ground_altitude[(int)moi->ordrex + (int)moi->ordrey * max_x],
+        position.x = (moi->ordrex - moi->x - moi->ordrey + moi->y) * 34 + 887.5;
+		position.y = (moi->ordrex - moi->x - moi->y  + moi->ordrey) * 17 + 437.5 - ground_altitude[(int)moi->ordrex + (int)moi->ordrey * max_x];
         position.w = 25; position.h =  25;
 		if (powf(moi->x - moi->ordrex, 2) + powf(moi->y - moi->ordrey, 2) < 9)
         {

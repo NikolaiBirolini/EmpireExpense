@@ -9,6 +9,7 @@ struct to_disp
     float y;
     int line;
     int id;
+    char floor;
     struct to_disp* next;
     int offset_x;
     int offset_y;

@@ -74,13 +74,15 @@ void display_all(void)
 		yfrom = (int)parcour->y;
 		SDL_QueryTexture(parcour->img, NULL, NULL, &position.w, &position.h);
 
-			position.x = (parcour->x - moi->x - parcour->y + moi->y) * 34 + parcour->offset_x - position.w/2;
-			position.y = (parcour->x - moi->x + parcour->y - moi->y) * 17 + parcour->offset_y - position.h - ground_altitude[(int)parcour->x + (int)parcour->y * max_x];
+		position.x = (parcour->x - moi->x - parcour->y + moi->y) * 34 + parcour->offset_x - position.w/2;
+		position.y = (parcour->x - moi->x + parcour->y - moi->y) * 17 + parcour->offset_y - position.h - ground_altitude[(int)parcour->x + (int)parcour->y * max_x];
+		if (parcour->floor == 1)
+			position.y -= building_altitude[(int)parcour->x + (int)parcour->y * max_x];
 
-			parcour->p->screenx = position.x;
-			parcour->p->screeny = position.y;
-			parcour->p->sizescreenx = position.w;
-			parcour->p->sizescreeny = position.h;
+		parcour->p->screenx = position.x;
+		parcour->p->screeny = position.y;
+		parcour->p->sizescreenx = position.w;
+		parcour->p->sizescreeny = position.h;
 
 		
 		SDL_RenderCopy(renderer, parcour->img, NULL, &position);
