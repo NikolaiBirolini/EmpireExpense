@@ -74,13 +74,12 @@ bool communicateWithServer(int socket, char* to_send, int size, int flags)
 {
 	if(send(socket, to_send, size, flags))
 	{
-		char* boolean_rep = malloc(1);
-	    boolean_rep[0] = 'p';
-		while (*boolean_rep == 'p') 
-            recv(socket, boolean_rep, 1, 0);
-	    if (boolean_rep[0] != 'o')
+		char boolean_rep;
+	    boolean_rep = 'p';
+		while (boolean_rep == 'p') 
+            recv(socket, &boolean_rep, 1, 0);
+	    if (boolean_rep != 'o')
 	    {
-	    	free(boolean_rep);
 	        return false;
 	    }
 		return true;
