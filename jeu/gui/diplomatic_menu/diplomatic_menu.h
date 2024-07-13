@@ -12,6 +12,11 @@
 #include "../../perso.h"
 #include "../../clavier.h"
 
+char* isPersoIsAlreadyInList(struct menu *main_menu);
+void printError(int x, int y , char* errorLine, struct menu *main_menu);
+void addEnemy(struct menu *main_menu);
+void removeEnemy(struct menu *main_menu);
+void setOverlord(struct menu *main_menu);
 void diplomatic_menu();
 
 #endif /* DIPLOMATIC_MENU_H */
