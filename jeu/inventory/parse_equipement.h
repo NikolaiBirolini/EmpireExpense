@@ -1,7 +1,7 @@
 #ifndef STAT
 #define STAT
 #include "../perso.h"
-#include "../pathfinding.h"
+#include "../ia/pathfinding.h"
 
 void actualise_stat(struct personnages *p);
 

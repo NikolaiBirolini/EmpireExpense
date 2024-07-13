@@ -1,7 +1,7 @@
 #pragma once
 #include <stdio.h>
 #include <err.h>
-#include  <string.h>
+#include <string.h>
 #include <SDL2/SDL.h>
 #include <math.h>
 #include "sys/types.h"
@@ -73,11 +73,11 @@ struct linked_list
     struct linked_list *next;
 };
 
-#include "net.h"
-#include "diplo.h"
+#include "network/net.h"
+#include "diplomatique/diplo.h"
 #include "init_sprite.h"
 #include "inventory/parse_equipement.h"
-#include "parseur.h"
+#include "network/parseur.h"
 #include "select_sprite.h"
 
 

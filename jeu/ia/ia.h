@@ -1,5 +1,5 @@
 #pragma once
-#include "perso.h"
+#include "../perso.h"
 
 void ia(void);
 void ia_man(struct linked_list *parcour);

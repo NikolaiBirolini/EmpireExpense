@@ -1,6 +1,6 @@
 #include "net.h"
-#include "shared_var.h"
-#include "diplo.h"
+#include "../shared_var.h"
+#include "../diplomatique/diplo.h"
 
 char ordre[9999];
 

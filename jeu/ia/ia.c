@@ -1,8 +1,8 @@
 #include "ia.h"
-#include "perso.h"
-#include "net.h"
+//#include "perso.h"
+#include "../network/net.h"
 #include "pathfinding.h"
-#include "shared_var.h"
+#include "../shared_var.h"
 
 void sort_per_id()
 {

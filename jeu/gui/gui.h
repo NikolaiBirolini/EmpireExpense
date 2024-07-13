@@ -3,12 +3,13 @@
 #include "../perso.h"
 #include "../btree.h"
 #include "../clavier.h"
-#include "../ia.h"
+#include "../ia/ia.h"
 #include "../init_sprite.h"
 //#include "stat.h"
+#include "menu.h"
 #include "../ordre.h"
 #include "../inventory/linked_item.h"
-#include "../init_sound.h"
+#include "../sound/init_sound.h"
 #include "../graphic_widget/textBox.h"
 #include "../graphic_widget/textInfo.h"
 #include "../graphic_widget/menuSelector.h"
@@ -16,6 +17,7 @@
 #include "../graphic_widget/gauge.h"
 #include "../graphic_widget/dropDown.h"
 #include "../graphic_widget/pictureButton.h"
+#include "diplomatic_menu/diplomatic_menu.h"
 
 struct speak
 {
@@ -24,21 +26,7 @@ struct speak
     TextInfo *textInfo;
 };
 
-struct textInput
-{
-    char on;
-    char* textToPrint;
-    SDL_Keycode* key;
-};
 
-struct menu_diplo {
-    char on;
-    Selector *selector;
-    DropDown *diploSelect;
-    TextBox bgDiploTextBox;
-    TextBox diploTextBox;
-    TextInfo errorText;
-};
 
 struct menu_inventaire{
     char on;
@@ -54,15 +42,6 @@ struct menu_trade{
     char tab;
     uint16_t count1;
     uint16_t count2;
-};
-
-struct menu
-{
-    pictureButton on;
-    struct menu_diplo *menuDip;
-    Selector *selector;
-    struct menu_inventaire *menuInv;
-    struct menu_trade* menuTrad;
 };
 
 struct main_char_stats
@@ -109,7 +88,6 @@ struct cond_menu
 
 void menu();
 void accept_trade(void);
-void diplomatic_menu();
 void speakPerso(struct personnages *moi, char* ordre);
 void printSpeakBubble(struct personnages *perso, TextInfo* textInfo, TextBox* textBox, char* on);
 void gui_event(struct personnages *moi);

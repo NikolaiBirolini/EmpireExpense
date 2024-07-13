@@ -25,6 +25,5 @@ void my_modif(char **in, char **ma, char *s)
 void chiffrage(char *in, char *ma)
 {
     my_modif(&in,&ma,ma);
-
 }
 

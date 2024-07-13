@@ -2,6 +2,13 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include "graphic_widget/gauge.h"
+#include "graphic_widget/textBox.h"
+#include "graphic_widget/textInfo.h"
+#include "graphic_widget/menuSelector.h"
+#include "graphic_widget/gauge.h"
+#include "graphic_widget/dropDown.h"
+#include "graphic_widget/pictureButton.h"
+//#include "gui/menu.h"
 
 extern SDL_Texture **ground_texture;
 extern int *ground_altitude;
@@ -28,4 +35,5 @@ extern char should_i_call_my_computer_work;
 extern char should_i_actualise_building_altitude;
 extern struct personnages *moi;
 extern int *building_altitude;
+
 #define order_size 2000

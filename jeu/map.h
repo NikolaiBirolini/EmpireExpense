@@ -5,9 +5,9 @@
 
 #include <unistd.h>
 #include <err.h>
-#include "net.h"
+#include "network/net.h"
 #include "init_sprite.h"
-#include "pathfinding.h"
+#include "ia/pathfinding.h"
 #include "shared_var.h"
 //#include "main.h"
 
