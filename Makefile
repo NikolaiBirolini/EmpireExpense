@@ -33,7 +33,6 @@ jfiles = \
     jeu/sound/init_sound.c \
     jeu/btree.c \
     jeu/shared_var.c \
-    jeu/collision.c \
     jeu/linked_display.c
 
 sfiles = \
