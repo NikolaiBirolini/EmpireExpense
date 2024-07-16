@@ -13,7 +13,7 @@ int count(char *name);
 struct linked_item *append_in_inventory(char *name, struct linked_item *p, int n);
 struct linked_item *remove_from_inventory(char *name, struct linked_item *p, int n);
 void moove_item(int a, int b, struct linked_item *l);
-int count_item(struct linked_item *l);
+int count_item(struct linked_item *l, char *name);
 void free_linked_item(struct linked_item *e);
 struct linked_item *get_item_n(int n, struct linked_item *l);
 struct linked_item *exist_in_linked_item(struct linked_item *e, char *cmp);

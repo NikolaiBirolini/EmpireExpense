@@ -140,8 +140,6 @@ struct linked_list *recv_map(int socket)
 
 void actualise_building_altitude(void)
 {
-
-	printf ("test");
     for (int i = 0; i < max_y*max_x; i++)
         building_altitude[i] = 0;
     for (struct linked_list *parcour = list; parcour != NULL; parcour = parcour->next)

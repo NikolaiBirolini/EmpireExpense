@@ -57,9 +57,9 @@ struct personnages
 	char a_bouger;
 };
 
-void parse_new(struct personnages *p, char *line);
+int parse_new(struct personnages *p, char *line);
 void parse_order(char *line);
-struct personnages *append_perso(char *line);
+int append_perso(char *line);
 struct personnages *get_ptr_from_id(int id);
 int get_id(char *line, int *i);
 void append_enemi(char *name);

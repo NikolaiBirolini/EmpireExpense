@@ -8,380 +8,391 @@ void parse_order(char *line)
     char tmpC[50];
     while (line[i] != 0)
     {
-        struct personnages *p = get_ptr_from_id(get_id(line, &i));
-        if (p == NULL)
-            return;
-        p->a_bouger = 1;
-		while (line[i] != ' ')
-        	i++;
-		i++;
-        int idaction = atoi(&line[i]);
-        i += 3;
-        switch(idaction)
+        int id = get_id(line, &i);
+        if (id == -1)
         {
-            case 0:
-                if (line[i] == '+')
-                {
-                    i++;
-                    p->pv += atoi(&line[i]);
-                }
-                else if (line[i] == '-')
-                {
-                    i++;
-                    p->pv -= atoi(&line[i]);
-                }
-                else
-                {
-                    i++;
-                    p->pv = atoi(&line[i]);
-                }
-                while(line[i] != ' ')
-                    i++;
+            i -= 2;
+            i += append_perso(line+i) + 1;
+            printf ("]%s[\n", line+i);    
+        }
+        else
+        {
+            struct personnages *p = get_ptr_from_id(id);
+            if (p == NULL)
+                return;
+            p->a_bouger = 1;
+            while (line[i] != ' ')
                 i++;
-                break;
-            case 1:
-                if (line[i] == '+')
-                {
+            i++;
+            int idaction = atoi(&line[i]);
+            i += 3;
+            switch(idaction)
+            {
+                case 0:
+                    printf ("test\n");
+                    if (line[i] == '+')
+                    {
+                        i++;
+                        p->pv += atoi(&line[i]);
+                    }
+                    else if (line[i] == '-')
+                    {
+                        i++;
+                        p->pv -= atoi(&line[i]);
+                    }
+                    else
+                    {
+                        i++;
+                        p->pv = atoi(&line[i]);
+                    }
+                    while(line[i] != ' ')
+                        i++;
                     i++;
-                    p->moved_x += atof(&line[i]);
-                    p->faim -= 1;
-                }
-                else if (line[i] == '-')
-                {
+                    break;
+                case 1:
+                    if (line[i] == '+')
+                    {
+                        i++;
+                        p->moved_x += atof(&line[i]);
+                        p->faim -= 1;
+                    }
+                    else if (line[i] == '-')
+                    {
+                        i++;
+                        p->moved_x -= atof(&line[i]);
+                        p->faim -= 1;
+                    }
+                    else
+                        p->x = atof(&line[i]);
+                    while(line[i] != ' ')
+                        i++;
                     i++;
-                    p->moved_x -= atof(&line[i]);
-                    p->faim -= 1;
-                }
-                else
-                    p->x = atof(&line[i]);
-                while(line[i] != ' ')
+                    break;
+                case 2:
+                    if (line[i] == '+')
+                    {
+                        i++;
+                        p->moved_y += atof(&line[i]);
+                        p->faim -= 1;
+                    }
+                    else if (line[i] == '-')
+                    {
+                        i++;
+                        p->moved_y -= atof(&line[i]);
+                        p->faim -= 1;
+                    }
+                    else
+                        p->y = atof(&line[i]);
+                    while(line[i] != ' ')
+                        i++;
                     i++;
-                i++;
-                break;
-            case 2:
-                if (line[i] == '+')
-                {
+                    break;
+                case 3:
+                    p->ordrex = atof(&line[i]);
+                    while(line[i] != ' ')
+                        i++;
                     i++;
-                    p->moved_y += atof(&line[i]);
-                    p->faim -= 1;
-                }
-                else if (line[i] == '-')
-                {
+                    break;
+                case 4:
+                    p->ordrey = atof(&line[i]);
+                    while(line[i] != ' ')
+                        i++;
                     i++;
-                    p->moved_y -= atof(&line[i]);
-                    p->faim -= 1;
-                }
-                else
-                    p->y = atof(&line[i]);
-                while(line[i] != ' ')
+                    break;
+                case 5:
+                    p->angle = line[i];
+                    i += 2;
+                    break;
+                case 6:
+                    p->timer_dom = atoi(&line[i]);
+                    while(line[i] != ' ')
+                        i++;
                     i++;
-                i++;
-                break;
-            case 3:
-                p->ordrex = atof(&line[i]);
-                while(line[i] != ' ')
+                    break;
+                case 7:
+                    p->faim += atoi(&line[i]);
+                    while(line[i] != ' ')
+                        i++;
                     i++;
-                i++;
-                break;
-            case 4:
-                p->ordrey = atof(&line[i]);
-                while(line[i] != ' ')
+                    break;
+                case 8:
+                    j = 0;
+                    while(line[i] != ' ')
+                    {
+                        p->skin[j] = line[i];
+                        i++;
+                        j++;
+                    }
+                    p->skin[j] = 0;
                     i++;
-                i++;
-                break;
-            case 5:
-                p->angle = line[i];
-                i += 2;
-                break;
-            case 6:
-                p->timer_dom = atoi(&line[i]);
-                while(line[i] != ' ')
+                    break;
+                case 10:
+                    j = 0;
+                    while(line[i] != ' ')
+                    {
+                        p->nom_superieur[j] = line[i];
+                        i++;
+                        j++;
+                    }
+                    p->nom_superieur[j] = 0;
                     i++;
-                i++;
-                break;
-            case 7:
-                p->faim += atoi(&line[i]);
-                while(line[i] != ' ')
-                    i++;
-                i++;
-                break;
-            case 8:
-                j = 0;
-                while(line[i] != ' ')
-                {
-                    p->skin[j] = line[i];
-                    i++;
-                    j++;
-                }
-                p->skin[j] = 0;
-                i++;
-                break;
-            case 10:
-                j = 0;
-                while(line[i] != ' ')
-                {
-                    p->nom_superieur[j] = line[i];
-                    i++;
-                    j++;
-                }
-                p->nom_superieur[j] = 0;
-                i++;
-                break;
-            case 11:
-                j = 0;
-                while (line[i] != ' ')
-                {
-                    p->titre[j] = line[i];
-                    i++;
-                    j++;
-                }
-                p->titre[j] = 0;
-                i++;
-                break;
-            case 12:
-                j = 0;
-                while (line[i] != ' ')
-                {
-                    p->religion[j] = line[i];
-                    i++;
-                    j++;
-                }
-                p->religion[j] = 0;
-                i++;
-                break;
-			case 14:
-				if (line[i] == '+')
-                {
-                    i++;
-                    p->nb_vassaux += atoi(&line[i]);
-                }
-                else if (line[i] == '-')
-                {
-                    i++;
-                    p->nb_vassaux -= atoi(&line[i]);
-                }
-                else
-                    p->nb_vassaux = atof(&line[i]);
-                while(line[i] != ' ')
-                    i++;
-                i++;
-                break;
-            case 15:// Modifie enemie
-                if (line[i] == '+') // Rajoute enemie
-                {
-                    i++;
-                    int n = atoi(&line[i]);
+                    break;
+                case 11:
+                    j = 0;
                     while (line[i] != ' ')
+                    {
+                        p->titre[j] = line[i];
+                        i++;
+                        j++;
+                    }
+                    p->titre[j] = 0;
+                    i++;
+                    break;
+                case 12:
+                    j = 0;
+                    while (line[i] != ' ')
+                    {
+                        p->religion[j] = line[i];
+                        i++;
+                        j++;
+                    }
+                    p->religion[j] = 0;
+                    i++;
+                    break;
+                case 14:
+                    if (line[i] == '+')
+                    {
+                        i++;
+                        p->nb_vassaux += atoi(&line[i]);
+                    }
+                    else if (line[i] == '-')
+                    {
+                        i++;
+                        p->nb_vassaux -= atoi(&line[i]);
+                    }
+                    else
+                        p->nb_vassaux = atof(&line[i]);
+                    while(line[i] != ' ')
+                        i++;
+                    i++;
+                    break;
+                case 15:// Modifie enemie
+                    if (line[i] == '+') // Rajoute enemie
+                    {
+                        i++;
+                        int n = atoi(&line[i]);
+                        while (line[i] != ' ')
+                            i++;
+                        i++;
+                        j = 0;
+                        while (line[i] != ' ')
+                        {
+                            tmpC[j] = line[i];
+                            j++;
+                            i++;
+                        }
+                        tmpC[j] = 0;
+                        i++;
+                        p->e_list = append_enemie(tmpC, p->e_list, n);
+                    }
+                    else // enleve enemie
+                    {
+                        j = 0;
+                        while (line[i] != ' ')
+                        {
+                            tmpC[j] = line[i];
+                            j++;
+                            i++;
+                        }
+                        tmpC[j] = 0;
+                        i++;
+                        p->e_list = remove_enemie(tmpC, p->e_list);
+                    }
+                    break;
+                case 16: // pas sur
+                    if (line[i] == '+')
+                    {
+                        i++;
+                        int n = atoi(&line[i]);
+                        while (line[i] != ' ')
+                            i++;
+                        i++;
+                        j = 0;
+                        while (line[i] != ' ')
+                        {
+                            tmpC[j] = line[i];
+                            j++;
+                            i++;
+                        }
+                        tmpC[j] = 0;
+                        i++;
+                        p->i_list = append_in_inventory(tmpC, p->i_list, n);
+                    }
+                    else
+                    {
+                        int n = atoi(&line[i]);
+                        while (line[i] != ' ')
+                            i++;
+                        i++;
+                        j = 0;
+                        while (line[i] != ' ')
+                        {
+                            tmpC[j] = line[i];
+                            j++;
+                            i++;
+                        }
+                        tmpC[j] = 0;
+                        i++;
+                        p->i_list = remove_from_inventory(tmpC, p->i_list, n);
+                    }
+                    break;
+                case 17:
+                    j = 0;
+                    while (line[i] != ' ')
+                    {
+                        p->echange_player[j] = line[i];
+                        i++;
+                        j++;
+                    }
+                    p->echange_player[j] = 0;
+                    i++;
+                    j = 0;
+                    while (line[i] != ' ')
+                    {
+                        p->item1[j] = line[i];
+                        i++;
+                        j++;
+                    }
+                    p->item1[j] = 0;
+                    i++;
+                    p->count_item1 = atoi(&line[i]);
+                    while(line[i] != ' ')
                         i++;
                     i++;
                     j = 0;
                     while (line[i] != ' ')
                     {
-                        tmpC[j] = line[i];
-                        j++;
+                        p->item2[j] = line[i];
                         i++;
+                        j++;
                     }
-                    tmpC[j] = 0;
+                    p->item2[j] = 0;
                     i++;
-                    p->e_list = append_enemie(tmpC, p->e_list, n);
-                }
-                else // enleve enemie
-                {
+                    p->count_item2 = atoi(&line[i]);
+                    while(line[i] != ' ')
+                        i++;
+                    i++;
+                    break;
+                case 20: // pas sur
                     j = 0;
-                    while (line[i] != ' ')
+                    while (line[i] != 31)
                     {
-                        tmpC[j] = line[i];
-                        j++;
+                        p->speak[j] = line[i];
                         i++;
+                        j++;
                     }
-                    tmpC[j] = 0;
+                    p->speak[j] = 0;
+                    i += 2;
+                    break;
+                case 21:
+                    p->animation = atoi(&line[i]);
+                    while(line[i] != ' ')
+                        i++;
                     i++;
-                    p->e_list = remove_enemie(tmpC, p->e_list);
-                }
-                break;
-            case 16: // pas sur
-                if (line[i] == '+')
-                {
-                    i++;
-                    int n = atoi(&line[i]);
+                    break;
+                case 22:
+                    p->animation_2 = atoi(&line[i]);
                     while (line[i] != ' ')
                         i++;
                     i++;
+                    break;
+                case 23:
+                    p->chemin_is_set = line[i] - '0';
+                    i += 2;
+                    break;
+                case 24:
                     j = 0;
-                    while (line[i] != ' ')
+                    while(line[i] != ' ')
                     {
-                        tmpC[j] = line[i];
+                        p->left_hand[j] = line[i];
+                        i++;
                         j++;
-                        i++;
                     }
-                    tmpC[j] = 0;
+                    p->left_hand[j] = 0;
                     i++;
-                    p->i_list = append_in_inventory(tmpC, p->i_list, n);
-                }
-                else
-                {
-                    int n = atoi(&line[i]);
-                    while (line[i] != ' ')
-                        i++;
-                    i++;
+                    break;
+                case 26:
                     j = 0;
-                    while (line[i] != ' ')
+                    while(line[i] != ' ')
                     {
-                        tmpC[j] = line[i];
-                        j++;
+                        p->right_hand[j] = line[i];
                         i++;
+                        j++;
                     }
-                    tmpC[j] = 0;
+                    p->right_hand[j] = 0;
                     i++;
-                    p->i_list = remove_from_inventory(tmpC, p->i_list, n);
-                }
-                break;
-            case 17:
-                j = 0;
-                while (line[i] != ' ')
-                {
-                    p->echange_player[j] = line[i];
+                    break;
+                case 25:
+                    j = 0;
+                    while(line[i] != ' ')
+                    {
+                        p->left_hand[j] = line[i];
+                        i++;
+                        j++;
+                    }
+                    p->left_hand[j] = 0;
                     i++;
-                    j++;
-                }
-                p->echange_player[j] = 0;
-                i++;
-                j = 0;
-                while (line[i] != ' ')
-                {
-                    p->item1[j] = line[i];
+                    break;
+                case 27:
+                    j = 0;
+                    while(line[i] != ' ')
+                    {
+                        p->headgear[j] = line[i];
+                        i++;
+                        j++;
+                    }
+                    p->headgear[j] = 0;
                     i++;
-                    j++;
-                }
-                p->item1[j] = 0;
-                i++;
-                p->count_item1 = atoi(&line[i]);
-                while(line[i] != ' ')
+                    break;
+                case 28:
+                    j = 0;
+                    while(line[i] != ' ')
+                    {
+                        p->tunic[j] = line[i];
+                        i++;
+                        j++;
+                    }
+                    p->tunic[j] = 0;
                     i++;
-                i++;
-                j = 0;
-                while (line[i] != ' ')
-                {
-                    p->item2[j] = line[i];
+                    break;
+                case 29:
+                    j = 0;
+                    while(line[i] != ' ')
+                    {
+                        p->pant[j] = line[i];
+                        i++;
+                        j++;
+                    }
+                    p->pant[j] = 0;
                     i++;
-                    j++;
-                }
-                p->item2[j] = 0;
-                i++;
-                p->count_item2 = atoi(&line[i]);
-                while(line[i] != ' ')
+                    break;
+                case 30:
+                    j = 0;
+                    while(line[i] != ' ')
+                    {
+                        p->shoes[j] = line[i];
+                        i++;
+                        j++;
+                    }
+                    p->shoes[j] = 0;
                     i++;
-                i++;
-                break;
-            case 20: // pas sur
-                j = 0;
-                while (line[i] != 31)
-                {
-                    p->speak[j] = line[i];
-                    i++;
-                    j++;
-                }
-                p->speak[j] = 0;
-                i += 2;
-                break;
-            case 21:
-                p->animation = atoi(&line[i]);
-                while(line[i] != ' ')
-                    i++;
-                i++;
-                break;
-            case 22:
-                p->animation_2 = atoi(&line[i]);
-                while (line[i] != ' ')
-                    i++;
-                i++;
-                break;
-            case 23:
-                p->chemin_is_set = line[i] - '0';
-                i += 2;
-                break;
-            case 24:
-                j = 0;
-                while(line[i] != ' ')
-                {
-                    p->left_hand[j] = line[i];
-                    i++;
-                    j++;
-                }
-                p->left_hand[j] = 0;
-                i++;
-                break;
-            case 26:
-                j = 0;
-                while(line[i] != ' ')
-                {
-                    p->right_hand[j] = line[i];
-                    i++;
-                    j++;
-                }
-                p->right_hand[j] = 0;
-                i++;
-                break;
-            case 25:
-                j = 0;
-                while(line[i] != ' ')
-                {
-                    p->left_hand[j] = line[i];
-                    i++;
-                    j++;
-                }
-                p->left_hand[j] = 0;
-                i++;
-                break;
-            case 27:
-                j = 0;
-                while(line[i] != ' ')
-                {
-                    p->headgear[j] = line[i];
-                    i++;
-                    j++;
-                }
-                p->headgear[j] = 0;
-                i++;
-                break;
-            case 28:
-                j = 0;
-                while(line[i] != ' ')
-                {
-                    p->tunic[j] = line[i];
-                    i++;
-                    j++;
-                }
-                p->tunic[j] = 0;
-                i++;
-                break;
-            case 29:
-                j = 0;
-                while(line[i] != ' ')
-                {
-                    p->pant[j] = line[i];
-                    i++;
-                    j++;
-                }
-                p->pant[j] = 0;
-                i++;
-                break;
-            case 30:
-                j = 0;
-                while(line[i] != ' ')
-                {
-                    p->shoes[j] = line[i];
-                    i++;
-                    j++;
-                }
-                p->shoes[j] = 0;
-                i++;
-                break;
+                    break;
+            }
         }
     }
 }
 
-void parse_new(struct personnages *p, char *line)
+int parse_new(struct personnages *p, char *line)
 {
     int i;
     int j;
@@ -452,19 +463,22 @@ void parse_new(struct personnages *p, char *line)
         i += 1;
         j += 1;
     }
+    if(p->id == -1)
+        p->id = find_smalest_valid_id(0); 
     p->speak[j] = 0;
     p->moved_x = 0;
     p->moved_y = 0;
-
+    return i;
 }
 
-struct personnages *append_perso(char *line)
+int append_perso(char *line)
 {
+    printf ("[%s]\n", line);
     struct personnages *new = malloc(sizeof(struct personnages));
     new->online = '0';
     new->e_list = NULL;
     new->i_list = NULL;
-    parse_new(new, line);
+    int ret = parse_new(new, line);
     new->next = NULL;
     if (list == NULL)
         list = new;
@@ -476,14 +490,14 @@ struct personnages *append_perso(char *line)
         parcour->next = new;
     }
     should_i_actualise_building_altitude = 1;
-    return list;
+    return ret;
 }
 
 int get_id(char *line, int *i)
 {
     char tmp[10] = "\0";
     int j = 0;
-    while ((line[*i] >= '0' && line[*i] <= '9'))
+    while ((line[*i] >= '0' && line[*i] <= '9') || line[*i] == '-')
     {
         tmp[j] = line[*i];
         *i = *i + 1;

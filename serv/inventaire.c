@@ -20,11 +20,12 @@ struct linked_item *exist_in_linked_item(struct linked_item *e, char *cmp)
 	return NULL;
 }
 
+/*
 void print_inventory(struct personnages *p)
 {
 	for (struct linked_item *i = p->i_list; i != NULL; i =i->next)
 		printf ("%s %s %d\n", p->nom, i->nom, i->count);
-}
+}*/
 
 struct linked_item *append_in_inventory(char *name, struct linked_item *p, int n)
 {	

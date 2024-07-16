@@ -93,12 +93,13 @@ void moove_item(int a, int b, struct linked_item *l)
 	strcat(sb->nom, tmp);
 }
 
-int count_item(struct linked_item *l)
+int count_item(struct linked_item *l, char *name)
 {
 	int i = 0;
 	while (l != NULL)
 	{
-		i++;
+		if (strcmp(l->nom, name) == 0)
+			i+= l->count;
 		l = l->next;
 	}
 	return i;

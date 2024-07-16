@@ -64,6 +64,7 @@ void my_computer_work(struct personnages *moi)
 
 void ia(void)
 {
+    /**/
     for (struct linked_list *parcour = list; parcour != NULL; parcour = parcour->next)
     {
         if (parcour->p->my_computer_work == 1)
@@ -108,7 +109,19 @@ void ia_fruit(struct linked_list *parcour)
 
 void ia_arbre(struct linked_list *parcour)
 {
-    parcour = parcour;
+    parcour->p->animation += 1;    
+    if (parcour->p->animation > 60)
+    {
+        if (parcour->p->faim > 20)
+            sprintf(ordre+strlen(ordre), "%d 16 +1 fruit %d 07 -21 ", parcour->p->id, parcour->p->id);
+        else
+            sprintf (ordre + strlen(ordre), "%d 07 1 ", parcour->p->id);
+        parcour->p->animation = 0; 
+        if (count_item(parcour->p->i_list, "fruit") == 10)
+        {
+        sprintf (ordre + strlen(ordre), "-1 50 none %f %f -1.0 -1.0 a 0 0 arbre1 none none none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] [] \n%d 16 -10 fruit ", parcour->p->x + 1, parcour->p->y + 1, parcour->p->id);
+        }
+    }
 }
 
 void ia_build(struct linked_list *parcour)
@@ -248,6 +261,7 @@ void ia_man(struct linked_list *parcour)
             parcour->p->chemin_is_set = 0;
         }
     }
+    /*
     if (parcour->p->timer_dom > 0)
         parcour->p->timer_dom -= 1;
     else
@@ -299,4 +313,5 @@ void ia_man(struct linked_list *parcour)
         parcour->p->speak_timer --;
     else if (parcour->p->speak_timer <= 0 && parcour->p->speak[0] != 0)
         sprintf (ordre + strlen(ordre), "%d 20 \037 ", parcour->p->id);
+    */
 }

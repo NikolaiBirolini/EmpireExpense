@@ -15,7 +15,7 @@ struct personnages *init_map(void)
     char *line = NULL;
     size_t len = 0;
     while (getline(&line, &len, acount) > 0)
-        list = append_perso(line);
+        append_perso(line);
 
     return list;
 }

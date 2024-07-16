@@ -37,53 +37,32 @@ void actualise_stat(struct personnages *p)
 		int porte_dom = 10;
 		int dom = 1;
 		int poid = 65; 	
+		struct to_disp *new = malloc(sizeof(struct to_disp));
+		new->x = p->x;
+		new->y = p->y;
+		new->id = p->id;
+		new->next = NULL;
+		new->p = p;
+		new->floor = 1;
+		new->offset_x = 900;
+		new->offset_y = 450;
 		if (strcmp(p->right_hand, "bow") == 0)
 		{
 			porte_dom = 200;
 			dom = 5;
-			struct to_disp *new = malloc(sizeof(struct to_disp));
 			new->img = select_good_img("bow", p->angle, p->animation);
-			new->x = p->x;
-			new->y = p->y;
-			new->id = p->id;
-			new->next = NULL;
-			new->p = p;
-			new->floor = 1;
-			new->offset_x = 900;
-			new->offset_y = 450;
-			sortedInsert(new);
-			
 		}
 		else if (strcmp(p->right_hand, "sword") == 0)
 		{
 			porte_dom = 20;
 			dom = 7;
-			struct to_disp *new = malloc(sizeof(struct to_disp));
 			new->img = select_good_img("sword", p->angle, p->animation);
-			new->x = p->x;
-			new->y = p->y;
-			new->id = p->id;
-			new->p = p;
-			new->next = NULL;
-			new->floor = 1;
-			new->offset_x = 900;
-			new->offset_y = 450;
-			sortedInsert(new);
 		}
 		else // default 
 		{
-			struct to_disp *new = malloc(sizeof(struct to_disp));
 			new->img = select_good_img("sword", p->angle, p->animation);
-			new->x = p->x;
-			new->y = p->y;
-			new->id = p->id;
-			new->p = p;
-			new->floor = 1;
-			new->next = NULL;
-			new->offset_x = 900;
-			new->offset_y = 450;
-			sortedInsert(new);
 		} 
+		sortedInsert(new);	
 		p->max_pv = max_pv;
 		p->vitesse_dom = vitesse_dom;
 		p->vitesse_dep = vitesse_dep;
@@ -102,6 +81,7 @@ void init_stat(struct personnages *p)
 	p->speak_timer = 0;
 	p->faim_time = 0;
     p->chemin_is_set = 0;
+	p->chemin = NULL;
 	if (strcmp(p->skin, "ship1") == 0)
 	{
 		p->max_pv = 800;
@@ -120,6 +100,18 @@ void init_stat(struct personnages *p)
 		p->poid = 999;
 		p->eau = '0';
 		p->plancher = 0;
+		p->animation = 0;
+		struct to_disp *new = malloc(sizeof(struct to_disp));
+		new->img = select_good_img("arbre1", p->angle, 1);
+		new->x = p->x;
+		new->y = p->y;
+		new->id = p->id;
+		new->offset_x = 896;
+		new->offset_y = 454;
+		new->p = p;
+		new->floor = 1;
+		new->next = NULL;
+		sortedInsert(new);
 	}
 	else if (strcmp(p->skin, "fruit") == 0)
 	{

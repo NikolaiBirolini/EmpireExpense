@@ -9,7 +9,7 @@ void printError(int x, int y , char* errorLine, struct menu *main_menu)
     *text->key = SDLK_UNKNOWN;
 }
 
-char* isPersoIsAlreadyInList(struct menu *main_menu)
+char isPersoIsAlreadyInList(struct menu *main_menu)
 {
     char is_already_in_list = 0;
     
@@ -22,7 +22,7 @@ char* isPersoIsAlreadyInList(struct menu *main_menu)
 void addEnemy(struct menu *main_menu)
 {
     struct personnages* persoToFind = find_perso_by_name(main_menu->menuDip->diploTextBox.text);                      
-    char* is_already_in_list = isPersoIsAlreadyInList(main_menu);
+    char is_already_in_list = isPersoIsAlreadyInList(main_menu);
                     
     if(persoToFind == NULL || persoToFind == moi || is_already_in_list == 1)
     {
@@ -39,7 +39,7 @@ void addEnemy(struct menu *main_menu)
 
 void removeEnemy(struct menu *main_menu)
 {
-    char* is_already_in_list = isPersoIsAlreadyInList(main_menu);
+    char is_already_in_list = isPersoIsAlreadyInList(main_menu);
 
     if(is_already_in_list == 0)
     {
