@@ -172,6 +172,17 @@ struct skin
     SDL_Texture *wooden_house_3x3_faceline1;
     SDL_Texture *wooden_house_3x3_faceline2;
     SDL_Texture *wooden_house_3x3_faceline3;
+
+    SDL_Texture *terracotta_house_3x3_1;
+    SDL_Texture *terracotta_house_3x3_2;
+    SDL_Texture *terracotta_house_3x3_3;
+    SDL_Texture *terracotta_house_3x3_4;
+    SDL_Texture *terracotta_house_3x3_5;
+    SDL_Texture *terracotta_house_3x3_6;
+    SDL_Texture *terracotta_house_3x3_7;
+    SDL_Texture *terracotta_house_3x3_8;
+    SDL_Texture *terracotta_house_3x3_9;
+
 };
 
 struct gui_sprite

@@ -8,9 +8,10 @@ void create_array(char *ground_string)
 	while (ground_string[i] != '\n')
 		i++;
 	i++;
-	ground_texture = malloc(sizeof(SDL_Texture*)*max_x*max_y);
+	printf ("%d %d\n", max_x, max_y);
 	ground_altitude = malloc(sizeof(int)*max_x*max_y);
 	building_altitude = malloc(sizeof(int)*max_x*max_y);
+	ground_texture = malloc(sizeof(SDL_Texture*)*max_x*max_y);
 	for (int j = 0; j < max_y*max_x; j++)
 	{
 		if (ground_string[i] == 'e')
@@ -155,6 +156,18 @@ void actualise_building_altitude(void)
             building_altitude[(int)(parcour->p->y) * max_x + (int)(parcour->p->x)-1] = 144;
             building_altitude[(int)(parcour->p->y-1) * max_x + (int)(parcour->p->x)-1] = 144;
             building_altitude[(int)(parcour->p->y-2) * max_x + (int)(parcour->p->x)-1] = 144;
+        }
+		if (strcmp(parcour->p->skin, "basic_terracota_house") == 0)
+        {
+            building_altitude[(int)(parcour->p->y) * max_x + (int)(parcour->p->x)] = 19;
+            building_altitude[(int)(parcour->p->y-1) * max_x + (int)(parcour->p->x)] = 38;
+            building_altitude[(int)(parcour->p->y-2) * max_x + (int)(parcour->p->x)] = 57;
+            building_altitude[(int)(parcour->p->y) * max_x + (int)(parcour->p->x-2)] = 76;
+            building_altitude[(int)(parcour->p->y-1) * max_x + (int)(parcour->p->x-2)] = 76;
+            building_altitude[(int)(parcour->p->y-2) * max_x + (int)(parcour->p->x-2)] = 76;
+            building_altitude[(int)(parcour->p->y) * max_x + (int)(parcour->p->x)-1] = 100;
+            building_altitude[(int)(parcour->p->y-1) * max_x + (int)(parcour->p->x)-1] = 76;
+            building_altitude[(int)(parcour->p->y-2) * max_x + (int)(parcour->p->x)-1] = 76;
         }
 
     }
