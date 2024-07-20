@@ -152,6 +152,18 @@ void actualise_building_altitude(void)
             building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x)-1] = 144;
             building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x)-1] = 144;
         }
+        if (strcmp(parcour->skin, "basic_terracota_house") == 0)
+        {
+            building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x)] = 19;
+            building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x)] = 38;
+            building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x)] = 57;
+            building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x-2)] = 76;
+            building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x-2)] = 76;
+            building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x-2)] = 76;
+            building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x)-1] = 100;
+            building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x)-1] = 76;
+            building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x)-1] = 76;
+        }
 
     }
     should_i_actualise_building_altitude = 0;

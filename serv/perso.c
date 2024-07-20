@@ -13,7 +13,6 @@ void parse_order(char *line)
         {
             i -= 2;
             i += append_perso(line+i) + 1;
-            printf ("]%s[\n", line+i);    
         }
         else
         {
@@ -29,7 +28,6 @@ void parse_order(char *line)
             switch(idaction)
             {
                 case 0:
-                    printf ("test\n");
                     if (line[i] == '+')
                     {
                         i++;
@@ -473,7 +471,6 @@ int parse_new(struct personnages *p, char *line)
 
 int append_perso(char *line)
 {
-    printf ("[%s]\n", line);
     struct personnages *new = malloc(sizeof(struct personnages));
     new->online = '0';
     new->e_list = NULL;

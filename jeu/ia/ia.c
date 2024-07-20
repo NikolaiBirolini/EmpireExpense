@@ -71,7 +71,7 @@ void ia(void)
         {
             if (strncmp(parcour->p->skin, "ship", 4) == 0)
                 ia_ship(parcour);
-            else if (strcmp(parcour->p->skin, "basic_wooden_house") == 0)
+            else if (strcmp(parcour->p->skin, "basic_wooden_house") ==  0 || strcmp(parcour->p->skin, "basic_terracota_house") ==  0)
                 ia_build(parcour);
             else if (strncmp(parcour->p->skin, "arbre", 5) == 0)
                 ia_arbre(parcour);
@@ -117,9 +117,9 @@ void ia_arbre(struct linked_list *parcour)
         else
             sprintf (ordre + strlen(ordre), "%d 07 1 ", parcour->p->id);
         parcour->p->animation = 0; 
-        if (count_item(parcour->p->i_list, "fruit") == 10)
+        if (count_item(parcour->p->i_list, "fruit") == 20)
         {
-        sprintf (ordre + strlen(ordre), "-1 50 none %f %f -1.0 -1.0 a 0 0 arbre1 none none none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] [] \n%d 16 -10 fruit ", parcour->p->x + 1, parcour->p->y + 1, parcour->p->id);
+        sprintf (ordre + strlen(ordre), "-1 50 none %f %f -1.0 -1.0 a 0 0 arbre1 none none none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] [] \n%d 16 -20 fruit ", parcour->p->x + 1, parcour->p->y + 1, parcour->p->id);
         }
     }
 }

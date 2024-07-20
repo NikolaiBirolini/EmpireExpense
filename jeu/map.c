@@ -1,6 +1,6 @@
 #include "map.h"
 	
-char *rec_ground(int socket)
+char *	rec_ground(int socket)
 {
 	char *map = calloc(sizeof(char), 9);
 	recv(socket, map, 8, 0);

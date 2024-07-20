@@ -644,6 +644,53 @@ struct skin *init_skin()
     a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
     to_return->wooden_house_3x3_faceline3 = SDL_CreateTextureFromSurface(renderer, a);
     SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/batiments/3x3_terracotta_house/1.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->terracotta_house_3x3_1 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+    a = SDL_LoadBMP("img/batiments/3x3_terracotta_house/2.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->terracotta_house_3x3_2 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+    a = SDL_LoadBMP("img/batiments/3x3_terracotta_house/3.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->terracotta_house_3x3_3 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+    a = SDL_LoadBMP("img/batiments/3x3_terracotta_house/4.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->terracotta_house_3x3_4 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+    a = SDL_LoadBMP("img/batiments/3x3_terracotta_house/5.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->terracotta_house_3x3_5 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+    a = SDL_LoadBMP("img/batiments/3x3_terracotta_house/6.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->terracotta_house_3x3_6 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+    a = SDL_LoadBMP("img/batiments/3x3_terracotta_house/7.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->terracotta_house_3x3_7 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+    a = SDL_LoadBMP("img/batiments/3x3_terracotta_house/8.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->terracotta_house_3x3_8 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+    a = SDL_LoadBMP("img/batiments/3x3_terracotta_house/9.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->terracotta_house_3x3_9 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
     return to_return;
 }
 
