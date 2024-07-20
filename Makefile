@@ -16,6 +16,9 @@ jfiles = \
     jeu/perso.c \
     jeu/init_sprite.c \
     jeu/gui/diplomatic_menu/diplomatic_menu.c \
+    jeu/gui/inventaire_menu/inventaire_menu.c \
+    jeu/gui/trade_menu/trade_menu.c \
+    jeu/gui/formation_menu/formation_menu.c \
     jeu/gui/init_gui.c \
     jeu/select_sprite.c \
     jeu/clavier.c \
