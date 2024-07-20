@@ -7,5 +7,4 @@
 3 999 none 36.000 7.00000 -1.000000 908.785156 a 0 9999 basic_wooden_house none none none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] []
 2 999 none 39.000 7.00000 -1.000000 908.785156 a 0 9999 basic_wooden_house none none none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] []
 1 10 niko 20.000000 20.000000 -1.000000 908.785156 a 0 99999 man niko niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty test [] []
-9 50 none 0.00000 0.000000 -1.000000 908.785156 a 0 19 arbre1 none none none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] [fruit 9]
 
