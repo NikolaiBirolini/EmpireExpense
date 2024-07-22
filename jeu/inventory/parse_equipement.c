@@ -124,9 +124,11 @@ void init_stat(struct personnages *p)
 	else if (strcmp(p->skin, "basic_wooden_house") == 0)
 	{
 		struct to_disp *new = malloc(sizeof(struct to_disp));
-		new->img = select_good_img("basic_wooden_house", p->angle, 2);
+		new->img = img->s->wooden_house_3x3_faceline3;
 		new->x = p->x;
 		new->y = p->y;
+		p->ordrex = p->x+1;
+		p->ordrey = p->y-1;
 		new->id = p->id;
 		new->offset_x = 866;
 		new->offset_y = 475;
@@ -136,7 +138,7 @@ void init_stat(struct personnages *p)
 		sortedInsert(new);
 		struct to_disp *new2 = malloc(sizeof(struct to_disp));
 
-		new2->img = select_good_img("basic_wooden_house", p->angle, 1);
+		new2->img = img->s->wooden_house_3x3_faceline2;
 		new2->x = p->x;
 		new2->y = p->y-1;
 		new2->id = p->id;
@@ -148,7 +150,7 @@ void init_stat(struct personnages *p)
 		sortedInsert(new2);
 		struct to_disp *new3 = malloc(sizeof(struct to_disp));
 
-		new3->img = select_good_img("basic_wooden_house", p->angle, 0);
+		new3->img = img->s->wooden_house_3x3_faceline1;
 		new3->x = p->x;
 		new3->y = p->y-2;
 		new3->id = p->id;
@@ -180,16 +182,18 @@ void init_stat(struct personnages *p)
 		p->eau = '0';
 		p->plancher = 127;
 	}
-	else if (strcmp(p->skin, "basic_terracotta_house"))
+	else if (strcmp(p->skin, "basic_terracota_house") == 0)
 	{
 		p->max_pv = 99999;
 		p->dom = 0;
 		p->poid = 10000;
 		p->eau = '0';
 		p->plancher = 127;
+		p->ordrex = p->x;
+		p->ordrey = p->y;
 
 		struct to_disp *new = malloc(sizeof(struct to_disp));
-		new->img = select_good_img("basic_terracotta_house", p->angle, 0);
+		new->img = img->s->terracotta_house_3x3_1;
 		new->x = p->x;
 		new->y = p->y;
 		new->id = p->id;
@@ -201,7 +205,7 @@ void init_stat(struct personnages *p)
 		sortedInsert(new);
 		
 		struct to_disp *new2 = malloc(sizeof(struct to_disp));
-		new2->img = select_good_img("basic_terracotta_house", p->angle, 1);
+		new2->img = img->s->terracotta_house_3x3_2;
 		new2->x = p->x;
 		new2->y = p->y-1;
 		new2->id = p->id;
@@ -213,7 +217,7 @@ void init_stat(struct personnages *p)
 		sortedInsert(new2); 
 
 		struct to_disp *new3 = malloc(sizeof(struct to_disp));
-		new3->img = select_good_img("basic_terracotta_house", p->angle, 2);
+		new3->img = img->s->terracotta_house_3x3_3;
 		new3->x = p->x;
 		new3->y = p->y-2;
 		new3->id = p->id;
@@ -225,7 +229,7 @@ void init_stat(struct personnages *p)
 		sortedInsert(new3);
 		
 		struct to_disp *new4 = malloc(sizeof(struct to_disp));
-		new4->img = select_good_img("basic_terracotta_house", p->angle, 3);
+		new4->img = img->s->terracotta_house_3x3_4;
 		new4->x = p->x-1;
 		new4->y = p->y;
 		new4->id = p->id;
@@ -237,7 +241,7 @@ void init_stat(struct personnages *p)
 		sortedInsert(new4);
 
 		struct to_disp *new5 = malloc(sizeof(struct to_disp));
-		new5->img = select_good_img("basic_terracotta_house", p->angle, 4);
+		new5->img = img->s->terracotta_house_3x3_5;
 		new5->x = p->x-1;
 		new5->y = p->y-1;
 		new5->id = p->id;
@@ -249,7 +253,7 @@ void init_stat(struct personnages *p)
 		sortedInsert(new5);
 		
 		struct to_disp *new6 = malloc(sizeof(struct to_disp));
-		new6->img = select_good_img("basic_terracotta_house", p->angle, 5);
+		new6->img = img->s->terracotta_house_3x3_6;
 		new6->x = p->x-1;
 		new6->y = p->y-2;
 		new6->id = p->id;
@@ -261,7 +265,7 @@ void init_stat(struct personnages *p)
 		sortedInsert(new6);
 
 		struct to_disp *new7 = malloc(sizeof(struct to_disp));
-		new7->img = select_good_img("basic_terracotta_house", p->angle, 6);
+		new7->img = img->s->terracotta_house_3x3_7;
 		new7->x = p->x-2;
 		new7->y = p->y;
 		new7->id = p->id;
@@ -273,7 +277,7 @@ void init_stat(struct personnages *p)
 		sortedInsert(new7);
 		
 		struct to_disp *new8 = malloc(sizeof(struct to_disp));
-		new8->img = select_good_img("basic_terracotta_house", p->angle, 7);
+		new8->img = img->s->terracotta_house_3x3_8;
 		new8->x = p->x-2;
 		new8->y = p->y-1;
 		new8->id = p->id;
@@ -285,7 +289,7 @@ void init_stat(struct personnages *p)
 		sortedInsert(new8);
 
 		struct to_disp *new9 = malloc(sizeof(struct to_disp));
-		new9->img = select_good_img("basic_terracotta_house", p->angle, 8);
+		new9->img = img->s->terracotta_house_3x3_9;
 		new9->x = p->x-2;
 		new9->y = p->y-2;
 		new9->id = p->id;

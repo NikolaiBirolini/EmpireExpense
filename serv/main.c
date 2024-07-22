@@ -235,7 +235,7 @@ int main(int argc, char **argv)
                         if (statut[events[i].data.fd] == 0)
                         {
                             struct personnages *p = have_char(buf);
-							if (open_acount(buf) == 1 && p != NULL) // good acount and password
+							if (open_acount(buf) == 1 && p != NULL && p->online != '1') // good acount and password
 							{
 								statut[events[i].data.fd] = 1;
 								s = write (events[i].data.fd, "o", 1);

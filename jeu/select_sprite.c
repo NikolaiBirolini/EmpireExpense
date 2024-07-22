@@ -310,36 +310,6 @@ SDL_Texture *select_good_img(char *skin, float angle, int animation)
 				return img->s->hoArGdMa5;
 		}
 	}
-	if (strcmp(skin, "basic_wooden_house") == 0)
-	{
-		if (animation == 0)
-			return img->s->wooden_house_3x3_faceline1;
-		if (animation == 1)
-			return img->s->wooden_house_3x3_faceline2;
-		if (animation == 2)
-			return img->s->wooden_house_3x3_faceline3;
-	}
-	if (strcmp(skin, "basic_terracotta_house") == 0)
-	{
-		if (animation == 0)
-			return img->s->terracotta_house_3x3_1;
-		if (animation == 1)
-			return img->s->terracotta_house_3x3_2;
-		if (animation == 2)
-			return img->s->terracotta_house_3x3_3;
-		if (animation == 3)
-			return img->s->terracotta_house_3x3_4;
-		if (animation == 4)
-			return img->s->terracotta_house_3x3_5;
-		if (animation == 5)
-			return img->s->terracotta_house_3x3_6;
-		if (animation == 6)
-			return img->s->terracotta_house_3x3_7;
-		if (animation == 7)
-			return img->s->terracotta_house_3x3_8;
-		if (animation == 8)
-			return img->s->terracotta_house_3x3_9;
-	}
 	return img->s->hoArGdMa5;
 }
 

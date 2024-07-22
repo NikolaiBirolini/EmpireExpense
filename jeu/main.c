@@ -125,7 +125,6 @@ void boucle_jeu(int socket, char *name)
         fprintf(stderr, "display = %5.3fms \n", elapsedTime);*/
         display_selected(selected[0]);
         display_elipse_and_personal_datas(moi);
-
         if (conditional_menu(selected[0]) == 1)
             done = done;
         else if (speakBubble->on == 1)

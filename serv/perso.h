@@ -24,6 +24,7 @@ struct personnages
     char angle;
     int timer_dom;
     int faim;
+    int inside;
     char skin[50];
     char nom[50];
     char nom_superieur[50];
