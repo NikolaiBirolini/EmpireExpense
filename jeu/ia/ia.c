@@ -312,6 +312,5 @@ void ia_man(struct linked_list *parcour)
     if (parcour->p->speak_timer > 0)
         parcour->p->speak_timer --;
     else if (parcour->p->speak_timer <= 0 && parcour->p->speak[0] != 0)
-        sprintf (ordre + strlen(ordre), "%d 20 \037 ", parcour->p->id);
-    */
+        sprintf (ordre + strlen(ordre), "%d 20 \037 ", parcour->p->id);*/
 }

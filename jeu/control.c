@@ -41,6 +41,10 @@ void deplacement(struct personnages *moi)
 		}
 	}
 	
-		
-
+	if (moi->speak[0] != 0)
+	{
+        moi->speak_timer --;
+    	if (moi->speak_timer <= 0)
+        	sprintf (ordre + strlen(ordre), "%d 20 \037 ", moi->id);
+	}
 }

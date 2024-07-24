@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
     else
     {
         int socket = try_connect(ip, port);
-        if(!sendLoginDataToServer(arguments.login, arguments.password, socket, 101, 0))
+        if(!sendLoginDataToServer(arguments.login, arguments.password, socket, 101, 1))
             handleErrorsAndCleanup(1);
         boucle_jeu(socket, arguments.login);
         handleErrorsAndCleanup(0);
@@ -242,7 +242,7 @@ char *log_menu(int socket)
                 if (mouseX >= play.buttonRect.x && mouseX <= play.buttonRect.x + play.buttonRect.w && mouseY >= play.buttonRect.y && mouseY <= play.buttonRect.y + play.buttonRect.h && loginTextBox.text[0] != 0 && passwordTextBox.text[0] != 0) 
                 {
                     play.isPressed = true;
-                    done = sendLoginDataToServer(loginTextBox.text, passwordTextBox.text, socket, 101, 0);
+                    done = sendLoginDataToServer(loginTextBox.text, passwordTextBox.text, socket, 101, 1);
                     if (!done)
                     {
                         char* errorLine = "INVALID credentials, please retry";
