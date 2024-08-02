@@ -79,10 +79,17 @@ char allowed_to_move(struct personnages *perso, float x, float y, float mvx, flo
     float r = coo_circle(perso);
     if (x + mvx - r < 0 || x + mvx + r > max_x || y + mvy - r < 0 || y + mvy + r > max_y)
             return 0;
-    enum Texture t = ground_texture[(int)(y + mvy) * max_x + (int)(x + mvx)];
-    if (t == ea1 || t == ea2 || t == ea3)
-        return 0;
-    if (ground_altitude[(int)(y) * max_x + (int)(x)] +  building_altitude[(int)(y) * max_x + (int)(x)] < ground_altitude[(int)(y + mvy) * max_x + (int)(x + mvx)] + building_altitude[(int)(y + mvy) * max_x + (int)(x + mvx)]- 30)
-        return 0;
+    if (perso->inside == -1)
+    {
+        enum Texture t = ground_texture[(int)(y + mvy) * max_x + (int)(x + mvx)];
+        if (t == ea1 || t == ea2 || t == ea3)
+            return 0;
+        if (ground_altitude[(int)(y) * max_x + (int)(x)] +  building_altitude[(int)(y) * max_x + (int)(x)] < ground_altitude[(int)(y + mvy) * max_x + (int)(x + mvx)] + building_altitude[(int)(y + mvy) * max_x + (int)(x + mvx)]- 30)
+            return 0;
+    }
+    else {
+         if (building_altitude[(int)(y + mvy) * max_x + (int)(x + mvx)] == 0)
+            return 0;
+    }
     return 1;
 }

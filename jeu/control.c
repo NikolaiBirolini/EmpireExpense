@@ -26,20 +26,24 @@ void deplacement(struct personnages *moi)
 		sprintf (ordre + strlen(ordre), "%d 02 +%f %d 05 h %d 21 %d ", moi->id, moi->vitesse_dep, moi->id, moi->id, (moi->animation+1)%5);
 	if(lettres->keystates[SDL_SCANCODE_I])
 	{
-		//printf ("try\n");
+		int src = (int)moi->y * max_x + (int)moi->x;
 		for (struct linked_list* p = list; p != NULL; p = p->next)
 		{
 			if (strcmp(p->p->skin, "basic_wooden_house") == 0 || strcmp(p->p->skin, "basic_terracota_house") == 0)
 			{
-
-				//printf ("%d %d %d %d\n", (int)p->p->ordrex,(int)moi->x ,(int)p->p->ordrey , (int)moi->y);
-				if ((int)p->p->ordrex == (int)moi->x && (int)p->p->ordrey == (int)moi->y)
+				if (moi->inside == -1 && src == p->p->ordrex)
 				{
-					printf ("inside\n");
+					//printf ("%d %d\n, ");
+						sprintf (ordre + strlen(ordre), "%d 09 %d %d 02 %f %d 01 %f ", moi->id, p->p->id, moi->id, (int)p->p->ordrey/max_x+0.5, moi->id, (int)p->p->ordrey%max_x+0.5); // en local pour le  building
+				}
+				else if (moi->inside != -1 && src == p->p->ordrey)
+				{
+					printf ("test\n");
+					sprintf (ordre + strlen(ordre), "%d 09 -1 %d 02 %f %d 01 %f ", moi->id,moi->id, (int)p->p->ordrex/max_x+0.5, moi->id, (int)p->p->ordrex%max_x+0.5); // en local pour le  building					
 				}
 			}
 		}
-	}
+	}		
 	
 	if (moi->speak[0] != 0)
 	{

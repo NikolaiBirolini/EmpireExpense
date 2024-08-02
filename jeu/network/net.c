@@ -47,12 +47,26 @@ void recv_order(int socket)
 			free_linked_enemie(yalist->e_list);
 			free_linked_item(yalist->i_list);
 			char online = yalist->online;
-			buffer += parse_order(yalist, buffer);
+			if (yalist == moi)
+			{
+				struct personnages *oldinside = find_perso_by_id(moi->inside);
+				buffer += parse_order(yalist, buffer);
+				struct personnages *newinside = find_perso_by_id(moi->inside);
+				if (newinside != NULL)
+					actualise_stat(newinside);
+				if (oldinside != NULL)
+					actualise_stat(oldinside);
+			}
+			else
+			{
+				buffer += parse_order(yalist, buffer);
+			}
 			if (online != yalist->online)
 			{
 				should_i_call_my_computer_work = '1';
 			}
 			actualise_stat(yalist);
+			
 		}
 		else
 			list = append_perso(&buffer);

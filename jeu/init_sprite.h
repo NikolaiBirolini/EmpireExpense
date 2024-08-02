@@ -182,6 +182,13 @@ struct skin
     SDL_Texture *terracotta_house_3x3_7;
     SDL_Texture *terracotta_house_3x3_8;
     SDL_Texture *terracotta_house_3x3_9;
+    SDL_Texture *terracotta_house_3x3_inside1;
+    SDL_Texture *terracotta_house_3x3_inside2;
+    SDL_Texture *terracotta_house_3x3_inside3;
+    SDL_Texture *terracotta_house_3x3_inside4;
+    SDL_Texture *terracotta_house_3x3_inside5;
+    SDL_Texture *terracotta_house_3x3_inside6;
+
 
 };
 

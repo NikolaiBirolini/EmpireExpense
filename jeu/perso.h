@@ -93,6 +93,7 @@ void free_linked(struct linked_list *list, char free_content);
 struct linked_list *death(void);
 struct linked_list *remove_from_linked_list(struct linked_list *list, struct personnages *to_rem);
 struct personnages *find_perso_by_name(char *name);
+struct personnages *find_perso_by_id(int id);
 struct linked_list *clean_selected(struct linked_list *list);
 int getSizeLinkedList(struct linked_list *list);
 void fix_some_shit(void);

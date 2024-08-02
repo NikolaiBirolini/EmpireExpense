@@ -123,6 +123,21 @@ struct linked_list *append_perso(char **line)
 	return (list);
 }
 
+struct personnages *find_perso_by_id(int id)
+{
+	struct linked_list *parcour = list;
+	while (parcour != NULL)
+	{
+		if (parcour->p->id == id)
+		{
+			return parcour->p;
+		}
+		parcour = parcour->next;
+	}
+	return NULL;
+}
+
+
 struct personnages *find_perso_by_name(char *name)
 {
 	struct linked_list *parcour = list;
