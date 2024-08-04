@@ -56,4 +56,4 @@ clean:
 	rm -f $(jobjects) $(sobjects) empireExpense serveur 
 
 # Add editormap command and copy files one.
-.PHONY: all j s static clean 
+.PHONY: all j s clean 
