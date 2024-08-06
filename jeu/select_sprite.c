@@ -15,10 +15,8 @@ SDL_Texture *select_good_img(int skin, float angle, int animation)
 	{
 		case 0:
 			return img->s->ship1haut;
-		case 1:
-			return img->s->arbre1;
 		case 2:
-			return img->s->fruit;
+			return img->s->arbre1;
 		case 3:
 			if (angle == 'a')
 				return img->s->drapeauBlancFace_dos;
@@ -44,7 +42,8 @@ SDL_Texture *select_good_img(int skin, float angle, int animation)
 				return img->s->drapeauBlancGaucheDos;
 			else if (angle == 'l')
 				return img->s->drapeauBlancDosGauche;
-		case 4:
+			break;
+		case 12:
 			if (animation == 0)
 			{
 				if (angle == 'a')
@@ -207,7 +206,8 @@ SDL_Texture *select_good_img(int skin, float angle, int animation)
 				else if (angle == 'l')
 					return img->s->hoFaDoGaMa5;
 			}
-		case 5:
+			break;
+		case 11:
 			if (animation == 0)
 			{
 				if (angle == 'a')

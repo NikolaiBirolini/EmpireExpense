@@ -23,6 +23,7 @@ extern int max_x;
 extern int max_y;
 extern struct lettres *lettres;
 extern struct linked_list *list;
+extern struct building *list_building;
 extern struct to_disp *list_disp;
 extern TTF_Font *littleFont;
 extern TTF_Font *bigFont;
@@ -35,5 +36,5 @@ extern char should_i_call_my_computer_work;
 extern char should_i_actualise_building_altitude;
 extern struct personnages *moi;
 extern int *building_altitude;
-
+extern int *building_id;
 #define order_size 2000

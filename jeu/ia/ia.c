@@ -69,16 +69,10 @@ void ia(void)
     {
         if (parcour->p->my_computer_work == 1)
         {
-            if (strncmp(parcour->p->skin, "ship", 4) == 0)
-                ia_ship(parcour);
-            else if (strcmp(parcour->p->skin, "basic_wooden_house") ==  0 || strcmp(parcour->p->skin, "basic_terracota_house") ==  0)
-                ia_build(parcour);
-            else if (strncmp(parcour->p->skin, "arbre", 5) == 0)
+            /*if (strncmp(parcour->p->skin, "ship", 4) == 0)
+                ia_ship(parcour);*/
+            if (parcour->p->skin == 2)
                 ia_arbre(parcour);
-            else if (strncmp(parcour->p->skin, "fruit", 5) == 0)
-                ia_fruit(parcour);
-            else if (strcmp(parcour->p->skin, "flag_zone") == 0)
-                ia_flag(parcour);
             else
                 ia_man(parcour);
         }

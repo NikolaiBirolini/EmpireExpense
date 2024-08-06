@@ -115,6 +115,7 @@ void create_array(char *ground_string)
 	i++;
 }
 
+/*
 struct linked_list *recv_map(int socket)
 {
 	char *buffer = calloc(order_size, sizeof(char));
@@ -137,37 +138,37 @@ struct linked_list *recv_map(int socket)
 	buffer = pos_buf;
 	free(buffer);
 	return list;
-}
+}*/
 
 void actualise_building_altitude(void)
 {
     for (int i = 0; i < max_y*max_x; i++)
         building_altitude[i] = 0;
-    for (struct linked_list *parcour = list; parcour != NULL; parcour = parcour->next)
+    for (struct building *parcour = list_building; parcour != NULL; parcour = parcour->next)
     {
-        if (strcmp(parcour->p->skin, "basic_wooden_house") == 0)
+        if (strcmp(parcour->skin, "basic_wooden_house") == 0)
         {
-            building_altitude[(int)(parcour->p->y) * max_x + (int)(parcour->p->x)] = 77;
-            building_altitude[(int)(parcour->p->y-1) * max_x + (int)(parcour->p->x)] = 77;
-            building_altitude[(int)(parcour->p->y-2) * max_x + (int)(parcour->p->x)] = 77;
-            building_altitude[(int)(parcour->p->y) * max_x + (int)(parcour->p->x-2)] = 77;
-            building_altitude[(int)(parcour->p->y-1) * max_x + (int)(parcour->p->x-2)] = 77;
-            building_altitude[(int)(parcour->p->y-2) * max_x + (int)(parcour->p->x-2)] = 77;
-            building_altitude[(int)(parcour->p->y) * max_x + (int)(parcour->p->x)-1] = 144;
-            building_altitude[(int)(parcour->p->y-1) * max_x + (int)(parcour->p->x)-1] = 144;
-            building_altitude[(int)(parcour->p->y-2) * max_x + (int)(parcour->p->x)-1] = 144;
+            building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x)] = 77;
+            building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x)] = 77;
+            building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x)] = 77;
+            building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x-2)] = 77;
+            building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x-2)] = 77;
+            building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x-2)] = 77;
+            building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x)-1] = 144;
+            building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x)-1] = 144;
+            building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x)-1] = 144;
         }
-		if (strcmp(parcour->p->skin, "basic_terracota_house") == 0)
+		if (strcmp(parcour->skin, "basic_terracota_house") == 0)
         {
-            building_altitude[(int)(parcour->p->y) * max_x + (int)(parcour->p->x)] = 19;
-            building_altitude[(int)(parcour->p->y-1) * max_x + (int)(parcour->p->x)] = 38;
-            building_altitude[(int)(parcour->p->y-2) * max_x + (int)(parcour->p->x)] = 57;
-            building_altitude[(int)(parcour->p->y) * max_x + (int)(parcour->p->x-2)] = 76;
-            building_altitude[(int)(parcour->p->y-1) * max_x + (int)(parcour->p->x-2)] = 76;
-            building_altitude[(int)(parcour->p->y-2) * max_x + (int)(parcour->p->x-2)] = 76;
-            building_altitude[(int)(parcour->p->y) * max_x + (int)(parcour->p->x)-1] = 100;
-            building_altitude[(int)(parcour->p->y-1) * max_x + (int)(parcour->p->x)-1] = 76;
-            building_altitude[(int)(parcour->p->y-2) * max_x + (int)(parcour->p->x)-1] = 76;
+            building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x)] = 19;
+            building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x)] = 38;
+            building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x)] = 57;
+            building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x-2)] = 76;
+            building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x-2)] = 76;
+            building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x-2)] = 76;
+            building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x)-1] = 100;
+            building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x)-1] = 76;
+            building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x)-1] = 76;
         }
 
     }

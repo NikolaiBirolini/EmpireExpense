@@ -1,10 +1,10 @@
-0 10 thyma 4.000000 3.000000 -1.000000 908.785156 a 0 99999 -1 man thyma thyma none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty test [] []
-5 10 niko 7.00000 15.000000 -1.000000 908.785156 a 0 9999 -1 man niko niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] []
-6 10 none 7.00000 13.000000 -1.000000 908.785156 a 0 9999 -1 man babar niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] []
-7 10 none 7.00000 11.000000 -1.000000 908.785156 a 0 9999 -1 man nigar niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] []
-8 10 none 7.50000 9.500000 -1.000000 908.785156 a 0 9999 -1 manbench_cigar niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] []
-4 999 none 33.000 3.00000 -1.000000 908.785156 a 0 9999 -1 basic_wooden_house none none none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] []
-1 10 niko 2.000000 2.000000 -1.000000 908.785156 a 0 99999 2 man niko niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty test [] []
-9 50 none 0.00000 0.000000 -1.000000 908.785156 a 0 0 -1 arbre1 none none none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] [fruit 9]
-3 999 none 47.000 3.00000 -1.000000 908.785156 a 0 9999 -1 basic_terracota_house none none none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] []
-2 999 none 3.000 3.00000 -1.000000 908.785156 a 0 9999 -1 basic_terracota_house none none none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] []
+0 0 10 thyma 4.000000 3.000000 -1.000000 908.785156 a 0 99999 -1 thyma thyma none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty test [] []
+0 5 10 niko 7.00000 15.000000 -1.000000 908.785156 a 0 9999 -1 niko niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] []
+0 6 10 none 7.00000 13.000000 -1.000000 908.785156 a 0 9999 -1 babar niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] []
+0 7 10 none 7.00000 11.000000 -1.000000 908.785156 a 0 9999 -1 nigar niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] []
+0 8 10 none 7.50000 9.500000 -1.000000 908.785156 a 0 9999 -1 bench_cigar niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] []
+1 4 999 33 3 basic_wooden_house
+0 1 10 niko 2.000000 2.000000 -1.000000 908.785156 a 0 99999 2 niko niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty test [] []
+2 9 50 none 0.00000 0.000000 -1.000000 908.785156 a 0 0 -1 none none none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] [fruit 9]
+1 3 999 47 3 basic_terracota_house
+1 2 999 3 3 basic_terracota_house

@@ -12,6 +12,7 @@
 
 struct personnages
 {
+    int skin;
     int id;
     int pv;
     char nom_de_compte[50];
@@ -23,7 +24,6 @@ struct personnages
     int timer_dom;
     int faim;
     int inside;
-    char skin[50];
     char nom[50];
     char nom_superieur[50];
     char titre[50];

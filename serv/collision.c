@@ -2,27 +2,15 @@
 
 float coo_circle(struct personnages *perso)
 {
-    if (strcmp(perso->skin, "man") == 0)
+    if (perso->skin == 0)
     {
         return 0.1;
     }
-    else if (strcmp(perso->skin, "tour") == 0)
-    {
-        return 50;
-    }
-    else if (strcmp(perso->skin, "fruit") == 0)
-    {
-        return 6;
-    }
-    else if (strcmp(perso->skin, "arbre1") == 0)
+    else if (perso->skin  == 2)
     {
         return 1;
     }
-    else if (strcmp(perso->skin, "flag_zone") == 0)
-    {
-        return 0.2;
-    }
-    return -1;
+    return 1;
 }
 
 void collision(void)
@@ -88,7 +76,7 @@ char allowed_to_move(struct personnages *perso, float x, float y, float mvx, flo
             return 0;
     }
     else {
-         if (building_altitude[(int)(y + mvy) * max_x + (int)(x + mvx)] == 0)
+         if (building_id[(int)(y + mvy) * max_x + (int)(x + mvx)] != perso->inside)
             return 0;
     }
     return 1;

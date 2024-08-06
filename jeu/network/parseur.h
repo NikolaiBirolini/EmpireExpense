@@ -8,6 +8,7 @@
 
 
 int parse_order(struct personnages *list, char *line); 
-struct personnages *get_ptr_from_id(char *line, struct linked_list *list);
+struct personnages *get_ptr_from_id(int id);
+struct building *get_building_from_id(int id);
 #endif /*PARSEUR*/
 

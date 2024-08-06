@@ -1,4 +1,4 @@
-CFLAGS = -Wall -Wextra -std=c99 -pedantic -g -pg -no-pie
+CFLAGS = -Wall -Wextra -std=c99 -g -pg -no-pie -Werror
 
 jfiles = $(filter-out jeu/main.c, $(shell find jeu -name "*.c"))
 sfiles = $(filter-out serv/main.c, $(shell find serv -name "*.c"))
@@ -27,10 +27,10 @@ sobjects = $(filter-out serv/main.c, $(sfiles:.c=.o))
 all: j s 
 
 serv/%.o: serv/%.c
-	gcc -g -c $< -o $@
+	gcc $(CFLAGS) -c $< -o $@
 
 jeu/%.o: jeu/%.c
-	gcc -g -c $< -o $@
+	gcc $(CFLAGS) -c $< -o $@
 
 j: $(jobjects)
 	gcc $(CFLAGS) jeu/main.c $(jobjects) -o empireExpense -lSDL2 -lm -lSDL2_mixer -lSDL2_ttf -lSDL2_image

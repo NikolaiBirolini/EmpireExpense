@@ -15,7 +15,14 @@ struct personnages *init_map(void)
     char *line = NULL;
     size_t len = 0;
     while (getline(&line, &len, acount) > 0)
-        append_perso(line);
+    {
+        if (line[0] == '1')
+            append_building(line);
+        else
+            append_perso(line);
+
+        
+    }
 
     return list;
 }
@@ -31,6 +38,7 @@ void create_array(char *ground_string)
     ground_texture = malloc(sizeof(enum Texture)*max_x*max_y);
     ground_altitude = malloc(sizeof(int)*max_x*max_y);
     building_altitude = malloc(sizeof(int)*max_x*max_y);
+    building_id = malloc(sizeof(int)*max_x*max_y);
     for (int j = 0; j < max_y*max_x; j++)
     {
         if (ground_string[i] == 'e')
@@ -138,7 +146,7 @@ void actualise_building_altitude(void)
 {
     for (int i = 0; i < max_y*max_x; i++)
         building_altitude[i] = 0;
-    for (struct personnages *parcour = list; parcour != NULL; parcour = parcour->next)
+    for (struct building *parcour = list_building; parcour != NULL; parcour = parcour->next)
     {
         if (strcmp(parcour->skin, "basic_wooden_house") == 0)
         {
@@ -151,6 +159,16 @@ void actualise_building_altitude(void)
             building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x)-1] = 144;
             building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x)-1] = 144;
             building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x)-1] = 144;
+            building_id[(int)(parcour->y) * max_x + (int)(parcour->x)] = parcour->id;
+            building_id[(int)(parcour->y-1) * max_x + (int)(parcour->x)] = parcour->id;
+            building_id[(int)(parcour->y-2) * max_x + (int)(parcour->x)] = parcour->id;
+            building_id[(int)(parcour->y) * max_x + (int)(parcour->x-2)] = parcour->id;
+            building_id[(int)(parcour->y-1) * max_x + (int)(parcour->x-2)] = parcour->id;
+            building_id[(int)(parcour->y-2) * max_x + (int)(parcour->x-2)] = parcour->id;
+            building_id[(int)(parcour->y) * max_x + (int)(parcour->x)-1] = parcour->id;
+            building_id[(int)(parcour->y-1) * max_x + (int)(parcour->x)-1] = parcour->id;
+            building_id[(int)(parcour->y-2) * max_x + (int)(parcour->x)-1] = parcour->id;
+
         }
         if (strcmp(parcour->skin, "basic_terracota_house") == 0)
         {
@@ -163,6 +181,12 @@ void actualise_building_altitude(void)
             building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x)-1] = 100;
             building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x)-1] = 76;
             building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x)-1] = 76;
+            building_id[(int)(parcour->y) * max_x + (int)(parcour->x-2)] = parcour->id;
+            building_id[(int)(parcour->y-1) * max_x + (int)(parcour->x-2)] = parcour->id;
+            building_id[(int)(parcour->y-2) * max_x + (int)(parcour->x-2)] = parcour->id;
+            building_id[(int)(parcour->y) * max_x + (int)(parcour->x)-1] = parcour->id;
+            building_id[(int)(parcour->y-1) * max_x + (int)(parcour->x)-1] = parcour->id;
+            building_id[(int)(parcour->y-2) * max_x + (int)(parcour->x)-1] = parcour->id;
         }
 
     }

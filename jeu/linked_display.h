@@ -14,4 +14,5 @@ struct to_disp
     int offset_x;
     int offset_y;
     struct personnages *p;
+    struct building *b;
 };

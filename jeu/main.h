@@ -3,7 +3,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
 #include <stdlib.h>
-#include <err.h>
+//#include <err.h>
 #include "clavier.h"
 #include "gui/gui.h"
 #include "network/net.h"
@@ -24,6 +24,7 @@
 #include <time.h>
 #include <sys/time.h>
 #include "display.h"
+#include "building.h"
 #include "initWorld.h"
 #include "graphic_widget/button.h"
 #include "graphic_widget/pictureButton.h"
@@ -32,6 +33,7 @@
 #include "graphic_widget/menuSelector.h"
 #include "graphic_widget/gauge.h"
 #include "graphic_widget/dropDown.h"
+
 
 void set_pos(SDL_Rect *pos, int x, int y);
 void boucle_jeu(int socket, char *name);

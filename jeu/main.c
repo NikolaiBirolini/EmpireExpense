@@ -96,7 +96,7 @@ void boucle_jeu(int socket, char *name)
     char *ground = rec_ground(socket);
     create_array(ground);
     free(ground);
-    list = recv_map(socket);
+    recv_order(socket);
     moi = find_perso_by_name(name);	
 	struct linked_list *selected[11] = {0};
 //	struct formation *f= malloc(sizeof(struct formation));

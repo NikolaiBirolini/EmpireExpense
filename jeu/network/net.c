@@ -20,6 +20,7 @@ int try_connect(char *ip, char *port) // Connecter
 
 void recv_order(int socket)
 {
+	int skin; int id;
 	char *buffer = calloc(20, sizeof(char));
 	recv(socket, buffer, 20, 0);
 	if (buffer[0] == '0')
@@ -41,35 +42,48 @@ void recv_order(int socket)
 	buffer = pos_buf;
 	while (*buffer != 0)
 	{
-		struct personnages *yalist = get_ptr_from_id(buffer, list);
-		if (yalist != NULL)
+		sscanf(buffer, "%d %d", &skin, &id);
+		if (skin == 1)
 		{
-			free_linked_enemie(yalist->e_list);
-			free_linked_item(yalist->i_list);
-			char online = yalist->online;
-			if (yalist == moi)
+			struct building *yalist = get_building_from_id(id);
+			if (yalist != NULL)
 			{
-				struct personnages *oldinside = find_perso_by_id(moi->inside);
-				buffer += parse_order(yalist, buffer);
-				struct personnages *newinside = find_perso_by_id(moi->inside);
-				if (newinside != NULL)
-					actualise_stat(newinside);
-				if (oldinside != NULL)
-					actualise_stat(oldinside);
+				buffer += parse_building(yalist, buffer);
 			}
 			else
-			{
-				buffer += parse_order(yalist, buffer);
-			}
-			if (online != yalist->online)
-			{
-				should_i_call_my_computer_work = '1';
-			}
-			actualise_stat(yalist);
-			
+				buffer += append_building(buffer);
 		}
 		else
-			list = append_perso(&buffer);
+		{
+			struct personnages *yalist = get_ptr_from_id(id);
+			if (yalist != NULL)
+			{
+				free_linked_enemie(yalist->e_list);
+				free_linked_item(yalist->i_list);
+				char online = yalist->online;
+				if (yalist == moi)
+				{
+					struct personnages *oldinside = find_perso_by_id(moi->inside);
+					buffer += parse_order(yalist, buffer);
+					struct personnages *newinside = find_perso_by_id(moi->inside);
+					if (newinside != NULL)
+						actualise_stat(newinside);
+					if (oldinside != NULL)
+						actualise_stat(oldinside);
+				}
+				else
+				{
+					buffer += parse_order(yalist, buffer);
+				}
+				if (online != yalist->online)
+				{
+					should_i_call_my_computer_work = '1';
+				}
+				actualise_stat(yalist);	
+			}
+			else
+				list = append_perso(&buffer);
+		}
 	}
 	free(pos_buf);
 }

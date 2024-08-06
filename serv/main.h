@@ -10,6 +10,7 @@
 #include <sys/socket.h>
 #include <netdb.h>
 
+#include "building.h"
 #include "perso.h"
 #include "net.h"
 #include "map_op.h"
