@@ -63,13 +63,13 @@ void recv_order(int socket)
 				char online = yalist->online;
 				if (yalist == moi)
 				{
-					struct personnages *oldinside = find_perso_by_id(moi->inside);
+					struct building *oldinside = find_building_by_id(moi->inside);
 					buffer += parse_order(yalist, buffer);
-					struct personnages *newinside = find_perso_by_id(moi->inside);
+					struct building *newinside = find_building_by_id(moi->inside);
 					if (newinside != NULL)
-						actualise_stat(newinside);
+						actualise_stat_building(newinside);
 					if (oldinside != NULL)
-						actualise_stat(oldinside);
+						actualise_stat_building(oldinside);
 				}
 				else
 				{

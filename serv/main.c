@@ -75,7 +75,7 @@ int main(int argc, char **argv)
 
 	char statut[MAXEVENTS + 5] = {0};
 	char c_names[MAXEVENTS + 5][50];
-	int afktiming[MAXEVENTS + 5] = {0};
+	//int afktiming[MAXEVENTS + 5] = {0};
 
     int sfd, s;
     int efd;
@@ -111,13 +111,13 @@ int main(int argc, char **argv)
     /* Buffer where events are returned */
     events = calloc (MAXEVENTS, sizeof event);
 
-	char boolrep;
-	char buffer[103];
-	int save = 0;
+	//char boolrep;
+	//char buffer[103];
+	//int save = 0;
 	char *order = calloc(10000, 1);
 	
 	//debout boucle, on suppose que la carte est initialisée.
-    struct timeval start, end;
+    struct timeval start;struct timeval end;
 	while (1)
     {
         gettimeofday(&start, NULL);
@@ -239,7 +239,7 @@ int main(int argc, char **argv)
 							{
 								statut[events[i].data.fd] = 1;
 								s = write (events[i].data.fd, "o", 1);
-								sprintf(c_names[events[i].data.fd], buf);
+								strcpy(c_names[events[i].data.fd], buf);
                                 p->online = '1';
                                 p->a_bouger = 1;
                                 send_background(events[i].data.fd, ground, size_ground);

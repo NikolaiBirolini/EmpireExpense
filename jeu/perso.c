@@ -107,7 +107,6 @@ struct linked_list *append_perso(char **line)
 	*line = *line + a;
 	struct linked_list *to_append = malloc(sizeof(struct linked_list));
 	should_i_call_my_computer_work = '1';
-	should_i_actualise_building_altitude = 1;
 	to_append->p = n;
 	to_append->next = NULL;
 

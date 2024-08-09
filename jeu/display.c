@@ -80,13 +80,20 @@ void display_all(void)
 		if (parcour->floor == 1 && moi->inside == -1)
 			position.y -= building_altitude[(int)parcour->x + (int)parcour->y * max_x];
 
-		parcour->p->screenx = position.x;
-		parcour->p->screeny = position.y;
-		parcour->p->sizescreenx = position.w;
-		parcour->p->sizescreeny = position.h;
-
-		if (parcour->p->id == moi->inside || parcour->p->inside == moi->inside)		
+		if (parcour->p != NULL)
+		{
+			parcour->p->screenx = position.x;
+			parcour->p->screeny = position.y;
+			parcour->p->sizescreenx = position.w;
+			parcour->p->sizescreeny = position.h;
+			if (parcour->p->inside == moi->inside)		
+				SDL_RenderCopy(renderer, parcour->img, NULL, &position);
+		}
+		else if (parcour->b->id == moi->inside || moi->inside == -1) 
+		{
 			SDL_RenderCopy(renderer, parcour->img, NULL, &position);
+		}
+		
 
 	}
 	if (moi->inside == -1)

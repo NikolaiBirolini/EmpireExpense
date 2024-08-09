@@ -4,7 +4,7 @@ void select_char(struct linked_list *selected[11])
 {	
 	if (lettres->Mouse_Lclick == 1)
 	{
-		for (struct to_disp *a = list_disp; a != NULL; a = a->next)
+		for (struct linked_list *a = list; a != NULL; a = a->next)
 		{
 			if (lettres->Mouse_pos_x > a->p->screenx && lettres->Mouse_pos_x < a->p->screenx + a->p->sizescreenx &&
 				lettres->Mouse_pos_y > a->p->screeny && lettres->Mouse_pos_y < a->p->screeny + a->p->sizescreeny)

@@ -1,5 +1,6 @@
 #pragma once
 #include "shared_var.h"
+#include "inventory/parse_equipement.h"
 
 struct building
 {
@@ -9,6 +10,7 @@ struct building
     int y;
     char skin[50];
     //
+    int inside;
     int sizex;
     int sizey;
     int enter;
@@ -18,3 +20,4 @@ struct building
 
 int append_building(char *line);
 int parse_building(struct building *b, char *line);
+struct building *find_building_by_id(int id);
