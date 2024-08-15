@@ -1,5 +1,5 @@
 #pragma once
-#define _POSIX_C_SOURCE 200112l
+#define _POSIX_C_SOURCE 200112L
 #include <errno.h>
 #include <fcntl.h>
 #include <stdio.h>
@@ -23,3 +23,5 @@
 #include "acount.h"
 #include "file.h"
 #include "collision.h"
+
+#undef _POSIX_C_SOURCE 

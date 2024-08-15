@@ -1,4 +1,3 @@
-#define _GNU_SOURCE
 #include "perso.h"
 
 void parse_order(char *line)

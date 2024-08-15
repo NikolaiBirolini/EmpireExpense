@@ -1,4 +1,3 @@
-#define _GNU_SOURCE
 #include "map_op.h"
 
 void save_map(void)
@@ -12,9 +11,9 @@ void save_map(void)
 struct personnages *init_map(void)
 {
     FILE *acount = fopen("map.txt", "r+");
-    char *line = NULL;
-    size_t len = 0;
-    while (getline(&line, &len, acount) > 0)
+    char line[500];
+    size_t len = 500;
+    while (fgets(line, len, acount))
     {
         if (line[0] == '1')
             append_building(line);
