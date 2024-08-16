@@ -19,10 +19,13 @@ void collision(void)
     {
         if (p->a_bouger == 1)
         {
-            if (allowed_to_move(p, p->x, p->y, p->moved_x, p->moved_y) == 1)
+            float alt = allowed_to_move(p, p->x, p->y, p->moved_x, p->moved_y);
+            if (alt != -1)
             {
                 p->x += p->moved_x;
                 p->y += p->moved_y;
+                p->altitude = alt;
+                printf ("%f\n", alt);
             }
             else
             {
@@ -40,16 +43,20 @@ void collision(void)
             float ld = (pp->x - pp->moved_x - p->x + p->moved_x)*(pp->x - pp->moved_x - p->x + p->moved_x) + (pp->y - pp->moved_y - p->y + p->moved_y)*(pp->y - pp->moved_y - p->y + p->moved_y);
             if (d <= ld && d < coo_circle(pp)+coo_circle(p)*coo_circle(pp)+coo_circle(p))
             {
-                if (allowed_to_move(p, p->x, p->y, pp->moved_x, pp->moved_y) == 1)
+                float alt = allowed_to_move(p, p->x, p->y, pp->moved_x, pp->moved_y);
+                if (alt != -1)
                 {
                     p->x += pp->moved_x;
                     p->y += pp->moved_y;
+                    p->altitude = alt;
                     p->a_bouger = 1; 
                 }
-                if (allowed_to_move(pp, pp->x, pp->y, p->moved_x, p->moved_y) == 1)
+                alt = allowed_to_move(pp, pp->x, pp->y, p->moved_x, p->moved_y);
+                if (alt != -1)
                 {
                     pp->x += p->moved_x;
                     pp->y += p->moved_y;
+                    pp->altitude = alt;
                     pp->a_bouger = 1;   
                 }
             }
@@ -62,22 +69,41 @@ void collision(void)
 }
 
 
-char allowed_to_move(struct personnages *perso, float x, float y, float mvx, float mvy) //1 allowed 0 not allowed
+float allowed_to_move(struct personnages *perso, float x, float y, float mvx, float mvy) //>=0 altitude you should be -1 not allowed 
 {
+    int src = (int)(y) * max_x + (int)(x);
+    int dst = (int)(y + mvy) * max_x + (int)(x + mvx);
+    int ga = (ground_altitude[dst]/19)*2;
+
     float r = coo_circle(perso);
     if (x + mvx - r < 0 || x + mvx + r > max_x || y + mvy - r < 0 || y + mvy + r > max_y)
-            return 0;
+            return -1;
     if (perso->inside == -1)
     {
-        enum Texture t = ground_texture[(int)(y + mvy) * max_x + (int)(x + mvx)];
-        if (t == ea1 || t == ea2 || t == ea3)
-            return 0;
-        if (ground_altitude[(int)(y) * max_x + (int)(x)] +  building_altitude[(int)(y) * max_x + (int)(x)] < ground_altitude[(int)(y + mvy) * max_x + (int)(x + mvx)] + building_altitude[(int)(y + mvy) * max_x + (int)(x + mvx)]- 30)
-            return 0;
+        if (ground_texture[dst] == ea1 || ground_texture[dst] == ea2 || ground_texture[dst] == ea3)
+            return -1;
+        if (building_altitude[dst] == NULL)
+        {
+            //printf ("test %f %f\n", perso->altitude, (float)ground_altitude[dst]/19- 1);
+
+            if (perso->altitude < (float)ground_altitude[dst]/19- 1)
+                return -1;
+            return (float)ground_altitude[dst]/19;
+        }
+        printf ("%d %d %d %d %d\n", building_altitude[dst][(int)(perso->altitude*2)-ga], building_altitude[dst][(int)(perso->altitude*2)+1-ga],building_altitude[dst][(int)(perso->altitude*2)+2-ga],building_altitude[dst][(int)(perso->altitude*2)+2-ga],building_altitude[dst][(int)(perso->altitude*2)+4-ga]);
+        if (building_altitude[dst][(int)(perso->altitude*2)+1-ga] != 0 || building_altitude[dst][(int)(perso->altitude*2)+2-ga] != 0 || building_altitude[dst][(int)(perso->altitude*2)+3-ga] != 0 || 
+        (building_altitude[dst][(int)(perso->altitude*2)-ga] != 0 && (building_altitude[dst][(int)(perso->altitude*2)+4-ga] != 0 || (building_altitude[src] != NULL && building_altitude[src][(int)(perso->altitude*2)+4-ga] != 0))))
+            return -1;
+        for (int i = (int)(perso->altitude*2); i>=0; i -= 1)
+            if (building_altitude[dst][i-ga]  == 1)
+                return (float)i/2 + 0.5;
+        return (float)ground_altitude[dst]/19;;
+
+        
     }
-    else {
+    /*else {
          if (building_id[(int)(y + mvy) * max_x + (int)(x + mvx)] != perso->inside)
             return 0;
-    }
+    }*/
     return 1;
 }

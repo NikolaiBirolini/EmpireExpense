@@ -36,7 +36,7 @@ void create_array(char *ground_string)
     i++;
     ground_texture = malloc(sizeof(enum Texture)*max_x*max_y);
     ground_altitude = malloc(sizeof(int)*max_x*max_y);
-    building_altitude = malloc(sizeof(int)*max_x*max_y);
+    building_altitude = malloc(sizeof(uint8_t*)*max_x*max_y);
     building_id = malloc(sizeof(int)*max_x*max_y);
     for (int j = 0; j < max_y*max_x; j++)
     {
@@ -134,6 +134,7 @@ void create_array(char *ground_string)
             i += 4;
         };
         ground_altitude[j] = atoi(ground_string + i);
+        building_id[j] = 0;
         while (ground_string[i] != ' ' && ground_string[i] != '\n' && ground_string[i] != 0)
                 i++;
             i++;
@@ -141,53 +142,3 @@ void create_array(char *ground_string)
     i++;
 }
 
-void actualise_building_altitude(void)
-{
-    for (int i = 0; i < max_y*max_x; i++)
-        building_altitude[i] = 0;
-    for (struct building *parcour = list_building; parcour != NULL; parcour = parcour->next)
-    {
-        if (strcmp(parcour->skin, "basic_wooden_house") == 0)
-        {
-            building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x)] = 77;
-            building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x)] = 77;
-            building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x)] = 77;
-            building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x-2)] = 77;
-            building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x-2)] = 77;
-            building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x-2)] = 77;
-            building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x)-1] = 144;
-            building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x)-1] = 144;
-            building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x)-1] = 144;
-            building_id[(int)(parcour->y) * max_x + (int)(parcour->x)] = parcour->id;
-            building_id[(int)(parcour->y-1) * max_x + (int)(parcour->x)] = parcour->id;
-            building_id[(int)(parcour->y-2) * max_x + (int)(parcour->x)] = parcour->id;
-            building_id[(int)(parcour->y) * max_x + (int)(parcour->x-2)] = parcour->id;
-            building_id[(int)(parcour->y-1) * max_x + (int)(parcour->x-2)] = parcour->id;
-            building_id[(int)(parcour->y-2) * max_x + (int)(parcour->x-2)] = parcour->id;
-            building_id[(int)(parcour->y) * max_x + (int)(parcour->x)-1] = parcour->id;
-            building_id[(int)(parcour->y-1) * max_x + (int)(parcour->x)-1] = parcour->id;
-            building_id[(int)(parcour->y-2) * max_x + (int)(parcour->x)-1] = parcour->id;
-
-        }
-        if (strcmp(parcour->skin, "basic_terracota_house") == 0)
-        {
-            building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x)] = 19;
-            building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x)] = 38;
-            building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x)] = 57;
-            building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x-2)] = 76;
-            building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x-2)] = 76;
-            building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x-2)] = 76;
-            building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x)-1] = 100;
-            building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x)-1] = 76;
-            building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x)-1] = 76;
-            building_id[(int)(parcour->y) * max_x + (int)(parcour->x-2)] = parcour->id;
-            building_id[(int)(parcour->y-1) * max_x + (int)(parcour->x-2)] = parcour->id;
-            building_id[(int)(parcour->y-2) * max_x + (int)(parcour->x-2)] = parcour->id;
-            building_id[(int)(parcour->y) * max_x + (int)(parcour->x)-1] = parcour->id;
-            building_id[(int)(parcour->y-1) * max_x + (int)(parcour->x)-1] = parcour->id;
-            building_id[(int)(parcour->y-2) * max_x + (int)(parcour->x)-1] = parcour->id;
-        }
-
-    }
-    should_i_actualise_building_altitude = 0;
-}

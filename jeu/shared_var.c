@@ -22,5 +22,5 @@ struct textInput  *text;
 char should_i_call_my_computer_work;
 char should_i_actualise_building_altitude;
 struct personnages *moi;
-int *building_altitude;
+uint8_t **building_altitude;
 int *building_id;

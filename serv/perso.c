@@ -111,7 +111,7 @@ void parse_order(char *line)
                     while(line[i] != ' ')
                         i++;
                     i++;
-                    break;
+                    break;    
                 case 9:
                     p->inside = atoi(&line[i]);
                     while(line[i] != ' ')
@@ -392,8 +392,8 @@ int parse_new(struct personnages *p, char *line)
     int j;
     char tmpI[10];
     char tmpN[50];
-    sscanf(line, "%d %d %d %s %f %f %f %f %c %d %d %d %s %s %s %s %d %s %s %d %s %d %d %d %c %s %s %s %s %s %s %n", 
-    &p->skin, &p->id, &p->pv, p->nom_de_compte, &p->x, &p->y, &p->ordrex, &p->ordrey, &p->angle, &p->timer_dom, &p->faim, &p->inside, p->nom, 
+    sscanf(line, "%d %d %d %s %f %f %f %f %f %c %d %d %d %s %s %s %s %d %s %s %d %s %d %d %d %c %s %s %s %s %s %s %n", 
+    &p->skin, &p->id, &p->pv, p->nom_de_compte, &p->x, &p->y, &p->altitude, &p->ordrex, &p->ordrey, &p->angle, &p->timer_dom, &p->faim, &p->inside, p->nom, 
     p->nom_superieur, p->titre, p->religion, &p->nb_vassaux, p->echange_player, p->item1, &p->count_item1, p->item2, &p->count_item2, &p->animation, &p->animation_2, 
     &p->chemin_is_set, p->left_hand, p->right_hand, p->headgear, p->tunic, p->pant, p->shoes, &i);
     i += 1;

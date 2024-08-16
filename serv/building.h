@@ -15,3 +15,4 @@ struct building
 
 int append_building(char *line);
 int parse_new_building(struct building *b, char *line);
+void actualise_building_altitude(void);

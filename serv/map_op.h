@@ -7,7 +7,6 @@
 void save_map(void);
 struct personnages *init_map(void);
 void create_array(char *ground_string);
-void actualise_building_altitude(void);
 
 enum Texture {
   ea1,

@@ -18,6 +18,7 @@ struct personnages
     char nom_de_compte[50];
     float x;
     float y;
+    float altitude;
     float ordrex;
     float ordrey;
     char angle;

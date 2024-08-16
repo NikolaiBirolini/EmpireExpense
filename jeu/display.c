@@ -68,7 +68,10 @@ void display_all(void)
 	int yfrom = 0;
     int xfrom = -1;
 	for (struct to_disp *parcour = list_disp; parcour != NULL; parcour=parcour->next)
-	{	
+	{
+		int altitude = ground_altitude[(int)parcour->x + (int)parcour->y * max_x];
+		if (parcour->p != NULL)
+			altitude = parcour->p->altitude*19;
 		if (moi->inside == -1)
 			display_ground(xfrom, yfrom, (int)parcour->x, (int)parcour->y);
 		xfrom = (int)parcour->x;
@@ -76,9 +79,9 @@ void display_all(void)
 		SDL_QueryTexture(parcour->img, NULL, NULL, &position.w, &position.h);
 
 		position.x = (parcour->x - moi->x - parcour->y + moi->y) * 34 + parcour->offset_x - position.w/2;
-		position.y = (parcour->x - moi->x + parcour->y - moi->y) * 17 + parcour->offset_y - position.h - ground_altitude[(int)parcour->x + (int)parcour->y * max_x];
+		position.y = (parcour->x - moi->x + parcour->y - moi->y) * 17 + parcour->offset_y - position.h - altitude;
 		if (parcour->floor == 1 && moi->inside == -1)
-			position.y -= building_altitude[(int)parcour->x + (int)parcour->y * max_x];
+			position.y -= altitude;
 
 		if (parcour->p != NULL)
 		{
