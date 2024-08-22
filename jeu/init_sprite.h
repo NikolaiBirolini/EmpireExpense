@@ -189,7 +189,8 @@ struct skin
     SDL_Texture *terracotta_house_3x3_inside5;
     SDL_Texture *terracotta_house_3x3_inside6;
 
-
+    SDL_Texture *bridgeSlab;
+    SDL_Texture *bridgePillar;
 };
 
 struct gui_sprite

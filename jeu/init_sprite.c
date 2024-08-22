@@ -721,6 +721,17 @@ struct skin *init_skin()
     to_return->terracotta_house_3x3_inside6 = SDL_CreateTextureFromSurface(renderer, a);
     SDL_FreeSurface(a);
 
+    a = SDL_LoadBMP("img/batiments/bridges/pillar.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->bridgePillar = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+    a = SDL_LoadBMP("img/batiments/bridges/slab.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->bridgeSlab = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
     return to_return;
 }
 

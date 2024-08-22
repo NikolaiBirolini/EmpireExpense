@@ -497,4 +497,73 @@ void init_stat_building(struct building *b)
 		new9->b = b;
 		sortedInsert(new9);	
 	}
+	else if (strcmp(b->skin, "bridge_5_x") == 0)
+	{
+		b->enter = b->x + b->y * max_x;
+		b->exit = b->y * max_x + b->x -1;
+		struct to_disp *new = malloc(sizeof(struct to_disp));
+		new->img = img->s->bridgePillar;
+		new->x = b->x;
+		new->y = b->y;
+		new->id = b->id;
+		new->floor = 0;
+		new->offset_x = 900;
+		new->offset_y = 484;
+		new->next = NULL;
+		new->p = NULL;
+		new->b = b;
+		sortedInsert(new);
+
+		struct to_disp *new2 = malloc(sizeof(struct to_disp));
+		new2->img = img->s->bridgePillar;
+		new2->x = b->x+4;
+		new2->y = b->y;
+		new2->id = b->id;
+		new2->floor = 0;
+		new2->offset_x = 900;
+		new2->offset_y = 484;
+		new2->next = NULL;
+		new2->p = NULL;
+		new2->b = b;
+		sortedInsert(new2);
+
+		struct to_disp *new3 = malloc(sizeof(struct to_disp));
+		new3->img = img->s->bridgeSlab;
+		new3->x = b->x+1;
+		new3->y = b->y;
+		new3->id = b->id;
+		new3->floor = 0;
+		new3->offset_x = 900;
+		new3->offset_y = 408;
+		new3->next = NULL;
+		new3->p = NULL;
+		new3->b = b;
+		sortedInsert(new3);
+
+		struct to_disp *new4 = malloc(sizeof(struct to_disp));
+		new4->img = img->s->bridgeSlab;
+		new4->x = b->x+2;
+		new4->y = b->y;
+		new4->id = b->id;
+		new4->floor = 0;
+		new4->offset_x = 900;
+		new4->offset_y = 408;
+		new4->next = NULL;
+		new4->p = NULL;
+		new4->b = b;
+		sortedInsert(new4);
+
+		struct to_disp *new5 = malloc(sizeof(struct to_disp));
+		new5->img = img->s->bridgeSlab;
+		new5->x = b->x+3;
+		new5->y = b->y;
+		new5->id = b->id;
+		new5->floor = 0;
+		new5->offset_x = 900;
+		new5->offset_y = 408;
+		new5->next = NULL;
+		new5->p = NULL;
+		new5->b = b;
+		sortedInsert(new5);
+	}
 }

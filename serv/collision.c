@@ -25,7 +25,6 @@ void collision(void)
                 p->x += p->moved_x;
                 p->y += p->moved_y;
                 p->altitude = alt;
-                printf ("%f\n", alt);
             }
             else
             {
@@ -65,7 +64,23 @@ void collision(void)
         p->moved_y = 0;
         
     }
-
+    for (struct personnages *p = list; p != NULL; p=p->next)
+    {
+        if (p->a_bouger == 1)
+        {
+            int src = (int)p->y * max_x + (int)p->x;
+	        int ga = (ground_altitude[src]/19)*2;
+	        if (p->inside == -1) 
+	        {
+		        if (building_altitude[src] != NULL && (building_altitude[src][(int)(p->altitude*2)-ga]/10) % 10 == 1) 
+		        {
+			        p->inside = building_id[src]; 
+		        }
+            }
+	        else if (building_id[src] == -1 || (building_altitude[src][(int)(p->altitude*2)-ga]/10) % 10 == 0)
+			    p->inside = -1; 
+	    }	
+    }
 }
 
 
@@ -84,22 +99,35 @@ float allowed_to_move(struct personnages *perso, float x, float y, float mvx, fl
             return -1;
         if (building_altitude[dst] == NULL)
         {
-            //printf ("test %f %f\n", perso->altitude, (float)ground_altitude[dst]/19- 1);
-
-            if (perso->altitude < (float)ground_altitude[dst]/19- 1)
+            if (perso->altitude < (float)ground_altitude[dst]/38- 1)
                 return -1;
-            return (float)ground_altitude[dst]/19;
+            return (float)ground_altitude[dst]/38;
         }
-        printf ("%d %d %d %d %d\n", building_altitude[dst][(int)(perso->altitude*2)-ga], building_altitude[dst][(int)(perso->altitude*2)+1-ga],building_altitude[dst][(int)(perso->altitude*2)+2-ga],building_altitude[dst][(int)(perso->altitude*2)+2-ga],building_altitude[dst][(int)(perso->altitude*2)+4-ga]);
-        if (building_altitude[dst][(int)(perso->altitude*2)+1-ga] != 0 || building_altitude[dst][(int)(perso->altitude*2)+2-ga] != 0 || building_altitude[dst][(int)(perso->altitude*2)+3-ga] != 0 || 
-        (building_altitude[dst][(int)(perso->altitude*2)-ga] != 0 && (building_altitude[dst][(int)(perso->altitude*2)+4-ga] != 0 || (building_altitude[src] != NULL && building_altitude[src][(int)(perso->altitude*2)+4-ga] != 0))))
+        //printf ("%d %d %d %d %d\n", building_altitude[dst][(int)(perso->altitude*2)-ga], building_altitude[dst][(int)(perso->altitude*2)+1-ga],building_altitude[dst][(int)(perso->altitude*2)+2-ga],building_altitude[dst][(int)(perso->altitude*2)+2-ga],building_altitude[dst][(int)(perso->altitude*2)+4-ga]);
+        if (building_altitude[dst][(int)(perso->altitude*2)+1-ga]/100 == 1 || building_altitude[dst][(int)(perso->altitude*2)+2-ga]/100 == 1 || building_altitude[dst][(int)(perso->altitude*2)+3-ga]/100 == 1 || 
+        (building_altitude[dst][(int)(perso->altitude*2)-ga]/100 == 1 && (building_altitude[dst][(int)(perso->altitude*2)+4-ga]/100 == 1 || (building_altitude[src] != NULL && building_altitude[src][(int)(perso->altitude*2)+4-ga]/100 == 1))))
             return -1;
         for (int i = (int)(perso->altitude*2); i>=0; i -= 1)
-            if (building_altitude[dst][i-ga]  == 1)
+            if (building_altitude[dst][i-ga]/100  != 0)
                 return (float)i/2 + 0.5;
-        return (float)ground_altitude[dst]/19;;
-
-        
+        return (float)ground_altitude[dst]/38;
+    }
+    else {
+        if (building_id[dst] != perso->inside && (building_altitude[src][(int)(perso->altitude*2)+1-ga]/100 == 1 || building_altitude[src][(int)(perso->altitude*2)+2-ga]/100 == 1 || building_altitude[src][(int)(perso->altitude*2)+3-ga]/100 == 1))
+            return -1;
+        if (building_altitude[dst] == NULL)
+        {
+            if (perso->altitude < (float)ground_altitude[dst]/38- 1)
+                return -1;
+            return (float)ground_altitude[dst]/38;
+        }
+        if (building_altitude[dst][(int)(perso->altitude*2)+1-ga]%10 == 1 || building_altitude[dst][(int)(perso->altitude*2)+2-ga]%10 == 1 || building_altitude[dst][(int)(perso->altitude*2)+3-ga]%10 == 1 || 
+        (building_altitude[dst][(int)(perso->altitude*2)-ga]%10 == 1 && (building_altitude[dst][(int)(perso->altitude*2)+4-ga]%10 == 1 || (building_altitude[src] != NULL && building_altitude[src][(int)(perso->altitude*2)+4-ga]%10 == 1))))
+            return -1;
+        for (int i = (int)(perso->altitude*2); i>=0; i -= 1)
+            if (building_altitude[dst][i-ga]%10  != 0)
+                return (float)i/2 + 0.5;
+        return (float)ground_altitude[dst]/38;
     }
     /*else {
          if (building_id[(int)(y + mvy) * max_x + (int)(x + mvx)] != perso->inside)

@@ -36,7 +36,7 @@ void create_array(char *ground_string)
     i++;
     ground_texture = malloc(sizeof(enum Texture)*max_x*max_y);
     ground_altitude = malloc(sizeof(int)*max_x*max_y);
-    building_altitude = malloc(sizeof(uint8_t*)*max_x*max_y);
+    building_altitude = calloc(max_x*max_y, sizeof(uint8_t*));
     building_id = malloc(sizeof(int)*max_x*max_y);
     for (int j = 0; j < max_y*max_x; j++)
     {
@@ -134,7 +134,7 @@ void create_array(char *ground_string)
             i += 4;
         };
         ground_altitude[j] = atoi(ground_string + i);
-        building_id[j] = 0;
+        building_id[j] = -1;
         while (ground_string[i] != ' ' && ground_string[i] != '\n' && ground_string[i] != 0)
                 i++;
             i++;
