@@ -161,7 +161,7 @@ void boucle_jeu(int socket, char *name)
 	    fix_some_shit();
 	    send_orders(socket);
 	    recv_order(socket);
-        //printf ("%f %f %f\n", moi->x, moi->y,moi->altitude);
+        printf ("%f %f %f\n", moi->x, moi->y,moi->altitude);
         for (int i = 0; 11>i;i++)
         {
             //  printf ("%d\n", i);ss

@@ -1,4 +1,4 @@
-0 0 10 thyma 3.000000 3.00000 0.5 -1.000000 908.785156 a 0 99999 -1 thyma thyma none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty test [] []
+0 0 10 thyma 3.000000 18.00000 0.5 -1.000000 908.785156 a 0 99999 -1 thyma thyma none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty test [] []
 0 5 10 niko 7.00000 15.000000 2 -1.000000 908.785156 a 0 9999 -1 niko niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] []
 0 6 10 none 7.00000 13.000000 2 -1.000000 908.785156 a 0 9999 -1 babar niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] []
 0 7 10 none 7.00000 11.000000 2 -1.000000 908.785156 a 0 9999 -1 nigar niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] []

@@ -69,7 +69,7 @@ void collision(void)
         if (p->a_bouger == 1)
         {
             int src = (int)p->y * max_x + (int)p->x;
-	        int ga = (ground_altitude[src]/19)*2;
+	        int ga = (ground_altitude[src]/38)*2;
 	        if (p->inside == -1) 
 	        {
 		        if (building_altitude[src] != NULL && (building_altitude[src][(int)(p->altitude*2)-ga]/10) % 10 == 1) 
@@ -88,7 +88,7 @@ float allowed_to_move(struct personnages *perso, float x, float y, float mvx, fl
 {
     int src = (int)(y) * max_x + (int)(x);
     int dst = (int)(y + mvy) * max_x + (int)(x + mvx);
-    int ga = (ground_altitude[dst]/19)*2;
+    int ga = (ground_altitude[dst]/38)*2;
 
     float r = coo_circle(perso);
     if (x + mvx - r < 0 || x + mvx + r > max_x || y + mvy - r < 0 || y + mvy + r > max_y)
@@ -103,7 +103,8 @@ float allowed_to_move(struct personnages *perso, float x, float y, float mvx, fl
                 return -1;
             return (float)ground_altitude[dst]/38;
         }
-        //printf ("%d %d %d %d %d\n", building_altitude[dst][(int)(perso->altitude*2)-ga], building_altitude[dst][(int)(perso->altitude*2)+1-ga],building_altitude[dst][(int)(perso->altitude*2)+2-ga],building_altitude[dst][(int)(perso->altitude*2)+2-ga],building_altitude[dst][(int)(perso->altitude*2)+4-ga]);
+        if ((perso->altitude < (float)ground_altitude[dst]/38- 2 && building_altitude[dst][0] == 1) || perso->altitude < (float)ground_altitude[dst]/38- 1)
+            return -1;
         if (building_altitude[dst][(int)(perso->altitude*2)+1-ga]/100 == 1 || building_altitude[dst][(int)(perso->altitude*2)+2-ga]/100 == 1 || building_altitude[dst][(int)(perso->altitude*2)+3-ga]/100 == 1 || 
         (building_altitude[dst][(int)(perso->altitude*2)-ga]/100 == 1 && (building_altitude[dst][(int)(perso->altitude*2)+4-ga]/100 == 1 || (building_altitude[src] != NULL && building_altitude[src][(int)(perso->altitude*2)+4-ga]/100 == 1))))
             return -1;
