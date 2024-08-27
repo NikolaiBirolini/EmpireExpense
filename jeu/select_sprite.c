@@ -44,7 +44,223 @@ SDL_Texture *select_good_img(int skin, float angle, int animation)
 				return img->s->drapeauBlancDosGauche;
 			break;
 		case 12:
+		    animation = animation % 6;
 			if (animation == 0)
+			{
+				if (angle == 'a') // W
+					return img->s->littleManEmptyStuff_walking_downLeft_1;
+				else if (angle == 'b') // E
+					return img->s->littleManEmptyStuff_walking_upRight_1;
+				else if (angle == 'd') // D
+					return img->s->littleManEmptyStuff_walking_right_1;
+				else if (angle == 'e') // C
+					return img->s->littleManEmptyStuff_walking_downRight_1;
+				else if (angle == 'g') // X
+					return img->s->littleManEmptyStuff_walking_down_1;
+				else if (angle == 'h') // Z
+					return img->s->littleManEmptyStuff_walking_up_1;
+				else if (angle == 'j') // Q
+					return img->s->littleManEmptyStuff_walking_left_1;
+				else if (angle == 'k') // A
+					return img->s->littleManEmptyStuff_walking_upLeft_1;
+			}
+			else if (animation == 1)
+			{
+				if (angle == 'a') // W
+					return img->s->littleManEmptyStuff_walking_downLeft_2;
+				else if (angle == 'b') // E
+					return img->s->littleManEmptyStuff_walking_upRight_2;
+				else if (angle == 'd') // D
+					return img->s->littleManEmptyStuff_walking_right_2;
+				else if (angle == 'e') // C
+					return img->s->littleManEmptyStuff_walking_downRight_2;
+				else if (angle == 'g') // X
+					return img->s->littleManEmptyStuff_walking_down_2;
+				else if (angle == 'h') // Z
+					return img->s->littleManEmptyStuff_walking_upLeft_2;
+				else if (angle == 'j') // Q
+					return img->s->littleManEmptyStuff_walking_left_2;
+				else if (angle == 'k') // A
+					return img->s->littleManEmptyStuff_walking_upLeft_2;
+			}
+			else if (animation == 2)
+			{
+				if (angle == 'a') // W
+					return img->s->littleManEmptyStuff_walking_downLeft_3;
+				else if (angle == 'b') // E
+					return img->s->littleManEmptyStuff_walking_upRight_3;
+				else if (angle == 'd') // D
+					return img->s->littleManEmptyStuff_walking_right_3;
+				else if (angle == 'e') // C
+					return img->s->littleManEmptyStuff_walking_downRight_3;
+				else if (angle == 'g') // X
+					return img->s->littleManEmptyStuff_walking_down_3;
+				else if (angle == 'h') // Z
+					return img->s->littleManEmptyStuff_walking_up_3;
+				else if (angle == 'j') // Q
+					return img->s->littleManEmptyStuff_walking_left_3;
+				else if (angle == 'k') // A
+					return img->s->littleManEmptyStuff_walking_upLeft_3;
+			}
+			else if (animation == 3)
+			{
+				if (angle == 'a') // W
+					return img->s->littleManEmptyStuff_walking_downLeft_4;
+				else if (angle == 'b') // E
+					return img->s->littleManEmptyStuff_walking_upRight_4;
+				else if (angle == 'd') // D
+					return img->s->littleManEmptyStuff_walking_right_4;
+				else if (angle == 'e') // C
+					return img->s->littleManEmptyStuff_walking_downRight_4;
+				else if (angle == 'g') // X
+					return img->s->littleManEmptyStuff_walking_down_4;
+				else if (angle == 'h') // Z
+					return img->s->littleManEmptyStuff_walking_up_4;
+				else if (angle == 'j') // Q
+					return img->s->littleManEmptyStuff_walking_left_4;
+				else if (angle == 'k') // A
+					return img->s->littleManEmptyStuff_walking_upLeft_4;
+			}
+			else if (animation == 4)
+			{
+				if (angle == 'a') // W
+					return img->s->littleManEmptyStuff_walking_downLeft_5;
+				else if (angle == 'b') // E
+					return img->s->littleManEmptyStuff_walking_upRight_5;
+				else if (angle == 'd') // D
+					return img->s->littleManEmptyStuff_walking_right_5;
+				else if (angle == 'e') // C
+					return img->s->littleManEmptyStuff_walking_downRight_5;
+				else if (angle == 'g') // X
+					return img->s->littleManEmptyStuff_walking_down_5;
+				else if (angle == 'h') // Z
+					return img->s->littleManEmptyStuff_walking_up_5;
+				else if (angle == 'j') // Q
+					return img->s->littleManEmptyStuff_walking_left_5;
+				else if (angle == 'k') // A
+					return img->s->littleManEmptyStuff_walking_upLeft_5;
+			}
+			else
+			{
+				if (angle == 'a') // W
+					return img->s->littleManEmptyStuff_walking_downLeft_6;
+				else if (angle == 'b') // E
+					return img->s->littleManEmptyStuff_walking_upRight_6;
+				else if (angle == 'd') // D
+					return img->s->littleManEmptyStuff_walking_right_6;
+				else if (angle == 'e') // C
+					return img->s->littleManEmptyStuff_walking_downRight_6;
+				else if (angle == 'g') // X
+					return img->s->littleManEmptyStuff_walking_down_6;
+				else if (angle == 'h') // Z
+					return img->s->littleManEmptyStuff_walking_up_6;
+				else if (angle == 'j') // Q
+					return img->s->littleManEmptyStuff_walking_left_6;
+				else if (angle == 'k') // A
+					return img->s->littleManEmptyStuff_walking_upLeft_6;
+			}
+			break;
+		case 11:
+		    animation = animation % 5;
+			if (animation == 0)
+			{
+				if (angle == 'a')
+					return img->s->hoArDoMa1;
+				else if (angle == 'b')
+					return img->s->hoArDdMa1;
+				else if (angle == 'c')
+					return img->s->hoArDrMa1;
+				else if (angle == 'd')
+					return img->s->hoArDfMa1;
+				else if (angle == 'e')
+					return img->s->hoArFaMa1;
+				else if (angle == 'f')
+					return img->s->hoArGfMa1;
+				else if (angle == 'g')
+					return img->s->hoArGaMa1;
+				else if (angle == 'h')
+					return img->s->hoArGdMa1;
+			}
+			else if (animation == 2)
+			{
+				if (angle == 'a')
+					return img->s->hoArDoMa2;
+				else if (angle == 'b')
+					return img->s->hoArDdMa2;
+				else if (angle == 'c')
+					return img->s->hoArDrMa2;
+				else if (angle == 'd')
+					return img->s->hoArDfMa2;
+				else if (angle == 'e')
+					return img->s->hoArFaMa2;
+				else if (angle == 'f')
+					return img->s->hoArGfMa2;
+				else if (angle == 'g')
+					return img->s->hoArGaMa2;
+				else if (angle == 'h')
+					return img->s->hoArGdMa2;
+			}
+			else if (animation == 3)
+			{
+				if (angle == 'a')
+					return img->s->hoArDoMa3;
+				else if (angle == 'b')
+					return img->s->hoArDdMa3;
+				else if (angle == 'c')
+					return img->s->hoArDrMa3;
+				else if (angle == 'd')
+					return img->s->hoArDfMa3;
+				else if (angle == 'e')
+					return img->s->hoArFaMa3;
+				else if (angle == 'f')
+					return img->s->hoArGfMa3;
+				else if (angle == 'g')
+					return img->s->hoArGaMa3;
+				else if (angle == 'h')
+					return img->s->hoArGdMa3;
+			}
+			else if (animation == 4)
+			{
+				if (angle == 'a')
+					return img->s->hoArDoMa4;
+				else if (angle == 'b')
+					return img->s->hoArDdMa4;
+				else if (angle == 'c')
+					return img->s->hoArDrMa4;
+				else if (angle == 'd')
+					return img->s->hoArDfMa4;
+				else if (angle == 'e')
+					return img->s->hoArFaMa4;
+				else if (angle == 'f')
+					return img->s->hoArGfMa4;
+				else if (angle == 'g')
+					return img->s->hoArGaMa4;
+				else if (angle == 'h')
+					return img->s->hoArGdMa4;
+			}
+			else
+			{
+				if (angle == 'b')
+					return img->s->hoArDoMa5;
+				else if (angle == 'b')
+					return img->s->hoArDdMa5;
+				else if (angle == 'c')
+					return img->s->hoArDrMa5;
+				else if (angle == 'd')
+					return img->s->hoArDfMa5;
+				else if (angle == 'e')
+					return img->s->hoArFaMa5;
+				else if (angle == 'f')
+					return img->s->hoArGfMa5;
+				else if (angle == 'g')
+					return img->s->hoArGaMa5;
+				else if (angle == 'h')
+					return img->s->hoArGdMa5;
+			}
+			break;
+		case 13:
+		    animation = animation % 5;
+		    if (animation == 0)
 			{
 				if (angle == 'a')
 					return img->s->hoFaDoRien;
@@ -207,102 +423,6 @@ SDL_Texture *select_good_img(int skin, float angle, int animation)
 					return img->s->hoFaDoGaMa5;
 			}
 			break;
-		case 11:
-			if (animation == 0)
-			{
-				if (angle == 'a')
-					return img->s->hoArDoMa1;
-				else if (angle == 'b')
-					return img->s->hoArDdMa1;
-				else if (angle == 'c')
-					return img->s->hoArDrMa1;
-				else if (angle == 'd')
-					return img->s->hoArDfMa1;
-				else if (angle == 'e')
-					return img->s->hoArFaMa1;
-				else if (angle == 'f')
-					return img->s->hoArGfMa1;
-				else if (angle == 'g')
-					return img->s->hoArGaMa1;
-				else if (angle == 'h')
-					return img->s->hoArGdMa1;
-			}
-			else if (animation == 2)
-			{
-				if (angle == 'a')
-					return img->s->hoArDoMa2;
-				else if (angle == 'b')
-					return img->s->hoArDdMa2;
-				else if (angle == 'c')
-					return img->s->hoArDrMa2;
-				else if (angle == 'd')
-					return img->s->hoArDfMa2;
-				else if (angle == 'e')
-					return img->s->hoArFaMa2;
-				else if (angle == 'f')
-					return img->s->hoArGfMa2;
-				else if (angle == 'g')
-					return img->s->hoArGaMa2;
-				else if (angle == 'h')
-					return img->s->hoArGdMa2;
-			}
-			else if (animation == 3)
-			{
-				if (angle == 'a')
-					return img->s->hoArDoMa3;
-				else if (angle == 'b')
-					return img->s->hoArDdMa3;
-				else if (angle == 'c')
-					return img->s->hoArDrMa3;
-				else if (angle == 'd')
-					return img->s->hoArDfMa3;
-				else if (angle == 'e')
-					return img->s->hoArFaMa3;
-				else if (angle == 'f')
-					return img->s->hoArGfMa3;
-				else if (angle == 'g')
-					return img->s->hoArGaMa3;
-				else if (angle == 'h')
-					return img->s->hoArGdMa3;
-			}
-			else if (animation == 4)
-			{
-				if (angle == 'a')
-					return img->s->hoArDoMa4;
-				else if (angle == 'b')
-					return img->s->hoArDdMa4;
-				else if (angle == 'c')
-					return img->s->hoArDrMa4;
-				else if (angle == 'd')
-					return img->s->hoArDfMa4;
-				else if (angle == 'e')
-					return img->s->hoArFaMa4;
-				else if (angle == 'f')
-					return img->s->hoArGfMa4;
-				else if (angle == 'g')
-					return img->s->hoArGaMa4;
-				else if (angle == 'h')
-					return img->s->hoArGdMa4;
-			}
-			else
-			{
-				if (angle == 'b')
-					return img->s->hoArDoMa5;
-				else if (angle == 'b')
-					return img->s->hoArDdMa5;
-				else if (angle == 'c')
-					return img->s->hoArDrMa5;
-				else if (angle == 'd')
-					return img->s->hoArDfMa5;
-				else if (angle == 'e')
-					return img->s->hoArFaMa5;
-				else if (angle == 'f')
-					return img->s->hoArGfMa5;
-				else if (angle == 'g')
-					return img->s->hoArGaMa5;
-				else if (angle == 'h')
-					return img->s->hoArGdMa5;
-			}
 	}
 	return img->s->hoArGdMa5;
 }

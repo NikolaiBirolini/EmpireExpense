@@ -55,7 +55,7 @@ void actualise_stat(struct personnages *p)
 		{
 			porte_dom = 20;
 			dom = 7;
-			new->img = select_good_img(12, p->angle, p->animation);
+			new->img = select_good_img(13, p->angle, p->animation);
 		}
 		else // default 
 		{

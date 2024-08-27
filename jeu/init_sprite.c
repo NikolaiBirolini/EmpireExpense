@@ -628,6 +628,533 @@ struct skin *init_skin()
     to_return->arbre1 = SDL_CreateTextureFromSurface(renderer, a);
     SDL_FreeSurface(a);
 
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_down_1.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_down_1 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_down_2.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_down_2 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_down_3.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_down_3 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_down_4.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_down_4 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_up_1.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_up_1 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_up_2.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_up_2 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_up_3.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_up_3 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_up_4.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_up_4 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_up_left_1.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_upLeft_1 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_up_left_2.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_upLeft_2 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_up_left_3.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_upLeft_3 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_up_left_4.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_upLeft_4 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_up_right_1.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_upRight_1 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_up_right_2.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_upRight_2 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_up_right_3.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_upRight_3 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_up_right_4.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_upRight_4 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_down_left_1.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_downLeft_1 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_down_left_2.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_downLeft_2 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_down_left_3.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_downLeft_3 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_down_left_4.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_downLeft_4 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_down_right_1.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_downRight_1 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_down_right_2.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_downRight_2 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_down_right_3.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_downRight_3 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_down_right_4.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_downRight_4 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_right_1.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_right_1 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_right_2.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_right_2 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_right_3.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_right_3 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_right_4.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_right_4 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_left_1.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_left_1 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_left_2.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_left_2 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_left_3.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_left_3 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/punch_left_4.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_punching_left_4 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/stand_down.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_standing_down = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/stand_down_left.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_standing_downLeft = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/stand_down_right.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_standing_downRight = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/stand_down.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_standing_down = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/stand_down_left.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_standing_downLeft = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/stand_up.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_standing_up = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/stand_up_left.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_standing_upLeft = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/stand_up_right.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_standing_upRight = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_down_1.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_down_1 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_down_2.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_down_2 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_down_3.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_down_3 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_down_4.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_down_4 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_down_5.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_down_5 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_down_6.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_down_6 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_down_left_1.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_downLeft_1 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_down_left_2.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_downLeft_2 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_down_left_3.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_downLeft_3 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_down_left_4.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_downLeft_4 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_down_left_5.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_downLeft_5 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_down_left_6.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_downLeft_6 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_down_right_1.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_downRight_1 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_down_right_2.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_downRight_2 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_down_right_3.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_downRight_3 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_down_right_4.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_downRight_4 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_down_right_5.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_downRight_5 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_down_right_6.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_downRight_6 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_left_1.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_left_1 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_left_2.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_left_2 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_left_3.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_left_3 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_left_4.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_left_4 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_left_5.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_left_5 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_left_6.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_left_6 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_right_1.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_right_1 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_right_2.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_right_2 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_right_3.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_right_3 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_right_4.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_right_4 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_right_5.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_right_5 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_right_6.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_right_6 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_up_1.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_up_1 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_up_2.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_up_2 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_up_3.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_up_3 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_up_4.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_up_4 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_up_5.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_up_5 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_up_6.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_up_6 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_up_left_1.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_upLeft_1 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_up_left_2.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_upLeft_2 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_up_left_3.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_upLeft_3 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_up_left_4.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_upLeft_4 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_up_left_5.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_upLeft_5 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_up_left_6.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_upLeft_6 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_up_right_1.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_upRight_1 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_up_right_2.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_upRight_2 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_up_right_3.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_upRight_3 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_up_right_4.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_upRight_4 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_up_right_5.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_upRight_5 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
+
+    a = SDL_LoadBMP("img/homme/little/no-stuff/walk_up_right_6.bmp");
+    SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
+    a = SDL_ConvertSurfaceFormat(a, SDL_GetWindowPixelFormat(window), 0);
+    to_return->littleManEmptyStuff_walking_upRight_6 = SDL_CreateTextureFromSurface(renderer, a);
+    SDL_FreeSurface(a);
    
     a = SDL_LoadBMP("img/batiments/3x3_wooden_house/faceline1.bmp");
     SDL_SetColorKey(a, SDL_SCANCODE_Y, SDL_MapRGB(a->format,255,255,255));
