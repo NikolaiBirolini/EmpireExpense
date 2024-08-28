@@ -60,9 +60,9 @@ SDL_Texture *select_good_img(int skin, float angle, int animation)
 				else if (angle == 'h') // Z
 					return img->s->littleManEmptyStuff_walking_downLeft_1;
 				else if (angle == 'j') // Q
-					return img->s->littleManEmptyStuff_walking_left_1;
-				else if (angle == 'k') // A
 					return img->s->littleManEmptyStuff_walking_upLeft_1;
+				else if (angle == 'k') // A
+					return img->s->littleManEmptyStuff_walking_left_1;
 			}
 			else if (animation == 1)
 			{
@@ -79,9 +79,9 @@ SDL_Texture *select_good_img(int skin, float angle, int animation)
 				else if (angle == 'h') // Z
 					return img->s->littleManEmptyStuff_walking_downLeft_2;
 				else if (angle == 'j') // Q
-					return img->s->littleManEmptyStuff_walking_left_2;
-				else if (angle == 'k') // A
 					return img->s->littleManEmptyStuff_walking_upLeft_2;
+				else if (angle == 'k') // A
+					return img->s->littleManEmptyStuff_walking_left_2;
 			}
 			else if (animation == 2)
 			{
@@ -98,9 +98,9 @@ SDL_Texture *select_good_img(int skin, float angle, int animation)
 				else if (angle == 'h') // Z
 					return img->s->littleManEmptyStuff_walking_downLeft_3;
 				else if (angle == 'j') // Q
-					return img->s->littleManEmptyStuff_walking_left_3;
-				else if (angle == 'k') // A
 					return img->s->littleManEmptyStuff_walking_upLeft_3;
+				else if (angle == 'k') // A
+					return img->s->littleManEmptyStuff_walking_left_3;
 			}
 			else if (animation == 3)
 			{
@@ -117,9 +117,9 @@ SDL_Texture *select_good_img(int skin, float angle, int animation)
 				else if (angle == 'h') // Z
 					return img->s->littleManEmptyStuff_walking_downLeft_4;
 				else if (angle == 'j') // Q
-					return img->s->littleManEmptyStuff_walking_left_4;
-				else if (angle == 'k') // A
 					return img->s->littleManEmptyStuff_walking_upLeft_4;
+				else if (angle == 'k') // A
+					return img->s->littleManEmptyStuff_walking_left_4;
 			}
 			else if (animation == 4)
 			{
@@ -136,9 +136,9 @@ SDL_Texture *select_good_img(int skin, float angle, int animation)
 				else if (angle == 'h') // Z
 					return img->s->littleManEmptyStuff_walking_downLeft_5;
 				else if (angle == 'j') // Q
-					return img->s->littleManEmptyStuff_walking_left_5;
-				else if (angle == 'k') // A
 					return img->s->littleManEmptyStuff_walking_upLeft_5;
+				else if (angle == 'k') // A
+					return img->s->littleManEmptyStuff_walking_left_5;
 			}
 			else
 			{
@@ -155,9 +155,9 @@ SDL_Texture *select_good_img(int skin, float angle, int animation)
 				else if (angle == 'h') // Z
 					return img->s->littleManEmptyStuff_walking_downLeft_6;
 				else if (angle == 'j') // Q
-					return img->s->littleManEmptyStuff_walking_left_6;
-				else if (angle == 'k') // A
 					return img->s->littleManEmptyStuff_walking_upLeft_6;
+				else if (angle == 'k') // A
+					return img->s->littleManEmptyStuff_walking_left_6;
 			}
 			break;
 		case 11:
