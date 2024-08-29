@@ -49,17 +49,17 @@ void actualise_stat(struct personnages *p)
 		{
 			porte_dom = 200;
 			dom = 5;
-			new->img = select_good_img(11, p->angle, p->animation);
+			new->img = select_good_img(11, p->angle, p->animation, p->animation_2);
 		}
 		else if (strcmp(p->right_hand, "sword") == 0)
 		{
 			porte_dom = 20;
 			dom = 7;
-			new->img = select_good_img(13, p->angle, p->animation);
+			new->img = select_good_img(13, p->angle, p->animation, p->animation_2);
 		}
 		else // default 
 		{
-			new->img = select_good_img(12, p->angle, p->animation);
+			new->img = select_good_img(12, p->angle, p->animation, p->animation_2);
 		} 
 		sortedInsert(new);	
 		p->max_pv = max_pv;
@@ -297,7 +297,7 @@ void init_stat(struct personnages *p)
 		p->plancher = 0;
 		p->animation = 0;
 		struct to_disp *new = malloc(sizeof(struct to_disp));
-		new->img = select_good_img(2, p->angle, 1);
+		new->img = select_good_img(2, p->angle, 1, 1);
 		new->x = p->x;
 		new->y = p->y;
 		new->id = p->id;
@@ -316,7 +316,7 @@ void init_stat(struct personnages *p)
 	else if (p->skin == 3)
 	{
 		struct to_disp *new = malloc(sizeof(struct to_disp));
-		new->img = select_good_img(3, p->angle, p->animation);
+		new->img = select_good_img(3, p->angle, p->animation,1);
 		new->x = p->x;
 		new->y = p->y;
 		new->id = p->id;
