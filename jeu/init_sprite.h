@@ -285,6 +285,47 @@ struct skin
 
     SDL_Texture *bridgeSlab;
     SDL_Texture *bridgePillar;
+
+
+
+
+    /*
+    // Drapeaux
+    SDL_Texture *drapeauBlanc[12]; // 12 directions
+
+    // Homme qui marche
+    SDL_Texture *hoFaDoMa[6]; // Face Down Marche (5 steps)
+    SDL_Texture *hoFaDrMa[6]; // Face Right Marche
+    SDL_Texture *hoFaGaMa[6]; // Face Left Marche
+    SDL_Texture *hoFaFaMa[6]; // Face Up Marche
+
+    // Homme Archer
+    SDL_Texture *hoArDoMa[6]; // Archer Dos Marche
+    SDL_Texture *hoArDrMa[6]; // Archer Right Marche
+    SDL_Texture *hoArGdMa[6]; // Archer Left Marche
+    SDL_Texture *hoArFaMa[6]; // Archer Up Marche
+
+    // Standing textures for littleManEmptyStuff
+    SDL_Texture *littleManEmptyStuff_standing[8]; // 8 directions
+
+    // Punching textures for littleManEmptyStuff
+    SDL_Texture *littleManEmptyStuff_punching[8][4]; // 8 directions, 4 frames each
+
+    // Walking textures for littleManEmptyStuff
+    SDL_Texture *littleManEmptyStuff_walking[8][6]; // 8 directions, 6 frames each
+
+    // Miscellaneous textures
+    SDL_Texture *ship1haut;
+    SDL_Texture *fruit;
+    SDL_Texture *legume;
+    SDL_Texture *arbre1;
+
+    SDL_Texture *wooden_house_3x3_faceline[3];
+    SDL_Texture *terracotta_house_3x3[9];
+    SDL_Texture *terracotta_house_3x3_inside[6];
+
+    SDL_Texture *bridgeSlab;
+    SDL_Texture *bridgePillar;*/
 };
 
 struct gui_sprite
@@ -315,3 +356,4 @@ struct img *init_img();
 struct textures *init_textures();
 struct skin *init_skin();
 struct gui_sprite *init_gui_sprite();
+void initTextureObject(SDL_Texture** textureObject, char* bmpPath);

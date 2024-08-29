@@ -46,119 +46,119 @@ SDL_Texture *select_good_img(int skin, float angle, int animation)
 		case 12:
 		    animation = animation % 6;
 			if (animation == 0)
-			{
-				if (angle == 'a') // W
-					return img->s->littleManEmptyStuff_walking_up_1;
-				else if (angle == 'b') // E
-					return img->s->littleManEmptyStuff_walking_upRight_1;
-				else if (angle == 'd') // D
-					return img->s->littleManEmptyStuff_walking_right_1;
-				else if (angle == 'e') // C
-					return img->s->littleManEmptyStuff_walking_downRight_1;
-				else if (angle == 'g') // X
-					return img->s->littleManEmptyStuff_walking_down_1;
-				else if (angle == 'h') // Z
-					return img->s->littleManEmptyStuff_walking_downLeft_1;
-				else if (angle == 'j') // Q
-					return img->s->littleManEmptyStuff_walking_upLeft_1;
-				else if (angle == 'k') // A
-					return img->s->littleManEmptyStuff_walking_left_1;
-			}
-			else if (animation == 1)
-			{
-				if (angle == 'a') // W
-					return img->s->littleManEmptyStuff_walking_up_2;
-				else if (angle == 'b') // E
-					return img->s->littleManEmptyStuff_walking_upRight_2;
-				else if (angle == 'd') // D
-					return img->s->littleManEmptyStuff_walking_right_2;
-				else if (angle == 'e') // C
-					return img->s->littleManEmptyStuff_walking_downRight_2;
-				else if (angle == 'g') // X
-					return img->s->littleManEmptyStuff_walking_down_2;
-				else if (angle == 'h') // Z
-					return img->s->littleManEmptyStuff_walking_downLeft_2;
-				else if (angle == 'j') // Q
-					return img->s->littleManEmptyStuff_walking_upLeft_2;
-				else if (angle == 'k') // A
-					return img->s->littleManEmptyStuff_walking_left_2;
-			}
-			else if (animation == 2)
-			{
-				if (angle == 'a') // W
-					return img->s->littleManEmptyStuff_walking_up_3;
-				else if (angle == 'b') // E
-					return img->s->littleManEmptyStuff_walking_upRight_3;
-				else if (angle == 'd') // D
-					return img->s->littleManEmptyStuff_walking_right_3;
-				else if (angle == 'e') // C
-					return img->s->littleManEmptyStuff_walking_downRight_3;
-				else if (angle == 'g') // X
-					return img->s->littleManEmptyStuff_walking_down_3;
-				else if (angle == 'h') // Z
-					return img->s->littleManEmptyStuff_walking_downLeft_3;
-				else if (angle == 'j') // Q
-					return img->s->littleManEmptyStuff_walking_upLeft_3;
-				else if (angle == 'k') // A
-					return img->s->littleManEmptyStuff_walking_left_3;
-			}
-			else if (animation == 3)
-			{
-				if (angle == 'a') // W
-					return img->s->littleManEmptyStuff_walking_up_4;
-				else if (angle == 'b') // E
-					return img->s->littleManEmptyStuff_walking_upRight_4;
-				else if (angle == 'd') // D
-					return img->s->littleManEmptyStuff_walking_right_4;
-				else if (angle == 'e') // C
-					return img->s->littleManEmptyStuff_walking_downRight_4;
-				else if (angle == 'g') // X
-					return img->s->littleManEmptyStuff_walking_down_4;
-				else if (angle == 'h') // Z
-					return img->s->littleManEmptyStuff_walking_downLeft_4;
-				else if (angle == 'j') // Q
-					return img->s->littleManEmptyStuff_walking_upLeft_4;
-				else if (angle == 'k') // A
-					return img->s->littleManEmptyStuff_walking_left_4;
-			}
-			else if (animation == 4)
-			{
-				if (angle == 'a') // W
-					return img->s->littleManEmptyStuff_walking_up_5;
-				else if (angle == 'b') // E
-					return img->s->littleManEmptyStuff_walking_upRight_5;
-				else if (angle == 'd') // D
-					return img->s->littleManEmptyStuff_walking_right_5;
-				else if (angle == 'e') // C
-					return img->s->littleManEmptyStuff_walking_downRight_5;
-				else if (angle == 'g') // X
-					return img->s->littleManEmptyStuff_walking_down_5;
-				else if (angle == 'h') // Z
-					return img->s->littleManEmptyStuff_walking_downLeft_5;
-				else if (angle == 'j') // Q
-					return img->s->littleManEmptyStuff_walking_upLeft_5;
-				else if (angle == 'k') // A
-					return img->s->littleManEmptyStuff_walking_left_5;
-			}
-			else
-			{
-				if (angle == 'a') // W
-					return img->s->littleManEmptyStuff_walking_up_6;
-				else if (angle == 'b') // E
-					return img->s->littleManEmptyStuff_walking_upRight_6;
-				else if (angle == 'd') // D
-					return img->s->littleManEmptyStuff_walking_right_6;
-				else if (angle == 'e') // C
-					return img->s->littleManEmptyStuff_walking_downRight_6;
-				else if (angle == 'g') // X
-					return img->s->littleManEmptyStuff_walking_down_6;
-				else if (angle == 'h') // Z
-					return img->s->littleManEmptyStuff_walking_downLeft_6;
-				else if (angle == 'j') // Q
-					return img->s->littleManEmptyStuff_walking_upLeft_6;
-				else if (angle == 'k') // A
-					return img->s->littleManEmptyStuff_walking_left_6;
-			}
+	        {
+	        	if (angle == 'a') // W
+	        		return img->s->littleManEmptyStuff_walking_up_1;
+	        	else if (angle == 'b') // E
+	        		return img->s->littleManEmptyStuff_walking_upRight_1;
+	        	else if (angle == 'd') // D
+	        		return img->s->littleManEmptyStuff_walking_right_1;
+	        	else if (angle == 'e') // C
+	        		return img->s->littleManEmptyStuff_walking_downRight_1;
+	        	else if (angle == 'g') // X
+	        		return img->s->littleManEmptyStuff_walking_down_1;
+	        	else if (angle == 'h') // Z
+	        		return img->s->littleManEmptyStuff_walking_downLeft_1;
+	        	else if (angle == 'j') // Q
+	        		return img->s->littleManEmptyStuff_walking_upLeft_1;
+	        	else if (angle == 'k') // A
+	        		return img->s->littleManEmptyStuff_walking_left_1;
+	        }
+	        else if (animation == 1)
+	        {
+	        	if (angle == 'a') // W
+	        		return img->s->littleManEmptyStuff_walking_up_2;
+	        	else if (angle == 'b') // E
+	        		return img->s->littleManEmptyStuff_walking_upRight_2;
+	        	else if (angle == 'd') // D
+	        		return img->s->littleManEmptyStuff_walking_right_2;
+	        	else if (angle == 'e') // C
+	        		return img->s->littleManEmptyStuff_walking_downRight_2;
+	        	else if (angle == 'g') // X
+	        		return img->s->littleManEmptyStuff_walking_down_2;
+	        	else if (angle == 'h') // Z
+	        		return img->s->littleManEmptyStuff_walking_downLeft_2;
+	        	else if (angle == 'j') // Q
+	        		return img->s->littleManEmptyStuff_walking_upLeft_2;
+	        	else if (angle == 'k') // A
+	        		return img->s->littleManEmptyStuff_walking_left_2;
+	        }
+	        else if (animation == 2)
+	        {
+	        	if (angle == 'a') // W
+	        		return img->s->littleManEmptyStuff_walking_up_3;
+	        	else if (angle == 'b') // E
+	        		return img->s->littleManEmptyStuff_walking_upRight_3;
+	        	else if (angle == 'd') // D
+	        		return img->s->littleManEmptyStuff_walking_right_3;
+	        	else if (angle == 'e') // C
+	        		return img->s->littleManEmptyStuff_walking_downRight_3;
+	        	else if (angle == 'g') // X
+	        		return img->s->littleManEmptyStuff_walking_down_3;
+	        	else if (angle == 'h') // Z
+	        		return img->s->littleManEmptyStuff_walking_downLeft_3;
+	        	else if (angle == 'j') // Q
+	        		return img->s->littleManEmptyStuff_walking_upLeft_3;
+	        	else if (angle == 'k') // A
+	        		return img->s->littleManEmptyStuff_walking_left_3;
+	        }
+	        else if (animation == 3)
+	        {
+	        	if (angle == 'a') // W
+	        		return img->s->littleManEmptyStuff_walking_up_4;
+	        	else if (angle == 'b') // E
+	        		return img->s->littleManEmptyStuff_walking_upRight_4;
+	        	else if (angle == 'd') // D
+	        		return img->s->littleManEmptyStuff_walking_right_4;
+	        	else if (angle == 'e') // C
+	        		return img->s->littleManEmptyStuff_walking_downRight_4;
+	        	else if (angle == 'g') // X
+	        		return img->s->littleManEmptyStuff_walking_down_4;
+	        	else if (angle == 'h') // Z
+	        		return img->s->littleManEmptyStuff_walking_downLeft_4;
+	        	else if (angle == 'j') // Q
+	        		return img->s->littleManEmptyStuff_walking_upLeft_4;
+	        	else if (angle == 'k') // A
+	        		return img->s->littleManEmptyStuff_walking_left_4;
+	        }
+	        else if (animation == 4)
+	        {
+	        	if (angle == 'a') // W
+	        		return img->s->littleManEmptyStuff_walking_up_5;
+	        	else if (angle == 'b') // E
+	        		return img->s->littleManEmptyStuff_walking_upRight_5;
+	        	else if (angle == 'd') // D
+	        		return img->s->littleManEmptyStuff_walking_right_5;
+	        	else if (angle == 'e') // C
+	        		return img->s->littleManEmptyStuff_walking_downRight_5;
+	        	else if (angle == 'g') // X
+	        		return img->s->littleManEmptyStuff_walking_down_5;
+	        	else if (angle == 'h') // Z
+	        		return img->s->littleManEmptyStuff_walking_downLeft_5;
+	        	else if (angle == 'j') // Q
+	        		return img->s->littleManEmptyStuff_walking_upLeft_5;
+	        	else if (angle == 'k') // A
+	        		return img->s->littleManEmptyStuff_walking_left_5;
+	        }
+	        else
+	        {
+	        	if (angle == 'a') // W
+	        		return img->s->littleManEmptyStuff_walking_up_6;
+	        	else if (angle == 'b') // E
+	        		return img->s->littleManEmptyStuff_walking_upRight_6;
+	        	else if (angle == 'd') // D
+	        		return img->s->littleManEmptyStuff_walking_right_6;
+	        	else if (angle == 'e') // C
+	        		return img->s->littleManEmptyStuff_walking_downRight_6;
+	        	else if (angle == 'g') // X
+	        		return img->s->littleManEmptyStuff_walking_down_6;
+	        	else if (angle == 'h') // Z
+	        		return img->s->littleManEmptyStuff_walking_downLeft_6;
+	        	else if (angle == 'j') // Q
+	        		return img->s->littleManEmptyStuff_walking_upLeft_6;
+	        	else if (angle == 'k') // A
+	        		return img->s->littleManEmptyStuff_walking_left_6;
+	        }
 			break;
 		case 11:
 		    animation = animation % 5;
