@@ -164,7 +164,7 @@ struct skin
     SDL_Texture *littleManEmptyStuff_standing_up;
 
     // Punching
-    SDL_Texture *littleManEmptyStuff_punching_down_1;
+    /*SDL_Texture *littleManEmptyStuff_punching_down_1;
     SDL_Texture *littleManEmptyStuff_punching_down_2;
     SDL_Texture *littleManEmptyStuff_punching_down_3;
     SDL_Texture *littleManEmptyStuff_punching_down_4;
@@ -195,57 +195,7 @@ struct skin
     SDL_Texture *littleManEmptyStuff_punching_up_1;
     SDL_Texture *littleManEmptyStuff_punching_up_2;
     SDL_Texture *littleManEmptyStuff_punching_up_3;
-    SDL_Texture *littleManEmptyStuff_punching_up_4;
-
-    // Walking
-    SDL_Texture *littleManEmptyStuff_walking_down_1;
-    SDL_Texture *littleManEmptyStuff_walking_down_2;
-    SDL_Texture *littleManEmptyStuff_walking_down_3;
-    SDL_Texture *littleManEmptyStuff_walking_down_4;
-    SDL_Texture *littleManEmptyStuff_walking_down_5;
-    SDL_Texture *littleManEmptyStuff_walking_down_6;
-    SDL_Texture *littleManEmptyStuff_walking_downLeft_1;
-    SDL_Texture *littleManEmptyStuff_walking_downLeft_2;
-    SDL_Texture *littleManEmptyStuff_walking_downLeft_3;
-    SDL_Texture *littleManEmptyStuff_walking_downLeft_4;
-    SDL_Texture *littleManEmptyStuff_walking_downLeft_5;
-    SDL_Texture *littleManEmptyStuff_walking_downLeft_6;
-    SDL_Texture *littleManEmptyStuff_walking_downRight_1;
-    SDL_Texture *littleManEmptyStuff_walking_downRight_2;
-    SDL_Texture *littleManEmptyStuff_walking_downRight_3;
-    SDL_Texture *littleManEmptyStuff_walking_downRight_4;
-    SDL_Texture *littleManEmptyStuff_walking_downRight_5;
-    SDL_Texture *littleManEmptyStuff_walking_downRight_6;
-    SDL_Texture *littleManEmptyStuff_walking_left_1;
-    SDL_Texture *littleManEmptyStuff_walking_left_2;
-    SDL_Texture *littleManEmptyStuff_walking_left_3;
-    SDL_Texture *littleManEmptyStuff_walking_left_4;
-    SDL_Texture *littleManEmptyStuff_walking_left_5;
-    SDL_Texture *littleManEmptyStuff_walking_left_6;
-    SDL_Texture *littleManEmptyStuff_walking_right_1;
-    SDL_Texture *littleManEmptyStuff_walking_right_2;
-    SDL_Texture *littleManEmptyStuff_walking_right_3;
-    SDL_Texture *littleManEmptyStuff_walking_right_4;
-    SDL_Texture *littleManEmptyStuff_walking_right_5;
-    SDL_Texture *littleManEmptyStuff_walking_right_6;
-    SDL_Texture *littleManEmptyStuff_walking_upLeft_1;
-    SDL_Texture *littleManEmptyStuff_walking_upLeft_2;
-    SDL_Texture *littleManEmptyStuff_walking_upLeft_3;
-    SDL_Texture *littleManEmptyStuff_walking_upLeft_4;
-    SDL_Texture *littleManEmptyStuff_walking_upLeft_5;
-    SDL_Texture *littleManEmptyStuff_walking_upLeft_6;
-    SDL_Texture *littleManEmptyStuff_walking_upRight_1;
-    SDL_Texture *littleManEmptyStuff_walking_upRight_2;
-    SDL_Texture *littleManEmptyStuff_walking_upRight_3;
-    SDL_Texture *littleManEmptyStuff_walking_upRight_4;
-    SDL_Texture *littleManEmptyStuff_walking_upRight_5;
-    SDL_Texture *littleManEmptyStuff_walking_upRight_6;
-    SDL_Texture *littleManEmptyStuff_walking_up_1;
-    SDL_Texture *littleManEmptyStuff_walking_up_2;
-    SDL_Texture *littleManEmptyStuff_walking_up_3;
-    SDL_Texture *littleManEmptyStuff_walking_up_4;
-    SDL_Texture *littleManEmptyStuff_walking_up_5;
-    SDL_Texture *littleManEmptyStuff_walking_up_6;
+    SDL_Texture *littleManEmptyStuff_punching_up_4;*/
 
     SDL_Texture *ship1haut;
     SDL_Texture *fruit;
@@ -283,7 +233,14 @@ struct skin
     SDL_Texture *drapeauBlanc[12]; // 11 directions
 
     // Standing textures for littleManEmptyStuff
-    SDL_Texture *littleManEmptyStuff_standing[8]; // 8 directions
+    SDL_Texture *littleManEmptyStuff_standing[12]; // 8 directions
+
+    // Punching textures for littleManEmptyStuff
+    SDL_Texture *littleManEmptyStuff_punching[4][12]; // 8 directions, 4 frames each
+
+    // Walking textures for littleManEmptyStuff
+    SDL_Texture *littleManEmptyStuff_walking[6][12]; // 8 directions, 6 frames each
+
     /*
     // Homme qui marche
     SDL_Texture *hoFaDoMa[6]; // Face Down Marche (5 steps)
@@ -299,11 +256,7 @@ struct skin
 
     
 
-    // Punching textures for littleManEmptyStuff
-    SDL_Texture *littleManEmptyStuff_punching[8][4]; // 8 directions, 4 frames each
-
-    // Walking textures for littleManEmptyStuff
-    SDL_Texture *littleManEmptyStuff_walking[8][6]; // 8 directions, 6 frames each
+    
 
     // Miscellaneous textures
     SDL_Texture *ship1haut;
