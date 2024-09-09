@@ -14,24 +14,17 @@ void initTextureObject(SDL_Texture** textureObject, char* bmpPath)
 struct skin *init_skin()
 {
     struct skin *to_return = malloc(sizeof(struct skin));
-    initTextureObject(&(to_return->drapeauBlancFace_dos), "img/batiments/drapeau/face_dos.bmp");
-    initTextureObject(&(to_return->drapeauBlancFaceGauche ), "img/batiments/drapeau/faceGauche.bmp");
-    initTextureObject(&(to_return->drapeauBlancGauche), "img/batiments/drapeau/gauche.bmp");
-    initTextureObject(&(to_return->drapeauBlancGaucheFace), "img/batiments/drapeau/gaucheFace.bmp");
-    initTextureObject(&(to_return->drapeauBlancGaucheDos), "img/batiments/drapeau/gaucheDos.bmp");
-    initTextureObject(&(to_return->drapeauBlancDosGauche), "img/batiments/drapeau/dosGauche.bmp");
-    initTextureObject(&(to_return->drapeauBlancDosDroite), "img/batiments/drapeau/dosDroite.bmp");
-    initTextureObject(&(to_return->drapeauBlancDosGauche), "img/batiments/drapeau/dosGauche.bmp");
-    initTextureObject(&(to_return->drapeauBlancFace_dos), "img/batiments/drapeau/face_dos.bmp");
-    initTextureObject(&(to_return->drapeauBlancFaceGauche), "img/batiments/drapeau/faceGauche.bmp");
-    initTextureObject(&(to_return->drapeauBlancGauche), "img/batiments/drapeau/gauche.bmp");
-    initTextureObject(&(to_return->drapeauBlancGaucheFace), "img/batiments/drapeau/gaucheFace.bmp");
-    initTextureObject(&(to_return->drapeauBlancGaucheDos), "img/batiments/drapeau/gaucheDos.bmp");
-    initTextureObject(&(to_return->drapeauBlancDosGauche), "img/batiments/drapeau/dosGauche.bmp");
-    initTextureObject(&(to_return->drapeauBlancDroite), "img/batiments/drapeau/droite.bmp");
-    initTextureObject(&(to_return->drapeauBlancDroiteDos), "img/batiments/drapeau/droiteDos.bmp");
-    initTextureObject(&(to_return->drapeauBlancDroiteFace), "img/batiments/drapeau/droiteFace.bmp");
-    initTextureObject(&(to_return->drapeauBlancFaceDroite), "img/batiments/drapeau/faceDroite.bmp");
+    initTextureObject(&(to_return->drapeauBlanc[0]), "img/batiments/drapeau/face_dos.bmp");//
+    initTextureObject(&(to_return->drapeauBlanc[1]), "img/batiments/drapeau/dosDroite.bmp");//
+    initTextureObject(&(to_return->drapeauBlanc[2]), "img/batiments/drapeau/dosGauche.bmp");//
+    initTextureObject(&(to_return->drapeauBlanc[3]), "img/batiments/drapeau/faceGauche.bmp");//
+    initTextureObject(&(to_return->drapeauBlanc[4]), "img/batiments/drapeau/gauche.bmp");//
+    initTextureObject(&(to_return->drapeauBlanc[5]), "img/batiments/drapeau/gaucheFace.bmp");//
+    initTextureObject(&(to_return->drapeauBlanc[6]), "img/batiments/drapeau/gaucheDos.bmp");//
+    initTextureObject(&(to_return->drapeauBlanc[7]), "img/batiments/drapeau/droite.bmp");//
+    initTextureObject(&(to_return->drapeauBlanc[8]), "img/batiments/drapeau/droiteDos.bmp");//
+    initTextureObject(&(to_return->drapeauBlanc[9]), "img/batiments/drapeau/droiteFace.bmp");//
+    initTextureObject(&(to_return->drapeauBlanc[10]), "img/batiments/drapeau/faceDroite.bmp");//
 
 
     initTextureObject(&(to_return->hoFaDoRien), "img/homme/fantassin/dosRien.bmp");

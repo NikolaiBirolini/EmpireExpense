@@ -15,33 +15,35 @@ SDL_Texture *select_good_img(int skin, float angle, int animation, int animation
 	{
 		case 0:
 			return img->s->ship1haut;
+			break;
 		case 2:
 			return img->s->arbre1;
+			break;
 		case 3:
 			if (angle == 'a')
-				return img->s->drapeauBlancFace_dos;
+				return img->s->drapeauBlanc[0];
 			else if (angle == 'b')
-				return img->s->drapeauBlancDosDroite;
+				return img->s->drapeauBlanc[1];
 			else if (angle == 'c')
-				return img->s->drapeauBlancDroiteDos;
+				return img->s->drapeauBlanc[8];
 			else if (angle == 'd')
-				return img->s->drapeauBlancDroite;
+				return img->s->drapeauBlanc[7];
 			else if (angle == 'e')
-				return img->s->drapeauBlancDroiteFace;
+				return img->s->drapeauBlanc[9];
 			else if (angle == 'f')
-				return img->s->drapeauBlancFaceDroite;
+				return img->s->drapeauBlanc[10];
 			else if (angle == 'g')
-				return img->s->drapeauBlancFace_dos;
+				return img->s->drapeauBlanc[0];
 			else if (angle == 'h')
-				return img->s->drapeauBlancFaceGauche;
+				return img->s->drapeauBlanc[3];
 			else if (angle == 'i')
-				return img->s->drapeauBlancGaucheFace;
+				return img->s->drapeauBlanc[5];
 			else if (angle == 'j')
-				return img->s->drapeauBlancGauche;
+				return img->s->drapeauBlanc[4];
 			else if (angle == 'k')
-				return img->s->drapeauBlancGaucheDos;
+				return img->s->drapeauBlanc[6];
 			else if (angle == 'l')
-				return img->s->drapeauBlancDosGauche;
+				return img->s->drapeauBlanc[2];
 			break;
 		case 12:
 			if (animation2 == 0)

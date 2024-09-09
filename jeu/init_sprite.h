@@ -39,17 +39,6 @@ struct textures
 
 struct skin
 {
-	SDL_Texture *drapeauBlancFace_dos;
-	SDL_Texture *drapeauBlancFaceGauche;
-	SDL_Texture *drapeauBlancGauche;
-	SDL_Texture *drapeauBlancGaucheFace;
-	SDL_Texture *drapeauBlancGaucheDos;
-	SDL_Texture *drapeauBlancDosGauche;
-    SDL_Texture *drapeauBlancDosDroite;
-	SDL_Texture *drapeauBlancDroite;
-    SDL_Texture *drapeauBlancDroiteDos;
-    SDL_Texture *drapeauBlancDroiteFace;
-    SDL_Texture *drapeauBlancFaceDroite;
     SDL_Texture *hoFaDoRien;
     SDL_Texture *hoFaDoMa1;
     SDL_Texture *hoFaDoMa2;
@@ -289,10 +278,10 @@ struct skin
 
 
 
-    /*
+    
     // Drapeaux
-    SDL_Texture *drapeauBlanc[12]; // 12 directions
-
+    SDL_Texture *drapeauBlanc[11]; // 11 directions
+    /*
     // Homme qui marche
     SDL_Texture *hoFaDoMa[6]; // Face Down Marche (5 steps)
     SDL_Texture *hoFaDrMa[6]; // Face Right Marche
