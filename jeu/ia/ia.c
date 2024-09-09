@@ -74,7 +74,7 @@ void ia(void)
             if (parcour->p->skin == 2)
                 ia_arbre(parcour);
             else
-                ia_man(parcour);
+                ia_man(parcour->p);
         }
     }
 }
@@ -204,107 +204,95 @@ void ia_ship(struct linked_list *parcour)
      */
 }
 
-void ia_man(struct linked_list *parcour)
+void ia_man(struct personnages *p)
 {
-    if (parcour->p->faim < 0)
-        sprintf (ordre + strlen(ordre), "%d 00 -1 ", parcour->p->id);
-    if (parcour->p->ordrex > 0)
+    if (p->faim < 0)
+        sprintf (ordre + strlen(ordre), "%d 00 -1 ", p->id);
+
+    if (p->animation_2 == 1)
+	{
+		if (p->animation >= 3)
+			sprintf (ordre + strlen(ordre), "%d 22 0 %d 21 0 ", p->id, p->id);
+		else
+			sprintf(ordre + strlen(ordre), "%d 21 %d ",p->id, p->animation +1 );
+	}
+    else if (p->ordrex > 0)
     {
-        if (pow(parcour->p->ordrex - parcour->p->x,2) +  pow(parcour->p->ordrey - parcour->p->y,2) < parcour->p->vitesse_dep )
+        if (pow(p->ordrex - p->x,2) +  pow(p->ordrey - p->y,2) < p->vitesse_dep )
         {
-            sprintf (ordre + strlen(ordre), "%d 03 -1 %d 01 %f %d 02 %f ", parcour->p->id, parcour->p->id, parcour->p->ordrex, parcour->p->id, parcour->p->ordrey);
-            parcour->p->chemin_is_set = 0;
+            sprintf (ordre + strlen(ordre), "%d 03 -1 %d 01 %f %d 02 %f ", p->id, p->id, p->ordrex, p->id, p->ordrey);
+            p->chemin_is_set = 0;
         }
-        else if (parcour->p->chemin_is_set == 1 || findpath(parcour->p) == 1)
+        else if (p->chemin_is_set == 1 || findpath(p) == 1)
         {
-            int src = (int)parcour->p->y * max_x + (int)parcour->p->x;
-            int dst = parcour->p->chemin[src].prev;
+            int src = (int)p->y * max_x + (int)p->x;
+            int dst = p->chemin[src].prev;
 
             if (src + 1 == dst)
-                sprintf (ordre + strlen(ordre), "%d 01 +%f %d 05 e %d 21 %d ", parcour->p->id, parcour->p->vitesse_dep, parcour->p->id, parcour->p->id, (parcour->p->animation+1)%5);
+                sprintf (ordre + strlen(ordre), "%d 01 +%f %d 05 e %d 21 %d ", p->id, p->vitesse_dep, p->id, p->id, (p->animation+1)%5);
             else if (src - 1 == dst)
-                sprintf (ordre + strlen(ordre), "%d 01 -%f %d 05 j %d 21 %d ", parcour->p->id, parcour->p->vitesse_dep, parcour->p->id, parcour->p->id, (parcour->p->animation+1)%5); 
+                sprintf (ordre + strlen(ordre), "%d 01 -%f %d 05 j %d 21 %d ", p->id, p->vitesse_dep, p->id, p->id, (p->animation+1)%5); 
             else if (src - max_x == dst)
-                sprintf (ordre + strlen(ordre), "%d 02 -%f %d 05 b %d 21 %d ", parcour->p->id, parcour->p->vitesse_dep, parcour->p->id, parcour->p->id, (parcour->p->animation+1)%5);
+                sprintf (ordre + strlen(ordre), "%d 02 -%f %d 05 b %d 21 %d ", p->id, p->vitesse_dep, p->id, p->id, (p->animation+1)%5);
             else if (src + max_x == dst)
-                sprintf (ordre + strlen(ordre), "%d 02 +%f %d 05 h %d 21 %d ", parcour->p->id, parcour->p->vitesse_dep, parcour->p->id, parcour->p->id, (parcour->p->animation+1)%5);
+                sprintf (ordre + strlen(ordre), "%d 02 +%f %d 05 h %d 21 %d ", p->id, p->vitesse_dep, p->id, p->id, (p->animation+1)%5);
             else if (src + 1 + max_x == dst)
-                sprintf (ordre + strlen(ordre), "%d 01 +%f %d 02 +%f %d 05 g %d 21 %d ", parcour->p->id, parcour->p->vitesse_dep*0.707, parcour->p->id,parcour->p->vitesse_dep*0.707, parcour->p->id, parcour->p->id, (parcour->p->animation+1)%5);
+                sprintf (ordre + strlen(ordre), "%d 01 +%f %d 02 +%f %d 05 g %d 21 %d ", p->id, p->vitesse_dep*0.707, p->id,p->vitesse_dep*0.707, p->id, p->id, (p->animation+1)%5);
             else if (src + 1 - max_x == dst)
-                sprintf (ordre + strlen(ordre), "%d 01 +%f %d 02 -%f %d 05 d %d 21 %d ", parcour->p->id, parcour->p->vitesse_dep*0.707, parcour->p->id,parcour->p->vitesse_dep*0.707, parcour->p->id, parcour->p->id, (parcour->p->animation+1)%5);
+                sprintf (ordre + strlen(ordre), "%d 01 +%f %d 02 -%f %d 05 d %d 21 %d ", p->id, p->vitesse_dep*0.707, p->id,p->vitesse_dep*0.707, p->id, p->id, (p->animation+1)%5);
             else if (src - 1 + max_x == dst)
-                sprintf (ordre + strlen(ordre), "%d 01 -%f %d 02 +%f %d 05 k %d 21 %d ", parcour->p->id, parcour->p->vitesse_dep*0.707, parcour->p->id,parcour->p->vitesse_dep*0.707, parcour->p->id, parcour->p->id, (parcour->p->animation+1)%5);
+                sprintf (ordre + strlen(ordre), "%d 01 -%f %d 02 +%f %d 05 k %d 21 %d ", p->id, p->vitesse_dep*0.707, p->id,p->vitesse_dep*0.707, p->id, p->id, (p->animation+1)%5);
             else if (src -1 - max_x == dst)
-                sprintf (ordre + strlen(ordre), "%d 01 -%f %d 02 -%f %d 05 a %d 21 %d ", parcour->p->id, parcour->p->vitesse_dep*0.707, parcour->p->id,parcour->p->vitesse_dep*0.707, parcour->p->id, parcour->p->id, (parcour->p->animation+1)%5);
+                sprintf (ordre + strlen(ordre), "%d 01 -%f %d 02 -%f %d 05 a %d 21 %d ", p->id, p->vitesse_dep*0.707, p->id,p->vitesse_dep*0.707, p->id, p->id, (p->animation+1)%5);
             else
             {
-                if (parcour->p->ordrex > parcour->p->x)
-                    sprintf (ordre + strlen(ordre), "%d 01 +%f %d 05 e %d 21 %d ", parcour->p->id, parcour->p->vitesse_dep, parcour->p->id, parcour->p->id, (parcour->p->animation+1)%5);
-                else if (parcour->p->ordrex < parcour->p->x)
-                    sprintf (ordre + strlen(ordre), "%d 01 -%f %d 05 j %d 21 %d ", parcour->p->id, parcour->p->vitesse_dep, parcour->p->id, parcour->p->id, (parcour->p->animation+1)%5);
-                if (parcour->p->ordrey > parcour->p->y)
-                    sprintf (ordre + strlen(ordre), "%d 02 +%f %d 05 b %d 21 %d ", parcour->p->id, parcour->p->vitesse_dep, parcour->p->id, parcour->p->id, (parcour->p->animation+1)%5);
-                else if (parcour->p->ordrey < parcour->p->y)
-                    sprintf (ordre + strlen(ordre), "%d 02 -%f %d 05 h %d 21 %d ", parcour->p->id, parcour->p->vitesse_dep, parcour->p->id, parcour->p->id, (parcour->p->animation+1)%5);
+                if (p->ordrex > p->x)
+                    sprintf (ordre + strlen(ordre), "%d 01 +%f %d 05 e %d 21 %d ", p->id, p->vitesse_dep, p->id, p->id, (p->animation+1)%5);
+                else if (p->ordrex < p->x)
+                    sprintf (ordre + strlen(ordre), "%d 01 -%f %d 05 j %d 21 %d ", p->id, p->vitesse_dep, p->id, p->id, (p->animation+1)%5);
+                if (p->ordrey > p->y)
+                    sprintf (ordre + strlen(ordre), "%d 02 +%f %d 05 b %d 21 %d ", p->id, p->vitesse_dep, p->id, p->id, (p->animation+1)%5);
+                else if (p->ordrey < p->y)
+                    sprintf (ordre + strlen(ordre), "%d 02 -%f %d 05 h %d 21 %d ", p->id, p->vitesse_dep, p->id, p->id, (p->animation+1)%5);
             }
 
         }
         else
         {
-            sprintf (ordre + strlen(ordre), "%d 03 -1 ", parcour->p->id);
-            parcour->p->chemin_is_set = 0;
+            sprintf (ordre + strlen(ordre), "%d 03 -1 ", p->id);
+            p->chemin_is_set = 0;
         }
     }
-    /*
-    if (parcour->p->timer_dom > 0)
-        parcour->p->timer_dom -= 1;
-    else
+    else 
     {
-        for (struct linked_list *parcour2 = list; parcour2 != NULL; parcour2 = parcour2->next)
+        for (struct linked_enemie *e = p->e_list; e != NULL; e = e->next)
         {
-            for (struct linked_enemie *e = parcour->p->e_list; e != NULL; e = e->next)
-            {
-                if (parcour->p->timer_dom == 0)
-                {
-                    if (strcmp(e->nom, parcour2->p->nom) == 0)
-                    {
-                        if ((parcour->p->x - parcour2->p->x) * (parcour->p->x - parcour2->p->x) + (parcour->p->y - parcour2->p->y) * (parcour->p->y - parcour2->p->y) < parcour->p->porte_dom * parcour->p->porte_dom)
-                        {
-                            if (strcmp(parcour->p->skin, "archer") == 0)
-                            {
-                                if (exist_in_linked_item(parcour->p->i_list, "fleche") != NULL)
-                                {
-                                    sprintf (ordre + strlen(ordre), "%d 00 -5 %d 06 %d %d 16 -1 fleche ", parcour2->p->id, parcour->p->id, parcour->p->vitesse_dom, parcour->p->id);
-                                }
-                            }
-                            else
-                            {
-                                sprintf (ordre + strlen(ordre), "%d 00 -5 %d 06 %d ", parcour2->p->id, parcour->p->id, parcour->p->vitesse_dom);
-                            }
-                        }
-                    }
-                }
-            }
+            struct personnages *ee = find_perso_by_name(e->nom);
+            float square_dist = (ee->x  - p->x)*(ee->x  - p->x)+(ee->y  - p->y)*(ee->y  - p->y);
+            if (square_dist < p->porte_dom*p->porte_dom)
+                sprintf (ordre + strlen(ordre), "%d 22 1 %d 21 0 %d 00 -%d ", p->id, p->id, ee->id, p->dom);
+            else if ((ee->x  - p->x)*(ee->x  - p->x)+(ee->y  - p->y)*(ee->y  - p->y) < 900)
+                sprintf (ordre + strlen(ordre), "%d 03 %f %d 04 %f ", p->id, ee->x, p->id, ee->y);
         }
     }
-    if (strcmp(parcour->p->echange_player, "none") != 0)
+    if (strcmp(p->echange_player, "none") != 0)
     {
-        sprintf (ordre + strlen(ordre), "%d 20 votre proposition est ininteressante\037 %d 17 none none 0 none 0 ", parcour->p->id, parcour->p->id);
-        parcour->p->speak_timer = 1350;
+        sprintf (ordre + strlen(ordre), "%d 20 votre proposition est ininteressante\037 %d 17 none none 0 none 0 ", p->id, p->id);
+        p->speak_timer = 1350;
     }
-    if (parcour->p->faim == 50)
+    if (p->faim == 50)
     {
-        struct linked_item *a = exist_in_linked_item(parcour->p->i_list, "fruit");
+        struct linked_item *a = exist_in_linked_item(p->i_list, "fruit");
         if (a != NULL)
-            use(a, parcour->p);
+            use(a, p);
         else
         {
-            sprintf (ordre + strlen(ordre), "%d 20 [J ai faim et je n ai rien a manger] ", parcour->p->id);
-            parcour->p->speak_timer = 1350;
+            sprintf (ordre + strlen(ordre), "%d 20 [J ai faim et je n ai rien a manger] ", p->id);
+            p->speak_timer = 1350;
         }
     }
-    if (parcour->p->speak_timer > 0)
-        parcour->p->speak_timer --;
-    else if (parcour->p->speak_timer <= 0 && parcour->p->speak[0] != 0)
-        sprintf (ordre + strlen(ordre), "%d 20 \037 ", parcour->p->id);*/
+    if (p->speak_timer > 0)
+        p->speak_timer --;
+    else if (p->speak_timer <= 0 && p->speak[0] != 0)
+        sprintf (ordre + strlen(ordre), "%d 20 \037 ", p->id);
 }

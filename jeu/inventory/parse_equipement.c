@@ -33,8 +33,6 @@ void actualise_stat(struct personnages *p)
 		int max_pv = 10;
 		int vitesse_dom = 100;
 		float vitesse_dep = 0.2;
-		int porte_dom = 10;
-		int dom = 1;
 		int poid = 65; 	
 		struct to_disp *new = malloc(sizeof(struct to_disp));
 		new->x = p->x;
@@ -47,26 +45,22 @@ void actualise_stat(struct personnages *p)
 		new->offset_y = 450;
 		if (strcmp(p->right_hand, "bow") == 0)
 		{
-			porte_dom = 200;
-			dom = 5;
 			new->img = select_good_img(11, p->angle, p->animation, p->animation_2);
 		}
 		else if (strcmp(p->right_hand, "sword") == 0)
 		{
-			porte_dom = 20;
-			dom = 7;
 			new->img = select_good_img(13, p->angle, p->animation, p->animation_2);
 		}
 		else // default 
 		{
+			p->porte_dom = 1.3;
+			p->dom = 1;
 			new->img = select_good_img(12, p->angle, p->animation, p->animation_2);
 		} 
 		sortedInsert(new);	
 		p->max_pv = max_pv;
 		p->vitesse_dom = vitesse_dom;
 		p->vitesse_dep = vitesse_dep;
-		p->porte_dom = porte_dom;
-		p->dom = dom;
 		p->poid = poid;
 		p->eau = '0';
 		p->plancher = 'n';

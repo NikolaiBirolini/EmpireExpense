@@ -2,7 +2,7 @@
 #include "../perso.h"
 
 void ia(void);
-void ia_man(struct linked_list *parcour);
+void ia_man(struct personnages *p);
 void ia_ship(struct linked_list *parcour);
 void ia_arbre(struct linked_list *parcour);
 void ia_fruit(struct linked_list *parcour);
