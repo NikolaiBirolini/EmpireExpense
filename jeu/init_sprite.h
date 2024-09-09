@@ -280,7 +280,10 @@ struct skin
 
     
     // Drapeaux
-    SDL_Texture *drapeauBlanc[11]; // 11 directions
+    SDL_Texture *drapeauBlanc[12]; // 11 directions
+
+    // Standing textures for littleManEmptyStuff
+    SDL_Texture *littleManEmptyStuff_standing[8]; // 8 directions
     /*
     // Homme qui marche
     SDL_Texture *hoFaDoMa[6]; // Face Down Marche (5 steps)
@@ -294,8 +297,7 @@ struct skin
     SDL_Texture *hoArGdMa[6]; // Archer Left Marche
     SDL_Texture *hoArFaMa[6]; // Archer Up Marche
 
-    // Standing textures for littleManEmptyStuff
-    SDL_Texture *littleManEmptyStuff_standing[8]; // 8 directions
+    
 
     // Punching textures for littleManEmptyStuff
     SDL_Texture *littleManEmptyStuff_punching[8][4]; // 8 directions, 4 frames each

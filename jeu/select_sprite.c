@@ -11,20 +11,20 @@ char how_display(char *skin)
 
 SDL_Texture *select_good_img(int skin, char angle, int animation, int animation2)
 {
-	int indexMap[12] = {
-        0,  // 'a' drapeauBlanc[0]
-        1,  // 'b' drapeauBlanc[1]
-        2,  // 'c' drapeauBlanc[2]
-        7,  // 'd' drapeauBlanc[7]
-        9,  // 'e' drapeauBlanc[9]
-        10, // 'f' drapeauBlanc[10]
-        0,  // 'g' drapeauBlanc[0]
-        8,  // 'h' drapeauBlanc[8]
-        5,  // 'i' drapeauBlanc[5]
-        4,  // 'j' drapeauBlanc[4]
-        6,  // 'k' drapeauBlanc[6]
-        3   // 'l' drapeauBlanc[3]
-    };
+	//int indexMap[12] = {
+    //    0,  // 'a' drapeauBlanc[0]
+    //    1,  // 'b' drapeauBlanc[1]
+    //    2,  // 'c' drapeauBlanc[2]
+    //    3,  // 'd' drapeauBlanc[3]
+    //    4,  // 'e' drapeauBlanc[4]
+    //    5, // 'f' drapeauBlanc[5]
+    //    6,  // 'g' drapeauBlanc[6]
+    //    7,  // 'h' drapeauBlanc[7]
+    //    8,  // 'i' drapeauBlanc[8]
+    //    9,  // 'j' drapeauBlanc[9]
+    //    10,  // 'k' drapeauBlanc[10]
+    //    11   // 'l' drapeauBlanc[11]
+    //};
 
 	switch(skin)
 	{
@@ -35,7 +35,7 @@ SDL_Texture *select_good_img(int skin, char angle, int animation, int animation2
 			return img->s->arbre1;
 			break;
 		case 3:
-            return img->s->drapeauBlanc[indexMap[angle - 'a']];
+            return img->s->drapeauBlanc[angle - 'a'];
 			break;
 		case 12:
 			if (animation2 == 0)

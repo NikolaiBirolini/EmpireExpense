@@ -17,17 +17,16 @@ struct skin *init_skin()
     initTextureObject(&(to_return->drapeauBlanc[0]), "img/batiments/drapeau/face_dos.bmp");//
     initTextureObject(&(to_return->drapeauBlanc[1]), "img/batiments/drapeau/dosDroite.bmp");//
     initTextureObject(&(to_return->drapeauBlanc[2]), "img/batiments/drapeau/droiteDos.bmp");//
+    initTextureObject(&(to_return->drapeauBlanc[3]), "img/batiments/drapeau/droite.bmp");//
+    initTextureObject(&(to_return->drapeauBlanc[4]), "img/batiments/drapeau/droiteFace.bmp");//
+    initTextureObject(&(to_return->drapeauBlanc[5]), "img/batiments/drapeau/faceDroite.bmp");//
+    initTextureObject(&(to_return->drapeauBlanc[6]), "img/batiments/drapeau/face_dos.bmp");//
+    initTextureObject(&(to_return->drapeauBlanc[7]), "img/batiments/drapeau/faceGauche.bmp");//
+    initTextureObject(&(to_return->drapeauBlanc[8]), "img/batiments/drapeau/gaucheFace.bmp");//
+    initTextureObject(&(to_return->drapeauBlanc[9]), "img/batiments/drapeau/gauche.bmp");//
+    initTextureObject(&(to_return->drapeauBlanc[10]), "img/batiments/drapeau/gaucheDos.bmp");//
+    initTextureObject(&(to_return->drapeauBlanc[11]), "img/batiments/drapeau/dosGauche.bmp");//
     
-    initTextureObject(&(to_return->drapeauBlanc[3]), "img/batiments/drapeau/dosGauche.bmp");//
-    initTextureObject(&(to_return->drapeauBlanc[4]), "img/batiments/drapeau/gauche.bmp");//
-    initTextureObject(&(to_return->drapeauBlanc[5]), "img/batiments/drapeau/gaucheFace.bmp");//
-    initTextureObject(&(to_return->drapeauBlanc[6]), "img/batiments/drapeau/gaucheDos.bmp");//
-    initTextureObject(&(to_return->drapeauBlanc[7]), "img/batiments/drapeau/droite.bmp");//
-    initTextureObject(&(to_return->drapeauBlanc[8]), "img/batiments/drapeau/faceGauche.bmp");//
-    
-
-    initTextureObject(&(to_return->drapeauBlanc[9]), "img/batiments/drapeau/droiteFace.bmp");//
-    initTextureObject(&(to_return->drapeauBlanc[10]), "img/batiments/drapeau/faceDroite.bmp");//
 
 
     initTextureObject(&(to_return->hoFaDoRien), "img/homme/fantassin/dosRien.bmp");
@@ -150,97 +149,104 @@ struct skin *init_skin()
     initTextureObject(&(to_return->fruit), "img/nature/nouriture/fruit.bmp");
     initTextureObject(&(to_return->legume), "img/nature/nouriture/legume.bmp");
     initTextureObject(&(to_return->arbre1), "img/nature/arbre1.bmp");
-
-
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_down_1), "img/homme/little/no-stuff/punch_down_1.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_down_2), "img/homme/little/no-stuff/punch_down_2.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_down_3), "img/homme/little/no-stuff/punch_down_3.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_down_4), "img/homme/little/no-stuff/punch_down_4.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_up_1), "img/homme/little/no-stuff/punch_up_1.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_up_2), "img/homme/little/no-stuff/punch_up_2.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_up_3), "img/homme/little/no-stuff/punch_up_3.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_up_4), "img/homme/little/no-stuff/punch_up_4.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_upLeft_1), "img/homme/little/no-stuff/punch_up_left_1.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_upLeft_2), "img/homme/little/no-stuff/punch_up_left_2.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_upLeft_3), "img/homme/little/no-stuff/punch_up_left_3.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_upLeft_4), "img/homme/little/no-stuff/punch_up_left_4.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_upRight_1), "img/homme/little/no-stuff/punch_up_right_1.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_upRight_2), "img/homme/little/no-stuff/punch_up_right_2.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_upRight_3), "img/homme/little/no-stuff/punch_up_right_3.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_upRight_4), "img/homme/little/no-stuff/punch_up_right_4.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_downLeft_1), "img/homme/little/no-stuff/punch_down_left_1.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_downLeft_2), "img/homme/little/no-stuff/punch_down_left_2.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_downLeft_3), "img/homme/little/no-stuff/punch_down_left_3.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_downLeft_4), "img/homme/little/no-stuff/punch_down_left_4.bmp");
+    
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_up_1       ), "img/homme/little/no-stuff/punch_up_1.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_upRight_1  ), "img/homme/little/no-stuff/punch_up_right_1.bmp");
     initTextureObject(&(to_return->littleManEmptyStuff_punching_downRight_1), "img/homme/little/no-stuff/punch_down_right_1.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_right_1    ), "img/homme/little/no-stuff/punch_right_1.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_down_1     ), "img/homme/little/no-stuff/punch_down_1.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_downLeft_1 ), "img/homme/little/no-stuff/punch_down_left_1.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_upLeft_1   ), "img/homme/little/no-stuff/punch_up_left_1.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_left_1     ), "img/homme/little/no-stuff/punch_left_1.bmp");
+
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_up_2       ), "img/homme/little/no-stuff/punch_up_2.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_upRight_2  ), "img/homme/little/no-stuff/punch_up_right_2.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_right_2    ), "img/homme/little/no-stuff/punch_right_2.bmp");
     initTextureObject(&(to_return->littleManEmptyStuff_punching_downRight_2), "img/homme/little/no-stuff/punch_down_right_2.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_down_2     ), "img/homme/little/no-stuff/punch_down_2.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_downLeft_2 ), "img/homme/little/no-stuff/punch_down_left_2.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_upLeft_2   ), "img/homme/little/no-stuff/punch_up_left_2.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_left_2     ), "img/homme/little/no-stuff/punch_left_2.bmp");
+
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_up_3       ), "img/homme/little/no-stuff/punch_up_3.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_upRight_3  ), "img/homme/little/no-stuff/punch_up_right_3.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_right_3    ), "img/homme/little/no-stuff/punch_right_3.bmp");
     initTextureObject(&(to_return->littleManEmptyStuff_punching_downRight_3), "img/homme/little/no-stuff/punch_down_right_3.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_down_3     ), "img/homme/little/no-stuff/punch_down_3.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_downLeft_3 ), "img/homme/little/no-stuff/punch_down_left_3.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_upLeft_3   ), "img/homme/little/no-stuff/punch_up_left_3.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_left_3     ), "img/homme/little/no-stuff/punch_left_3.bmp");
+
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_up_4       ), "img/homme/little/no-stuff/punch_up_4.bmp"); 
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_upRight_4  ), "img/homme/little/no-stuff/punch_up_right_4.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_right_4    ), "img/homme/little/no-stuff/punch_right_4.bmp");
     initTextureObject(&(to_return->littleManEmptyStuff_punching_downRight_4), "img/homme/little/no-stuff/punch_down_right_4.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_right_1), "img/homme/little/no-stuff/punch_right_1.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_right_2), "img/homme/little/no-stuff/punch_right_2.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_right_3), "img/homme/little/no-stuff/punch_right_3.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_right_4), "img/homme/little/no-stuff/punch_right_4.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_left_1), "img/homme/little/no-stuff/punch_left_1.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_left_2), "img/homme/little/no-stuff/punch_left_2.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_left_3), "img/homme/little/no-stuff/punch_left_3.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_punching_left_4), "img/homme/little/no-stuff/punch_left_4.bmp");
-
-
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_down_4     ), "img/homme/little/no-stuff/punch_down_4.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_downLeft_4 ), "img/homme/little/no-stuff/punch_down_left_4.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_upLeft_4   ), "img/homme/little/no-stuff/punch_up_left_4.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_punching_left_4     ), "img/homme/little/no-stuff/punch_left_4.bmp");
+    
+    
+    initTextureObject(&(to_return->littleManEmptyStuff_standing_up), "img/homme/little/no-stuff/stand_up.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_standing_downRight), "img/homme/little/no-stuff/stand_down_right.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_standing_upRight), "img/homme/little/no-stuff/stand_up_right.bmp");
     initTextureObject(&(to_return->littleManEmptyStuff_standing_down), "img/homme/little/no-stuff/stand_down.bmp");
     initTextureObject(&(to_return->littleManEmptyStuff_standing_downLeft), "img/homme/little/no-stuff/stand_down_left.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_standing_downRight), "img/homme/little/no-stuff/stand_down_right.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_standing_up), "img/homme/little/no-stuff/stand_up.bmp");
     initTextureObject(&(to_return->littleManEmptyStuff_standing_upLeft), "img/homme/little/no-stuff/stand_up_left.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_standing_upRight), "img/homme/little/no-stuff/stand_up_right.bmp");
 
 
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_down_1), "img/homme/little/no-stuff/walk_down_1.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_down_2), "img/homme/little/no-stuff/walk_down_2.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_down_3), "img/homme/little/no-stuff/walk_down_3.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_down_4), "img/homme/little/no-stuff/walk_down_4.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_down_5), "img/homme/little/no-stuff/walk_down_5.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_down_6), "img/homme/little/no-stuff/walk_down_6.bmp");
     initTextureObject(&(to_return->littleManEmptyStuff_walking_up_1), "img/homme/little/no-stuff/walk_up_1.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_up_2), "img/homme/little/no-stuff/walk_up_2.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_up_3), "img/homme/little/no-stuff/walk_up_3.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_up_4), "img/homme/little/no-stuff/walk_up_4.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_up_5), "img/homme/little/no-stuff/walk_up_5.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_up_6), "img/homme/little/no-stuff/walk_up_6.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_upLeft_1), "img/homme/little/no-stuff/walk_up_left_1.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_upLeft_2), "img/homme/little/no-stuff/walk_up_left_2.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_upLeft_3), "img/homme/little/no-stuff/walk_up_left_3.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_upLeft_4), "img/homme/little/no-stuff/walk_up_left_4.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_upLeft_5), "img/homme/little/no-stuff/walk_up_left_5.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_upLeft_6), "img/homme/little/no-stuff/walk_up_left_6.bmp");
     initTextureObject(&(to_return->littleManEmptyStuff_walking_upRight_1), "img/homme/little/no-stuff/walk_up_right_1.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_upRight_2), "img/homme/little/no-stuff/walk_up_right_2.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_upRight_3), "img/homme/little/no-stuff/walk_up_right_3.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_upRight_4), "img/homme/little/no-stuff/walk_up_right_4.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_upRight_5), "img/homme/little/no-stuff/walk_up_right_5.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_upRight_6), "img/homme/little/no-stuff/walk_up_right_6.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_downLeft_1), "img/homme/little/no-stuff/walk_down_left_1.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_downLeft_2), "img/homme/little/no-stuff/walk_down_left_2.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_downLeft_3), "img/homme/little/no-stuff/walk_down_left_3.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_downLeft_4), "img/homme/little/no-stuff/walk_down_left_4.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_downLeft_5), "img/homme/little/no-stuff/walk_down_left_5.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_downLeft_6), "img/homme/little/no-stuff/walk_down_left_6.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_downRight_1), "img/homme/little/no-stuff/walk_down_right_1.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_downRight_2), "img/homme/little/no-stuff/walk_down_right_2.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_downRight_3), "img/homme/little/no-stuff/walk_down_right_3.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_downRight_4), "img/homme/little/no-stuff/walk_down_right_4.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_downRight_5), "img/homme/little/no-stuff/walk_down_right_5.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_downRight_6), "img/homme/little/no-stuff/walk_down_right_6.bmp");
     initTextureObject(&(to_return->littleManEmptyStuff_walking_right_1), "img/homme/little/no-stuff/walk_right_1.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_right_2), "img/homme/little/no-stuff/walk_right_2.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_right_3), "img/homme/little/no-stuff/walk_right_3.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_right_4), "img/homme/little/no-stuff/walk_right_4.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_right_5), "img/homme/little/no-stuff/walk_right_5.bmp");
-    initTextureObject(&(to_return->littleManEmptyStuff_walking_right_6), "img/homme/little/no-stuff/walk_right_6.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_downRight_1), "img/homme/little/no-stuff/walk_down_right_1.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_down_1), "img/homme/little/no-stuff/walk_down_1.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_downLeft_1), "img/homme/little/no-stuff/walk_down_left_1.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_upLeft_1), "img/homme/little/no-stuff/walk_up_left_1.bmp");
     initTextureObject(&(to_return->littleManEmptyStuff_walking_left_1), "img/homme/little/no-stuff/walk_left_1.bmp");
+
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_up_2), "img/homme/little/no-stuff/walk_up_2.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_upRight_2), "img/homme/little/no-stuff/walk_up_right_2.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_right_2), "img/homme/little/no-stuff/walk_right_2.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_downRight_2), "img/homme/little/no-stuff/walk_down_right_2.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_down_2), "img/homme/little/no-stuff/walk_down_2.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_downLeft_2), "img/homme/little/no-stuff/walk_down_left_2.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_upLeft_2), "img/homme/little/no-stuff/walk_up_left_2.bmp");
     initTextureObject(&(to_return->littleManEmptyStuff_walking_left_2), "img/homme/little/no-stuff/walk_left_2.bmp");
+
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_up_3), "img/homme/little/no-stuff/walk_up_3.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_upRight_3), "img/homme/little/no-stuff/walk_up_right_3.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_right_3), "img/homme/little/no-stuff/walk_right_3.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_downRight_3), "img/homme/little/no-stuff/walk_down_right_3.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_down_3), "img/homme/little/no-stuff/walk_down_3.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_downLeft_3), "img/homme/little/no-stuff/walk_down_left_3.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_upLeft_3), "img/homme/little/no-stuff/walk_up_left_3.bmp");
     initTextureObject(&(to_return->littleManEmptyStuff_walking_left_3), "img/homme/little/no-stuff/walk_left_3.bmp");
+
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_up_4), "img/homme/little/no-stuff/walk_up_4.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_upRight_4), "img/homme/little/no-stuff/walk_up_right_4.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_right_4), "img/homme/little/no-stuff/walk_right_4.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_downRight_4), "img/homme/little/no-stuff/walk_down_right_4.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_down_4), "img/homme/little/no-stuff/walk_down_4.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_downLeft_4), "img/homme/little/no-stuff/walk_down_left_4.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_upLeft_4), "img/homme/little/no-stuff/walk_up_left_4.bmp");
     initTextureObject(&(to_return->littleManEmptyStuff_walking_left_4), "img/homme/little/no-stuff/walk_left_4.bmp");
+
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_up_5), "img/homme/little/no-stuff/walk_up_5.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_upRight_5), "img/homme/little/no-stuff/walk_up_right_5.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_right_5), "img/homme/little/no-stuff/walk_right_5.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_downRight_5), "img/homme/little/no-stuff/walk_down_right_5.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_down_5), "img/homme/little/no-stuff/walk_down_5.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_downLeft_5), "img/homme/little/no-stuff/walk_down_left_5.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_upLeft_5), "img/homme/little/no-stuff/walk_up_left_5.bmp");
     initTextureObject(&(to_return->littleManEmptyStuff_walking_left_5), "img/homme/little/no-stuff/walk_left_5.bmp");
+
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_up_6), "img/homme/little/no-stuff/walk_up_6.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_upRight_6), "img/homme/little/no-stuff/walk_up_right_6.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_right_6), "img/homme/little/no-stuff/walk_right_6.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_downRight_6), "img/homme/little/no-stuff/walk_down_right_6.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_down_6), "img/homme/little/no-stuff/walk_down_6.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_downLeft_6), "img/homme/little/no-stuff/walk_down_left_6.bmp");
+    initTextureObject(&(to_return->littleManEmptyStuff_walking_upLeft_6), "img/homme/little/no-stuff/walk_up_left_6.bmp");
     initTextureObject(&(to_return->littleManEmptyStuff_walking_left_6), "img/homme/little/no-stuff/walk_left_6.bmp");
 
 
