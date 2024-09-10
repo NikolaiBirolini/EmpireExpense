@@ -39,7 +39,7 @@ struct textures
 
 struct skin
 {
-    SDL_Texture *hoFaDoRien;
+    /*SDL_Texture *hoFaDoRien;
     SDL_Texture *hoFaDoMa1;
     SDL_Texture *hoFaDoMa2;
     SDL_Texture *hoFaDoMa3;
@@ -110,48 +110,34 @@ struct skin
     SDL_Texture *hoFaDoGaMa2;
     SDL_Texture *hoFaDoGaMa3;
     SDL_Texture *hoFaDoGaMa4;
-    SDL_Texture *hoFaDoGaMa5;
+    SDL_Texture *hoFaDoGaMa5;*/
 
-    SDL_Texture *hoArDoMa1; // homme archer Dos Marcher 1
-    SDL_Texture *hoArDoMa2;
-    SDL_Texture *hoArDoMa3;
-    SDL_Texture *hoArDoMa4;
-    SDL_Texture *hoArDoMa5;
-    SDL_Texture *hoArDdMa1;
-    SDL_Texture *hoArDdMa2;
-    SDL_Texture *hoArDdMa3;
-    SDL_Texture *hoArDdMa4;
-    SDL_Texture *hoArDdMa5;
-    SDL_Texture *hoArDrMa1;
-    SDL_Texture *hoArDrMa2;
-    SDL_Texture *hoArDrMa3;
-    SDL_Texture *hoArDrMa4;
-    SDL_Texture *hoArDrMa5;
-    SDL_Texture *hoArDfMa1;
-    SDL_Texture *hoArDfMa2;
-    SDL_Texture *hoArDfMa3;
-    SDL_Texture *hoArDfMa4;
-    SDL_Texture *hoArDfMa5;
-    SDL_Texture *hoArFaMa1;
-    SDL_Texture *hoArFaMa2;
-    SDL_Texture *hoArFaMa3;
-    SDL_Texture *hoArFaMa4;
-    SDL_Texture *hoArFaMa5;
-    SDL_Texture *hoArGfMa1;
-    SDL_Texture *hoArGfMa2;
-    SDL_Texture *hoArGfMa3;
-    SDL_Texture *hoArGfMa4;
-    SDL_Texture *hoArGfMa5;
-    SDL_Texture *hoArGaMa1;
-    SDL_Texture *hoArGaMa2;
-    SDL_Texture *hoArGaMa3;
-    SDL_Texture *hoArGaMa4;
-    SDL_Texture *hoArGaMa5;
-    SDL_Texture *hoArGdMa1;
-    SDL_Texture *hoArGdMa2;
-    SDL_Texture *hoArGdMa3;
-    SDL_Texture *hoArGdMa4;
-    SDL_Texture *hoArGdMa5;
+    // Homme qui marche
+    SDL_Texture *hoFaDoMa[6]; // Face Down Marche (5 steps)
+    SDL_Texture *hoFaDrMa[6]; // Face Right Marche
+    SDL_Texture *hoFaGaMa[6]; // Face Left Marche
+    SDL_Texture *hoFaFaMa[6]; // Face Up Marche
+
+    SDL_Texture *hoFaDoDrMa[6]; // Face Up Marche
+    SDL_Texture *hoFaDrDoMa[6]; // Face Up Marche
+    SDL_Texture *hoFaDrFaMa[6]; // Face Up Marche
+    SDL_Texture *hoFaFaDrMa[6]; // Face Up Marche
+    SDL_Texture *hoFaFaGaMa[6]; // Face Up Marche
+    SDL_Texture *hoFaGaFaMa[6]; // Face Up Marche
+    SDL_Texture *hoFaGaDoMa[6]; // Face Up Marche
+    SDL_Texture *hoFaDoGaMa[6]; // Face Up Marche
+
+    // Homme Archer
+    SDL_Texture *hoArDoMa[6]; // Archer Dos Marche
+    SDL_Texture *hoArDrMa[6]; // Archer Right Marche
+    SDL_Texture *hoArGdMa[6]; // Archer Left Marche
+    SDL_Texture *hoArGaMa[6]; // Archer Left Marche
+    SDL_Texture *hoArFaMa[6]; // Archer Up Marche
+
+    SDL_Texture *hoArGfMa[6]; // Archer Up Marche
+    SDL_Texture *hoArDfMa[6]; // Archer Up Marche
+    SDL_Texture *hoArDdMa[6]; // Archer Up Marche
+
 
     // Standing
     SDL_Texture *littleManEmptyStuff_standing_down;
@@ -163,64 +149,13 @@ struct skin
     SDL_Texture *littleManEmptyStuff_standing_upRight;
     SDL_Texture *littleManEmptyStuff_standing_up;
 
-    // Punching
-    /*SDL_Texture *littleManEmptyStuff_punching_down_1;
-    SDL_Texture *littleManEmptyStuff_punching_down_2;
-    SDL_Texture *littleManEmptyStuff_punching_down_3;
-    SDL_Texture *littleManEmptyStuff_punching_down_4;
-    SDL_Texture *littleManEmptyStuff_punching_downLeft_1;
-    SDL_Texture *littleManEmptyStuff_punching_downLeft_2;
-    SDL_Texture *littleManEmptyStuff_punching_downLeft_3;
-    SDL_Texture *littleManEmptyStuff_punching_downLeft_4;
-    SDL_Texture *littleManEmptyStuff_punching_downRight_1;
-    SDL_Texture *littleManEmptyStuff_punching_downRight_2;
-    SDL_Texture *littleManEmptyStuff_punching_downRight_3;
-    SDL_Texture *littleManEmptyStuff_punching_downRight_4;
-    SDL_Texture *littleManEmptyStuff_punching_left_1;
-    SDL_Texture *littleManEmptyStuff_punching_left_2;
-    SDL_Texture *littleManEmptyStuff_punching_left_3;
-    SDL_Texture *littleManEmptyStuff_punching_left_4;
-    SDL_Texture *littleManEmptyStuff_punching_right_1;
-    SDL_Texture *littleManEmptyStuff_punching_right_2;
-    SDL_Texture *littleManEmptyStuff_punching_right_3;
-    SDL_Texture *littleManEmptyStuff_punching_right_4;
-    SDL_Texture *littleManEmptyStuff_punching_upLeft_1;
-    SDL_Texture *littleManEmptyStuff_punching_upLeft_2;
-    SDL_Texture *littleManEmptyStuff_punching_upLeft_3;
-    SDL_Texture *littleManEmptyStuff_punching_upLeft_4;
-    SDL_Texture *littleManEmptyStuff_punching_upRight_1;
-    SDL_Texture *littleManEmptyStuff_punching_upRight_2;
-    SDL_Texture *littleManEmptyStuff_punching_upRight_3;
-    SDL_Texture *littleManEmptyStuff_punching_upRight_4;
-    SDL_Texture *littleManEmptyStuff_punching_up_1;
-    SDL_Texture *littleManEmptyStuff_punching_up_2;
-    SDL_Texture *littleManEmptyStuff_punching_up_3;
-    SDL_Texture *littleManEmptyStuff_punching_up_4;*/
-
     SDL_Texture *ship1haut;
     SDL_Texture *fruit;
     SDL_Texture *legume;
     SDL_Texture *arbre1;
 
-    SDL_Texture *wooden_house_3x3_faceline1;
-    SDL_Texture *wooden_house_3x3_faceline2;
-    SDL_Texture *wooden_house_3x3_faceline3;
-
-    SDL_Texture *terracotta_house_3x3_1;
-    SDL_Texture *terracotta_house_3x3_2;
-    SDL_Texture *terracotta_house_3x3_3;
-    SDL_Texture *terracotta_house_3x3_4;
-    SDL_Texture *terracotta_house_3x3_5;
-    SDL_Texture *terracotta_house_3x3_6;
-    SDL_Texture *terracotta_house_3x3_7;
-    SDL_Texture *terracotta_house_3x3_8;
-    SDL_Texture *terracotta_house_3x3_9;
-    SDL_Texture *terracotta_house_3x3_inside1;
-    SDL_Texture *terracotta_house_3x3_inside2;
-    SDL_Texture *terracotta_house_3x3_inside3;
-    SDL_Texture *terracotta_house_3x3_inside4;
-    SDL_Texture *terracotta_house_3x3_inside5;
-    SDL_Texture *terracotta_house_3x3_inside6;
+    SDL_Texture *terracotta_house_3x3[9];
+    SDL_Texture *terracotta_house_3x3_inside[6];
 
     SDL_Texture *bridgeSlab;
     SDL_Texture *bridgePillar;
@@ -241,35 +176,11 @@ struct skin
     // Walking textures for littleManEmptyStuff
     SDL_Texture *littleManEmptyStuff_walking[6][12]; // 8 directions, 6 frames each
 
-    /*
-    // Homme qui marche
-    SDL_Texture *hoFaDoMa[6]; // Face Down Marche (5 steps)
-    SDL_Texture *hoFaDrMa[6]; // Face Right Marche
-    SDL_Texture *hoFaGaMa[6]; // Face Left Marche
-    SDL_Texture *hoFaFaMa[6]; // Face Up Marche
-
-    // Homme Archer
-    SDL_Texture *hoArDoMa[6]; // Archer Dos Marche
-    SDL_Texture *hoArDrMa[6]; // Archer Right Marche
-    SDL_Texture *hoArGdMa[6]; // Archer Left Marche
-    SDL_Texture *hoArFaMa[6]; // Archer Up Marche
-
-    
-
-    
-
-    // Miscellaneous textures
-    SDL_Texture *ship1haut;
-    SDL_Texture *fruit;
-    SDL_Texture *legume;
-    SDL_Texture *arbre1;
-
     SDL_Texture *wooden_house_3x3_faceline[3];
-    SDL_Texture *terracotta_house_3x3[9];
-    SDL_Texture *terracotta_house_3x3_inside[6];
 
-    SDL_Texture *bridgeSlab;
-    SDL_Texture *bridgePillar;*/
+    /*
+    
+*/
 };
 
 struct gui_sprite

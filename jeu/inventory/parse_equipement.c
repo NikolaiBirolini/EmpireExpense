@@ -76,7 +76,7 @@ void actualise_stat_building(struct building *b)
 		{
 			
 			struct to_disp *new = malloc(sizeof(struct to_disp));
-			new->img = img->s->terracotta_house_3x3_inside1;
+			new->img = img->s->terracotta_house_3x3_inside[0];
 			new->x = b->x-1;
 			new->y = b->y;
 			new->id = b->id;
@@ -89,7 +89,7 @@ void actualise_stat_building(struct building *b)
 			sortedInsert(new);
 
 			struct to_disp *new2 = malloc(sizeof(struct to_disp));
-			new2->img = img->s->terracotta_house_3x3_inside2;
+			new2->img = img->s->terracotta_house_3x3_inside[1];
 			new2->x = b->x-2;
 			new2->y = b->y;
 			new2->id = b->id;
@@ -102,7 +102,7 @@ void actualise_stat_building(struct building *b)
 			sortedInsert(new2);
 
 			struct to_disp *new3 = malloc(sizeof(struct to_disp));
-			new3->img = img->s->terracotta_house_3x3_inside3;
+			new3->img = img->s->terracotta_house_3x3_inside[2];
 			new3->x = b->x-1;
 			new3->y = b->y-1;
 			new3->id = b->id;
@@ -115,7 +115,7 @@ void actualise_stat_building(struct building *b)
 			sortedInsert(new3);
 
 			struct to_disp *new4 = malloc(sizeof(struct to_disp));
-			new4->img = img->s->terracotta_house_3x3_inside4;
+			new4->img = img->s->terracotta_house_3x3_inside[3];
 			new4->x = b->x-2;
 			new4->y = b->y-1;
 			new4->id = b->id;
@@ -128,7 +128,7 @@ void actualise_stat_building(struct building *b)
 			sortedInsert(new4);
 
 			struct to_disp *new5 = malloc(sizeof(struct to_disp));
-			new5->img = img->s->terracotta_house_3x3_inside5;
+			new5->img = img->s->terracotta_house_3x3_inside[4];
 			new5->x = b->x-1;
 			new5->y = b->y-2;
 			new5->id = b->id;
@@ -141,7 +141,7 @@ void actualise_stat_building(struct building *b)
 			sortedInsert(new5);
 
 			struct to_disp *new6 = malloc(sizeof(struct to_disp));
-			new6->img = img->s->terracotta_house_3x3_inside6;
+			new6->img = img->s->terracotta_house_3x3_inside[5];
 			new6->x = b->x-2;
 			new6->y = b->y-2;
 			new6->id = b->id;
@@ -155,7 +155,7 @@ void actualise_stat_building(struct building *b)
 		else
 		{
 			struct to_disp *new = malloc(sizeof(struct to_disp));
-			new->img = img->s->terracotta_house_3x3_1;
+			new->img = img->s->terracotta_house_3x3[0];
 			new->x = b->x;
 			new->y = b->y;
 			new->id = b->id;
@@ -168,7 +168,7 @@ void actualise_stat_building(struct building *b)
 			sortedInsert(new);
 			
 			struct to_disp *new2 = malloc(sizeof(struct to_disp));
-			new2->img = img->s->terracotta_house_3x3_2;
+			new2->img = img->s->terracotta_house_3x3[1];
 			new2->x = b->x;
 			new2->y = b->y-1;
 			new2->id = b->id;
@@ -181,7 +181,7 @@ void actualise_stat_building(struct building *b)
 			sortedInsert(new2); 
 
 			struct to_disp *new3 = malloc(sizeof(struct to_disp));
-			new3->img = img->s->terracotta_house_3x3_3;
+			new3->img = img->s->terracotta_house_3x3[2];
 			new3->x = b->x;
 			new3->y = b->y-2;
 			new3->id = b->id;
@@ -194,7 +194,7 @@ void actualise_stat_building(struct building *b)
 			sortedInsert(new3);
 			
 			struct to_disp *new4 = malloc(sizeof(struct to_disp));
-			new4->img = img->s->terracotta_house_3x3_4;
+			new4->img = img->s->terracotta_house_3x3[3];
 			new4->x = b->x-1;
 			new4->y = b->y;
 			new4->id = b->id;
@@ -207,7 +207,7 @@ void actualise_stat_building(struct building *b)
 			sortedInsert(new4);
 
 			struct to_disp *new5 = malloc(sizeof(struct to_disp));
-			new5->img = img->s->terracotta_house_3x3_5;
+			new5->img = img->s->terracotta_house_3x3[4];
 			new5->x = b->x-1;
 			new5->y = b->y-1;
 			new5->id = b->id;
@@ -220,7 +220,7 @@ void actualise_stat_building(struct building *b)
 			sortedInsert(new5);
 			
 			struct to_disp *new6 = malloc(sizeof(struct to_disp));
-			new6->img = img->s->terracotta_house_3x3_6;
+			new6->img = img->s->terracotta_house_3x3[5];
 			new6->x = b->x-1;
 			new6->y = b->y-2;
 			new6->id = b->id;
@@ -233,7 +233,7 @@ void actualise_stat_building(struct building *b)
 			sortedInsert(new6);
 
 			struct to_disp *new7 = malloc(sizeof(struct to_disp));
-			new7->img = img->s->terracotta_house_3x3_7;
+			new7->img = img->s->terracotta_house_3x3[6];
 			new7->x = b->x-2;
 			new7->y = b->y;
 			new7->id = b->id;
@@ -246,7 +246,7 @@ void actualise_stat_building(struct building *b)
 			sortedInsert(new7);
 			
 			struct to_disp *new8 = malloc(sizeof(struct to_disp));
-			new8->img = img->s->terracotta_house_3x3_8;
+			new8->img = img->s->terracotta_house_3x3[7];
 			new8->x = b->x-2;
 			new8->y = b->y-1;
 			new8->id = b->id;
@@ -259,7 +259,7 @@ void actualise_stat_building(struct building *b)
 			sortedInsert(new8);
 
 			struct to_disp *new9 = malloc(sizeof(struct to_disp));
-			new9->img = img->s->terracotta_house_3x3_9;
+			new9->img = img->s->terracotta_house_3x3[8];
 			new9->x = b->x-2;
 			new9->y = b->y-2;
 			new9->id = b->id;
@@ -330,7 +330,7 @@ void init_stat_building(struct building *b)
 	if (strcmp(b->skin, "basic_wooden_house") == 0)
 	{
 		struct to_disp *new = malloc(sizeof(struct to_disp));
-		new->img = img->s->wooden_house_3x3_faceline3;
+		new->img = img->s->wooden_house_3x3_faceline[2];
 		new->x = b->x;
 		new->y = b->y;
 		b->enter = b->x+1;
@@ -345,7 +345,7 @@ void init_stat_building(struct building *b)
 		sortedInsert(new);
 		struct to_disp *new2 = malloc(sizeof(struct to_disp));
 
-		new2->img = img->s->wooden_house_3x3_faceline2;
+		new2->img = img->s->wooden_house_3x3_faceline[1];
 		new2->x = b->x;
 		new2->y = b->y-1;
 		new2->id = b->id;
@@ -358,7 +358,7 @@ void init_stat_building(struct building *b)
 		sortedInsert(new2);
 		struct to_disp *new3 = malloc(sizeof(struct to_disp));
 
-		new3->img = img->s->wooden_house_3x3_faceline1;
+		new3->img = img->s->wooden_house_3x3_faceline[0];
 		new3->x = b->x;
 		new3->y = b->y-2;
 		new3->id = b->id;
@@ -375,7 +375,7 @@ void init_stat_building(struct building *b)
 		b->enter = b->x + b->y * max_x;
 		b->exit = b->y * max_x + b->x -1;
 		struct to_disp *new = malloc(sizeof(struct to_disp));
-		new->img = img->s->terracotta_house_3x3_1;
+		new->img = img->s->terracotta_house_3x3[0];
 		new->x = b->x;
 		new->y = b->y;
 		new->id = b->id;
@@ -388,7 +388,7 @@ void init_stat_building(struct building *b)
 		sortedInsert(new);
 		
 		struct to_disp *new2 = malloc(sizeof(struct to_disp));
-		new2->img = img->s->terracotta_house_3x3_2;
+		new2->img = img->s->terracotta_house_3x3[1];
 		new2->x = b->x;
 		new2->y = b->y-1;
 		new2->id = b->id;
@@ -401,7 +401,7 @@ void init_stat_building(struct building *b)
 		sortedInsert(new2); 
 
 		struct to_disp *new3 = malloc(sizeof(struct to_disp));
-		new3->img = img->s->terracotta_house_3x3_3;
+		new3->img = img->s->terracotta_house_3x3[2];
 		new3->x = b->x;
 		new3->y = b->y-2;
 		new3->id = b->id;
@@ -414,7 +414,7 @@ void init_stat_building(struct building *b)
 		sortedInsert(new3);
 		
 		struct to_disp *new4 = malloc(sizeof(struct to_disp));
-		new4->img = img->s->terracotta_house_3x3_4;
+		new4->img = img->s->terracotta_house_3x3[3];
 		new4->x = b->x-1;
 		new4->y = b->y;
 		new4->id = b->id;
@@ -427,7 +427,7 @@ void init_stat_building(struct building *b)
 		sortedInsert(new4);
 
 		struct to_disp *new5 = malloc(sizeof(struct to_disp));
-		new5->img = img->s->terracotta_house_3x3_5;
+		new5->img = img->s->terracotta_house_3x3[4];
 		new5->x = b->x-1;
 		new5->y = b->y-1;
 		new5->id = b->id;
@@ -440,7 +440,7 @@ void init_stat_building(struct building *b)
 		sortedInsert(new5);
 		
 		struct to_disp *new6 = malloc(sizeof(struct to_disp));
-		new6->img = img->s->terracotta_house_3x3_6;
+		new6->img = img->s->terracotta_house_3x3[5];
 		new6->x = b->x-1;
 		new6->y = b->y-2;
 		new6->id = b->id;
@@ -453,7 +453,7 @@ void init_stat_building(struct building *b)
 		sortedInsert(new6);
 
 		struct to_disp *new7 = malloc(sizeof(struct to_disp));
-		new7->img = img->s->terracotta_house_3x3_7;
+		new7->img = img->s->terracotta_house_3x3[6];
 		new7->x = b->x-2;
 		new7->y = b->y;
 		new7->id = b->id;
@@ -466,7 +466,7 @@ void init_stat_building(struct building *b)
 		sortedInsert(new7);
 		
 		struct to_disp *new8 = malloc(sizeof(struct to_disp));
-		new8->img = img->s->terracotta_house_3x3_8;
+		new8->img = img->s->terracotta_house_3x3[7];
 		new8->x = b->x-2;
 		new8->y = b->y-1;
 		new8->id = b->id;
@@ -479,7 +479,7 @@ void init_stat_building(struct building *b)
 		sortedInsert(new8);
 
 		struct to_disp *new9 = malloc(sizeof(struct to_disp));
-		new9->img = img->s->terracotta_house_3x3_9;
+		new9->img = img->s->terracotta_house_3x3[8];
 		new9->x = b->x-2;
 		new9->y = b->y-2;
 		new9->id = b->id;

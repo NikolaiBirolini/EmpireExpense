@@ -55,97 +55,97 @@ SDL_Texture *select_good_img(int skin, char angle, int animation, int animation2
 			if (animation == 0)
 			{
 				if (angle == 'a')
-					return img->s->hoArDoMa1;
+					return img->s->hoArDoMa[0];
 				else if (angle == 'b')
-					return img->s->hoArDdMa1;
+					return img->s->hoArDdMa[0];
 				else if (angle == 'c')
-					return img->s->hoArDrMa1;
+					return img->s->hoArDrMa[0];
 				else if (angle == 'd')
-					return img->s->hoArDfMa1;
+					return img->s->hoArDfMa[0];
 				else if (angle == 'e')
-					return img->s->hoArFaMa1;
+					return img->s->hoArFaMa[0];
 				else if (angle == 'f')
-					return img->s->hoArGfMa1;
+					return img->s->hoArGfMa[0];
 				else if (angle == 'g')
-					return img->s->hoArGaMa1;
+					return img->s->hoArGaMa[0];
 				else if (angle == 'h')
-					return img->s->hoArGdMa1;
+					return img->s->hoArGdMa[0];
 			}
 			else if (animation == 2)
 			{
 				if (angle == 'a')
-					return img->s->hoArDoMa2;
+					return img->s->hoArDoMa[1];
 				else if (angle == 'b')
-					return img->s->hoArDdMa2;
+					return img->s->hoArDdMa[1];
 				else if (angle == 'c')
-					return img->s->hoArDrMa2;
+					return img->s->hoArDrMa[1];
 				else if (angle == 'd')
-					return img->s->hoArDfMa2;
+					return img->s->hoArDfMa[1];
 				else if (angle == 'e')
-					return img->s->hoArFaMa2;
+					return img->s->hoArFaMa[1];
 				else if (angle == 'f')
-					return img->s->hoArGfMa2;
+					return img->s->hoArGfMa[1];
 				else if (angle == 'g')
-					return img->s->hoArGaMa2;
+					return img->s->hoArGaMa[1];
 				else if (angle == 'h')
-					return img->s->hoArGdMa2;
+					return img->s->hoArGdMa[1];
 			}
 			else if (animation == 3)
 			{
 				if (angle == 'a')
-					return img->s->hoArDoMa3;
+					return img->s->hoArDoMa[2];
 				else if (angle == 'b')
-					return img->s->hoArDdMa3;
+					return img->s->hoArDdMa[2];
 				else if (angle == 'c')
-					return img->s->hoArDrMa3;
+					return img->s->hoArDrMa[2];
 				else if (angle == 'd')
-					return img->s->hoArDfMa3;
+					return img->s->hoArDfMa[2];
 				else if (angle == 'e')
-					return img->s->hoArFaMa3;
+					return img->s->hoArFaMa[2];
 				else if (angle == 'f')
-					return img->s->hoArGfMa3;
+					return img->s->hoArGfMa[2];
 				else if (angle == 'g')
-					return img->s->hoArGaMa3;
+					return img->s->hoArGaMa[2];
 				else if (angle == 'h')
-					return img->s->hoArGdMa3;
+					return img->s->hoArGdMa[2];
 			}
 			else if (animation == 4)
 			{
 				if (angle == 'a')
-					return img->s->hoArDoMa4;
+					return img->s->hoArDoMa[3];
 				else if (angle == 'b')
-					return img->s->hoArDdMa4;
+					return img->s->hoArDdMa[3];
 				else if (angle == 'c')
-					return img->s->hoArDrMa4;
+					return img->s->hoArDrMa[3];
 				else if (angle == 'd')
-					return img->s->hoArDfMa4;
+					return img->s->hoArDfMa[3];
 				else if (angle == 'e')
-					return img->s->hoArFaMa4;
+					return img->s->hoArFaMa[3];
 				else if (angle == 'f')
-					return img->s->hoArGfMa4;
+					return img->s->hoArGfMa[3];
 				else if (angle == 'g')
-					return img->s->hoArGaMa4;
+					return img->s->hoArGaMa[3];
 				else if (angle == 'h')
-					return img->s->hoArGdMa4;
+					return img->s->hoArGdMa[3];
 			}
 			else
 			{
 				if (angle == 'b')
-					return img->s->hoArDoMa5;
+					return img->s->hoArDoMa[4];
 				else if (angle == 'b')
-					return img->s->hoArDdMa5;
+					return img->s->hoArDdMa[4];
 				else if (angle == 'c')
-					return img->s->hoArDrMa5;
+					return img->s->hoArDrMa[4];
 				else if (angle == 'd')
-					return img->s->hoArDfMa5;
+					return img->s->hoArDfMa[4];
 				else if (angle == 'e')
-					return img->s->hoArFaMa5;
+					return img->s->hoArFaMa[4];
 				else if (angle == 'f')
-					return img->s->hoArGfMa5;
+					return img->s->hoArGfMa[4];
 				else if (angle == 'g')
-					return img->s->hoArGaMa5;
+					return img->s->hoArGaMa[4];
 				else if (angle == 'h')
-					return img->s->hoArGdMa5;
+					return img->s->hoArGdMa[4];
 			}
 			break;
 		case 13:
@@ -153,168 +153,168 @@ SDL_Texture *select_good_img(int skin, char angle, int animation, int animation2
 		    if (animation == 0)
 			{
 				if (angle == 'a')
-					return img->s->hoFaDoRien;
+					return img->s->hoFaDoMa[0];
 				else if (angle == 'a')
-					return img->s->hoFaDoDrRien;
+					return img->s->hoFaDoDrMa[0];
 				else if (angle == 'b')
-					return img->s->hoFaDrDoRien;
+					return img->s->hoFaDrDoMa[0];
 				else if (angle == 'c')
-					return img->s->hoFaDrRien;
+					return img->s->hoFaDrMa[0];
 				else if (angle == 'd')
-					return img->s->hoFaDrFaRien;
+					return img->s->hoFaDrFaMa[0];
 				else if (angle == 'e')
-					return img->s->hoFaFaDrRien;
+					return img->s->hoFaFaDrMa[0];
 				else if (angle == 'f')
-					return img->s->hoFaFaRien;
+					return img->s->hoFaFaMa[0];
 				else if (angle == 'g')
-					return img->s->hoFaFaGaRien;
+					return img->s->hoFaFaGaMa[0];
 				else if (angle == 'h')
-					return img->s->hoFaGaFaRien;
+					return img->s->hoFaGaFaMa[0];
 				else if (angle == 'i')
-					return img->s->hoFaGaRien;
+					return img->s->hoFaGaMa[0];
 				else if (angle == 'j')
-					return img->s->hoFaGaDoRien;
+					return img->s->hoFaGaDoMa[0];
 				else if (angle == 'k')
-					return img->s->hoFaDoGaRien;
+					return img->s->hoFaDoGaMa[0];
 			}
 			else if (animation == 1)
 			{
 				if (angle == 'a')
-					return img->s->hoFaDoMa1;
+					return img->s->hoFaDoMa[1];
 				else if (angle == 'b')
-					return img->s->hoFaDoDrMa1;
+					return img->s->hoFaDoDrMa[1];
 				else if (angle == 'c')
-					return img->s->hoFaDrDoMa1;
+					return img->s->hoFaDrDoMa[1];
 				else if (angle == 'd')
-					return img->s->hoFaDrMa1;
+					return img->s->hoFaDrMa[1];
 				else if (angle == 'e')
-					return img->s->hoFaDrFaMa1;
+					return img->s->hoFaDrFaMa[1];
 				else if (angle == 'f')
-					return img->s->hoFaFaDrMa1;
+					return img->s->hoFaFaDrMa[1];
 				else if (angle == 'g')
-					return img->s->hoFaFaMa1;
+					return img->s->hoFaFaMa[1];
 				else if (angle == 'h')
-					return img->s->hoFaFaGaMa1;
+					return img->s->hoFaFaGaMa[1];
 				else if (angle == 'i')
-					return img->s->hoFaGaFaMa1;
+					return img->s->hoFaGaFaMa[1];
 				else if (angle == 'j')
-					return img->s->hoFaGaMa1;
+					return img->s->hoFaGaMa[1];
 				else if (angle == 'k')
-					return img->s->hoFaGaDoMa1;
+					return img->s->hoFaGaDoMa[1];
 				else if (angle == 'l')
-					return img->s->hoFaDoGaMa1;
+					return img->s->hoFaDoGaMa[1];
 			}
 			else if (animation == 2)
 			{
 				if (angle == 'a')
-					return img->s->hoFaDoMa2;
+					return img->s->hoFaDoMa[2];
 				else if (angle == 'b')
-					return img->s->hoFaDoDrMa2;
+					return img->s->hoFaDoDrMa[2];
 				else if (angle == 'c')
-					return img->s->hoFaDrDoMa2;
+					return img->s->hoFaDrDoMa[2];
 				else if (angle == 'd')
-					return img->s->hoFaDrMa2;
+					return img->s->hoFaDrMa[2];
 				else if (angle == 'e')
-					return img->s->hoFaDrFaMa2;
+					return img->s->hoFaDrFaMa[2];
 				else if (angle == 'f')
-					return img->s->hoFaFaDrMa2;
+					return img->s->hoFaFaDrMa[2];
 				else if (angle == 'g')
-					return img->s->hoFaFaMa2;
+					return img->s->hoFaFaMa[2];
 				else if (angle == 'h')
-					return img->s->hoFaFaGaMa2;
+					return img->s->hoFaFaGaMa[2];
 				else if (angle == 'i')
-					return img->s->hoFaGaFaMa2;
+					return img->s->hoFaGaFaMa[2];
 				else if (angle == 'j')
-					return img->s->hoFaGaMa2;
+					return img->s->hoFaGaMa[2];
 				else if (angle == 'k')
-					return img->s->hoFaGaDoMa2;
+					return img->s->hoFaGaDoMa[2];
 				else if (angle == 'l')
-					return img->s->hoFaDoGaMa2;
+					return img->s->hoFaDoGaMa[2];
 			}
 			else if (animation == 3)
 			{
 				if (angle == 'a')
-					return img->s->hoFaDoMa3;
+					return img->s->hoFaDoMa[3];
 				else if (angle == 'b')
-					return img->s->hoFaDoDrMa3;
+					return img->s->hoFaDoDrMa[3];
 				else if (angle == 'c')
-					return img->s->hoFaDrDoMa3;
+					return img->s->hoFaDrDoMa[3];
 				else if (angle == 'd')
-					return img->s->hoFaDrMa3;
+					return img->s->hoFaDrMa[3];
 				else if (angle == 'e')
-					return img->s->hoFaDrFaMa3;
+					return img->s->hoFaDrFaMa[3];
 				else if (angle == 'f')
-					return img->s->hoFaFaDrMa3;
+					return img->s->hoFaFaDrMa[3];
 				else if (angle == 'g')
-					return img->s->hoFaFaMa3;
+					return img->s->hoFaFaMa[3];
 				else if (angle == 'h')
-					return img->s->hoFaFaGaMa3;
+					return img->s->hoFaFaGaMa[3];
 				else if (angle == 'i')
-					return img->s->hoFaGaFaMa3;
+					return img->s->hoFaGaFaMa[3];
 				else if (angle == 'j')
-					return img->s->hoFaGaMa3;
+					return img->s->hoFaGaMa[3];
 				else if (angle == 'k')
-					return img->s->hoFaGaDoMa3;
+					return img->s->hoFaGaDoMa[3];
 				else if (angle == 'l')
-					return img->s->hoFaDoGaMa3;
+					return img->s->hoFaDoGaMa[3];
 			}
 			else if (animation == 4)
 			{
 				if (angle == 'a')
-					return img->s->hoFaDoMa4;
+					return img->s->hoFaDoMa[4];
 				else if (angle == 'b')
-					return img->s->hoFaDoDrMa4;
+					return img->s->hoFaDoDrMa[4];
 				else if (angle == 'c')
-					return img->s->hoFaDrDoMa4;
+					return img->s->hoFaDrDoMa[4];
 				else if (angle == 'd')
-					return img->s->hoFaDrMa4;
+					return img->s->hoFaDrMa[4];
 				else if (angle == 'e')
-					return img->s->hoFaDrFaMa4;
+					return img->s->hoFaDrFaMa[4];
 				else if (angle == 'f')
-					return img->s->hoFaFaDrMa4;
+					return img->s->hoFaFaDrMa[4];
 				else if (angle == 'g')
-					return img->s->hoFaFaMa4;
+					return img->s->hoFaFaMa[4];
 				else if (angle == 'h')
-					return img->s->hoFaFaGaMa4;
+					return img->s->hoFaFaGaMa[4];
 				else if (angle == 'i')
-					return img->s->hoFaGaFaMa4;
+					return img->s->hoFaGaFaMa[4];
 				else if (angle == 'j')
-					return img->s->hoFaGaMa4;
+					return img->s->hoFaGaMa[4];
 				else if (angle == 'k')
-					return img->s->hoFaGaDoMa4;
+					return img->s->hoFaGaDoMa[4];
 				else if (angle == 'l')
-					return img->s->hoFaDoGaMa4;
+					return img->s->hoFaDoGaMa[4];
 			}
 			else
 			{
 				if (angle == 'a')
-					return img->s->hoFaDoMa5;
+					return img->s->hoFaDoMa[5];
 				else if (angle == 'b')
-					return img->s->hoFaDoDrMa5;
+					return img->s->hoFaDoDrMa[5];
 				else if (angle == 'c')
-					return img->s->hoFaDrDoMa5;
+					return img->s->hoFaDrDoMa[5];
 				else if (angle == 'd')
-					return img->s->hoFaDrMa5;
+					return img->s->hoFaDrMa[5];
 				else if (angle == 'e')
-					return img->s->hoFaDrFaMa5;
+					return img->s->hoFaDrFaMa[5];
 				else if (angle == 'f')
-					return img->s->hoFaFaDrMa5;
+					return img->s->hoFaFaDrMa[5];
 				else if (angle == 'g')
-					return img->s->hoFaFaMa5;
+					return img->s->hoFaFaMa[5];
 				else if (angle == 'h')
-					return img->s->hoFaFaGaMa5;
+					return img->s->hoFaFaGaMa[5];
 				else if (angle == 'i')
-					return img->s->hoFaGaFaMa5;
+					return img->s->hoFaGaFaMa[5];
 				else if (angle == 'j')
-					return img->s->hoFaGaMa5;
+					return img->s->hoFaGaMa[5];
 				else if (angle == 'k')
-					return img->s->hoFaGaDoMa5;
+					return img->s->hoFaGaDoMa[5];
 				else if (angle == 'l')
-					return img->s->hoFaDoGaMa5;
+					return img->s->hoFaDoGaMa[5];
 			}
 			break;
 	}
-	return img->s->hoArGdMa5;
+	return img->s->hoArGdMa[4];
 }
 
 SDL_Texture *select_texture(char ground)
