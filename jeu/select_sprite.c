@@ -52,108 +52,14 @@ SDL_Texture *select_good_img(int skin, char angle, int animation, int animation2
 			break;
 		case 11:
 		    animation = animation % 5;
-			if (animation == 0)
-			{
-				if (angle == 'a')
-					return img->s->hoArDoMa[0];
-				else if (angle == 'b')
-					return img->s->hoArDdMa[0];
-				else if (angle == 'c')
-					return img->s->hoArDrMa[0];
-				else if (angle == 'd')
-					return img->s->hoArDfMa[0];
-				else if (angle == 'e')
-					return img->s->hoArFaMa[0];
-				else if (angle == 'f')
-					return img->s->hoArGfMa[0];
-				else if (angle == 'g')
-					return img->s->hoArGaMa[0];
-				else if (angle == 'h')
-					return img->s->hoArGdMa[0];
-			}
-			else if (animation == 2)
-			{
-				if (angle == 'a')
-					return img->s->hoArDoMa[1];
-				else if (angle == 'b')
-					return img->s->hoArDdMa[1];
-				else if (angle == 'c')
-					return img->s->hoArDrMa[1];
-				else if (angle == 'd')
-					return img->s->hoArDfMa[1];
-				else if (angle == 'e')
-					return img->s->hoArFaMa[1];
-				else if (angle == 'f')
-					return img->s->hoArGfMa[1];
-				else if (angle == 'g')
-					return img->s->hoArGaMa[1];
-				else if (angle == 'h')
-					return img->s->hoArGdMa[1];
-			}
-			else if (animation == 3)
-			{
-				if (angle == 'a')
-					return img->s->hoArDoMa[2];
-				else if (angle == 'b')
-					return img->s->hoArDdMa[2];
-				else if (angle == 'c')
-					return img->s->hoArDrMa[2];
-				else if (angle == 'd')
-					return img->s->hoArDfMa[2];
-				else if (angle == 'e')
-					return img->s->hoArFaMa[2];
-				else if (angle == 'f')
-					return img->s->hoArGfMa[2];
-				else if (angle == 'g')
-					return img->s->hoArGaMa[2];
-				else if (angle == 'h')
-					return img->s->hoArGdMa[2];
-			}
-			else if (animation == 4)
-			{
-				if (angle == 'a')
-					return img->s->hoArDoMa[3];
-				else if (angle == 'b')
-					return img->s->hoArDdMa[3];
-				else if (angle == 'c')
-					return img->s->hoArDrMa[3];
-				else if (angle == 'd')
-					return img->s->hoArDfMa[3];
-				else if (angle == 'e')
-					return img->s->hoArFaMa[3];
-				else if (angle == 'f')
-					return img->s->hoArGfMa[3];
-				else if (angle == 'g')
-					return img->s->hoArGaMa[3];
-				else if (angle == 'h')
-					return img->s->hoArGdMa[3];
-			}
-			else
-			{
-				if (angle == 'b')
-					return img->s->hoArDoMa[4];
-				else if (angle == 'b')
-					return img->s->hoArDdMa[4];
-				else if (angle == 'c')
-					return img->s->hoArDrMa[4];
-				else if (angle == 'd')
-					return img->s->hoArDfMa[4];
-				else if (angle == 'e')
-					return img->s->hoArFaMa[4];
-				else if (angle == 'f')
-					return img->s->hoArGfMa[4];
-				else if (angle == 'g')
-					return img->s->hoArGaMa[4];
-				else if (angle == 'h')
-					return img->s->hoArGdMa[4];
-			}
+			return img->s->hoAr[animation][angle - 'a'];
 			break;
 		case 13:
 		    animation = animation % 5;
 			return img->s->hoFa[animation][angle - 'a'];
 			break;
 	}
-	return img->s->hoArGdMa[4];
+	return NULL;
 }
 
 SDL_Texture *select_texture(char ground)

@@ -28,7 +28,6 @@ struct skin *init_skin()
     initTextureObject(&(to_return->drapeauBlanc[11]), "img/batiments/drapeau/dosGauche.bmp");//
     
 
-
     initTextureObject(&(to_return->hoFa[0][0]), "img/homme/fantassin/dosRien.bmp");
     initTextureObject(&(to_return->hoFa[0][1]), "img/homme/fantassin/dosDroiteRien.bmp");
     initTextureObject(&(to_return->hoFa[0][2]), "img/homme/fantassin/droiteDosRien.bmp");
@@ -110,54 +109,50 @@ struct skin *init_skin()
 
 
 
-    initTextureObject(&(to_return->hoArDoMa[0]), "img/homme/archer/dos1.bmp");
-    initTextureObject(&(to_return->hoArDoMa[1]), "img/homme/archer/dos2.bmp");
-    initTextureObject(&(to_return->hoArDoMa[2]), "img/homme/archer/dos3.bmp");
-    initTextureObject(&(to_return->hoArDoMa[3]), "img/homme/archer/dos4.bmp");
-    initTextureObject(&(to_return->hoArDoMa[4]), "img/homme/archer/dos5.bmp");
+    initTextureObject(&(to_return->hoAr[0][0]), "img/homme/archer/dos1.bmp");
+    initTextureObject(&(to_return->hoAr[0][1]), "img/homme/archer/droiteDos1.bmp");
+    initTextureObject(&(to_return->hoAr[0][2]), "img/homme/archer/droite1.bmp");
+    initTextureObject(&(to_return->hoAr[0][3]), "img/homme/archer/droiteFace1.bmp");
+    initTextureObject(&(to_return->hoAr[0][4]), "img/homme/archer/face1.bmp");
+    initTextureObject(&(to_return->hoAr[0][5]), "img/homme/archer/gaucheFace1.bmp");
+    initTextureObject(&(to_return->hoAr[0][6]), "img/homme/archer/gauche1.bmp");
+    initTextureObject(&(to_return->hoAr[0][7]), "img/homme/archer/gaucheDos1.bmp");
 
-    initTextureObject(&(to_return->hoArDdMa[0]), "img/homme/archer/droiteDos1.bmp");
-    initTextureObject(&(to_return->hoArDdMa[1]), "img/homme/archer/droiteDos2.bmp");
-    initTextureObject(&(to_return->hoArDdMa[2]), "img/homme/archer/droiteDos3.bmp");
-    initTextureObject(&(to_return->hoArDdMa[3]), "img/homme/archer/droiteDos4.bmp");
-    initTextureObject(&(to_return->hoArDdMa[4]), "img/homme/archer/droiteDos5.bmp");
+    initTextureObject(&(to_return->hoAr[1][0]), "img/homme/archer/dos2.bmp");
+    initTextureObject(&(to_return->hoAr[1][1]), "img/homme/archer/droiteDos2.bmp");
+    initTextureObject(&(to_return->hoAr[1][2]), "img/homme/archer/droite2.bmp");
+    initTextureObject(&(to_return->hoAr[1][3]), "img/homme/archer/droiteFace2.bmp");
+    initTextureObject(&(to_return->hoAr[1][4]), "img/homme/archer/face2.bmp");
+    initTextureObject(&(to_return->hoAr[1][5]), "img/homme/archer/gaucheFace2.bmp");
+    initTextureObject(&(to_return->hoAr[1][6]), "img/homme/archer/gauche2.bmp");
+    initTextureObject(&(to_return->hoAr[1][7]), "img/homme/archer/gaucheDos2.bmp");
 
-    initTextureObject(&(to_return->hoArDrMa[0]), "img/homme/archer/droite1.bmp");
-    initTextureObject(&(to_return->hoArDrMa[1]), "img/homme/archer/droite2.bmp");
-    initTextureObject(&(to_return->hoArDrMa[2]), "img/homme/archer/droite3.bmp");
-    initTextureObject(&(to_return->hoArDrMa[3]), "img/homme/archer/droite4.bmp");
-    initTextureObject(&(to_return->hoArDrMa[4]), "img/homme/archer/droite5.bmp");
+    initTextureObject(&(to_return->hoAr[2][0]), "img/homme/archer/dos3.bmp");
+    initTextureObject(&(to_return->hoAr[2][1]), "img/homme/archer/droiteDos3.bmp");
+    initTextureObject(&(to_return->hoAr[2][2]), "img/homme/archer/droite3.bmp");
+    initTextureObject(&(to_return->hoAr[2][3]), "img/homme/archer/droiteFace3.bmp");
+    initTextureObject(&(to_return->hoAr[2][4]), "img/homme/archer/face3.bmp");
+    initTextureObject(&(to_return->hoAr[2][5]), "img/homme/archer/gaucheFace3.bmp");
+    initTextureObject(&(to_return->hoAr[2][6]), "img/homme/archer/gauche3.bmp");
+    initTextureObject(&(to_return->hoAr[2][7]), "img/homme/archer/gaucheDos3.bmp");
 
-    initTextureObject(&(to_return->hoArDfMa[0]), "img/homme/archer/droiteFace1.bmp");
-    initTextureObject(&(to_return->hoArDfMa[1]), "img/homme/archer/droiteFace2.bmp");
-    initTextureObject(&(to_return->hoArDfMa[2]), "img/homme/archer/droiteFace3.bmp");
-    initTextureObject(&(to_return->hoArDfMa[3]), "img/homme/archer/droiteFace4.bmp");
-    initTextureObject(&(to_return->hoArDfMa[4]), "img/homme/archer/droiteFace5.bmp");
+    initTextureObject(&(to_return->hoAr[3][0]), "img/homme/archer/dos4.bmp");
+    initTextureObject(&(to_return->hoAr[3][1]), "img/homme/archer/droiteDos4.bmp");
+    initTextureObject(&(to_return->hoAr[3][2]), "img/homme/archer/droite4.bmp");
+    initTextureObject(&(to_return->hoAr[3][3]), "img/homme/archer/droiteFace4.bmp");
+    initTextureObject(&(to_return->hoAr[3][4]), "img/homme/archer/face4.bmp");
+    initTextureObject(&(to_return->hoAr[3][5]), "img/homme/archer/gaucheFace4.bmp");
+    initTextureObject(&(to_return->hoAr[3][6]), "img/homme/archer/gauche4.bmp");
+    initTextureObject(&(to_return->hoAr[3][7]), "img/homme/archer/gaucheDos4.bmp");
 
-    initTextureObject(&(to_return->hoArFaMa[0]), "img/homme/archer/face1.bmp");
-    initTextureObject(&(to_return->hoArFaMa[1]), "img/homme/archer/face2.bmp");
-    initTextureObject(&(to_return->hoArFaMa[2]), "img/homme/archer/face3.bmp");
-    initTextureObject(&(to_return->hoArFaMa[3]), "img/homme/archer/face4.bmp");
-    initTextureObject(&(to_return->hoArFaMa[4]), "img/homme/archer/face5.bmp");
-
-    initTextureObject(&(to_return->hoArGfMa[0]), "img/homme/archer/gaucheFace1.bmp");
-    initTextureObject(&(to_return->hoArGfMa[1]), "img/homme/archer/gaucheFace2.bmp");
-    initTextureObject(&(to_return->hoArGfMa[2]), "img/homme/archer/gaucheFace3.bmp");
-    initTextureObject(&(to_return->hoArGfMa[3]), "img/homme/archer/gaucheFace4.bmp");
-    initTextureObject(&(to_return->hoArGfMa[4]), "img/homme/archer/gaucheFace5.bmp");
-
-    initTextureObject(&(to_return->hoArGaMa[0]), "img/homme/archer/gauche1.bmp");
-    initTextureObject(&(to_return->hoArGaMa[1]), "img/homme/archer/gauche2.bmp");
-    initTextureObject(&(to_return->hoArGaMa[2]), "img/homme/archer/gauche3.bmp");
-    initTextureObject(&(to_return->hoArGaMa[3]), "img/homme/archer/gauche4.bmp");
-    initTextureObject(&(to_return->hoArGaMa[4]), "img/homme/archer/gauche5.bmp");
-
-    initTextureObject(&(to_return->hoArGdMa[0]), "img/homme/archer/gaucheDos1.bmp");
-    initTextureObject(&(to_return->hoArGdMa[1]), "img/homme/archer/gaucheDos2.bmp");
-    initTextureObject(&(to_return->hoArGdMa[2]), "img/homme/archer/gaucheDos3.bmp");
-    initTextureObject(&(to_return->hoArGdMa[3]), "img/homme/archer/gaucheDos4.bmp");
-    initTextureObject(&(to_return->hoArGdMa[4]), "img/homme/archer/gaucheDos5.bmp");
-
+    initTextureObject(&(to_return->hoAr[4][0]), "img/homme/archer/dos5.bmp");
+    initTextureObject(&(to_return->hoAr[4][1]), "img/homme/archer/droiteDos5.bmp");
+    initTextureObject(&(to_return->hoAr[4][2]), "img/homme/archer/droite5.bmp");
+    initTextureObject(&(to_return->hoAr[4][3]), "img/homme/archer/droiteFace5.bmp");
+    initTextureObject(&(to_return->hoAr[4][4]), "img/homme/archer/face5.bmp");
+    initTextureObject(&(to_return->hoAr[4][5]), "img/homme/archer/gaucheFace5.bmp");
+    initTextureObject(&(to_return->hoAr[4][6]), "img/homme/archer/gauche5.bmp");
+    initTextureObject(&(to_return->hoAr[4][7]), "img/homme/archer/gaucheDos5.bmp");
 
     initTextureObject(&(to_return->ship1haut), "img/eau/ship1/haut.bmp");
     initTextureObject(&(to_return->fruit), "img/nature/nouriture/fruit.bmp");

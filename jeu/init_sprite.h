@@ -40,31 +40,10 @@ struct textures
 struct skin
 {
     // Homme qui marche
-    /*SDL_Texture *hoFaDoMa[6]; // Face Down Marche (5 steps)
-    SDL_Texture *hoFaDrMa[6]; // Face Right Marche
-    SDL_Texture *hoFaGaMa[6]; // Face Left Marche
-    SDL_Texture *hoFaFaMa[6]; // Face Up Marche
-    SDL_Texture *hoFaDoDrMa[6]; // Face Up Marche
-    SDL_Texture *hoFaDrDoMa[6]; // Face Up Marche
-    SDL_Texture *hoFaDrFaMa[6]; // Face Up Marche
-    SDL_Texture *hoFaFaDrMa[6]; // Face Up Marche
-    SDL_Texture *hoFaFaGaMa[6]; // Face Up Marche
-    SDL_Texture *hoFaGaFaMa[6]; // Face Up Marche
-    SDL_Texture *hoFaGaDoMa[6]; // Face Up Marche
-    SDL_Texture *hoFaDoGaMa[6]; // Face Up Marche
-*/
-     SDL_Texture *hoFa[6][12];
+    SDL_Texture *hoFa[6][12];
 
     // Homme Archer
-    SDL_Texture *hoArDoMa[6]; // Archer Dos Marche
-    SDL_Texture *hoArDrMa[6]; // Archer Right Marche
-    SDL_Texture *hoArGdMa[6]; // Archer Left Marche
-    SDL_Texture *hoArGaMa[6]; // Archer Left Marche
-    SDL_Texture *hoArFaMa[6]; // Archer Up Marche
-
-    SDL_Texture *hoArGfMa[6]; // Archer Up Marche
-    SDL_Texture *hoArDfMa[6]; // Archer Up Marche
-    SDL_Texture *hoArDdMa[6]; // Archer Up Marche
+    SDL_Texture *hoAr[6][12];
 
 
     // Standing
@@ -88,10 +67,6 @@ struct skin
     SDL_Texture *bridgeSlab;
     SDL_Texture *bridgePillar;
 
-
-
-
-    
     // Drapeaux
     SDL_Texture *drapeauBlanc[12]; // 11 directions
 
@@ -105,10 +80,6 @@ struct skin
     SDL_Texture *littleManEmptyStuff_walking[6][12]; // 8 directions, 6 frames each
 
     SDL_Texture *wooden_house_3x3_faceline[3];
-
-    /*
-    
-*/
 };
 
 struct gui_sprite
