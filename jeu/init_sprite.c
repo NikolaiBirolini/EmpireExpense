@@ -29,89 +29,83 @@ struct skin *init_skin()
     
 
 
-    initTextureObject(&(to_return->hoFaDoMa[0]), "img/homme/fantassin/dosRien.bmp");
-    initTextureObject(&(to_return->hoFaDoMa[1]), "img/homme/fantassin/dosM1.bmp");
-    initTextureObject(&(to_return->hoFaDoMa[2]), "img/homme/fantassin/dosM2.bmp");
-    initTextureObject(&(to_return->hoFaDoMa[3]), "img/homme/fantassin/dosM3.bmp");
-    initTextureObject(&(to_return->hoFaDoMa[4]), "img/homme/fantassin/dosM4.bmp");
-    initTextureObject(&(to_return->hoFaDoMa[5]), "img/homme/fantassin/dosM5.bmp");
+    initTextureObject(&(to_return->hoFa[0][0]), "img/homme/fantassin/dosRien.bmp");
+    initTextureObject(&(to_return->hoFa[0][1]), "img/homme/fantassin/dosDroiteRien.bmp");
+    initTextureObject(&(to_return->hoFa[0][2]), "img/homme/fantassin/droiteDosRien.bmp");
+    initTextureObject(&(to_return->hoFa[0][3]), "img/homme/fantassin/droiteRien.bmp");
+    initTextureObject(&(to_return->hoFa[0][4]), "img/homme/fantassin/droiteFaceRien.bmp");
+    initTextureObject(&(to_return->hoFa[0][5]), "img/homme/fantassin/faceDroiteRien.bmp");
+    initTextureObject(&(to_return->hoFa[0][6]), "img/homme/fantassin/faceRien.bmp");
+    initTextureObject(&(to_return->hoFa[0][7]), "img/homme/fantassin/faceGaucheRien.bmp");
+    initTextureObject(&(to_return->hoFa[0][8]), "img/homme/fantassin/gaucheFaceRien.bmp");
+    initTextureObject(&(to_return->hoFa[0][9]), "img/homme/fantassin/gaucheRien.bmp");
+    initTextureObject(&(to_return->hoFa[0][10]), "img/homme/fantassin/gaucheDosRien.bmp");
+    initTextureObject(&(to_return->hoFa[0][11]), "img/homme/fantassin/dosGaucheRien.bmp");
 
-    initTextureObject(&(to_return->hoFaDoDrMa[0]), "img/homme/fantassin/dosDroiteRien.bmp");
-    initTextureObject(&(to_return->hoFaDoDrMa[1]), "img/homme/fantassin/dosDroiteM1.bmp");
-    initTextureObject(&(to_return->hoFaDoDrMa[2]), "img/homme/fantassin/dosDroiteM2.bmp");
-    initTextureObject(&(to_return->hoFaDoDrMa[3]), "img/homme/fantassin/dosDroiteM3.bmp");
-    initTextureObject(&(to_return->hoFaDoDrMa[4]), "img/homme/fantassin/dosDroiteM4.bmp");
-    initTextureObject(&(to_return->hoFaDoDrMa[5]), "img/homme/fantassin/dosDroiteM5.bmp");
+    initTextureObject(&(to_return->hoFa[1][0]), "img/homme/fantassin/dosM1.bmp");
+    initTextureObject(&(to_return->hoFa[1][1]), "img/homme/fantassin/dosDroiteM1.bmp");
+    initTextureObject(&(to_return->hoFa[1][2]), "img/homme/fantassin/droiteDosM1.bmp");
+    initTextureObject(&(to_return->hoFa[1][3]), "img/homme/fantassin/droiteM1.bmp");
+    initTextureObject(&(to_return->hoFa[1][4]), "img/homme/fantassin/droiteFaceM1.bmp");
+    initTextureObject(&(to_return->hoFa[1][5]), "img/homme/fantassin/faceDroiteM1.bmp");
+    initTextureObject(&(to_return->hoFa[1][6]), "img/homme/fantassin/faceM1.bmp");
+    initTextureObject(&(to_return->hoFa[1][7]), "img/homme/fantassin/faceGaucheM1.bmp");
+    initTextureObject(&(to_return->hoFa[1][8]), "img/homme/fantassin/gaucheFaceM1.bmp");
+    initTextureObject(&(to_return->hoFa[1][9]), "img/homme/fantassin/gaucheM1.bmp");
+    initTextureObject(&(to_return->hoFa[1][10]), "img/homme/fantassin/gaucheDosM1.bmp");
+    initTextureObject(&(to_return->hoFa[1][11]), "img/homme/fantassin/dosGaucheM1.bmp");
 
-    initTextureObject(&(to_return->hoFaDrDoMa[0]), "img/homme/fantassin/droiteDosRien.bmp");
-    initTextureObject(&(to_return->hoFaDrDoMa[1]), "img/homme/fantassin/droiteDosM1.bmp");
-    initTextureObject(&(to_return->hoFaDrDoMa[2]), "img/homme/fantassin/droiteDosM2.bmp");
-    initTextureObject(&(to_return->hoFaDrDoMa[3]), "img/homme/fantassin/droiteDosM3.bmp");
-    initTextureObject(&(to_return->hoFaDrDoMa[4]), "img/homme/fantassin/droiteDosM4.bmp");
-    initTextureObject(&(to_return->hoFaDrDoMa[5]), "img/homme/fantassin/droiteDosM5.bmp");
+    initTextureObject(&(to_return->hoFa[2][0]), "img/homme/fantassin/dosM2.bmp");
+    initTextureObject(&(to_return->hoFa[2][1]), "img/homme/fantassin/dosDroiteM2.bmp");
+    initTextureObject(&(to_return->hoFa[2][2]), "img/homme/fantassin/droiteDosM2.bmp");
+    initTextureObject(&(to_return->hoFa[2][3]), "img/homme/fantassin/droiteM2.bmp");
+    initTextureObject(&(to_return->hoFa[2][4]), "img/homme/fantassin/droiteFaceM2.bmp");
+    initTextureObject(&(to_return->hoFa[2][5]), "img/homme/fantassin/faceDroiteM2.bmp");
+    initTextureObject(&(to_return->hoFa[2][6]), "img/homme/fantassin/faceM2.bmp");
+    initTextureObject(&(to_return->hoFa[2][7]), "img/homme/fantassin/faceGaucheM2.bmp");
+    initTextureObject(&(to_return->hoFa[2][8]), "img/homme/fantassin/gaucheFaceM2.bmp");
+    initTextureObject(&(to_return->hoFa[2][9]), "img/homme/fantassin/gaucheM2.bmp");
+    initTextureObject(&(to_return->hoFa[2][10]), "img/homme/fantassin/gaucheDosM2.bmp");
+    initTextureObject(&(to_return->hoFa[2][11]), "img/homme/fantassin/dosGaucheM2.bmp");
 
-    initTextureObject(&(to_return->hoFaDrMa[0]), "img/homme/fantassin/droiteRien.bmp");
-    initTextureObject(&(to_return->hoFaDrMa[1]), "img/homme/fantassin/droiteM1.bmp");
-    initTextureObject(&(to_return->hoFaDrMa[2]), "img/homme/fantassin/droiteM2.bmp");
-    initTextureObject(&(to_return->hoFaDrMa[3]), "img/homme/fantassin/droiteM3.bmp");
-    initTextureObject(&(to_return->hoFaDrMa[4]), "img/homme/fantassin/droiteM4.bmp");
-    initTextureObject(&(to_return->hoFaDrMa[5]), "img/homme/fantassin/droiteM5.bmp");
+    initTextureObject(&(to_return->hoFa[3][0]), "img/homme/fantassin/dosM3.bmp");
+    initTextureObject(&(to_return->hoFa[3][1]), "img/homme/fantassin/dosDroiteM3.bmp");
+    initTextureObject(&(to_return->hoFa[3][2]), "img/homme/fantassin/droiteDosM3.bmp");
+    initTextureObject(&(to_return->hoFa[3][3]), "img/homme/fantassin/droiteM3.bmp");
+    initTextureObject(&(to_return->hoFa[3][4]), "img/homme/fantassin/droiteFaceM3.bmp");
+    initTextureObject(&(to_return->hoFa[3][5]), "img/homme/fantassin/faceDroiteM3.bmp");
+    initTextureObject(&(to_return->hoFa[3][6]), "img/homme/fantassin/faceM3.bmp");
+    initTextureObject(&(to_return->hoFa[3][7]), "img/homme/fantassin/faceGaucheM3.bmp");
+    initTextureObject(&(to_return->hoFa[3][8]), "img/homme/fantassin/gaucheFaceM3.bmp");
+    initTextureObject(&(to_return->hoFa[3][9]), "img/homme/fantassin/gaucheM3.bmp");
+    initTextureObject(&(to_return->hoFa[3][10]), "img/homme/fantassin/gaucheDosM3.bmp");
+    initTextureObject(&(to_return->hoFa[3][11]), "img/homme/fantassin/dosGaucheM3.bmp");
 
-    initTextureObject(&(to_return->hoFaDrFaMa[0]), "img/homme/fantassin/droiteFaceRien.bmp");
-    initTextureObject(&(to_return->hoFaDrFaMa[1]), "img/homme/fantassin/droiteFaceM1.bmp");
-    initTextureObject(&(to_return->hoFaDrFaMa[2]), "img/homme/fantassin/droiteFaceM2.bmp");
-    initTextureObject(&(to_return->hoFaDrFaMa[3]), "img/homme/fantassin/droiteFaceM3.bmp");
-    initTextureObject(&(to_return->hoFaDrFaMa[4]), "img/homme/fantassin/droiteFaceM4.bmp");
-    initTextureObject(&(to_return->hoFaDrFaMa[5]), "img/homme/fantassin/droiteFaceM5.bmp");
+    initTextureObject(&(to_return->hoFa[4][0]), "img/homme/fantassin/dosM4.bmp");
+    initTextureObject(&(to_return->hoFa[4][1]), "img/homme/fantassin/dosDroiteM4.bmp");
+    initTextureObject(&(to_return->hoFa[4][2]), "img/homme/fantassin/droiteDosM4.bmp");
+    initTextureObject(&(to_return->hoFa[4][3]), "img/homme/fantassin/droiteM4.bmp");
+    initTextureObject(&(to_return->hoFa[4][4]), "img/homme/fantassin/droiteFaceM4.bmp");
+    initTextureObject(&(to_return->hoFa[4][5]), "img/homme/fantassin/faceDroiteM4.bmp");
+    initTextureObject(&(to_return->hoFa[4][6]), "img/homme/fantassin/faceM4.bmp");
+    initTextureObject(&(to_return->hoFa[4][7]), "img/homme/fantassin/faceGaucheM4.bmp");
+    initTextureObject(&(to_return->hoFa[4][8]), "img/homme/fantassin/gaucheFaceM4.bmp");
+    initTextureObject(&(to_return->hoFa[4][9]), "img/homme/fantassin/gaucheM4.bmp");
+    initTextureObject(&(to_return->hoFa[4][10]), "img/homme/fantassin/gaucheDosM4.bmp");
+    initTextureObject(&(to_return->hoFa[4][11]), "img/homme/fantassin/dosGaucheM4.bmp");
 
-    initTextureObject(&(to_return->hoFaFaDrMa[0]), "img/homme/fantassin/faceDroiteRien.bmp");
-    initTextureObject(&(to_return->hoFaFaDrMa[1]), "img/homme/fantassin/faceDroiteM1.bmp");
-    initTextureObject(&(to_return->hoFaFaDrMa[2]), "img/homme/fantassin/faceDroiteM2.bmp");
-    initTextureObject(&(to_return->hoFaFaDrMa[3]), "img/homme/fantassin/faceDroiteM3.bmp");
-    initTextureObject(&(to_return->hoFaFaDrMa[4]), "img/homme/fantassin/faceDroiteM4.bmp");
-    initTextureObject(&(to_return->hoFaFaDrMa[5]), "img/homme/fantassin/faceDroiteM5.bmp");
-
-    initTextureObject(&(to_return->hoFaFaMa[0]), "img/homme/fantassin/faceRien.bmp");
-    initTextureObject(&(to_return->hoFaFaMa[1]), "img/homme/fantassin/faceM1.bmp");
-    initTextureObject(&(to_return->hoFaFaMa[2]), "img/homme/fantassin/faceM2.bmp");
-    initTextureObject(&(to_return->hoFaFaMa[3]), "img/homme/fantassin/faceM3.bmp");
-    initTextureObject(&(to_return->hoFaFaMa[4]), "img/homme/fantassin/faceM4.bmp");
-    initTextureObject(&(to_return->hoFaFaMa[5]), "img/homme/fantassin/faceM5.bmp");
-
-    initTextureObject(&(to_return->hoFaFaGaMa[0]), "img/homme/fantassin/faceGaucheRien.bmp");
-    initTextureObject(&(to_return->hoFaFaGaMa[1]), "img/homme/fantassin/faceGaucheM1.bmp");
-    initTextureObject(&(to_return->hoFaFaGaMa[2]), "img/homme/fantassin/faceGaucheM2.bmp");
-    initTextureObject(&(to_return->hoFaFaGaMa[3]), "img/homme/fantassin/faceGaucheM3.bmp");
-    initTextureObject(&(to_return->hoFaFaGaMa[4]), "img/homme/fantassin/faceGaucheM4.bmp");
-    initTextureObject(&(to_return->hoFaFaGaMa[5]), "img/homme/fantassin/faceGaucheM5.bmp");
-
-    initTextureObject(&(to_return->hoFaGaFaMa[0]), "img/homme/fantassin/gaucheFaceRien.bmp");
-    initTextureObject(&(to_return->hoFaGaFaMa[1]), "img/homme/fantassin/gaucheFaceM1.bmp");
-    initTextureObject(&(to_return->hoFaGaFaMa[2]), "img/homme/fantassin/gaucheFaceM2.bmp");
-    initTextureObject(&(to_return->hoFaGaFaMa[3]), "img/homme/fantassin/gaucheFaceM3.bmp");
-    initTextureObject(&(to_return->hoFaGaFaMa[4]), "img/homme/fantassin/gaucheFaceM4.bmp");
-    initTextureObject(&(to_return->hoFaGaFaMa[5]), "img/homme/fantassin/gaucheFaceM5.bmp");
-
-    initTextureObject(&(to_return->hoFaGaMa[0]), "img/homme/fantassin/gaucheRien.bmp");
-    initTextureObject(&(to_return->hoFaGaMa[1]), "img/homme/fantassin/gaucheM1.bmp");
-    initTextureObject(&(to_return->hoFaGaMa[2]), "img/homme/fantassin/gaucheM2.bmp");
-    initTextureObject(&(to_return->hoFaGaMa[3]), "img/homme/fantassin/gaucheM3.bmp");
-    initTextureObject(&(to_return->hoFaGaMa[4]), "img/homme/fantassin/gaucheM4.bmp");
-    initTextureObject(&(to_return->hoFaGaMa[5]), "img/homme/fantassin/gaucheM5.bmp");
-
-    initTextureObject(&(to_return->hoFaGaDoMa[0]), "img/homme/fantassin/gaucheDosRien.bmp");
-    initTextureObject(&(to_return->hoFaGaDoMa[1]), "img/homme/fantassin/gaucheDosM1.bmp");
-    initTextureObject(&(to_return->hoFaGaDoMa[2]), "img/homme/fantassin/gaucheDosM2.bmp");
-    initTextureObject(&(to_return->hoFaGaDoMa[3]), "img/homme/fantassin/gaucheDosM3.bmp");
-    initTextureObject(&(to_return->hoFaGaDoMa[4]), "img/homme/fantassin/gaucheDosM4.bmp");
-    initTextureObject(&(to_return->hoFaGaDoMa[5]), "img/homme/fantassin/gaucheDosM5.bmp");
-
-    initTextureObject(&(to_return->hoFaDoGaMa[0]), "img/homme/fantassin/dosGaucheRien.bmp");
-    initTextureObject(&(to_return->hoFaDoGaMa[1]), "img/homme/fantassin/dosGaucheM1.bmp");
-    initTextureObject(&(to_return->hoFaDoGaMa[2]), "img/homme/fantassin/dosGaucheM2.bmp");
-    initTextureObject(&(to_return->hoFaDoGaMa[3]), "img/homme/fantassin/dosGaucheM3.bmp");
-    initTextureObject(&(to_return->hoFaDoGaMa[4]), "img/homme/fantassin/dosGaucheM4.bmp");
-    initTextureObject(&(to_return->hoFaDoGaMa[5]), "img/homme/fantassin/dosGaucheM5.bmp");
+    initTextureObject(&(to_return->hoFa[5][0]), "img/homme/fantassin/dosM5.bmp");
+    initTextureObject(&(to_return->hoFa[5][1]), "img/homme/fantassin/dosDroiteM5.bmp");
+    initTextureObject(&(to_return->hoFa[5][2]), "img/homme/fantassin/droiteDosM5.bmp");
+    initTextureObject(&(to_return->hoFa[5][3]), "img/homme/fantassin/droiteM5.bmp");
+    initTextureObject(&(to_return->hoFa[5][4]), "img/homme/fantassin/droiteFaceM5.bmp");
+    initTextureObject(&(to_return->hoFa[5][5]), "img/homme/fantassin/faceDroiteM5.bmp");
+    initTextureObject(&(to_return->hoFa[5][6]), "img/homme/fantassin/faceM5.bmp");
+    initTextureObject(&(to_return->hoFa[5][7]), "img/homme/fantassin/faceGaucheM5.bmp");
+    initTextureObject(&(to_return->hoFa[5][8]), "img/homme/fantassin/gaucheFaceM5.bmp");
+    initTextureObject(&(to_return->hoFa[5][9]), "img/homme/fantassin/gaucheM5.bmp");
+    initTextureObject(&(to_return->hoFa[5][10]), "img/homme/fantassin/gaucheDosM5.bmp");
+    initTextureObject(&(to_return->hoFa[5][11]), "img/homme/fantassin/dosGaucheM5.bmp");
 
 
 

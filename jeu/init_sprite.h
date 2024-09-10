@@ -39,85 +39,11 @@ struct textures
 
 struct skin
 {
-    /*SDL_Texture *hoFaDoRien;
-    SDL_Texture *hoFaDoMa1;
-    SDL_Texture *hoFaDoMa2;
-    SDL_Texture *hoFaDoMa3;
-    SDL_Texture *hoFaDoMa4;
-    SDL_Texture *hoFaDoMa5;
-    SDL_Texture *hoFaDoDrRien;
-    SDL_Texture *hoFaDoDrMa1;
-    SDL_Texture *hoFaDoDrMa2;
-    SDL_Texture *hoFaDoDrMa3;
-    SDL_Texture *hoFaDoDrMa4;
-    SDL_Texture *hoFaDoDrMa5;
-    SDL_Texture *hoFaDrDoRien;
-    SDL_Texture *hoFaDrDoMa1;
-    SDL_Texture *hoFaDrDoMa2;
-    SDL_Texture *hoFaDrDoMa3;
-    SDL_Texture *hoFaDrDoMa4;
-    SDL_Texture *hoFaDrDoMa5;
-    SDL_Texture *hoFaDrRien;
-    SDL_Texture *hoFaDrMa1;
-    SDL_Texture *hoFaDrMa2;
-    SDL_Texture *hoFaDrMa3;
-    SDL_Texture *hoFaDrMa4;
-    SDL_Texture *hoFaDrMa5;
-    SDL_Texture *hoFaDrFaRien;
-    SDL_Texture *hoFaDrFaMa1;
-    SDL_Texture *hoFaDrFaMa2;
-    SDL_Texture *hoFaDrFaMa3;
-    SDL_Texture *hoFaDrFaMa4;
-    SDL_Texture *hoFaDrFaMa5;
-    SDL_Texture *hoFaFaDrRien;
-    SDL_Texture *hoFaFaDrMa1;
-    SDL_Texture *hoFaFaDrMa2;
-    SDL_Texture *hoFaFaDrMa3;
-    SDL_Texture *hoFaFaDrMa4;
-    SDL_Texture *hoFaFaDrMa5;
-    SDL_Texture *hoFaFaRien;
-    SDL_Texture *hoFaFaMa1;
-    SDL_Texture *hoFaFaMa2;
-    SDL_Texture *hoFaFaMa3;
-    SDL_Texture *hoFaFaMa4;
-    SDL_Texture *hoFaFaMa5;
-    SDL_Texture *hoFaFaGaRien;
-    SDL_Texture *hoFaFaGaMa1;
-    SDL_Texture *hoFaFaGaMa2;
-    SDL_Texture *hoFaFaGaMa3;
-    SDL_Texture *hoFaFaGaMa4;
-    SDL_Texture *hoFaFaGaMa5;
-    SDL_Texture *hoFaGaFaRien;
-    SDL_Texture *hoFaGaFaMa1;
-    SDL_Texture *hoFaGaFaMa2;
-    SDL_Texture *hoFaGaFaMa3;
-    SDL_Texture *hoFaGaFaMa4;
-    SDL_Texture *hoFaGaFaMa5;
-    SDL_Texture *hoFaGaRien;
-    SDL_Texture *hoFaGaMa1;
-    SDL_Texture *hoFaGaMa2;
-    SDL_Texture *hoFaGaMa3;
-    SDL_Texture *hoFaGaMa4;
-    SDL_Texture *hoFaGaMa5;
-    SDL_Texture *hoFaGaDoRien;
-    SDL_Texture *hoFaGaDoMa1;
-    SDL_Texture *hoFaGaDoMa2;
-    SDL_Texture *hoFaGaDoMa3;
-    SDL_Texture *hoFaGaDoMa4;
-    SDL_Texture *hoFaGaDoMa5;
-    SDL_Texture *hoFaDoGaRien;
-    SDL_Texture *hoFaDoGaMa1;
-    SDL_Texture *hoFaDoGaMa2;
-    SDL_Texture *hoFaDoGaMa3;
-    SDL_Texture *hoFaDoGaMa4;
-    SDL_Texture *hoFaDoGaMa5;*/
-
     // Homme qui marche
-    SDL_Texture *hoFaDoMa[6]; // Face Down Marche (5 steps)
+    /*SDL_Texture *hoFaDoMa[6]; // Face Down Marche (5 steps)
     SDL_Texture *hoFaDrMa[6]; // Face Right Marche
     SDL_Texture *hoFaGaMa[6]; // Face Left Marche
     SDL_Texture *hoFaFaMa[6]; // Face Up Marche
-
     SDL_Texture *hoFaDoDrMa[6]; // Face Up Marche
     SDL_Texture *hoFaDrDoMa[6]; // Face Up Marche
     SDL_Texture *hoFaDrFaMa[6]; // Face Up Marche
@@ -126,6 +52,8 @@ struct skin
     SDL_Texture *hoFaGaFaMa[6]; // Face Up Marche
     SDL_Texture *hoFaGaDoMa[6]; // Face Up Marche
     SDL_Texture *hoFaDoGaMa[6]; // Face Up Marche
+*/
+     SDL_Texture *hoFa[6][12];
 
     // Homme Archer
     SDL_Texture *hoArDoMa[6]; // Archer Dos Marche
