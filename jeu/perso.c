@@ -109,7 +109,7 @@ struct linked_list *append_perso(char **line)
 	should_i_call_my_computer_work = '1';
 	to_append->p = n;
 	to_append->next = NULL;
-
+	printf ("%d\n", n->id);
 	if (list == NULL)
 		list = to_append;	
 	else

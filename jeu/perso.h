@@ -12,9 +12,9 @@
 
 struct personnages
 {
-    int skin;
+    char skin[4];
     int id;
-    int pv;
+    int pv; 
     char nom_de_compte[50];
     float x;
     float y;

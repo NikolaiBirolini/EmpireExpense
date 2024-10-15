@@ -20,7 +20,7 @@ int try_connect(char *ip, char *port) // Connecter
 
 void recv_order(int socket)
 {
-	int skin; int id;
+	char skin[4]; int id;
 	char *buffer = calloc(20, sizeof(char));
 	recv(socket, buffer, 20, 0);
 	if (buffer[0] == '0')
@@ -42,8 +42,8 @@ void recv_order(int socket)
 	buffer = pos_buf;
 	while (*buffer != 0)
 	{
-		sscanf(buffer, "%d %d", &skin, &id);
-		if (skin == 1)
+		sscanf(buffer, "%s %d", skin, &id);
+		if (skin[0] == '1')
 		{
 			struct building *yalist = get_building_from_id(id);
 			if (yalist != NULL)

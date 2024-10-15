@@ -19,8 +19,6 @@ struct personnages *init_map(void)
             append_building(line);
         else
             append_perso(line);
-
-        
     }
 
     return list;

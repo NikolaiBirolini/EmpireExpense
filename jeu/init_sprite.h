@@ -56,7 +56,7 @@ struct skin
     SDL_Texture *littleManEmptyStuff_standing_upRight;
     SDL_Texture *littleManEmptyStuff_standing_up;
 
-    SDL_Texture *ship1haut;
+    SDL_Texture *ship1_floor;
     SDL_Texture *fruit;
     SDL_Texture *legume;
     SDL_Texture *arbre1;

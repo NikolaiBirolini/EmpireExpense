@@ -3,17 +3,16 @@
 int parse_building(struct building *b, char *line)
 {
     int i;
-    sscanf(line + 2, "%d %d %d %d %s %n", &b->id, &b->pv, &b->x, &b->y, b->skin, &i);
-    return i + 2;
+    sscanf(line, "%s %d %d %d %d %c %n", b->skin, &b->id, &b->pv, &b->x, &b->y, &b->angle, &i);
+    return i;
 }
-
 
 int append_building(char *line)
 {
     struct building *new = malloc(sizeof(struct building));
     int ret = parse_building(new, line);
     should_i_actualise_building_altitude = 1;
-    init_stat_building(new);
+    actualise_stat_building(new);
     new->next = NULL;
     if (list_building == NULL)
         list_building = new;
@@ -46,7 +45,7 @@ void actualise_building_altitude(void)
 {    
     for (struct building *parcour = list_building; parcour != NULL; parcour = parcour->next)
     {     
-        if (strcmp(parcour->skin, "basic_terracota_house") == 0)
+        if (strcmp(parcour->skin, "111") == 0)
         {   
             building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x)] =  calloc(40, sizeof(uint8_t));
             building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x)] = calloc(40, sizeof(uint8_t));
@@ -109,7 +108,7 @@ void actualise_building_altitude(void)
             building_id[(int)(parcour->y-2) * max_x + (int)(parcour->x)] = parcour->id;
         }
 
-        else if (strcmp(parcour->skin, "bridge_5_x") == 0)
+        else if (strcmp(parcour->skin, "125") == 0)
         {
             building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x)] =  calloc(40, sizeof(uint8_t));
             building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x+1)] = calloc(40, sizeof(uint8_t));

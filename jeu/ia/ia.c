@@ -71,8 +71,10 @@ void ia(void)
         {
             /*if (strncmp(parcour->p->skin, "ship", 4) == 0)
                 ia_ship(parcour);*/
-            if (parcour->p->skin == 2)
+            if (parcour->p->skin[1] == '1')
                 ia_arbre(parcour);
+            else if (parcour->p->skin[1] == '2')
+                ia_flag(parcour);
             else
                 ia_man(parcour->p);
         }
@@ -81,8 +83,7 @@ void ia(void)
 
 void ia_flag(struct linked_list *parcour)
 {
-    if (parcour->p->pv < 99999)
-        sprintf (ordre + strlen(ordre), "%d 0 %d ", parcour->p->id, parcour->p->pv * 2);
+    parcour = parcour;
 }
 
 void ia_fruit(struct linked_list *parcour)
@@ -265,14 +266,32 @@ void ia_man(struct personnages *p)
     }
     else 
     {
+        struct personnages *closest = NULL;
+        int mind = 900;
         for (struct linked_enemie *e = p->e_list; e != NULL; e = e->next)
         {
             struct personnages *ee = find_perso_by_name(e->nom);
-            float square_dist = (ee->x  - p->x)*(ee->x  - p->x)+(ee->y  - p->y)*(ee->y  - p->y);
-            if (square_dist < p->porte_dom*p->porte_dom)
-                sprintf (ordre + strlen(ordre), "%d 22 1 %d 21 0 %d 00 -%d ", p->id, p->id, ee->id, p->dom);
-            else if ((ee->x  - p->x)*(ee->x  - p->x)+(ee->y  - p->y)*(ee->y  - p->y) < 900)
-                sprintf (ordre + strlen(ordre), "%d 03 %f %d 04 %f ", p->id, ee->x, p->id, ee->y);
+            if (ee == NULL)
+            {
+                sprintf(ordre + strlen(ordre), "%d 15 %s ", moi->id, e->nom);
+            }
+            else
+            {
+                float square_dist = (ee->x  - p->x)*(ee->x  - p->x)+(ee->y  - p->y)*(ee->y  - p->y);
+                if (square_dist < mind)
+                {
+                    mind = square_dist;
+                    closest = ee;
+                }
+            }
+        }
+        if (closest != NULL)
+        {
+            if (mind < p->porte_dom*p->porte_dom)
+                sprintf (ordre + strlen(ordre), "%d 22 1 %d 21 0 %d 00 -%d ", p->id, p->id, closest->id, p->dom);
+            else
+                sprintf (ordre + strlen(ordre), "%d 03 %f %d 04 %f ", p->id, closest->x, p->id, closest->y);
+                
         }
     }
     if (strcmp(p->echange_player, "none") != 0)

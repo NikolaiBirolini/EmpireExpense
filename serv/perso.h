@@ -14,7 +14,7 @@ extern struct personnages *lits;
 
 struct personnages
 {
-    int skin;
+    char skin[4];
     int id;
     int pv;
     char nom_de_compte[50];

@@ -73,7 +73,10 @@ void display_all(void)
 		if (parcour->p != NULL)
 			altitude = parcour->p->altitude*38;
 		if (moi->inside == -1)
+		{
+			//printf ("%d %d %d %d\n", xfrom, yfrom, (int)parcour->x, (int)parcour->y);
 			display_ground(xfrom, yfrom, (int)parcour->x, (int)parcour->y);
+		}
 		xfrom = (int)parcour->x;
 		yfrom = (int)parcour->y;
 		SDL_QueryTexture(parcour->img, NULL, NULL, &position.w, &position.h);

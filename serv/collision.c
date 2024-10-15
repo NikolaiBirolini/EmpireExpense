@@ -2,11 +2,11 @@
 
 float coo_circle(struct personnages *perso)
 {
-    if (perso->skin == 0)
+    if (perso->skin[0] == 0)
     {
         return 0.1;
     }
-    else if (perso->skin  == 2)
+    else if (perso->skin[0]  == 1)
     {
         return 1;
     }

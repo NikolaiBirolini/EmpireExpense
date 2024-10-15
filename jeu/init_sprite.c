@@ -154,7 +154,7 @@ struct skin *init_skin()
     initTextureObject(&(to_return->hoAr[4][6]), "img/homme/archer/gauche5.bmp");
     initTextureObject(&(to_return->hoAr[4][7]), "img/homme/archer/gaucheDos5.bmp");
 
-    initTextureObject(&(to_return->ship1haut), "img/eau/ship1/haut.bmp");
+    initTextureObject(&(to_return->ship1_floor), "img/ship/ship1/flat_wood.bmp");
     initTextureObject(&(to_return->fruit), "img/nature/nouriture/fruit.bmp");
     initTextureObject(&(to_return->legume), "img/nature/nouriture/legume.bmp");
     initTextureObject(&(to_return->arbre1), "img/nature/arbre1.bmp");

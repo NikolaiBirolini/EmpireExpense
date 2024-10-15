@@ -8,13 +8,12 @@ struct building
     int pv;
     int x;
     int y;
-    char skin[50];
+    char skin[4];
+    char angle;
     //
     int inside;
     int sizex;
     int sizey;
-    int enter;
-    int exit;
     struct building *next;
 };
 

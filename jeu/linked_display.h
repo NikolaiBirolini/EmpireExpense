@@ -7,7 +7,6 @@ struct to_disp
     SDL_Texture* img;
     float x;
     float y;
-    int line;
     int id;
     char floor;
     struct to_disp* next;
