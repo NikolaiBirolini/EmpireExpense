@@ -391,7 +391,7 @@ void actualise_stat_building(struct building *b)
 				for (int j = -2; j < 3; j++)
 				{
 					struct to_disp *new = malloc(sizeof(struct to_disp));
-					new->img = img->s->ship1_floor;
+					new->img = img->s->ship1_250cm_wood;
 					new->x = b->x+j;
 					new->y = b->y+i;
 						new->id = b->id;
@@ -406,7 +406,7 @@ void actualise_stat_building(struct building *b)
 			}
 			
 			struct to_disp *new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->x = b->x+1;
 			new->y = b->y+3;
 			new->id = b->id;
@@ -418,7 +418,7 @@ void actualise_stat_building(struct building *b)
 			new->b = b;
 			sortedInsert(new);
 			new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->x = b->x;
 			new->y = b->y+3;
 			new->id = b->id;
@@ -430,7 +430,7 @@ void actualise_stat_building(struct building *b)
 			new->b = b;
 			sortedInsert(new);
 			new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->x = b->x-1;
 			new->y = b->y+3;
 			new->id = b->id;
@@ -443,7 +443,7 @@ void actualise_stat_building(struct building *b)
 			sortedInsert(new);
 					
 			new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->x = b->x+1;
 			new->y = b->y-4;
 			new->id = b->id;
@@ -455,7 +455,7 @@ void actualise_stat_building(struct building *b)
 			new->b = b;
 			sortedInsert(new);
 			new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->x = b->x;
 			new->y = b->y-4;
 			new->id = b->id;
@@ -467,7 +467,7 @@ void actualise_stat_building(struct building *b)
 			new->b = b;
 			sortedInsert(new);
 			new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->x = b->x-1;
 			new->y = b->y-4;
 			new->id = b->id;
@@ -479,8 +479,32 @@ void actualise_stat_building(struct building *b)
 			new->b = b;
 			sortedInsert(new);
 			new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->x = b->x;
+			new->y = b->y+4;
+			new->id = b->id;
+			new->floor = 0;
+			new->offset_x = 868;
+			new->offset_y = 466;
+			new->next = NULL;
+			new->p = NULL;
+			new->b = b;
+			sortedInsert(new);
+			new = malloc(sizeof(struct to_disp));
+			new->img = img->s->ship1_250cm_wood;
+			new->x = b->x+2;
+			new->y = b->y+3;
+			new->id = b->id;
+			new->floor = 0;
+			new->offset_x = 868;
+			new->offset_y = 466;
+			new->next = NULL;
+			new->p = NULL;
+			new->b = b;
+			sortedInsert(new);
+			new = malloc(sizeof(struct to_disp));
+			new->img = img->s->ship1_250cm_wood;
+			new->x = b->x+1;
 			new->y = b->y+4;
 			new->id = b->id;
 			new->floor = 0;
@@ -498,7 +522,7 @@ void actualise_stat_building(struct building *b)
 				for (int j = -2; j < 3; j++)
 				{
 					struct to_disp *new = malloc(sizeof(struct to_disp));
-					new->img = img->s->ship1_floor;
+					new->img = img->s->ship1_250cm_wood;
 					new->x = b->x+j;
 					new->y = b->y+i;
 						new->id = b->id;
@@ -513,7 +537,7 @@ void actualise_stat_building(struct building *b)
 			}
 			
 			struct to_disp *new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->x = b->x+1;
 			new->y = b->y+4;
 			new->id = b->id;
@@ -525,7 +549,7 @@ void actualise_stat_building(struct building *b)
 			new->b = b;
 			sortedInsert(new);
 			new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->x = b->x;
 			new->y = b->y+4;
 			new->id = b->id;
@@ -537,7 +561,7 @@ void actualise_stat_building(struct building *b)
 			new->b = b;
 			sortedInsert(new);
 			new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->x = b->x-1;
 			new->y = b->y+4;
 			new->id = b->id;
@@ -550,7 +574,7 @@ void actualise_stat_building(struct building *b)
 			sortedInsert(new);
 					
 			new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->x = b->x+1;
 			new->y = b->y-3;
 			new->id = b->id;
@@ -562,7 +586,7 @@ void actualise_stat_building(struct building *b)
 			new->b = b;
 			sortedInsert(new);
 			new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->x = b->x;
 			new->y = b->y-3;
 			new->id = b->id;
@@ -574,7 +598,7 @@ void actualise_stat_building(struct building *b)
 			new->b = b;
 			sortedInsert(new);
 			new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->x = b->x-1;
 			new->y = b->y-3;
 			new->id = b->id;
@@ -586,7 +610,7 @@ void actualise_stat_building(struct building *b)
 			new->b = b;
 			sortedInsert(new);
 			new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->x = b->x;
 			new->y = b->y-4;
 			new->id = b->id;
@@ -605,7 +629,7 @@ void actualise_stat_building(struct building *b)
 				for (int j = -3; j < 3; j++)
 				{
 					struct to_disp *new = malloc(sizeof(struct to_disp));
-					new->img = img->s->ship1_floor;
+					new->img = img->s->ship1_250cm_wood;
 					new->x = b->x+j;
 					new->y = b->y+i;
 						new->id = b->id;
@@ -620,7 +644,7 @@ void actualise_stat_building(struct building *b)
 			}
 			
 			struct to_disp *new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->y = b->y+1;
 			new->x = b->x-4;
 			new->id = b->id;
@@ -632,7 +656,7 @@ void actualise_stat_building(struct building *b)
 			new->b = b;
 			sortedInsert(new);
 			new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->y = b->y;
 			new->x = b->x-4;
 			new->id = b->id;
@@ -644,7 +668,7 @@ void actualise_stat_building(struct building *b)
 			new->b = b;
 			sortedInsert(new);
 			new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->y = b->y-1;
 			new->x = b->x-4;
 			new->id = b->id;
@@ -657,7 +681,7 @@ void actualise_stat_building(struct building *b)
 			sortedInsert(new);
 					
 			new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->y = b->y+1;
 			new->x = b->x+3;
 			new->id = b->id;
@@ -669,7 +693,7 @@ void actualise_stat_building(struct building *b)
 			new->b = b;
 			sortedInsert(new);
 			new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->y = b->y;
 			new->x = b->x+3;
 			new->id = b->id;
@@ -681,7 +705,7 @@ void actualise_stat_building(struct building *b)
 			new->b = b;
 			sortedInsert(new);
 			new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->y = b->y-1;
 			new->x = b->x+3;
 			new->id = b->id;
@@ -693,7 +717,7 @@ void actualise_stat_building(struct building *b)
 			new->b = b;
 			sortedInsert(new);
 			new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->y = b->y;
 			new->x = b->x+4;
 			new->id = b->id;
@@ -712,7 +736,7 @@ void actualise_stat_building(struct building *b)
 				for (int j = -2; j < 4; j++)
 				{
 					struct to_disp *new = malloc(sizeof(struct to_disp));
-					new->img = img->s->ship1_floor;
+					new->img = img->s->ship1_250cm_wood;
 					new->x = b->x+j;
 					new->y = b->y+i;
 						new->id = b->id;
@@ -727,7 +751,7 @@ void actualise_stat_building(struct building *b)
 			}
 			
 			struct to_disp *new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->y = b->y+1;
 			new->x = b->x-3;
 			new->id = b->id;
@@ -739,7 +763,7 @@ void actualise_stat_building(struct building *b)
 			new->b = b;
 			sortedInsert(new);
 			new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->y = b->y;
 			new->x = b->x-3;
 			new->id = b->id;
@@ -751,7 +775,7 @@ void actualise_stat_building(struct building *b)
 			new->b = b;
 			sortedInsert(new);
 			new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->y = b->y-1;
 			new->x = b->x-3;
 			new->id = b->id;
@@ -764,7 +788,7 @@ void actualise_stat_building(struct building *b)
 			sortedInsert(new);
 					
 			new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->y = b->y+1;
 			new->x = b->x+4;
 			new->id = b->id;
@@ -776,7 +800,7 @@ void actualise_stat_building(struct building *b)
 			new->b = b;
 			sortedInsert(new);
 			new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->y = b->y;
 			new->x = b->x+4;
 			new->id = b->id;
@@ -788,7 +812,7 @@ void actualise_stat_building(struct building *b)
 			new->b = b;
 			sortedInsert(new);
 			new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->y = b->y-1;
 			new->x = b->x+4;
 			new->id = b->id;
@@ -800,7 +824,7 @@ void actualise_stat_building(struct building *b)
 			new->b = b;
 			sortedInsert(new);
 			new = malloc(sizeof(struct to_disp));
-			new->img = img->s->ship1_floor;
+			new->img = img->s->ship1_250cm_wood;
 			new->y = b->y;
 			new->x = b->x-4;
 			new->id = b->id;

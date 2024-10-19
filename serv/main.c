@@ -64,9 +64,6 @@ int main(int argc, char **argv)
 		printf ("error 1 : serv need a port\n");
 		return 1;
 	}
-	clock_t time = clock();
-    float t = (float)(time / CLOCKS_PER_SEC);
-    float t2;
 	char *ground;
 	size_t size_ground = load_file_as_string("ground.txt", &ground);
 	create_array(ground);
@@ -118,9 +115,10 @@ int main(int argc, char **argv)
 	
 	//debout boucle, on suppose que la carte est initialisée.
     struct timeval start;struct timeval end;
+    gettimeofday(&start, NULL);
 	while (1)
     {
-        gettimeofday(&start, NULL);
+        
         int n, i;
         n = epoll_wait (efd, events, MAXEVENTS, 0);
         for (i = 0; i < n; i++)
@@ -262,7 +260,7 @@ int main(int argc, char **argv)
                     {
                         struct personnages *p = have_char(c_names[events[i].data.fd]);
                         if (p != NULL)
-                        {
+                        {   
                             p->online = '0';
                             p->a_bouger = 1;
                         }
@@ -272,11 +270,12 @@ int main(int argc, char **argv)
                 }
             }
         }
-		time = clock();
-        t2 = (float)(time / (CLOCKS_PER_SEC / 60));
-        if (t2 - t >= 6)
+        gettimeofday(&end, NULL);
+        double elapsedTime = (end.tv_sec - start.tv_sec) * 1000.0;      // sec to ms
+        elapsedTime += (end.tv_usec - start.tv_usec) / 1000.0;
+        if (elapsedTime >= 100)
         {
-        	t = t2;
+        	start = end;
             if (should_i_actualise_building_altitude == 1)
                 actualise_building_altitude();
             collision();
@@ -288,10 +287,8 @@ int main(int argc, char **argv)
                 	send(i, order, size + 20, MSG_NOSIGNAL);
 				}
             remove_perso();
-            gettimeofday(&end, NULL);
-            double elapsedTime = (end.tv_sec - start.tv_sec) * 1000.0;      // sec to ms
-            elapsedTime += (end.tv_usec - start.tv_usec) / 1000.0;
-            //printf ("elapsedTime = %5.3fms \n", elapsedTime);
+            
+            printf ("elapsedTime = %5.3fms \n", elapsedTime);
 		}
     }
 
