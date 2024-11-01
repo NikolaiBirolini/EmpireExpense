@@ -22,8 +22,6 @@ int try_connect(char *ip, char *port) // Connecter
 
 void recv_order(int socket)
 {
-    struct timeval sstart, eend;
-	gettimeofday(&sstart, NULL);
 	char skin[4]; int id;
 	char *buffer = calloc(20, sizeof(char));
 	recv(socket, buffer, 20, 0);
@@ -44,10 +42,6 @@ void recv_order(int socket)
 		buffer = buffer + tmp;
 	}
 	buffer = pos_buf;
-	gettimeofday(&eend, NULL);
-    double elapsedTime = (eend.tv_sec - sstart.tv_sec) * 1000.0;      // sec to ms
-    elapsedTime += (eend.tv_usec - sstart.tv_usec) / 1000.0;
-    fprintf(stderr, "recv socket = %5.3fms \n", elapsedTime);
 	while (*buffer != 0)
 	{
 		sscanf(buffer, "%s %d", skin, &id);

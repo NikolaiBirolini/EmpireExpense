@@ -273,7 +273,7 @@ int main(int argc, char **argv)
         gettimeofday(&end, NULL);
         double elapsedTime = (end.tv_sec - start.tv_sec) * 1000.0;      // sec to ms
         elapsedTime += (end.tv_usec - start.tv_usec) / 1000.0;
-        if (elapsedTime >= 100)
+        if (elapsedTime >= 75)
         {
         	start = end;
             if (should_i_actualise_building_altitude == 1)

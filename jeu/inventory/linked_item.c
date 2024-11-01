@@ -150,7 +150,8 @@ void print(struct linked_item *e)
 
 void echange_item(struct personnages *perso1, struct personnages *perso2)
 {
-	
+	printf ("%s %s\n", perso1->nom, perso2->nom);
+	printf ("%s %s\n", perso1->item1, perso1->item2);
 	if (strcmp(perso1->item1, "none") == 0)
 	{
 		for (struct linked_item *p = perso1->i_list; p != NULL; p =p->next)
@@ -161,11 +162,11 @@ void echange_item(struct personnages *perso1, struct personnages *perso2)
 				sprintf (ordre + strlen(ordre), "%d 16 +%d %s %d 16 %d %s %d 17 none none 0 none 0 ", 
 				perso2->id, perso1->count_item2, perso1->item2,
 				perso1->id, perso1->count_item2, perso1->item2, 
-				moi->id);
+				perso1->id);
 				return;
 			}
 		}
-		sprintf (ordre + strlen(ordre), "%d 17 none none 0 none 0 ", moi->id);
+		sprintf (ordre + strlen(ordre), "%d 17 none none 0 none 0 ", perso1->id);
 	}
 	else if (strcmp(perso1->item2, "none") == 0)
 	{
@@ -177,11 +178,11 @@ void echange_item(struct personnages *perso1, struct personnages *perso2)
 				sprintf (ordre + strlen(ordre), "%d 16 +%d %s %d 16 %d %s %d 17 none none 0 none 0 ", 
 				perso1->id, perso1->count_item1, perso1->item1, 
 				perso2->id, perso1->count_item1, perso1->item1,
-				moi->id);
+				perso1->id);
 				return;
 			}
 		}
-		sprintf (ordre + strlen(ordre), "%d 17 none none 0 none 0 ", moi->id);
+		sprintf (ordre + strlen(ordre), "%d 17 none none 0 none 0 ", perso1->id);
 	}
 	else
 	{
@@ -199,10 +200,10 @@ void echange_item(struct personnages *perso1, struct personnages *perso2)
 			perso2->id, perso1->count_item2, perso1->item2,
 			perso1->id, perso1->count_item2, perso1->item2, 
 			perso2->id, perso1->count_item1, perso1->item1,
-			moi->id);
+			perso1->id);
 		}
 		else
-			sprintf (ordre + strlen(ordre), "%d 17 none none 0 none 0 ", moi->id);
+			sprintf (ordre + strlen(ordre), "%d 17 none none 0 none 0 ", perso1->id);
 	}
 	
 }

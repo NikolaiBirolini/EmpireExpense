@@ -103,8 +103,6 @@ void boucle_jeu(int socket, char *name)
     init_main_menu();
     init_speak_bubble();
 	bool done = false;
-    struct timeval start, end;
-    struct timeval sstart, eend;
     SDL_Event event;
     text = calloc(sizeof(struct textInput), 1);
     text->textToPrint = (char *)malloc(strlen(event.text.text) + 1);
@@ -113,12 +111,11 @@ void boucle_jeu(int socket, char *name)
 
 	while(!done)
 	{
-        gettimeofday(&start, NULL);
 	    event = gestion_touche();
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-		SDL_RenderClear(renderer);
+            SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	    SDL_RenderClear(renderer);
 	    display_all();
-        display_selected(selected[0]);
+            display_selected(selected[0]);
         display_elipse_and_personal_datas(moi);
         if (conditional_menu(selected[0]) == 1)
             done = done;
@@ -154,14 +151,8 @@ void boucle_jeu(int socket, char *name)
 	    ia();
 	    gui_event(moi);
 	    fix_some_shit();
-        gettimeofday(&sstart, NULL);
         send_orders(socket);
-	    recv_order(socket);
-        gettimeofday(&eend, NULL);
-        double elapsedTime = (eend.tv_sec - sstart.tv_sec) * 1000.0;      // sec to ms
-        elapsedTime += (eend.tv_usec - sstart.tv_usec) / 1000.0;
-        fprintf(stderr, "display = %5.3fms \n", elapsedTime);
-        //printf ("%f %f %f\n", moi->x, moi->y,moi->altitude);
+	recv_order(socket);
         for (int i = 0; 11>i;i++)
         {
             //  printf ("%d\n", i);ss
@@ -170,10 +161,6 @@ void boucle_jeu(int socket, char *name)
 	    list = death();
 		
 	    SDL_RenderPresent(renderer);
-        gettimeofday(&end, NULL);
-        elapsedTime = (end.tv_sec - start.tv_sec) * 1000.0;      // sec to ms
-        elapsedTime += (end.tv_usec - start.tv_usec) / 1000.0;
-        fprintf(stderr, "total = %5.3fms \n", elapsedTime);
         //*text->key = NULL;  
 	}
 }

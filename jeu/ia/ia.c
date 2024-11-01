@@ -72,7 +72,7 @@ void ia(void)
             /*if (strncmp(parcour->p->skin, "ship", 4) == 0)
                 ia_ship(parcour);*/
             if (parcour->p->skin[1] == '1')
-                ia_arbre(parcour);
+                ia_arbre(parcour->p);
             else if (parcour->p->skin[1] == '2')
                 ia_flag(parcour);
             else
@@ -86,37 +86,28 @@ void ia_flag(struct linked_list *parcour)
     parcour = parcour;
 }
 
-void ia_fruit(struct linked_list *parcour)
+void ia_arbre(struct personnages *p)
 {
-    /*
-       if (parcour->p->faim < 0)
-       {
-       int x = ((int)(parcour->p->x + 0.5) - (int)(parcour->p->x + 0.5) % 25) / 25;
-       int y = ((int)(parcour->p->y + 0.5) - (int)(parcour->p->y + 0.5) % 25) / 25;
-       int src = y * max_x + x;
-       if (rand() % 3 == 1 && (ground[src] == 6 || ground[src] == 7 || ground[src] == 8 || ground[src] == 9 || ground[src] == 10 || ground[src] == 3 || ground[src] == 4 || ground[src] == 5))
-       sprintf(ordre + strlen(ordre), "%d 00 100 %d 08 arbre %d 07 100 ", parcour->p->id, parcour->p->id, parcour->p->id);
-       else
-       sprintf(ordre + strlen(ordre), "%d 00 0 ", parcour->p->id);
-       }*/
-    parcour = parcour;
-}
-
-void ia_arbre(struct linked_list *parcour)
-{
-    parcour->p->animation += 1;    
-    if (parcour->p->animation > 60)
+    p->animation += 1;    
+    if (p->animation > 60)
     {
-        if (parcour->p->faim > 20)
-            sprintf(ordre+strlen(ordre), "%d 16 +1 fruit %d 07 -21 ", parcour->p->id, parcour->p->id);
+        if (p->faim > 20)
+            sprintf(ordre+strlen(ordre), "%d 16 +1 fruit %d 07 -21 ", p->id, p->id);
         else
-            sprintf (ordre + strlen(ordre), "%d 07 1 ", parcour->p->id);
-        parcour->p->animation = 0; 
-        if (count_item(parcour->p->i_list, "fruit") == 20)
+            sprintf (ordre + strlen(ordre), "%d 07 1 ", p->id);
+        p->animation = 0; 
+        if (count_item(p->i_list, "fruit") == 20)
         {
-        sprintf (ordre + strlen(ordre), "-1 50 none %f %f -1.0 -1.0 a 0 0 arbre1 none none none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] [] \n%d 16 -20 fruit ", parcour->p->x + 1, parcour->p->y + 1, parcour->p->id);
+        sprintf (ordre + strlen(ordre), "-1 50 none %f %f -1.0 -1.0 a 0 0 arbre1 none none none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] [] \n%d 16 -20 fruit ", p->x + 1, p->y + 1, p->id);
         }
     }
+    if (strcmp(p->echange_player, "none") != 0)
+    {
+        struct personnages *echange_player = find_perso_by_name(p->echange_player);
+        if (echange_player != NULL && 9 > (echange_player->x - moi->x)*(echange_player->x - moi->x)+(echange_player->y - moi->y)*(echange_player->y - moi->y))
+            echange_item(p, echange_player);
+    }
+    
 }
 
 void ia_build(struct linked_list *parcour)
