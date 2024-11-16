@@ -154,6 +154,10 @@ struct skin *init_skin()
     initTextureObject(&(to_return->hoAr[4][6]), "img/homme/archer/gauche5.bmp");
     initTextureObject(&(to_return->hoAr[4][7]), "img/homme/archer/gaucheDos5.bmp");
 
+    initTextureObject(&(to_return->ship1_50cm_wood), "img/ship/ship1/50cm_wood.bmp");
+    initTextureObject(&(to_return->ship1_100cm_wood), "img/ship/ship1/100cm_wood.bmp");
+    initTextureObject(&(to_return->ship1_150cm_wood), "img/ship/ship1/150cm_wood.bmp");
+    initTextureObject(&(to_return->ship1_200cm_wood), "img/ship/ship1/200cm_wood.bmp");
     initTextureObject(&(to_return->ship1_250cm_wood), "img/ship/ship1/250cm_wood.bmp");
     initTextureObject(&(to_return->ship1_250cm_wood_triangle), "img/ship/ship1/250cm_wood_triangle.bmp");
     initTextureObject(&(to_return->ship1_flat_wood), "img/ship/ship1/flat_wood.bmp");
@@ -161,6 +165,9 @@ struct skin *init_skin()
     initTextureObject(&(to_return->ship1_flat_wood_down_triangle), "img/ship/ship1/flat_wood_down_triangle.bmp");
     initTextureObject(&(to_return->ship1_flat_wood_right_triangle), "img/ship/ship1/flat_wood_right_triangle.bmp");
     initTextureObject(&(to_return->ship1_flat_wood_left_triangle), "img/ship/ship1/flat_wood_left_triangle.bmp");
+    initTextureObject(&(to_return->ship1_flat_wood_up_triangle), "img/ship/ship1/flat_wood_up_triangle.bmp");
+    initTextureObject(&(to_return->ship1_bigSail), "img/ship/ship1/bigSail.bmp");
+
 
     initTextureObject(&(to_return->fruit), "img/nature/nouriture/fruit.bmp");
     initTextureObject(&(to_return->legume), "img/nature/nouriture/legume.bmp");

@@ -80,12 +80,10 @@ void display_all(void)
 		xfrom = (int)parcour->x;
 		yfrom = (int)parcour->y;
 		SDL_QueryTexture(parcour->img, NULL, NULL, &position.w, &position.h);
-
 		position.x = (parcour->x - moi->x - parcour->y + moi->y) * 34 + parcour->offset_x - position.w/2;
 		position.y = (parcour->x - moi->x + parcour->y - moi->y) * 17 + parcour->offset_y - position.h - altitude;
 		//if (parcour->floor == 1 && moi->inside == -1)
 		//	position.y -= altitude;
-
 		if (parcour->p != NULL)
 		{
 			parcour->p->screenx = position.x;
@@ -98,10 +96,10 @@ void display_all(void)
 		else if (parcour->b->id == moi->inside || moi->inside == -1) 
 		{
 			SDL_RenderCopy(renderer, parcour->img, NULL, &position);
-		}
-		
+		}		
 
 	}
 	if (moi->inside == -1)
 		display_ground(xfrom, yfrom, max_x-1, max_y-1);
+	
 }

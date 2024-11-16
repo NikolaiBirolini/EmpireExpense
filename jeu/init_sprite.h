@@ -56,6 +56,10 @@ struct skin
     SDL_Texture *littleManEmptyStuff_standing_upRight;
     SDL_Texture *littleManEmptyStuff_standing_up;
 
+    SDL_Texture *ship1_50cm_wood;
+    SDL_Texture *ship1_100cm_wood;
+    SDL_Texture *ship1_150cm_wood;
+    SDL_Texture *ship1_200cm_wood;
     SDL_Texture *ship1_250cm_wood;
     SDL_Texture *ship1_250cm_wood_triangle;
     SDL_Texture *ship1_flat_wood;
@@ -63,6 +67,8 @@ struct skin
     SDL_Texture *ship1_flat_wood_down_triangle;
     SDL_Texture *ship1_flat_wood_right_triangle;
     SDL_Texture *ship1_flat_wood_left_triangle;
+    SDL_Texture *ship1_flat_wood_up_triangle;
+    SDL_Texture *ship1_bigSail;
 
     SDL_Texture *fruit;
     SDL_Texture *legume;
