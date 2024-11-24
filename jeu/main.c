@@ -114,8 +114,9 @@ void boucle_jeu(int socket, char *name)
 	    event = gestion_touche();
             SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	    SDL_RenderClear(renderer);
+
 	    display_all();
-            display_selected(selected[0]);
+        display_selected(selected[0]);
         display_elipse_and_personal_datas(moi);
         if (conditional_menu(selected[0]) == 1)
             done = done;
@@ -152,7 +153,8 @@ void boucle_jeu(int socket, char *name)
 	    gui_event(moi);
 	    fix_some_shit();
         send_orders(socket);
-	recv_order(socket);
+	    recv_order(socket);
+        printf ("%f %f\n", moi->x, moi->y);
         for (int i = 0; 11>i;i++)
         {
             //  printf ("%d\n", i);ss
