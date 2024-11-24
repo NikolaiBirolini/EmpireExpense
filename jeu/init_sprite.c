@@ -158,8 +158,7 @@ struct skin *init_skin()
     initTextureObject(&(to_return->ship1_100cm_wood), "img/ship/ship1/100cm_wood.bmp");
     initTextureObject(&(to_return->ship1_150cm_wood), "img/ship/ship1/150cm_wood.bmp");
     initTextureObject(&(to_return->ship1_200cm_wood), "img/ship/ship1/200cm_wood.bmp");
-    initTextureObject(&(to_return->ship1_250cm_wood), "img/ship/ship1/250cm_wood.bmp");
-    initTextureObject(&(to_return->ship1_250cm_wood_triangle), "img/ship/ship1/250cm_wood_triangle.bmp");
+    initTextureObject(&(to_return->ship1_200cm_wood_triangle), "img/ship/ship1/200cm_wood_triangle.bmp");
     initTextureObject(&(to_return->ship1_flat_wood), "img/ship/ship1/flat_wood.bmp");
     initTextureObject(&(to_return->ship1_flat_black), "img/ship/ship1/flat_black.bmp");
     initTextureObject(&(to_return->ship1_flat_wood_down_triangle), "img/ship/ship1/flat_wood_down_triangle.bmp");

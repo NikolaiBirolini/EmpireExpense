@@ -2,13 +2,12 @@
 
 float coo_circle(struct personnages *perso)
 {
-    if (perso->skin[0] == 0)
+    if (perso->skin[0] == '0')
     {
-        return 0.1;
-    }
-    else if (perso->skin[0]  == 1)
-    {
-        return 1;
+        if (perso->skin[1] == 0)
+            return 0.1;
+        else if (perso->skin[1]  == '1')
+            return 1;
     }
     return 1;
 }
@@ -86,6 +85,7 @@ void collision(void)
 
 float allowed_to_move(struct personnages *perso, float x, float y, float mvx, float mvy) //>=0 altitude you should be -1 not allowed 
 {
+    printf ("altitude  %f\n", perso->altitude);
     int src = (int)(y) * max_x + (int)(x);
     int dst = (int)(y + mvy) * max_x + (int)(x + mvx);
     int ga = (ground_altitude[dst]/38)*2;
@@ -95,10 +95,10 @@ float allowed_to_move(struct personnages *perso, float x, float y, float mvx, fl
             return -1;
     if (perso->inside == -1)
     {
-        if (ground_texture[dst] == ea1 || ground_texture[dst] == ea2 || ground_texture[dst] == ea3)
-            return -1;
         if (building_altitude[dst] == NULL)
         {
+            if (ground_texture[dst] == ea1 || ground_texture[dst] == ea2 || ground_texture[dst] == ea3)
+                return -1;
             if (perso->altitude < (float)ground_altitude[dst]/38- 1)
                 return -1;
             return (float)ground_altitude[dst]/38;
