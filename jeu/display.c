@@ -81,7 +81,7 @@ void display_all(void)
 		yfrom = (int)parcour->y;
 		SDL_QueryTexture(parcour->img, NULL, NULL, &position.w, &position.h);
 		position.x = (parcour->x - moi->x - parcour->y + moi->y) * 34 + parcour->offset_x - position.w/2;
-		position.y = (parcour->x - moi->x + parcour->y - moi->y) * 17 + parcour->offset_y - position.h - altitude;
+		position.y = (parcour->x - moi->x + parcour->y - moi->y) * 17 + parcour->offset_y - position.h - altitude + 38 * (ground_texture[(int)parcour->x + (int)parcour->y * max_x] == img->t->ea1);
 		//if (parcour->floor == 1 && moi->inside == -1)
 		//	position.y -= altitude;
 		if (parcour->p != NULL)

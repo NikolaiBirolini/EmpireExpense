@@ -123,12 +123,12 @@ void actualise_building_altitude(void)
         { 
             if (parcour->angle == 'a')
             {
-                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x) + 1] =  calloc(40, sizeof(uint8_t));
-                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x) + 1][0] = 100;
-                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x) + 1][1] = 100;
-                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x) + 1][2] = 100;
-                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x) + 1][3] = 100;
-                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x) + 1][4] = 100;
+                printf ("%d %d\n", (int)(parcour->y), (int)(parcour->x) - 2);
+                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x) - 2] =  calloc(40, sizeof(uint8_t));
+                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x) - 2][0] = 100;
+                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x) - 2][1] = 100;
+                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x) - 2][2] = 100;
+                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x) - 2][3] = 100;
             }
             
         }

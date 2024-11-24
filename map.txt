@@ -1,4 +1,4 @@
-0 0 10 thyma 5.000000 75.00000 0.5 -1.000000 908.785156 a 0 99999 -1 thyma thyma none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty test [] []
+0 0 10 thyma 65.000000 75.00000 0.5 -1.000000 908.785156 a 0 99999 -1 thyma thyma none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty test [] []
 0 5 10 niko 7.00000 15.000000 2 -1.000000 908.785156 a 0 9999 -1 niko niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] []
 0 6 10 none 7.00000 13.000000 2 -1.000000 908.785156 a 0 9999 -1 babar niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] []
 0 7 10 none 7.00000 11.000000 2 -1.000000 908.785156 a 0 9999 -1 nigar niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [niko 0 thyma 0] []
@@ -10,7 +10,7 @@
 111 2 999 3 53 a
 125 11 999 2 50 a
 01 12 50 none 40.00000 49.00000 0 -1.000000 908.785156 a 0 0 -1 none none none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] [fruit 9]
-131 16 999 15 73 a
-131 17 999 25 73 b
-131 18 999 5 73 e
-131 19 999 35 73 k
+131 17 999 5 73 b
+131 18 999 69 73 a
+131 19 999 25 73 k
+131 20 999 45 73 e
