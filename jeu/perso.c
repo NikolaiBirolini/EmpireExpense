@@ -164,7 +164,6 @@ struct linked_list *death(void)
 		free(tmp->p);
 		free(tmp);
 		tmp = list;
-		printf ("death\n");
 		should_i_call_my_computer_work = '1';
 		should_i_actualise_building_altitude = 1;
 	}
@@ -185,7 +184,6 @@ struct linked_list *death(void)
         free(tmp->p);
         free(tmp);
 		tmp = prev->next;
-		printf ("death\n");
 		should_i_call_my_computer_work = '1';
 		should_i_actualise_building_altitude = 1;
 	}

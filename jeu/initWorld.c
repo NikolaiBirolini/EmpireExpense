@@ -8,7 +8,6 @@ void create_array(char *ground_string)
 	while (ground_string[i] != '\n')
 		i++;
 	i++;
-	printf ("%d %d\n", max_x, max_y);
 	ground_altitude = malloc(sizeof(int)*max_x*max_y);
 	building_id = calloc(max_x*max_y, sizeof(int));
 	building_altitude = calloc(max_x*max_y, sizeof(uint8_t*));

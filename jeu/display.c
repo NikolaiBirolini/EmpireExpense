@@ -36,16 +36,19 @@ void display_ground(int x, int y, int xto, int yto)
 	}
 	while (x != xto || y != yto)
 	{
-	    position.x = (x-moi->x - y+moi->y) * 34 + 866;
-		position.y = (x-moi->x + y-moi->y) * 17 + 450 - ground_altitude[x + y * max_x];
-		position.w = 68;
-		position.h = 34;
-        SDL_RenderCopy(renderer, ground_texture[x + y * max_x], NULL, &position);
+		if ((x  - moi->x)*(x  - moi->x) + (y  - moi->y)*(y  - moi->y) < 441)
+		{
+	    	position.x = (x-moi->x - y+moi->y) * 34 + 866;
+			position.y = (x-moi->x + y-moi->y) * 17 + 450 - ground_altitude[x + y * max_x];
+			position.w = 68;
+			position.h = 34;
+        	SDL_RenderCopy(renderer, ground_texture[x + y * max_x], NULL, &position);
 
-		for (int i = 0; i < ground_altitude[x + y * max_x]; i++)
-		{	
-			SDL_RenderDrawLine(renderer, position.x, position.y+i+17, position.x+34, position.y+34+i);
-			SDL_RenderDrawLine(renderer, position.x+34, position.y+i+34, position.x+68, position.y+17+i);
+			for (int i = 0; i < ground_altitude[x + y * max_x]; i++)
+			{	
+				SDL_RenderDrawLine(renderer, position.x, position.y+i+17, position.x+34, position.y+34+i);
+				SDL_RenderDrawLine(renderer, position.x+34, position.y+i+34, position.x+68, position.y+17+i);
+			}
 		}
 		
 	
@@ -79,24 +82,28 @@ void display_all(void)
 		}
 		xfrom = (int)parcour->x;
 		yfrom = (int)parcour->y;
-		SDL_QueryTexture(parcour->img, NULL, NULL, &position.w, &position.h);
-		position.x = (parcour->x - moi->x - parcour->y + moi->y) * 34 + parcour->offset_x - position.w/2;
-		position.y = (parcour->x - moi->x + parcour->y - moi->y) * 17 + parcour->offset_y - position.h - altitude + 38 * (ground_texture[(int)parcour->x + (int)parcour->y * max_x] == img->t->ea1);
+		if ((parcour->x  - moi->x)*(parcour->x  - moi->x) + (parcour->y  - moi->y)*(parcour->y  - moi->y) < 441)
+		{
+			SDL_QueryTexture(parcour->img, NULL, NULL, &position.w, &position.h);
+			position.x = (parcour->x - moi->x - parcour->y + moi->y) * 34 + parcour->offset_x - position.w/2;
+			position.y = (parcour->x - moi->x + parcour->y - moi->y) * 17 + parcour->offset_y - position.h - altitude + 38 * (ground_texture[(int)parcour->x + (int)parcour->y * max_x] == img->t->ea1);
 		//if (parcour->floor == 1 && moi->inside == -1)
 		//	position.y -= altitude;
-		if (parcour->p != NULL)
-		{
-			parcour->p->screenx = position.x;
-			parcour->p->screeny = position.y;
-			parcour->p->sizescreenx = position.w;
-			parcour->p->sizescreeny = position.h;
-			if (parcour->p->inside == moi->inside)		
+			if (parcour->p != NULL)
+			{
+				parcour->p->screenx = position.x;
+				parcour->p->screeny = position.y;
+				parcour->p->sizescreenx = position.w;
+				parcour->p->sizescreeny = position.h;
+				if (parcour->p->inside == moi->inside)		
+					SDL_RenderCopy(renderer, parcour->img, NULL, &position);
+			}
+			else if (parcour->b->id == moi->inside || moi->inside == -1) 
+			{
 				SDL_RenderCopy(renderer, parcour->img, NULL, &position);
+			
+			}
 		}
-		else if (parcour->b->id == moi->inside || moi->inside == -1) 
-		{
-			SDL_RenderCopy(renderer, parcour->img, NULL, &position);
-		}		
 
 	}
 	if (moi->inside == -1)

@@ -108,14 +108,19 @@ void boucle_jeu(int socket, char *name)
     text->textToPrint = (char *)malloc(strlen(event.text.text) + 1);
     text->on = 0;
     text->key = (SDL_Keycode *)malloc(sizeof(SDL_Keycode));
-
+   // struct timeval start;struct timeval end;
 	while(!done)
 	{
+        
 	    event = gestion_touche();
-            SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	    SDL_RenderClear(renderer);
-
+        //gettimeofday(&start, NULL);
 	    display_all();
+        //gettimeofday(&end, NULL);
+        //double elapsedTime = (end.tv_sec - start.tv_sec) * 1000.0;      // sec to ms
+        //elapsedTime += (end.tv_usec - start.tv_usec) / 1000.0;
+        //printf ("%f\n",  elapsedTime);
         display_selected(selected[0]);
         display_elipse_and_personal_datas(moi);
         if (conditional_menu(selected[0]) == 1)
@@ -162,7 +167,7 @@ void boucle_jeu(int socket, char *name)
 	    list = death();
 		
 	    SDL_RenderPresent(renderer);
-        //*text->key = NULL;  
+        //*text->key = NULL; 
 	}
 }
 
