@@ -108,9 +108,6 @@ int main(int argc, char **argv)
     /* Buffer where events are returned */
     events = calloc (MAXEVENTS, sizeof event);
 
-	//char boolrep;
-	//char buffer[103];
-	//int save = 0;
 	char *order = calloc(10000, 1);
 	
 	//debout boucle, on suppose que la carte est initialisée.
@@ -288,7 +285,7 @@ int main(int argc, char **argv)
 				}
             remove_perso();
             
-            printf ("elapsedTime = %5.3fms \n", elapsedTime);
+            //printf ("elapsedTime = %5.3fms \n", elapsedTime);
 		}
     }
 

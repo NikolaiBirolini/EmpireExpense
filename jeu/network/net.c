@@ -51,6 +51,7 @@ void recv_order(int socket)
 			if (yalist != NULL)
 			{
 				buffer += parse_building(yalist, buffer);
+				actualise_stat_building(yalist);
 			}
 			else
 				buffer += append_building(buffer);

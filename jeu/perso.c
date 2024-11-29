@@ -70,28 +70,23 @@ char exist_in_linked(struct linked_list *list, struct personnages *to_test)
 
 struct linked_list *append_in_linked(struct linked_list *list,struct personnages *p)
 {
-	if (list == NULL)
+	struct linked_list *to_append = malloc(sizeof(struct linked_list));
+	to_append->p = p;
+	if (list == NULL || list->p->id > p->id)
 	{
-		list = malloc(sizeof(struct linked_list));
-		list->p = p;
-		list->next = NULL;
-		return (list);
+		to_append->next = list;
+		list = to_append;
+		return list;
 	}
 	else
 	{
 		struct linked_list *parcour = list;
-		while (parcour->next != NULL)
-		{
-			if (parcour->p == p)
-				return list;
+		while (parcour->next != NULL && p->id > parcour->p->id)
 			parcour = parcour->next;
-		}
 		if (parcour->p != p)
 		{
-			struct linked_list *to_append = malloc(sizeof(struct linked_list));
+			to_append->next = parcour->next;
 			parcour->next = to_append;
-			to_append->p = p;
-			to_append->next = NULL;
 		}
 		return list;
 	}

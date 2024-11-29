@@ -85,7 +85,6 @@ void collision(void)
 
 float allowed_to_move(struct personnages *perso, float x, float y, float mvx, float mvy) //>=0 altitude you should be -1 not allowed 
 {
-    printf ("altitude  %f\n", perso->altitude);
     int src = (int)(y) * max_x + (int)(x);
     int dst = (int)(y + mvy) * max_x + (int)(x + mvx);
     int ga = (ground_altitude[dst]/38)*2;

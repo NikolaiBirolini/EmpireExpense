@@ -14,15 +14,20 @@ int append_building(char *line)
     should_i_actualise_building_altitude = 1;
     actualise_stat_building(new);
     new->next = NULL;
-    if (list_building == NULL)
+    if (list_building == NULL || list_building->id > new->id)
+    {
+        new->next = list_building;
         list_building = new;
+    }
     else
     {
-                struct building *parcour = list_building;
-                while (parcour->next != NULL)
-                        parcour = parcour->next;
+        struct building *parcour = list_building;
+        while (parcour->next != NULL && new->id > parcour->next->id)
+            parcour = parcour->next;
+        new->next = parcour->next;
         parcour->next = new;
     }
+    should_i_call_my_computer_work = '1';
     should_i_actualise_building_altitude = 1;
     return ret;
 }

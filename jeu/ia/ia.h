@@ -3,7 +3,7 @@
 
 void ia(void);
 void ia_man(struct personnages *p);
-void ia_ship(struct linked_list *parcour);
+void ia_ship(struct building *ship);
 void ia_arbre(struct personnages *p);
 void ia_fruit(struct linked_list *parcour);
 //void append_enemi_list(struct linked_list *list, struct personnages *p);

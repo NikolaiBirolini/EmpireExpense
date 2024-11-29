@@ -494,7 +494,6 @@ void actualise_stat_building(struct building *b)
 void init_stat(struct personnages *p)
 {
 	list_disp = deleteKey(p->id);
-	p->sur_plancher = NULL;
 	p->speak_timer = 0;
 	p->faim_time = 0;
     p->chemin_is_set = 0;

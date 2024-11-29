@@ -56,7 +56,6 @@ struct personnages
     char animation_time;
     int speak_timer;
     int faim_time; 
-    struct personnages *sur_plancher;
     int max_pv;
     int vitesse_dom;
     float vitesse_dep;

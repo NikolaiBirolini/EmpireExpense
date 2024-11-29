@@ -64,7 +64,7 @@ void display_ground(int x, int y, int xto, int yto)
 
 
 void display_all(void)
-{	
+{
 	SDL_SetRenderDrawColor(renderer, 74, 71,51,0);
 	//bubble_sort_perso();
 	SDL_Rect position;

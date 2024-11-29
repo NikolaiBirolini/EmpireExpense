@@ -7,6 +7,17 @@ int parse_new_building(struct building *b, char *line)
     return i + 1;
 }
 
+struct building *get_ptr_from_id_building(int id)
+{
+    struct building *parcour = list_building;
+    while (parcour != NULL)
+    {
+        if (parcour->id == id)
+            return parcour;
+        parcour = parcour->next;
+    }
+    return NULL;
+}
 
 int append_building(char *line)
 {
@@ -124,48 +135,53 @@ void actualise_building_altitude(void)
             if (parcour->angle == 'a')
             {
                 // Front SUD
-                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x+1)] = calloc(40, sizeof(uint8_t));
-                building_altitude[(int)(parcour->y+1) * max_x + (int)(parcour->x+1)] = calloc(40, sizeof(uint8_t));
-                building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x+1)] = calloc(40, sizeof(uint8_t));
-                building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x+1)] = calloc(40, sizeof(uint8_t));
-                building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x+1)] = calloc(40, sizeof(uint8_t));
-                building_altitude[(int)(parcour->y-3) * max_x + (int)(parcour->x+1)] = calloc(40, sizeof(uint8_t));
+                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x+2)] = calloc(40, sizeof(uint8_t));
+                building_altitude[(int)(parcour->y+1) * max_x + (int)(parcour->x+2)] = calloc(40, sizeof(uint8_t));
+                building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x+2)] = calloc(40, sizeof(uint8_t));
+                building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x+2)] = calloc(40, sizeof(uint8_t));
+                building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x+2)] = calloc(40, sizeof(uint8_t));
+                building_altitude[(int)(parcour->y-3) * max_x + (int)(parcour->x+2)] = calloc(40, sizeof(uint8_t));
 
                 // Front NORD
-                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x-3)] = calloc(40, sizeof(uint8_t));
-                building_altitude[(int)(parcour->y+1) * max_x + (int)(parcour->x-3)] = calloc(40, sizeof(uint8_t));
-                building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x-3)] = calloc(40, sizeof(uint8_t));
-                building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x-3)] = calloc(40, sizeof(uint8_t));
-                building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x-3)] = calloc(40, sizeof(uint8_t));
-                building_altitude[(int)(parcour->y-3) * max_x + (int)(parcour->x-3)] = calloc(40, sizeof(uint8_t));
+                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x-2)] = calloc(40, sizeof(uint8_t));
+                building_altitude[(int)(parcour->y+1) * max_x + (int)(parcour->x-2)] = calloc(40, sizeof(uint8_t));
+                building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x-2)] = calloc(40, sizeof(uint8_t));
+                building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x-2)] = calloc(40, sizeof(uint8_t));
+                building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x-2)] = calloc(40, sizeof(uint8_t));
+                building_altitude[(int)(parcour->y-3) * max_x + (int)(parcour->x-2)] = calloc(40, sizeof(uint8_t));
 
                 // Front EST
+                building_altitude[(int)(parcour->y-4) * max_x + (int)(parcour->x+1)] = calloc(40, sizeof(uint8_t));
                 building_altitude[(int)(parcour->y-4) * max_x + (int)(parcour->x)] = calloc(40, sizeof(uint8_t));
                 building_altitude[(int)(parcour->y-4) * max_x + (int)(parcour->x-1)] = calloc(40, sizeof(uint8_t));
-                building_altitude[(int)(parcour->y-4) * max_x + (int)(parcour->x-2)] = calloc(40, sizeof(uint8_t));
 
                 // Front OUEST
-                building_altitude[(int)(parcour->y+3) * max_x + (int)(parcour->x)] = calloc(40, sizeof(uint8_t));
-                building_altitude[(int)(parcour->y+4) * max_x + (int)(parcour->x-1)] = calloc(40, sizeof(uint8_t));
-                building_altitude[(int)(parcour->y+3) * max_x + (int)(parcour->x-2)] = calloc(40, sizeof(uint8_t));
+                building_altitude[(int)(parcour->y+3) * max_x + (int)(parcour->x+1)] = calloc(40, sizeof(uint8_t));
+                building_altitude[(int)(parcour->y+4) * max_x + (int)(parcour->x)] = calloc(40, sizeof(uint8_t));
+                building_altitude[(int)(parcour->y+3) * max_x + (int)(parcour->x-1)] = calloc(40, sizeof(uint8_t));
 
                 // Front OUEST
-                building_altitude[(int)(parcour->y+3) * max_x + (int)(parcour->x)][1] = 100;
-                building_altitude[(int)(parcour->y+3) * max_x + (int)(parcour->x)][2] = 100;
-                building_altitude[(int)(parcour->y+3) * max_x + (int)(parcour->x)][3] = 100;
-                building_altitude[(int)(parcour->y+3) * max_x + (int)(parcour->x)][0] = 100;
+                building_altitude[(int)(parcour->y+3) * max_x + (int)(parcour->x+1)][1] = 100;
+                building_altitude[(int)(parcour->y+3) * max_x + (int)(parcour->x+1)][2] = 100;
+                building_altitude[(int)(parcour->y+3) * max_x + (int)(parcour->x+1)][3] = 100;
+                building_altitude[(int)(parcour->y+3) * max_x + (int)(parcour->x+1)][0] = 100;
 
-                building_altitude[(int)(parcour->y+4) * max_x + (int)(parcour->x-1)][1] = 100;
-                building_altitude[(int)(parcour->y+4) * max_x + (int)(parcour->x-1)][2] = 100;
-                building_altitude[(int)(parcour->y+4) * max_x + (int)(parcour->x-1)][3] = 100;
-                building_altitude[(int)(parcour->y+4) * max_x + (int)(parcour->x-1)][0] = 100;
+                building_altitude[(int)(parcour->y+4) * max_x + (int)(parcour->x)][1] = 100;
+                building_altitude[(int)(parcour->y+4) * max_x + (int)(parcour->x)][2] = 100;
+                building_altitude[(int)(parcour->y+4) * max_x + (int)(parcour->x)][3] = 100;
+                building_altitude[(int)(parcour->y+4) * max_x + (int)(parcour->x)][0] = 100;
 
-                building_altitude[(int)(parcour->y+3) * max_x + (int)(parcour->x-2)][1] = 100;
-                building_altitude[(int)(parcour->y+3) * max_x + (int)(parcour->x-2)][2] = 100;
-                building_altitude[(int)(parcour->y+3) * max_x + (int)(parcour->x-2)][3] = 100;
-                building_altitude[(int)(parcour->y+3) * max_x + (int)(parcour->x-2)][0] = 100;
+                building_altitude[(int)(parcour->y+3) * max_x + (int)(parcour->x-1)][1] = 100;
+                building_altitude[(int)(parcour->y+3) * max_x + (int)(parcour->x-1)][2] = 100;
+                building_altitude[(int)(parcour->y+3) * max_x + (int)(parcour->x-1)][3] = 100;
+                building_altitude[(int)(parcour->y+3) * max_x + (int)(parcour->x-1)][0] = 100;
 
                 // Front EST
+                building_altitude[(int)(parcour->y-4) * max_x + (int)(parcour->x+1)][1] = 100;
+                building_altitude[(int)(parcour->y-4) * max_x + (int)(parcour->x+1)][2] = 100;
+                building_altitude[(int)(parcour->y-4) * max_x + (int)(parcour->x+1)][3] = 100;
+                building_altitude[(int)(parcour->y-4) * max_x + (int)(parcour->x+1)][0] = 100;
+
                 building_altitude[(int)(parcour->y-4) * max_x + (int)(parcour->x)][1] = 100;
                 building_altitude[(int)(parcour->y-4) * max_x + (int)(parcour->x)][2] = 100;
                 building_altitude[(int)(parcour->y-4) * max_x + (int)(parcour->x)][3] = 100;
@@ -176,72 +192,67 @@ void actualise_building_altitude(void)
                 building_altitude[(int)(parcour->y-4) * max_x + (int)(parcour->x-1)][3] = 100;
                 building_altitude[(int)(parcour->y-4) * max_x + (int)(parcour->x-1)][0] = 100;
 
-                building_altitude[(int)(parcour->y-4) * max_x + (int)(parcour->x-2)][1] = 100;
-                building_altitude[(int)(parcour->y-4) * max_x + (int)(parcour->x-2)][2] = 100;
-                building_altitude[(int)(parcour->y-4) * max_x + (int)(parcour->x-2)][3] = 100;
-                building_altitude[(int)(parcour->y-4) * max_x + (int)(parcour->x-2)][0] = 100;
-
                 // Front SUD
-                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x+1)][1] = 100;
-                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x+1)][2] = 100;
-                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x+1)][3] = 100;
-                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x+1)][0] = 100;
+                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x+2)][1] = 100;
+                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x+2)][2] = 100;
+                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x+2)][3] = 100;
+                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x+2)][0] = 100;
 
-                building_altitude[(int)(parcour->y+1) * max_x + (int)(parcour->x+1)][1] = 100;
-                building_altitude[(int)(parcour->y+1) * max_x + (int)(parcour->x+1)][2] = 100;
-                building_altitude[(int)(parcour->y+1) * max_x + (int)(parcour->x+1)][3] = 100;
-                building_altitude[(int)(parcour->y+1) * max_x + (int)(parcour->x+1)][0] = 100;
+                building_altitude[(int)(parcour->y+1) * max_x + (int)(parcour->x+2)][1] = 100;
+                building_altitude[(int)(parcour->y+1) * max_x + (int)(parcour->x+2)][2] = 100;
+                building_altitude[(int)(parcour->y+1) * max_x + (int)(parcour->x+2)][3] = 100;
+                building_altitude[(int)(parcour->y+1) * max_x + (int)(parcour->x+2)][0] = 100;
 
-                building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x+1)][1] = 100;
-                building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x+1)][2] = 100;
-                building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x+1)][3] = 100;
-                building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x+1)][0] = 100;
+                building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x+2)][1] = 100;
+                building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x+2)][2] = 100;
+                building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x+2)][3] = 100;
+                building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x+2)][0] = 100;
 
-                building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x+1)][1] = 100;
-                building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x+1)][2] = 100;
-                building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x+1)][3] = 100;
-                building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x+1)][0] = 100;
+                building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x+2)][1] = 100;
+                building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x+2)][2] = 100;
+                building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x+2)][3] = 100;
+                building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x+2)][0] = 100;
 
-                building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x+1)][1] = 100;
-                building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x+1)][2] = 100;
-                building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x+1)][3] = 100;
-                building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x+1)][0] = 100;
+                building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x+2)][1] = 100;
+                building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x+2)][2] = 100;
+                building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x+2)][3] = 100;
+                building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x+2)][0] = 100;
 
-                building_altitude[(int)(parcour->y-3) * max_x + (int)(parcour->x+1)][1] = 100;
-                building_altitude[(int)(parcour->y-3) * max_x + (int)(parcour->x+1)][2] = 100;
-                building_altitude[(int)(parcour->y-3) * max_x + (int)(parcour->x+1)][3] = 100;
-                building_altitude[(int)(parcour->y-3) * max_x + (int)(parcour->x+1)][0] = 100;
+                building_altitude[(int)(parcour->y-3) * max_x + (int)(parcour->x+2)][1] = 100;
+                building_altitude[(int)(parcour->y-3) * max_x + (int)(parcour->x+2)][2] = 100;
+                building_altitude[(int)(parcour->y-3) * max_x + (int)(parcour->x+2)][3] = 100;
+                building_altitude[(int)(parcour->y-3) * max_x + (int)(parcour->x+2)][0] = 100;
 
                 // Front NORD
-                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x-3)][1] = 100;
-                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x-3)][2] = 100;
-                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x-3)][3] = 100;
-                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x-3)][0] = 100;
+                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x-2)][1] = 100;
+                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x-2)][2] = 100;
+                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x-2)][3] = 100;
+                building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x-2)][0] = 100;
 
-                building_altitude[(int)(parcour->y+1) * max_x + (int)(parcour->x-3)][1] = 100;
-                building_altitude[(int)(parcour->y+1) * max_x + (int)(parcour->x-3)][2] = 100;
-                building_altitude[(int)(parcour->y+1) * max_x + (int)(parcour->x-3)][3] = 100;
-                building_altitude[(int)(parcour->y+1) * max_x + (int)(parcour->x-3)][0] = 100;
+                building_altitude[(int)(parcour->y+1) * max_x + (int)(parcour->x-2)][1] = 100;
+                building_altitude[(int)(parcour->y+1) * max_x + (int)(parcour->x-2)][2] = 100;
+                building_altitude[(int)(parcour->y+1) * max_x + (int)(parcour->x-2)][3] = 100;
+                building_altitude[(int)(parcour->y+1) * max_x + (int)(parcour->x-2)][0] = 100;
 
-                building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x-3)][1] = 100;
-                building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x-3)][2] = 100;
-                building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x-3)][3] = 100;
-                building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x-3)][0] = 100;
+                building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x-2)][1] = 100;
+                building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x-2)][2] = 100;
+                building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x-2)][3] = 100;
+                building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x-2)][0] = 100;
 
-                building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x-3)][1] = 100;
-                building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x-3)][2] = 100;
-                building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x-3)][3] = 100;
-                building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x-3)][0] = 100;
+                building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x-2)][1] = 100;
+                building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x-2)][2] = 100;
+                building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x-2)][3] = 100;
+                building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x-2)][0] = 100;
 
-                building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x-3)][1] = 100;
-                building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x-3)][2] = 100;
-                building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x-3)][3] = 100;
-                building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x-3)][0] = 100;
+                building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x-2)][1] = 100;
+                building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x-2)][2] = 100;
+                building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x-2)][3] = 100;
+                building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x-2)][0] = 100;
 
-                building_altitude[(int)(parcour->y-3) * max_x + (int)(parcour->x-3)][1] = 100;
-                building_altitude[(int)(parcour->y-3) * max_x + (int)(parcour->x-3)][2] = 100;
-                building_altitude[(int)(parcour->y-3) * max_x + (int)(parcour->x-3)][3] = 100;
-                building_altitude[(int)(parcour->y-3) * max_x + (int)(parcour->x-3)][0] = 100;
+                building_altitude[(int)(parcour->y-3) * max_x + (int)(parcour->x-2)][1] = 100;
+                building_altitude[(int)(parcour->y-3) * max_x + (int)(parcour->x-2)][2] = 100;
+                building_altitude[(int)(parcour->y-3) * max_x + (int)(parcour->x-2)][3] = 100;
+                building_altitude[(int)(parcour->y-3) * max_x + (int)(parcour->x-2)][0] = 100;
             }
             else if (parcour->angle=='b')
             {

@@ -4,27 +4,12 @@
 #include "pathfinding.h"
 #include "../shared_var.h"
 
-void sort_per_id()
-{
-	for (struct linked_list *par = list; par != NULL; par = par->next)
-	{
-		for (struct linked_list *par2 = list; par2->next != NULL; par2 = par2->next)
-		{
-			if (par2->p->id > par2->next->p->id)
-			{
-				struct personnages *tmp = par2->p;
-				par2->p = par2->next->p;
-				par2->next->p = tmp;
-			}
-		}
-	}
-}
-
 //call when -> one player connect/disconect. One character create/delete
 void my_computer_work(struct personnages *moi)
 {   
     float nb_player = 0;
     float nb_ai = 0;
+    float nb_ai_building;
     int nb_player_lower_id = 0;
     for (struct linked_list *l = list; l != NULL; l = l->next)
     {
@@ -37,8 +22,13 @@ void my_computer_work(struct personnages *moi)
                 nb_player_lower_id  += 1;
         }
     }
+    for (struct building *par = list_building; par != NULL; par = par->next)
+    {
+        if (par->skin[1] == '3')
+            nb_ai_building += 1;
+    }
     int ai_per_player = ceil(nb_ai/nb_player);
-    sort_per_id();
+    int ai_building_per_player = ceil(nb_ai_building/nb_player);
 
     int i = 0;
     for (struct linked_list *l = list; l != NULL; l = l->next)
@@ -60,6 +50,26 @@ void my_computer_work(struct personnages *moi)
         else
             l->p->my_computer_work = 0;
     }
+    i = 0;
+    for (struct building *l = list_building; l != NULL; l = l->next)
+    {
+        if (l->skin[1] == '3')
+        {
+            if ( i >= nb_player_lower_id * ai_building_per_player && i < nb_player_lower_id * ai_building_per_player + ai_building_per_player)
+            {
+                l->my_computer_work = 1;
+                //printf("1 : %s\n", l->p->nom);
+            }
+            else
+            {
+                l->my_computer_work = 0;
+                //printf("0 : %s\n", l->p->nom);
+            }
+            i += 1;
+        }
+        else
+            l->my_computer_work = 0;
+    }
 }
 
 void ia(void)
@@ -69,8 +79,6 @@ void ia(void)
     {
         if (parcour->p->my_computer_work == 1)
         {
-            /*if (strncmp(parcour->p->skin, "ship", 4) == 0)
-                ia_ship(parcour);*/
             if (parcour->p->skin[1] == '1')
                 ia_arbre(parcour->p);
             else if (parcour->p->skin[1] == '2')
@@ -79,6 +87,15 @@ void ia(void)
                 ia_man(parcour->p);
         }
     }
+    for (struct building *parcour = list_building; parcour != NULL; parcour = parcour->next)
+    {
+        if (parcour->my_computer_work == 1)
+        {
+            if (parcour->skin[1] == '3')
+                ia_ship(parcour);
+        }
+    }
+
 }
 
 void ia_flag(struct linked_list *parcour)
@@ -110,90 +127,29 @@ void ia_arbre(struct personnages *p)
     
 }
 
-void ia_build(struct linked_list *parcour)
+void ia_ship(struct building *ship)
 {
-    if (strcmp(parcour->p->echange_player, "none") != 0)
+    ship = ship;
+    /*if (ship->angle == 'a')
     {
-        struct personnages *p = find_perso_by_name(parcour->p->echange_player);
-        if (p != NULL)
-            echange_item(parcour->p, p);
+        if (ship->y < 75) 
+            sprintf (ordre + strlen(ordre), "%d 02 +1 ", ship->id);
     }
-}
-
-void ia_ship(struct linked_list *parcour)
-{
-    list = list;
-    parcour = parcour;
-    /*
-       if (parcour->p->vitesse_dep > 0)
-       {
-       int x1;
-       int x2;
-       int x3;
-       int x4;
-       int y1;
-       int y2;
-       int y3;
-       int y4;
-       coo_corner(parcour->p, &x1, &y1, &x2, &y2, &x3, &y3, &x4, &y4);
-       int x = ((x1 + x2 + x3 + x4) / 4) - parcour->p->ordrex;
-       int y = parcour->p->ordrey - ((y1 + y2 + y3 + y4) / 4);
-       int angle;
-       char change_angle = 0;/angle
-       :
-       if (y > 0)
-       angle = (atan(x/y)) + 180;
-       else if (y < 0)
-       {	
-       if (x > 0)
-       angle = (atan(x/y)) + 360;
-       else
-       angle = atan(x/y);
-       }
-       if (angle > parcour->p->angle)
-       {
-       if (angle - parcour->p->angle < 180)
-       {
-       sprintf (ordre + strlen(ordre), "%d 05 +1 ", parcour->p->id);
-       change_angle = 1;
-       }
-       else
-       {
-       sprintf (ordre + strlen(ordre), "%d 05 -1 ", parcour->p->id);
-       change_angle = -1;
-       }
-
-       }
-       else
-       {
-       if (parcour->p->angle - angle < 180)
-       {
-       sprintf (ordre + strlen(ordre), "%d 05 -1 ", parcour->p->id);
-       change_angle = -1;
-       }
-       else
-       {
-       sprintf (ordre + strlen(ordre), "%d 05 +1 ", parcour->p->id);
-       change_angle = 1;
-       }
-       }
-       sprintf (ordre + strlen(ordre), "%d 02 -%f %d 01 +%f %d 04 %f %d 03 %f ", parcour->p->id, parcour->p->vitesse_dep * cos(parcour->p->angle), parcour->p->id, parcour->p->vitesse_dep * sin(parcour->p->angle), parcour->p->id, parcour->p->ordrey - cos(angle), parcour->p->id, parcour->p->ordrex + sin(angle));
-       for (struct linked_list *parcour2 = list; parcour2 != NULL; parcour2 = parcour2->next)
-       {
-       if (parcour2->p->sur_plancher == parcour->p)
-       {
-       sprintf (ordre + strlen(ordre), "%d 05 +%d %d 01 %f %d 02 %f ", parcour2->p->id, change_angle, parcour2->p->id, parcour2->p->x + parcour->p->vitesse_dep * sin(parcour->p->angle), parcour2->p->id, parcour2->p->y - parcour->p->vitesse_dep * cos(parcour->p->angle));
-       }
-       }
-       parcour->p->vitesse_dep -= 1;
-       }z
-       if (strcmp(parcour->p->echange_player, "none") != 0)
-       {
-       struct personnages *p = find_perso_by_name(list, parcour->p->echange_player);
-       if (p != NULL)
-       echange_item(parcour->p, p);
-       }
-     */
+    else if (ship->angle == 'b')
+    {
+        if (ship->y > 5) 
+            sprintf (ordre + strlen(ordre), "%d 02 -1 ", ship->id);
+    }
+    else if (ship->angle == 'k')
+    {
+        if (ship->x > 5) 
+            sprintf (ordre + strlen(ordre), "%d 01 -1 ", ship->id);
+    }
+    else
+    {
+        if (ship->x < 75) 
+            sprintf (ordre + strlen(ordre), "%d 01 +1 ", ship->id);
+    }*/
 }
 
 void ia_man(struct personnages *p)

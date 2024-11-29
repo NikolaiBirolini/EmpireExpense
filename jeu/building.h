@@ -11,6 +11,7 @@ struct building
     char skin[4];
     char angle;
     //
+    char my_computer_work;
     int inside;
     int sizex;
     int sizey;
