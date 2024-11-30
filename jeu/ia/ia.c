@@ -129,6 +129,7 @@ void ia_arbre(struct personnages *p)
 
 void ia_ship(struct building *ship)
 {
+    /*
     if (ship->angle == 'a')
     {
         if (ship->y < 70)
@@ -170,7 +171,8 @@ void ia_ship(struct building *ship)
                 if (building_id[(int)parcour->p->x + (int)parcour->p->y*max_x] == ship->id)
                      sprintf (ordre + strlen(ordre), "%d 01 +1 ", parcour->p->id);
         }
-    }
+    }*/
+   ship = ship;
 }
 
 void ia_man(struct personnages *p)
