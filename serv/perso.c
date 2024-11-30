@@ -132,7 +132,6 @@ void kill(struct personnages *p)
     	s->nb_vassaux -= 1;
         s->a_bouger = 1;
     }
-    should_i_actualise_building_altitude = 1;
 	free(p);
 }
 

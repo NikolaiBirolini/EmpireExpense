@@ -30,8 +30,11 @@ int generate_order(char *ret)
     }
     for (struct building *pa = list_building; pa != NULL; pa = pa->next)
     {
-        if (pa->a_bouger == 1)
+        if (pa->a_bouger != 0)
+        {
             sprintf(order + strlen(order), "%s %d %d %d %d %c\n", pa->skin, pa->id, pa->pv, pa->x, pa->y, pa->angle);
+            pa->a_bouger = 0;
+        }
     }
     int s = strlen(order);
     sprintf (ret, "%d", s);
@@ -81,6 +84,7 @@ void send_map(int socket)
 
 void parse_order(char *line)
 {
+    //printf ("[%s]\n",line);
     int i = 0;
     int j;
     char tmpC[50];
@@ -131,12 +135,13 @@ void parse_order(char *line)
                     case 1:
                         if (line[i] == '+')
                         {
-                            printf ("[%d %d %f]\n", b->id, b->x, atof(&line[i+1]));
+                            b->a_bouger = 2;
                             i++;
                             b->x += atof(&line[i]);
                         }
                         else if (line[i] == '-')
                         {
+                            b->a_bouger = 3;
                             i++;
                             b->x -= atof(&line[i]);
                         }
@@ -149,11 +154,13 @@ void parse_order(char *line)
                     case 2:
                         if (line[i] == '+')
                         {
+                            b->a_bouger = 4;
                             i++;
                             b->y += atof(&line[i]);
                         }
                         else if (line[i] == '-')
                         {
+                            b->a_bouger = 5;
                             i++;
                             b->y -= atof(&line[i]);
                         }

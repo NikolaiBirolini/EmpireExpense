@@ -273,8 +273,7 @@ int main(int argc, char **argv)
         if (elapsedTime >= 75)
         {
         	start = end;
-            if (should_i_actualise_building_altitude == 1)
-                actualise_building_altitude();
+            actualise_building_altitude();
             collision();
             int size = generate_order(order);
             for (int i = 4; i < MAXEVENTS + 5;i++)

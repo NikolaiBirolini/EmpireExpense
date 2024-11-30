@@ -94,7 +94,7 @@ float allowed_to_move(struct personnages *perso, float x, float y, float mvx, fl
             return -1;
     if (perso->inside == -1)
     {
-        if (building_altitude[dst] == NULL)
+        if (building_id[dst] == -1)
         {
             if (ground_texture[dst] == ea1 || ground_texture[dst] == ea2 || ground_texture[dst] == ea3)
                 return -1;
@@ -115,7 +115,7 @@ float allowed_to_move(struct personnages *perso, float x, float y, float mvx, fl
     else {
         if (building_id[dst] != perso->inside && (building_altitude[src][(int)(perso->altitude*2)+1-ga]/100 == 1 || building_altitude[src][(int)(perso->altitude*2)+2-ga]/100 == 1 || building_altitude[src][(int)(perso->altitude*2)+3-ga]/100 == 1))
             return -1;
-        if (building_altitude[dst] == NULL)
+        if (building_id[dst] == -1)
         {
             if (perso->altitude < (float)ground_altitude[dst]/38- 1)
                 return -1;
