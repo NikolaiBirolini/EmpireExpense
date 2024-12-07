@@ -3,7 +3,7 @@
 int parse_new_building(struct building *b, char *line)
 {
     int i;
-    sscanf(line, "%s %d %d %d %d %c %n", b->skin, &b->id, &b->pv, &b->x, &b->y, &b->angle,&i);
+    sscanf(line, "%s %d %d %d %d %c %c %n", b->skin, &b->id, &b->pv, &b->x, &b->y, &b->angle,&b->state,&i);
     return i + 1;
 }
 

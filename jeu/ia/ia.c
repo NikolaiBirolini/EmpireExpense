@@ -129,50 +129,51 @@ void ia_arbre(struct personnages *p)
 
 void ia_ship(struct building *ship)
 {
-    /*
-    if (ship->angle == 'a')
+    if (ship->state == '1')
     {
-        if (ship->y < 70)
-        { 
-            sprintf (ordre + strlen(ordre), "%d 02 +1 ", ship->id);
-            for (struct linked_list *parcour = list; parcour != NULL; parcour = parcour->next)
-                if (building_id[(int)parcour->p->x + (int)parcour->p->y*max_x] == ship->id)
-                     sprintf (ordre + strlen(ordre), "%d 02 +1 ", parcour->p->id);
+        if (ship->angle == 'a')
+        {
+            if (ship->y < 75)
+            { 
+                sprintf (ordre + strlen(ordre), "%d 02 +1 ", ship->id);
+                for (struct linked_list *parcour = list; parcour != NULL; parcour = parcour->next)
+                    if (building_id[(int)parcour->p->x + (int)parcour->p->y*max_x] == ship->id)
+                        sprintf (ordre + strlen(ordre), "%d 02 +1 ", parcour->p->id);
+            }
+            
         }
-        
-    }
-    else if (ship->angle == 'b')
-    {
-        if (ship->y > 10)
-        { 
-            sprintf (ordre + strlen(ordre), "%d 02 -1 ", ship->id);
-            for (struct linked_list *parcour = list; parcour != NULL; parcour = parcour->next)
-                if (building_id[(int)parcour->p->x + (int)parcour->p->y*max_x] == ship->id)
-                     sprintf (ordre + strlen(ordre), "%d 02 -1 ", parcour->p->id);
-        }
+        else if (ship->angle == 'b')
+        {
+            if (ship->y > 5)
+            { 
+                sprintf (ordre + strlen(ordre), "%d 02 -1 ", ship->id);
+                for (struct linked_list *parcour = list; parcour != NULL; parcour = parcour->next)
+                    if (building_id[(int)parcour->p->x + (int)parcour->p->y*max_x] == ship->id)
+                        sprintf (ordre + strlen(ordre), "%d 02 -1 ", parcour->p->id);
+            }
 
-    }
-    else if (ship->angle == 'k')
-    {
-        if (ship->x > 10)
+        }
+        else if (ship->angle == 'k')
         {
-            sprintf (ordre + strlen(ordre), "%d 01 -1 ", ship->id);
-            for (struct linked_list *parcour = list; parcour != NULL; parcour = parcour->next)
-                if (building_id[(int)parcour->p->x + (int)parcour->p->y*max_x] == ship->id)
-                     sprintf (ordre + strlen(ordre), "%d 01 -1 ", parcour->p->id);
+            if (ship->x > 5)
+            {
+                sprintf (ordre + strlen(ordre), "%d 01 -1 ", ship->id);
+                for (struct linked_list *parcour = list; parcour != NULL; parcour = parcour->next)
+                    if (building_id[(int)parcour->p->x + (int)parcour->p->y*max_x] == ship->id)
+                        sprintf (ordre + strlen(ordre), "%d 01 -1 ", parcour->p->id);
+            }
+        }
+        else
+        {
+            if (ship->x < 75)
+            {
+                sprintf (ordre + strlen(ordre), "%d 01 +1 ", ship->id);
+                for (struct linked_list *parcour = list; parcour != NULL; parcour = parcour->next)
+                    if (building_id[(int)parcour->p->x + (int)parcour->p->y*max_x] == ship->id)
+                        sprintf (ordre + strlen(ordre), "%d 01 +1 ", parcour->p->id);
+            }
         }
     }
-    else
-    {
-        if (ship->x < 70)
-        {
-            sprintf (ordre + strlen(ordre), "%d 01 +1 ", ship->id);
-            for (struct linked_list *parcour = list; parcour != NULL; parcour = parcour->next)
-                if (building_id[(int)parcour->p->x + (int)parcour->p->y*max_x] == ship->id)
-                     sprintf (ordre + strlen(ordre), "%d 01 +1 ", parcour->p->id);
-        }
-    }*/
-   ship = ship;
 }
 
 void ia_man(struct personnages *p)

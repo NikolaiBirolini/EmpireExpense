@@ -11,6 +11,7 @@ struct building
     int y;
     char skin[4];
     char angle;
+    char state;
     ////////////////////////////
     struct building *next;
 	char a_bouger;

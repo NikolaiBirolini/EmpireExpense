@@ -33,7 +33,6 @@ extern struct menu *main_menu;
 extern struct cond_menu *menu_cond;
 extern struct main_char_stats *my_stats_display;
 extern char should_i_call_my_computer_work;
-extern char should_i_actualise_building_altitude;
 extern struct personnages *moi;
 extern uint8_t **building_altitude;
 extern int *building_id;

@@ -145,6 +145,17 @@ void deplacement(struct personnages *moi)
 			sprintf (ordre + strlen(ordre), "%d 01 +%f %d 05 e %d 21 %d ", moi->id, moi->vitesse_dep, moi->id, moi->id, moi->animation+1);
 		if(lettres->keystates[SDL_SCANCODE_Z])
 			sprintf (ordre + strlen(ordre), "%d 02 +%f %d 05 h %d 21 %d ", moi->id, moi->vitesse_dep, moi->id, moi->id, moi->animation+1);
+		if(lettres->keystates[SDL_SCANCODE_V])
+		{
+			struct building *b = find_building_by_id(building_id[(int)moi->x + (int)moi->y*max_x]); 
+			if (b != NULL)
+			{
+				if (b->state == '0')
+					sprintf (ordre + strlen(ordre), "%d 04 1 ", b->id);
+				else
+					sprintf (ordre + strlen(ordre), "%d 04 0 ", b->id);
+			}
+		}
 	}
 	if (moi->speak[0] != 0)
 	{

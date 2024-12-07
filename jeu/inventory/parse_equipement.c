@@ -54,6 +54,7 @@ void actualise_stat(struct personnages *p)
 		struct to_disp *new = malloc(sizeof(struct to_disp));
 		new->x = p->x;
 		new->y = p->y;
+		new->b = NULL;
 		new->id = p->id;
 		new->next = NULL;
 		new->p = p;
@@ -357,8 +358,16 @@ void actualise_stat_building(struct building *b)
 				insert(b->x+2, b->y-4, b->id, 0,  883, 409, NULL, b, img->s->ship1_flat_wood_left_triangle);
 				insert(b->x-1, b->y+4, b->id, 0, 917, 409, NULL, b, img->s->ship1_flat_wood_right_triangle);
 				insert(b->x-2, b->y+3, b->id, 0, 917, 409, NULL, b, img->s->ship1_flat_wood_right_triangle);
-				insert(b->x, b->y-3, b->id, 0, 882, 409	, NULL, b, img->s->ship1_bigSail);
-				insert(b->x, b->y+2, b->id, 0, 882, 409, NULL, b, img->s->ship1_bigSail);
+				if (b->state == '1')
+				{
+					insert(b->x, b->y-3, b->id, 0, 882, 409	, NULL, b, img->s->ship1_bigSail);
+					insert(b->x, b->y+2, b->id, 0, 882, 409, NULL, b, img->s->ship1_bigSail);
+				}
+				else
+				{
+					insert(b->x, b->y-3, b->id, 0, 882, 409	, NULL, b, img->s->ship1_bigSailFolded);
+					insert(b->x, b->y+2, b->id, 0, 882, 409, NULL, b, img->s->ship1_bigSailFolded);
+				}
 			}
 
 			else if (b->angle =='b')
@@ -400,8 +409,16 @@ void actualise_stat_building(struct building *b)
 				insert(b->x+1, b->y-4, b->id, 0, 883, 409, NULL, b, img->s->ship1_flat_wood_left_triangle);
 				insert(b->x-2, b->y+4, b->id, 0, 917, 409, NULL, b, img->s->ship1_flat_wood_right_triangle);
 				insert(b->x-2, b->y-3, b->id, 0, 900, 409, NULL, b, img->s->ship1_flat_wood_down_triangle);
-				insert(b->x, b->y+3, b->id, 0, 882, 409	, NULL, b, img->s->ship1_bigSail);
-				insert(b->x, b->y-2, b->id, 0, 882, 409, NULL, b, img->s->ship1_bigSail);
+				if (b->state == '1')
+				{
+					insert(b->x, b->y+3, b->id, 0, 882, 409	, NULL, b, img->s->ship1_bigSail);
+					insert(b->x, b->y-2, b->id, 0, 882, 409, NULL, b, img->s->ship1_bigSail);
+				}
+				else
+				{
+					insert(b->x, b->y+3, b->id, 0, 882, 409	, NULL, b, img->s->ship1_bigSailFolded);
+					insert(b->x, b->y-2, b->id, 0, 882, 409, NULL, b, img->s->ship1_bigSailFolded);
+				}
 			}
 			else if (b->angle =='e')
 			{

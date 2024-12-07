@@ -32,7 +32,7 @@ int generate_order(char *ret)
     {
         if (pa->a_bouger != 0)
         {
-            sprintf(order + strlen(order), "%s %d %d %d %d %c\n", pa->skin, pa->id, pa->pv, pa->x, pa->y, pa->angle);
+            sprintf(order + strlen(order), "%s %d %d %d %d %c %c\n", pa->skin, pa->id, pa->pv, pa->x, pa->y, pa->angle,pa->state);
             pa->a_bouger = 0;
         }
     }
@@ -72,7 +72,7 @@ void send_map(int socket)
     }
     for (struct building *pa = list_building; pa != NULL; pa = pa->next)
     {
-        sprintf(ordre + strlen(ordre), "%s %d %d %d %d %c \n", pa->skin, pa->id, pa->pv, pa->x, pa->y, pa->angle);
+        sprintf(ordre + strlen(ordre), "%s %d %d %d %d %c %c \n", pa->skin, pa->id, pa->pv, pa->x, pa->y, pa->angle, pa->state);
     }
 	int s = strlen(ordre);
     if (s > 0)
@@ -172,6 +172,10 @@ void parse_order(char *line)
                         break;
                     case 3:
                         b->angle = line[i];
+                        i += 2;
+                        break;
+                    case 4:
+                        b->state = line[i];
                         i += 2;
                         break;
                 }

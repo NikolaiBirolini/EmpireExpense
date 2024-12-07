@@ -10,6 +10,7 @@ struct building
     int y;
     char skin[4];
     char angle;
+    char state;
     //
     char my_computer_work;
     int inside;
@@ -21,4 +22,4 @@ struct building
 int append_building(char *line);
 int parse_building(struct building *b, char *line);
 struct building *find_building_by_id(int id);
-void actualise_building_altitude(void);
+void actualise_building_altitude(struct building *parcour);

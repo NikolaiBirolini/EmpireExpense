@@ -108,6 +108,8 @@ void create_array(char *ground_string)
 			i += 4;
 		};
 		ground_altitude[j] = atoi(ground_string + i);
+		building_altitude[j] = malloc(40 * sizeof(uint8_t));
+		building_id[j] = -1;
 		while (ground_string[i] != ' ' && ground_string[i] != '\n')
 				i++;
 			i++;

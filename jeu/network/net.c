@@ -52,6 +52,7 @@ void recv_order(int socket)
 			{
 				buffer += parse_building(yalist, buffer);
 				actualise_stat_building(yalist);
+				actualise_building_altitude(yalist);
 			}
 			else
 				buffer += append_building(buffer);

@@ -68,6 +68,7 @@ struct skin
     SDL_Texture *ship1_flat_wood_left_triangle;
     SDL_Texture *ship1_flat_wood_up_triangle;
     SDL_Texture *ship1_bigSail;
+    SDL_Texture *ship1_bigSailFolded;
 
     SDL_Texture *fruit;
     SDL_Texture *legume;

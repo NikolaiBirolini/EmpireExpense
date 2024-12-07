@@ -160,7 +160,6 @@ struct linked_list *death(void)
 		free(tmp);
 		tmp = list;
 		should_i_call_my_computer_work = '1';
-		should_i_actualise_building_altitude = 1;
 	}
 	while (tmp != NULL)
 	{
@@ -180,7 +179,6 @@ struct linked_list *death(void)
         free(tmp);
 		tmp = prev->next;
 		should_i_call_my_computer_work = '1';
-		should_i_actualise_building_altitude = 1;
 	}
 	return list;
 }
