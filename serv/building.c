@@ -125,14 +125,162 @@ void actualise_building_altitude(void)
             }
             else if (strcmp(parcour->skin, "131") == 0)
             { 
+                if (parcour->a_bouger == 4)
+                {
+                    building_id[(int)(parcour->y-4) * max_x + (int)(parcour->x-2)] = -1;
+                    building_id[(int)(parcour->y-5) * max_x + (int)(parcour->x-1)] = -1;
+                    building_id[(int)(parcour->y-5) * max_x + (int)(parcour->x)] = -1;
+                    building_id[(int)(parcour->y-5) * max_x + (int)(parcour->x+1)] = -1;
+                    building_id[(int)(parcour->y-4) * max_x + (int)(parcour->x+2)] = -1;
+                    for (int i = 0; i < 40; i++)
+                    {
+                        building_altitude[(int)(parcour->y-4) * max_x + (int)(parcour->x-2)][i] = 0;
+                        building_altitude[(int)(parcour->y-5) * max_x + (int)(parcour->x-1)][i] = 0;
+                        building_altitude[(int)(parcour->y-5) * max_x + (int)(parcour->x)][i] = 0;
+                        building_altitude[(int)(parcour->y-5) * max_x + (int)(parcour->x+1)][i] = 0;
+                        building_altitude[(int)(parcour->y-4) * max_x + (int)(parcour->x+2)][i] = 0;
+                    }
+                }
+                else if (parcour->a_bouger == 5)
+                {
+                    building_id[(int)(parcour->y+4) * max_x + (int)(parcour->x-2)] = -1;
+                    building_id[(int)(parcour->y+5) * max_x + (int)(parcour->x-1)] = -1;
+                    building_id[(int)(parcour->y+5) * max_x + (int)(parcour->x)] = -1;
+                    building_id[(int)(parcour->y+5) * max_x + (int)(parcour->x+1)] = -1;
+                    building_id[(int)(parcour->y+4) * max_x + (int)(parcour->x+2)] = -1;
+                    for (int i = 0; i < 40; i++)
+                    {
+                        building_altitude[(int)(parcour->y+4) * max_x + (int)(parcour->x-2)][i] = 0;
+                        building_altitude[(int)(parcour->y+5) * max_x + (int)(parcour->x-1)][i] = 0;
+                        building_altitude[(int)(parcour->y+5) * max_x + (int)(parcour->x)][i] = 0;
+                        building_altitude[(int)(parcour->y+5) * max_x + (int)(parcour->x+1)][i] = 0;
+                        building_altitude[(int)(parcour->y+4) * max_x + (int)(parcour->x+2)][i] = 0;
+                    }
+                }
+                else if (parcour->a_bouger == 2)
+                {
+                    building_id[(int)(parcour->y+2) * max_x + (int)(parcour->x-4)] = -1;
+                    building_id[(int)(parcour->y+1) * max_x + (int)(parcour->x-5)] = -1;
+                    building_id[(int)(parcour->y) * max_x + (int)(parcour->x-5)] = -1;
+                    building_id[(int)(parcour->y-1) * max_x + (int)(parcour->x-5)] = -1;
+                    building_id[(int)(parcour->y-2) * max_x + (int)(parcour->x-4)] = -1;
+                    for (int i = 0; i < 40; i++)
+                    {
+                        building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x-4)][i] = 0;
+                        building_altitude[(int)(parcour->y+1) * max_x + (int)(parcour->x-5)][i] = 0;
+                        building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x-5)][i] = 0;
+                        building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x-5)][i] = 0;
+                        building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x-4)][i] = 0;
+                    }
+                }
+                else if (parcour->a_bouger == 3)
+                {
+                    building_id[(int)(parcour->y+2) * max_x + (int)(parcour->x+4)] = -1;
+                    building_id[(int)(parcour->y+1) * max_x + (int)(parcour->x+5)] = -1;
+                    building_id[(int)(parcour->y) * max_x + (int)(parcour->x+5)] = -1;
+                    building_id[(int)(parcour->y-1) * max_x + (int)(parcour->x+5)] = -1;
+                    building_id[(int)(parcour->y-2) * max_x + (int)(parcour->x+4)] = -1;
+                    for (int i = 0; i < 40; i++)
+                    {
+                        building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x+4)][i] = 0;
+                        building_altitude[(int)(parcour->y+1) * max_x + (int)(parcour->x+5)][i] = 0;
+                        building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x+5)][i] = 0;
+                        building_altitude[(int)(parcour->y-1) * max_x + (int)(parcour->x+5)][i] = 0;
+                        building_altitude[(int)(parcour->y-2) * max_x + (int)(parcour->x+4)][i] = 0;
+                    }
+                }
+                else if (parcour->a_bouger == 6) //a
+                {
+                    building_id[(int)(parcour->y+2) * max_x + (int)(parcour->x+1)] = -1;
+                    building_id[(int)(parcour->y+1) * max_x + (int)(parcour->x+1)] = -1;
+                    building_id[(int)(parcour->y) * max_x + (int)(parcour->x+1)] = -1;
+                    building_id[(int)(parcour->y-1) * max_x + (int)(parcour->x+1)] = -1;
+                    building_id[(int)(parcour->y-2) * max_x + (int)(parcour->x+1)] = -1;
+                    building_id[(int)(parcour->y-3) * max_x + (int)(parcour->x+1)] = -1;
+                    building_id[(int)(parcour->y+3) * max_x + (int)(parcour->x)] = -1;
+                    building_id[(int)(parcour->y+2) * max_x + (int)(parcour->x)] = -1;
+                    building_id[(int)(parcour->y+1) * max_x + (int)(parcour->x)] = -1;
+                    building_id[(int)(parcour->y) * max_x + (int)(parcour->x)] = -1;
+                    building_id[(int)(parcour->y-1) * max_x + (int)(parcour->x)] = -1;
+                    building_id[(int)(parcour->y-2) * max_x + (int)(parcour->x)] = -1;
+                    building_id[(int)(parcour->y-3) * max_x + (int)(parcour->x)] = -1;
+                    building_id[(int)(parcour->y+2) * max_x + (int)(parcour->x-1)] = -1;
+                    building_id[(int)(parcour->y+1) * max_x + (int)(parcour->x-1)] = -1;
+                    building_id[(int)(parcour->y) * max_x + (int)(parcour->x-1)] = -1;
+                    building_id[(int)(parcour->y-1) * max_x + (int)(parcour->x-1)] = -1;
+                    building_id[(int)(parcour->y-2) * max_x + (int)(parcour->x-1)] = -1;
+                    building_id[(int)(parcour->y-3) * max_x + (int)(parcour->x-1)] = -1;
+                    building_id[(int)(parcour->y) * max_x + (int)(parcour->x+2)] = -1;
+                    building_id[(int)(parcour->y+1) * max_x + (int)(parcour->x+2)] = -1;
+                    building_id[(int)(parcour->y+2) * max_x + (int)(parcour->x+2)] = -1;
+                    building_id[(int)(parcour->y-1) * max_x + (int)(parcour->x+2)] = -1;
+                    building_id[(int)(parcour->y-2) * max_x + (int)(parcour->x+2)] = -1;
+                    building_id[(int)(parcour->y-3) * max_x + (int)(parcour->x+2)] = -1;
+                    building_id[(int)(parcour->y) * max_x + (int)(parcour->x-2)] = -1;
+                    building_id[(int)(parcour->y+1) * max_x + (int)(parcour->x-2)] = -1;
+                    building_id[(int)(parcour->y+2) * max_x + (int)(parcour->x-2)] = -1;
+                    building_id[(int)(parcour->y-1) * max_x + (int)(parcour->x-2)] = -1;
+                    building_id[(int)(parcour->y-2) * max_x + (int)(parcour->x-2)] = -1;
+                    building_id[(int)(parcour->y-3) * max_x + (int)(parcour->x-2)] = -1;
+                    building_id[(int)(parcour->y-4) * max_x + (int)(parcour->x+1)] = -1;
+                    building_id[(int)(parcour->y-4) * max_x + (int)(parcour->x)] = -1;
+                    building_id[(int)(parcour->y-4) * max_x + (int)(parcour->x-1)] = -1;
+                    building_id[(int)(parcour->y+3) * max_x + (int)(parcour->x+1)] = -1;
+                    building_id[(int)(parcour->y+4) * max_x + (int)(parcour->x)] = -1;
+                    building_id[(int)(parcour->y+3) * max_x + (int)(parcour->x-1)] = -1;
+                }
+                else if (parcour->a_bouger == 7) // b
+                {
+                    // Front SUD
+                    building_id[(int)(parcour->y+3) * max_x + (int)(parcour->x+2)] = -1;
+                    building_id[(int)(parcour->y) * max_x + (int)(parcour->x+2)] = -1;
+                    building_id[(int)(parcour->y+1) * max_x + (int)(parcour->x+2)] = -1;
+                    building_id[(int)(parcour->y+2) * max_x + (int)(parcour->x+2)] = -1;
+                    building_id[(int)(parcour->y-1) * max_x + (int)(parcour->x+2)] = -1;
+                    building_id[(int)(parcour->y-2) * max_x + (int)(parcour->x+2)] = -1;
+                    building_id[(int)(parcour->y+3) * max_x + (int)(parcour->x-2)] = -1;
+                    building_id[(int)(parcour->y) * max_x + (int)(parcour->x-2)] = -1;
+                    building_id[(int)(parcour->y+1) * max_x + (int)(parcour->x-2)] = -1;
+                    building_id[(int)(parcour->y+2) * max_x + (int)(parcour->x-2)] = -1;
+                    building_id[(int)(parcour->y-1) * max_x + (int)(parcour->x-2)] = -1;
+                    building_id[(int)(parcour->y-2) * max_x + (int)(parcour->x-2)] = -1;
+                    building_id[(int)(parcour->y+4) * max_x + (int)(parcour->x+1)] = -1;
+                    building_id[(int)(parcour->y+4) * max_x + (int)(parcour->x)] = -1;
+                    building_id[(int)(parcour->y+4) * max_x + (int)(parcour->x-1)] = -1;
+                    building_id[(int)(parcour->y+3) * max_x + (int)(parcour->x-1)] = -1;
+                    building_id[(int)(parcour->y+2) * max_x + (int)(parcour->x-1)] = -1;
+                    building_id[(int)(parcour->y+1) * max_x + (int)(parcour->x-1)] = -1;
+                    building_id[(int)(parcour->y) * max_x + (int)(parcour->x-1)] = -1;
+                    building_id[(int)(parcour->y-1) * max_x + (int)(parcour->x-1)] = -1;
+                    building_id[(int)(parcour->y-2) * max_x + (int)(parcour->x-1)] = -1;
+                    building_id[(int)(parcour->y+3) * max_x + (int)(parcour->x)] = -1;
+                    building_id[(int)(parcour->y+2) * max_x + (int)(parcour->x)] = -1;
+                    building_id[(int)(parcour->y+1) * max_x + (int)(parcour->x)] = -1;
+                    building_id[(int)(parcour->y) * max_x + (int)(parcour->x)] = -1;
+                    building_id[(int)(parcour->y-1) * max_x + (int)(parcour->x)] = -1;
+                    building_id[(int)(parcour->y-2) * max_x + (int)(parcour->x)] = -1;
+                    building_id[(int)(parcour->y-3) * max_x + (int)(parcour->x)] = -1;
+                    building_id[(int)(parcour->y+3) * max_x + (int)(parcour->x+1)] = -1;
+                    building_id[(int)(parcour->y+2) * max_x + (int)(parcour->x+1)] = -1;
+                    building_id[(int)(parcour->y+1) * max_x + (int)(parcour->x+1)] = -1;
+                    building_id[(int)(parcour->y) * max_x + (int)(parcour->x+1)] = -1;
+                    building_id[(int)(parcour->y-1) * max_x + (int)(parcour->x+1)] = -1;
+                    building_id[(int)(parcour->y-2) * max_x + (int)(parcour->x+1)] = -1;
+                    building_id[(int)(parcour->y-3) * max_x + (int)(parcour->x+1)] = -1;
+                    building_id[(int)(parcour->y-3) * max_x + (int)(parcour->x-1)] = -1;
+                    building_id[(int)(parcour->y-4) * max_x + (int)(parcour->x)] = -1;
+
+                }
+                else if (parcour->a_bouger == 8) // k
+                {
+
+                }
+                else if (parcour->a_bouger == 9) // e
+                {
+
+                }
                 if (parcour->angle == 'a')
                 {
-                    building_id[(int)(parcour->y-5) * max_x + (int)(parcour->x+1)] = -1;
-                    building_id[(int)(parcour->y-5) * max_x + (int)(parcour->x)] = -1;
-                    building_id[(int)(parcour->y-5) * max_x + (int)(parcour->x-1)] = -1;
-                    building_id[(int)(parcour->y-4) * max_x + (int)(parcour->x-2)] = -1;
-                    building_id[(int)(parcour->y-4) * max_x + (int)(parcour->x+2)] = -1;
-
                     //Bloc interne 3
                     building_id[(int)(parcour->y+2) * max_x + (int)(parcour->x+1)] = parcour->id;
                     building_id[(int)(parcour->y+1) * max_x + (int)(parcour->x+1)] = parcour->id;
@@ -378,13 +526,6 @@ void actualise_building_altitude(void)
                 }
                 else if (parcour->angle=='b')
                 {
-
-                    building_id[(int)(parcour->y+5) * max_x + (int)(parcour->x+1)] = -1;
-                    building_id[(int)(parcour->y+5) * max_x + (int)(parcour->x)] = -1;
-                    building_id[(int)(parcour->y+5) * max_x + (int)(parcour->x-1)] = -1;
-                    building_id[(int)(parcour->y+5) * max_x + (int)(parcour->x-2)] = -1;
-                    building_id[(int)(parcour->y+5) * max_x + (int)(parcour->x+2)] = -1;
-
                     // Front SUD
                     building_id[(int)(parcour->y+3) * max_x + (int)(parcour->x+2)] = parcour->id;
                     building_id[(int)(parcour->y) * max_x + (int)(parcour->x+2)] = parcour->id;
@@ -631,15 +772,8 @@ void actualise_building_altitude(void)
                     building_altitude[(int)(parcour->y+4) * max_x + (int)(parcour->x-1)][0] = 100;
 
                 }
-                else if (parcour->angle =='e')
+                else if (parcour->angle == 'e')
                 {
-
-                    building_id[(int)(parcour->y-5) * max_x + (int)(parcour->x+1)] = -1;
-                    building_id[(int)(parcour->y-5) * max_x + (int)(parcour->x)] = -1;
-                    building_id[(int)(parcour->y-5) * max_x + (int)(parcour->x-1)] = -1;
-                    building_id[(int)(parcour->y-4) * max_x + (int)(parcour->x-2)] = -1;
-                    building_id[(int)(parcour->y-4) * max_x + (int)(parcour->x+2)] = -1;
-
                     building_id[(int)(parcour->y+2) * max_x + (int)(parcour->x)] = parcour->id;
                     building_id[(int)(parcour->y+2) * max_x + (int)(parcour->x+1)] = parcour->id;
                     building_id[(int)(parcour->y+2) * max_x + (int)(parcour->x-1)] = parcour->id;

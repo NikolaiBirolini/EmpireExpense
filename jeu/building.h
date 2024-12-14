@@ -16,6 +16,7 @@ struct building
     int inside;
     int sizex;
     int sizey;
+    char counter;
     struct building *next;
 };
 

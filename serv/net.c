@@ -171,6 +171,14 @@ void parse_order(char *line)
                         i++;
                         break;
                     case 3:
+                        if (b->angle == 'a')
+                            b->a_bouger = 6;
+                        else if (b->angle == 'b')
+                            b->a_bouger = 7;
+                        else if (b->angle == 'k')
+                            b->a_bouger = 8;
+                        else if (b->angle == 'e')
+                            b->a_bouger = 9;
                         b->angle = line[i];
                         i += 2;
                         break;
