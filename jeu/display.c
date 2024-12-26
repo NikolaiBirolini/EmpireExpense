@@ -42,12 +42,27 @@ void display_ground(int x, int y, int xto, int yto)
 			position.y = (x-moi->x + y-moi->y) * 17 + 450 - ground_altitude[x + y * max_x];
 			position.w = 68;
 			position.h = 34;
-        	SDL_RenderCopy(renderer, ground_texture[x + y * max_x], NULL, &position);
-
-			for (int i = 0; i < ground_altitude[x + y * max_x]; i++)
-			{	
-				SDL_RenderDrawLine(renderer, position.x, position.y+i+17, position.x+34, position.y+34+i);
-				SDL_RenderDrawLine(renderer, position.x+34, position.y+i+34, position.x+68, position.y+17+i);
+			if (ground_texture[x + y * max_x] == img->t->ea1 || ground_texture[x + y * max_x] == img->t->ea2 || ground_texture[x + y * max_x] == img->t->ea3)
+			{
+				int to_add = 19 * (x % 50 == wave_animation_counter) + 9 * (x % 50 == wave_animation_counter-1) + 9 * (x % 50 == wave_animation_counter+1);
+				SDL_SetRenderDrawColor(renderer, 50, 50,200,0);
+				position.y -= to_add;
+				SDL_RenderCopy(renderer, ground_texture[x + y * max_x], NULL, &position);
+				for (int i = 0; i < ground_altitude[x + y * max_x] + to_add; i++)
+				{	
+					SDL_RenderDrawLine(renderer, position.x, position.y+i+17, position.x+34, position.y+34+i);
+					SDL_RenderDrawLine(renderer, position.x+34, position.y+i+34, position.x+68, position.y+17+i);
+				}
+			}
+			else
+			{
+				SDL_SetRenderDrawColor(renderer, 74, 71,51,0);
+				SDL_RenderCopy(renderer, ground_texture[x + y * max_x], NULL, &position);
+				for (int i = 0; i < ground_altitude[x + y * max_x]; i++)
+				{	
+					SDL_RenderDrawLine(renderer, position.x, position.y+i+17, position.x+34, position.y+34+i);
+					SDL_RenderDrawLine(renderer, position.x+34, position.y+i+34, position.x+68, position.y+17+i);
+				}
 			}
 		}
 		
@@ -65,7 +80,9 @@ void display_ground(int x, int y, int xto, int yto)
 
 void display_all(void)
 {
-	SDL_SetRenderDrawColor(renderer, 74, 71,51,0);
+	wave_animation_counter += 1;
+	if (wave_animation_counter > 100)
+		wave_animation_counter = 0;
 	//bubble_sort_perso();
 	SDL_Rect position;
 	int yfrom = 0;

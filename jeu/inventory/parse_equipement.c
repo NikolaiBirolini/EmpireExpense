@@ -459,8 +459,16 @@ void actualise_stat_building(struct building *b)
 				insert(b->x+4, b->y-1, b->id, 0, 883, 409, NULL, b, img->s->ship1_flat_wood_left_triangle);
 				insert(b->x+3, b->y-2, b->id, 0, 883, 409, NULL, b, img->s->ship1_flat_wood_left_triangle);
 				insert(b->x-4, b->y+2, b->id, 0, 917, 409, NULL, b, img->s->ship1_flat_wood_right_triangle);
-				insert(b->x-3, b->y, b->id, 0, 882, 409	, NULL, b, img->s->ship1_bigSail);
-				insert(b->x+2, b->y, b->id, 0, 882, 409, NULL, b, img->s->ship1_bigSail);
+				if (b->state != '0')
+				{
+					insert(b->x-3, b->y, b->id, 0, 882, 409	, NULL, b, img->s->ship1_bigSail);
+					insert(b->x+2, b->y, b->id, 0, 882, 409, NULL, b, img->s->ship1_bigSail);
+				}
+				else
+				{
+					insert(b->x-3, b->y, b->id, 0, 882, 409	, NULL, b, img->s->ship1_bigSailFolded);
+					insert(b->x+2, b->y, b->id, 0, 882, 409, NULL, b, img->s->ship1_bigSailFolded);
+				}
 			}
 			else if (b->angle =='k')
 			{
@@ -501,8 +509,16 @@ void actualise_stat_building(struct building *b)
 				insert(b->x+4, b->y-2, b->id, 0, 883, 409, NULL, b, img->s->ship1_flat_wood_left_triangle);
 				insert(b->x-4, b->y+1, b->id, 0, 917, 409, NULL, b, img->s->ship1_flat_wood_right_triangle);
 				insert(b->x-3, b->y+2, b->id, 0, 917, 409, NULL, b, img->s->ship1_flat_wood_right_triangle);
-				insert(b->x+3, b->y, b->id, 0, 882, 409	, NULL, b, img->s->ship1_bigSail);
-				insert(b->x-2, b->y, b->id, 0, 882, 409, NULL, b, img->s->ship1_bigSail);
+				if (b->state != '0')
+				{
+					insert(b->x+3, b->y, b->id, 0, 882, 409	, NULL, b, img->s->ship1_bigSail);
+					insert(b->x-2, b->y, b->id, 0, 882, 409, NULL, b, img->s->ship1_bigSail);
+				}
+				else
+				{
+					insert(b->x+3, b->y, b->id, 0, 882, 409	, NULL, b, img->s->ship1_bigSailFolded);
+					insert(b->x-2, b->y, b->id, 0, 882, 409, NULL, b, img->s->ship1_bigSailFolded);
+				}
 			}
 		}
 	}

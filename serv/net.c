@@ -1,5 +1,7 @@
 #include "net.h"
 
+static const char *texture_string[]= { "ea1", "ea2", "ea3", "te1", "te2", "te3","he1","he2","he3","he4","he5","sa1","sa2", "sa3", "bl1", "bl2", "bl3", "ne1", "ne2", "ne3", "gr1", "gr2"};
+
 int generate_order(char *ret)
 {
     char *order = &ret[20];
@@ -36,6 +38,11 @@ int generate_order(char *ret)
             pa->a_bouger = 0;
         }
     }
+    for (int i = 0; i < n_ground_modif; i++)
+    {
+        sprintf(order + strlen(order), "g %d %d %s\n", index_ground_modif[i], altitude(index_ground_modif[i]), texture_string[ground[index_ground_modif[i]]->texture]);
+    }
+    n_ground_modif = 0;
     int s = strlen(order);
     sprintf (ret, "%d", s);
     return s;
@@ -74,7 +81,7 @@ void send_map(int socket)
     {
         sprintf(ordre + strlen(ordre), "%s %d %d %d %d %c %c \n", pa->skin, pa->id, pa->pv, pa->x, pa->y, pa->angle, pa->state);
     }
-	int s = strlen(ordre);
+    int s = strlen(ordre);
     if (s > 0)
     {
         sprintf (order, "%d", s);
@@ -104,7 +111,8 @@ void parse_order(char *line)
                 struct building *b = get_ptr_from_id_building(id);
                 if (b == NULL)
                     return;
-                b->a_bouger = 1;
+                if (b->a_bouger == 0)
+                    b->a_bouger = 1;
                 while (line[i] != ' ')
                     i++;
                 i++;
@@ -284,7 +292,13 @@ void parse_order(char *line)
                         while(line[i] != ' ')
                             i++;
                         i++;
-                        break;    
+                        break;
+                    case 8:
+                        remove_1_pixel(atoi(&line[i]));
+                        while(line[i] != ' ')
+                            i++;
+                        i++;
+                        break;
                     case 9:
                         p->inside = atoi(&line[i]);
                         while(line[i] != ' ')

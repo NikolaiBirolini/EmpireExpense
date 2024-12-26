@@ -68,7 +68,7 @@ void collision(void)
         if (p->a_bouger == 1)
         {
             int src = (int)p->y * max_x + (int)p->x;
-	        int ga = (ground_altitude[src]/38)*2;
+	        int ga = (altitude(src)/38)*2;
 	        if (p->inside == -1) 
 	        {
 		        if (building_altitude[src] != NULL && (building_altitude[src][(int)(p->altitude*2)-ga]/10) % 10 == 1) 
@@ -87,7 +87,7 @@ float allowed_to_move(struct personnages *perso, float x, float y, float mvx, fl
 {
     int src = (int)(y) * max_x + (int)(x);
     int dst = (int)(y + mvy) * max_x + (int)(x + mvx);
-    int ga = (ground_altitude[dst]/38)*2;
+    int ga = (altitude(dst)/38)*2;
 
     float r = coo_circle(perso);
     if (x + mvx - r < 0 || x + mvx + r > max_x || y + mvy - r < 0 || y + mvy + r > max_y)
@@ -96,13 +96,13 @@ float allowed_to_move(struct personnages *perso, float x, float y, float mvx, fl
     {
         if (building_id[dst] == -1)
         {
-            if (ground_texture[dst] == ea1 || ground_texture[dst] == ea2 || ground_texture[dst] == ea3)
+            if (ground[dst]->texture == ea1 || ground[dst]->texture == ea2 || ground[dst]->texture == ea3)
                 return -1;
-            if (perso->altitude < (float)ground_altitude[dst]/38- 1)
+            if (perso->altitude < (float)altitude(dst)/38- 1)
                 return -1;
-            return (float)ground_altitude[dst]/38;
+            return (float)altitude(dst)/38;
         }
-        if ((perso->altitude < (float)ground_altitude[dst]/38- 2 && building_altitude[dst][0] == 1) || perso->altitude < (float)ground_altitude[dst]/38- 1)
+        if ((perso->altitude < (float)altitude(dst)/38- 2 && building_altitude[dst][0] == 1) || perso->altitude < (float)altitude(dst)/38- 1)
             return -1;
         if (building_altitude[dst][(int)(perso->altitude*2)+1-ga]/100 == 1 || building_altitude[dst][(int)(perso->altitude*2)+2-ga]/100 == 1 || building_altitude[dst][(int)(perso->altitude*2)+3-ga]/100 == 1 || 
         (building_altitude[dst][(int)(perso->altitude*2)-ga]/100 == 1 && (building_altitude[dst][(int)(perso->altitude*2)+4-ga]/100 == 1 || (building_altitude[src] != NULL && building_altitude[src][(int)(perso->altitude*2)+4-ga]/100 == 1))))
@@ -110,16 +110,16 @@ float allowed_to_move(struct personnages *perso, float x, float y, float mvx, fl
         for (int i = (int)(perso->altitude*2); i>=0; i -= 1)
             if (building_altitude[dst][i-ga]/100  != 0)
                 return (float)i/2 + 0.5;
-        return (float)ground_altitude[dst]/38;
+        return (float)altitude(dst)/38;
     }
     else {
         if (building_id[dst] != perso->inside && (building_altitude[src][(int)(perso->altitude*2)+1-ga]/100 == 1 || building_altitude[src][(int)(perso->altitude*2)+2-ga]/100 == 1 || building_altitude[src][(int)(perso->altitude*2)+3-ga]/100 == 1))
             return -1;
         if (building_id[dst] == -1)
         {
-            if (perso->altitude < (float)ground_altitude[dst]/38- 1)
+            if (perso->altitude < (float)altitude(dst)/38- 1)
                 return -1;
-            return (float)ground_altitude[dst]/38;
+            return (float)altitude(dst)/38;
         }
         if (building_altitude[dst][(int)(perso->altitude*2)+1-ga]%10 == 1 || building_altitude[dst][(int)(perso->altitude*2)+2-ga]%10 == 1 || building_altitude[dst][(int)(perso->altitude*2)+3-ga]%10 == 1 || 
         (building_altitude[dst][(int)(perso->altitude*2)-ga]%10 == 1 && (building_altitude[dst][(int)(perso->altitude*2)+4-ga]%10 == 1 || (building_altitude[src] != NULL && building_altitude[src][(int)(perso->altitude*2)+4-ga]%10 == 1))))
@@ -127,7 +127,7 @@ float allowed_to_move(struct personnages *perso, float x, float y, float mvx, fl
         for (int i = (int)(perso->altitude*2); i>=0; i -= 1)
             if (building_altitude[dst][i-ga]%10  != 0)
                 return (float)i/2 + 0.5;
-        return (float)ground_altitude[dst]/38;
+        return (float)altitude(dst)/38;
     }
     /*else {
          if (building_id[(int)(y + mvy) * max_x + (int)(x + mvx)] != perso->inside)

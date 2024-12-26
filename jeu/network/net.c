@@ -44,49 +44,55 @@ void recv_order(int socket)
 	buffer = pos_buf;
 	while (*buffer != 0)
 	{
-		sscanf(buffer, "%s %d", skin, &id);
-		if (skin[0] == '1')
-		{
-			struct building *yalist = get_building_from_id(id);
-			if (yalist != NULL)
-			{
-				buffer += parse_building(yalist, buffer);
-				actualise_stat_building(yalist);
-				actualise_building_altitude(yalist);
-			}
-			else
-				buffer += append_building(buffer);
-		}
+		if (buffer[0] == 'g')
+			buffer += parse_single_cell(buffer);
 		else
 		{
-			struct personnages *yalist = get_ptr_from_id(id);
-			if (yalist != NULL)
+			sscanf(buffer, "%s %d", skin, &id);
+			if (skin[0] == '1')
 			{
-				free_linked_enemie(yalist->e_list);
-				free_linked_item(yalist->i_list);
-				char online = yalist->online;
-				if (yalist == moi)
+				struct building *yalist = get_building_from_id(id);
+				if (yalist != NULL)
 				{
-					struct building *oldinside = find_building_by_id(moi->inside);
-					buffer += parse_order(yalist, buffer);
-					struct building *newinside = find_building_by_id(moi->inside);
-					if (newinside != NULL)
-						actualise_stat_building(newinside);
-					if (oldinside != NULL)
-						actualise_stat_building(oldinside);
+					remove_building_altitude(yalist);
+					buffer += parse_building(yalist, buffer);
+					actualise_stat_building(yalist);
+					actualise_building_altitude(yalist);
 				}
 				else
-				{
-					buffer += parse_order(yalist, buffer);
-				}
-				if (online != yalist->online)
-				{
-					should_i_call_my_computer_work = '1';
-				}
-				actualise_stat(yalist);	
+					buffer += append_building(buffer);
 			}
 			else
-				list = append_perso(&buffer);
+			{
+				struct personnages *yalist = get_ptr_from_id(id);
+				if (yalist != NULL)
+				{
+					free_linked_enemie(yalist->e_list);
+					free_linked_item(yalist->i_list);
+					char online = yalist->online;
+					if (yalist == moi)
+					{
+						struct building *oldinside = find_building_by_id(moi->inside);
+						buffer += parse_order(yalist, buffer);
+						struct building *newinside = find_building_by_id(moi->inside);
+						if (newinside != NULL)
+							actualise_stat_building(newinside);
+						if (oldinside != NULL)
+							actualise_stat_building(oldinside);
+					}
+					else
+					{
+						buffer += parse_order(yalist, buffer);
+					}
+					if (online != yalist->online)
+					{
+						should_i_call_my_computer_work = '1';
+					}
+					actualise_stat(yalist);	
+				}
+				else
+					list = append_perso(&buffer);
+			}
 		}
 	}
 	free(pos_buf);

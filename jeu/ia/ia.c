@@ -138,13 +138,13 @@ void ia_ship(struct building *ship)
         {
             if (ship->angle == 'a')
             {
-                if (ship->y < 75 /*&& 
+                if (ship->y < 75 && 
                 (ground_texture[(ship->y + 5)*max_x + ship->x] == img->t->ea1 || ground_texture[(ship->y + 5)*max_x + ship->x] == img->t->ea2 || ground_texture[(ship->y + 5)*max_x + ship->x] == img->t->ea3) &&
                 (ground_texture[(ship->y + 4)*max_x + ship->x + 1] == img->t->ea1 || ground_texture[(ship->y + 4)*max_x + ship->x + 1] == img->t->ea2 || ground_texture[(ship->y + 4)*max_x + ship->x + 1] == img->t->ea3) &&
                 (ground_texture[(ship->y + 3)*max_x + ship->x + 2] == img->t->ea1 || ground_texture[(ship->y + 3)*max_x + ship->x + 2] == img->t->ea2 || ground_texture[(ship->y + 3)*max_x + ship->x + 2] == img->t->ea3) &&
                 (ground_texture[(ship->y + 4)*max_x + ship->x - 1] == img->t->ea1 || ground_texture[(ship->y + 4)*max_x + ship->x - 1] == img->t->ea2 || ground_texture[(ship->y + 4)*max_x + ship->x - 1] == img->t->ea3) &&
                 (ground_texture[(ship->y + 3)*max_x + ship->x - 2] == img->t->ea1 || ground_texture[(ship->y + 3)*max_x + ship->x - 2] == img->t->ea2 || ground_texture[(ship->y + 3)*max_x + ship->x - 2] == img->t->ea3) &&
-                building_id[(ship->y + 5)*max_x + ship->x] == -1 && building_id[(ship->y + 4)*max_x + ship->x - 1] == -1 && building_id[(ship->y + 3)*max_x + ship->x - 2] == -1 && building_id[(ship->y + 4)*max_x + ship->x + 1] == -1 && building_id[(ship->y + 3)*max_x + ship->x + 2] == -1*/)
+                building_id[(ship->y + 5)*max_x + ship->x] == -1 && building_id[(ship->y + 4)*max_x + ship->x - 1] == -1 && building_id[(ship->y + 3)*max_x + ship->x - 2] == -1 && building_id[(ship->y + 4)*max_x + ship->x + 1] == -1 && building_id[(ship->y + 3)*max_x + ship->x + 2] == -1)
                 { 
                     for (struct linked_list *parcour = list; parcour != NULL; parcour = parcour->next)
                         if (building_id[(int)parcour->p->x + (int)parcour->p->y*max_x] == ship->id)
@@ -161,13 +161,13 @@ void ia_ship(struct building *ship)
             }
             else if (ship->angle == 'b')
             {
-                if (ship->y > 5 /*&& 
+                if (ship->y > 5 && 
                 (ground_texture[(ship->y - 5)*max_x + ship->x] == img->t->ea1 || ground_texture[(ship->y - 5)*max_x + ship->x] == img->t->ea2 || ground_texture[(ship->y - 5)*max_x + ship->x] == img->t->ea3) &&
                 (ground_texture[(ship->y - 4)*max_x + ship->x + 1] == img->t->ea1 || ground_texture[(ship->y - 4)*max_x + ship->x + 1] == img->t->ea2 || ground_texture[(ship->y - 4)*max_x + ship->x + 1] == img->t->ea3) &&
                 (ground_texture[(ship->y - 3)*max_x + ship->x + 2] == img->t->ea1 || ground_texture[(ship->y - 3)*max_x + ship->x + 2] == img->t->ea2 || ground_texture[(ship->y - 3)*max_x + ship->x + 2] == img->t->ea3) &&
                 (ground_texture[(ship->y - 4)*max_x + ship->x - 1] == img->t->ea1 || ground_texture[(ship->y - 4)*max_x + ship->x - 1] == img->t->ea2 || ground_texture[(ship->y - 4)*max_x + ship->x - 1] == img->t->ea3) &&
                 (ground_texture[(ship->y - 3)*max_x + ship->x - 2] == img->t->ea1 || ground_texture[(ship->y - 3)*max_x + ship->x - 2] == img->t->ea2 || ground_texture[(ship->y - 3)*max_x + ship->x - 2] == img->t->ea3) &&
-                building_id[(ship->y - 5)*max_x + ship->x] == -1 && building_id[(ship->y - 4)*max_x + ship->x - 1] == -1 && building_id[(ship->y - 3)*max_x + ship->x - 2] == -1 && building_id[(ship->y - 4)*max_x + ship->x + 1] == -1 && building_id[(ship->y - 3)*max_x + ship->x + 2] == -1*/)
+                building_id[(ship->y - 5)*max_x + ship->x] == -1 && building_id[(ship->y - 4)*max_x + ship->x - 1] == -1 && building_id[(ship->y - 3)*max_x + ship->x - 2] == -1 && building_id[(ship->y - 4)*max_x + ship->x + 1] == -1 && building_id[(ship->y - 3)*max_x + ship->x + 2] == -1)
                 { 
                     
                     for (struct linked_list *parcour = list; parcour != NULL; parcour = parcour->next)
@@ -185,13 +185,13 @@ void ia_ship(struct building *ship)
             }
             else if (ship->angle == 'k')
             {
-                if (ship->x > 5 /*&& 
+                if (ship->x > 5 && 
                 (ground_texture[(ship->y)*max_x + ship->x - 5] == img->t->ea1 || ground_texture[(ship->y)*max_x + ship->x - 5] == img->t->ea2 || ground_texture[(ship->y)*max_x + ship->x - 5] == img->t->ea3) &&
                 (ground_texture[(ship->y + 1)*max_x + ship->x - 4] == img->t->ea1 || ground_texture[(ship->y + 1)*max_x + ship->x - 4] == img->t->ea2 || ground_texture[(ship->y + 1)*max_x + ship->x - 4] == img->t->ea3) &&
                 (ground_texture[(ship->y + 2)*max_x + ship->x - 3] == img->t->ea1 || ground_texture[(ship->y + 2)*max_x + ship->x - 3] == img->t->ea2 || ground_texture[(ship->y + 2)*max_x + ship->x - 3] == img->t->ea3) &&
                 (ground_texture[(ship->y - 1)*max_x + ship->x - 4] == img->t->ea1 || ground_texture[(ship->y - 1)*max_x + ship->x - 4] == img->t->ea2 || ground_texture[(ship->y - 1)*max_x + ship->x - 4] == img->t->ea3) &&
                 (ground_texture[(ship->y - 2)*max_x + ship->x - 3] == img->t->ea1 || ground_texture[(ship->y - 2)*max_x + ship->x - 3] == img->t->ea2 || ground_texture[(ship->y - 2)*max_x + ship->x - 3] == img->t->ea3) &&
-                building_id[(ship->y )*max_x + ship->x - 5] == -1 && building_id[(ship->y + 1)*max_x + ship->x - 4] == -1 && building_id[(ship->y + 2)*max_x + ship->x - 3] == -1 && building_id[(ship->y - 1)*max_x + ship->x - 4] == -1 && building_id[(ship->y - 2)*max_x + ship->x - 3] == -1*/)
+                building_id[(ship->y )*max_x + ship->x - 5] == -1 && building_id[(ship->y + 1)*max_x + ship->x - 4] == -1 && building_id[(ship->y + 2)*max_x + ship->x - 3] == -1 && building_id[(ship->y - 1)*max_x + ship->x - 4] == -1 && building_id[(ship->y - 2)*max_x + ship->x - 3] == -1)
                 { 
                     for (struct linked_list *parcour = list; parcour != NULL; parcour = parcour->next)
                         if (building_id[(int)parcour->p->x + (int)parcour->p->y*max_x] == ship->id)
@@ -207,13 +207,13 @@ void ia_ship(struct building *ship)
             }
             else
             {
-                if (ship->x < 75 /*&& 
+                if (ship->x < 75 &&
                 (ground_texture[(ship->y)*max_x + ship->x + 5] == img->t->ea1 || ground_texture[(ship->y)*max_x + ship->x + 5] == img->t->ea2 || ground_texture[(ship->y)*max_x + ship->x + 5] == img->t->ea3) &&
                 (ground_texture[(ship->y + 1)*max_x + ship->x + 4] == img->t->ea1 || ground_texture[(ship->y + 1)*max_x + ship->x + 4] == img->t->ea2 || ground_texture[(ship->y + 1)*max_x + ship->x + 4] == img->t->ea3) &&
                 (ground_texture[(ship->y + 2)*max_x + ship->x + 3] == img->t->ea1 || ground_texture[(ship->y + 2)*max_x + ship->x + 3] == img->t->ea2 || ground_texture[(ship->y + 2)*max_x + ship->x + 3] == img->t->ea3) &&
                 (ground_texture[(ship->y - 1)*max_x + ship->x + 4] == img->t->ea1 || ground_texture[(ship->y - 1)*max_x + ship->x + 4] == img->t->ea2 || ground_texture[(ship->y - 1)*max_x + ship->x + 4] == img->t->ea3) &&
                 (ground_texture[(ship->y - 2)*max_x + ship->x + 3] == img->t->ea1 || ground_texture[(ship->y - 2)*max_x + ship->x + 3] == img->t->ea2 || ground_texture[(ship->y - 2)*max_x + ship->x + 3] == img->t->ea3) &&
-                building_id[(ship->y )*max_x + ship->x + 5] == -1 && building_id[(ship->y + 1)*max_x + ship->x + 4] == -1 && building_id[(ship->y + 2)*max_x + ship->x + 3] == -1 && building_id[(ship->y - 1)*max_x + ship->x + 4] == -1 && building_id[(ship->y - 2)*max_x + ship->x + 3] == -1*/) 
+                building_id[(ship->y )*max_x + ship->x + 5] == -1 && building_id[(ship->y + 1)*max_x + ship->x + 4] == -1 && building_id[(ship->y + 2)*max_x + ship->x + 3] == -1 && building_id[(ship->y - 1)*max_x + ship->x + 4] == -1 && building_id[(ship->y - 2)*max_x + ship->x + 3] == -1) 
                 {    
                     for (struct linked_list *parcour = list; parcour != NULL; parcour = parcour->next)
                         if (building_id[(int)parcour->p->x + (int)parcour->p->y*max_x] == ship->id)
@@ -222,9 +222,9 @@ void ia_ship(struct building *ship)
                             cnt += 1;
                         }
                     if (cnt == 0)
-                        sprintf (ordre + strlen(ordre), "%d 01 +1 ", ship->id);
-                    else
                         sprintf (ordre + strlen(ordre), "%d 04 0 ", ship->id);
+                    else
+                        sprintf (ordre + strlen(ordre), "%d 01 +1 ", ship->id);
                 }
             }
         }

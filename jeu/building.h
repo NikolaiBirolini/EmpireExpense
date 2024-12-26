@@ -24,3 +24,4 @@ int append_building(char *line);
 int parse_building(struct building *b, char *line);
 struct building *find_building_by_id(int id);
 void actualise_building_altitude(struct building *parcour);
+void remove_building_altitude(struct building *parcour);

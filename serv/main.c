@@ -65,9 +65,11 @@ int main(int argc, char **argv)
 		return 1;
 	}
 	char *ground;
-	size_t size_ground = load_file_as_string("ground.txt", &ground);
+	load_file_as_string("ground.txt", &ground);
 	create_array(ground);
+    free(ground);
 	list = init_map();
+    n_ground_modif = 0;
 	//list = croissance_pop(list);
 
 	char statut[MAXEVENTS + 5] = {0};
@@ -237,7 +239,7 @@ int main(int argc, char **argv)
 								strcpy(c_names[events[i].data.fd], buf);
                                 p->online = '1';
                                 p->a_bouger = 1;
-                                send_background(events[i].data.fd, ground, size_ground);
+                                send_background(events[i].data.fd);
                                 send_map(events[i].data.fd);
 							}
 							else

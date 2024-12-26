@@ -12,6 +12,7 @@
 #include <netdb.h>
 #include <sys/time.h>
 
+#include "ground.h"
 #include "building.h"
 #include "perso.h"
 #include "net.h"
