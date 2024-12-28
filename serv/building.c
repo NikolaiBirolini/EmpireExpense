@@ -618,7 +618,7 @@ void actualise_building_altitude(void)
                     building_altitude[(int)(parcour->y+1) * max_x + (int)(parcour->x)][0] = 11;
 
                     building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x)][1] = 11;
-                    building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x)][2] = 11;
+                    building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x)][2] = 111;
                     building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x)][3] = 10;
                     building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x)][0] = 11;
 
