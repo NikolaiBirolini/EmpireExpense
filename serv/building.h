@@ -2,6 +2,7 @@
 #include "shared_var.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "map_collision_reader.h"
 
 struct building
 {
