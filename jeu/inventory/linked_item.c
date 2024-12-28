@@ -19,6 +19,14 @@ int count(char *name)
 	return 1;
 }
 
+int n_item(struct linked_item *l)
+{
+	int ret = 0;
+	for (struct linked_item *p = l; p != NULL; p = p->next)
+		ret += 1;
+	return ret;
+}
+
 struct linked_item *append_in_inventory(char *name, struct linked_item *p, int n)
 {
 	if (p == NULL)

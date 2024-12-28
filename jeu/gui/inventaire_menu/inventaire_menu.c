@@ -2,6 +2,7 @@
 
 void menu_inventaire(void)
 {
+    printf ("aaaa %d\n",n_item(moi->i_list));
     int j = 0;
     for (struct linked_item *i = moi->i_list; i != NULL; i = i->next)
     {

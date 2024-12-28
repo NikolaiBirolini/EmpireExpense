@@ -171,7 +171,7 @@ void deplacement(struct personnages *moi)
 		if(lettres->keystates[SDL_SCANCODE_S])
 		{
 			struct building *b = find_building_by_id(building_id[(int)moi->x + (int)moi->y*max_x]);
-			if (b == NULL && ground_altitude[(int)moi->x + (int)moi->y*max_x] > 0)
+			if (b == NULL && ground_altitude[(int)moi->x + (int)moi->y*max_x] > 0  && 10 > n_item(moi->i_list))
 			{
 				SDL_Texture *t = ground_texture[(int)moi->x + (int)moi->y*max_x];
 				if (t == img->t->he1 || t == img->t->he2 || t == img->t->he3 || t == img->t->he4 || t == img->t->he5)

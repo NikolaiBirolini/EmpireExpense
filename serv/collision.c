@@ -69,9 +69,10 @@ void collision(void)
         {
             int src = (int)p->y * max_x + (int)p->x;
 	        int ga = (altitude(src)/38)*2;
+           // printf ("%d %f %d %d\n",p->inside, p->altitude, (int)(p->altitude*2)-ga, building_altitude[src][(int)(p->altitude*2)-ga]);
 	        if (p->inside == -1) 
 	        {
-		        if (building_altitude[src] != NULL && (building_altitude[src][(int)(p->altitude*2)-ga]/10) % 10 == 1) 
+		        if ((building_altitude[src][(int)(p->altitude*2)-ga]/10) % 10 == 1) 
 		        {
 			        p->inside = building_id[src]; 
 		        }
