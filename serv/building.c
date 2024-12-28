@@ -537,7 +537,8 @@ void actualise_building_altitude(void)
 
                     MapElement* elements = parseCollisionMap(filename, &elementCount);
 
-                    if (elements) {
+                    if (elements) 
+                    {
                         for (int i = 0; i < elementCount; ++i) 
                         {
                             int y_relative_position = (int)(parcour->y+elements[i].relative_y) * max_x;
@@ -545,34 +546,32 @@ void actualise_building_altitude(void)
 
                             building_id[y_relative_position + x_relative_position] = parcour->id;
                             
-                            if (elements[i].character == '|') // Wall tiles
-                            {
-                                for (int i = 0; i < 4; i++) 
-                                {
-                                    building_altitude[y_relative_position + x_relative_position][i] = 100;
-                                }
-                            }
-                            else if (elements[i].character == 'w') // Walkable tiles
-                            {
-                                for (int i = 0; i < 4; i++) 
-                                {
-                                    building_altitude[y_relative_position + x_relative_position][i] = 100;
-                                }
-                            }
-                            else
-                            {
-                                for (int i = 0; i < 4; i++) 
-                                {
-                                    building_altitude[y_relative_position + x_relative_position][i] = 100;
-                                }
-                            }
+                            associateCollisionBytes(elements[i].character, building_altitude, x_relative_position, y_relative_position);
                         }
                         free(elements);
                     }
                 }
                 else if (parcour->angle == 'e')
                 {
-                    // BLOC INTERNE 1
+                    const char* filename = "./img/ship/ship1/ship_angle_e_collision.txt";
+                    int elementCount = 0;
+
+                    MapElement* elements = parseCollisionMap(filename, &elementCount);
+
+                    if (elements) 
+                    {
+                        for (int i = 0; i < elementCount; ++i) 
+                        {
+                            int y_relative_position = (int)(parcour->y+elements[i].relative_y) * max_x;
+                            int x_relative_position = (int)(parcour->x+elements[i].relative_x);
+
+                            building_id[y_relative_position + x_relative_position] = parcour->id;
+                            
+                            associateCollisionBytes(elements[i].character, building_altitude, x_relative_position, y_relative_position);
+                        }
+                        free(elements);
+                    }
+                    /*// BLOC INTERNE 1
                     building_id[(int)(parcour->y+1) * max_x + (int)(parcour->x-3)] = parcour->id;
                     building_id[(int)(parcour->y+1) * max_x + (int)(parcour->x-2)] = parcour->id;
                     building_id[(int)(parcour->y+1) * max_x + (int)(parcour->x-1)] = parcour->id;
@@ -814,7 +813,7 @@ void actualise_building_altitude(void)
                     building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x-3)][1] = 100;
                     building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x-3)][2] = 100;
                     building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x-3)][3] = 100;
-                    building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x-3)][0] = 100;
+                    building_altitude[(int)(parcour->y+2) * max_x + (int)(parcour->x-3)][0] = 100;*/
                     
                 }
                 else if (parcour->angle== 'k')

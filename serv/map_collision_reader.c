@@ -65,3 +65,22 @@ MapElement* parseCollisionMap(const char* filename, int* elementCount)
     *elementCount = count;
     return elements;
 }
+
+void associateCollisionBytes(char character, uint8_t **building_altitude, int x_relative_position, int y_relative_position)
+{
+    for (int i = 0; i < 4; i++) 
+    {
+        if (character == '|') // Wall tiles
+        {
+            building_altitude[y_relative_position + x_relative_position][i] = 100;
+        }
+        else if (character == 'w') // Walkable tiles
+        {
+            building_altitude[y_relative_position + x_relative_position][i] = 100;
+        }
+        else
+        {
+            building_altitude[y_relative_position + x_relative_position][i] = 100;
+        }
+    }
+}
