@@ -44,7 +44,7 @@ void display_ground(int x, int y, int xto, int yto)
 			position.h = 34;
 			if (ground_texture[x + y * max_x] == img->t->ea1 || ground_texture[x + y * max_x] == img->t->ea2 || ground_texture[x + y * max_x] == img->t->ea3)
 			{
-				int to_add = 19 * (x % 50 == wave_animation_counter) + 9 * (x % 50 == wave_animation_counter-1) + 9 * (x % 50 == wave_animation_counter+1);
+				int to_add = 38 * (x % 50 == wave_animation_counter) + 19 * (x % 50 == wave_animation_counter-1) + 19 * (x % 50 == wave_animation_counter+1);
 				SDL_SetRenderDrawColor(renderer, 50, 50,200,0);
 				position.y -= to_add;
 				SDL_RenderCopy(renderer, ground_texture[x + y * max_x], NULL, &position);

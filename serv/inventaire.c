@@ -29,43 +29,48 @@ void print_inventory(struct personnages *p)
 		printf ("%s %s %d\n", p->nom, i->nom, i->count);
 }*/
 
-struct linked_item *append_in_inventory(char *name, struct linked_item *p, int n)
-{	
-	if (p == NULL)
+void append_in_inventory(char *name, struct personnages *p, int n)
+{
+	struct linked_item *parcour = p->i_list;
+	int max = count(name);
+	while (parcour != NULL)
 	{
-		p = malloc(sizeof(struct linked_item));
-		strcpy(p->nom, name);
-		p->count = n;
-		p->next = NULL;
-		return p;
-	}
-	else
-	{
-		struct linked_item *parcour = p;
-		struct linked_item *last = p;
-		while (parcour != NULL)
+		if (strcmp(parcour->nom, name) == 0)
 		{
-			last = parcour;
-			if (strcmp(parcour->nom, name) == 0)
+			if (max > parcour->count)
 			{
-				int max = count(name);
-				while (max > parcour->count && n > 0)
+				if (n < max - parcour->count)
 				{
-					parcour->count += 1;
-					n -= 1;
+					parcour->count += n;
+					return;
+				}
+				else
+				{
+					parcour->count += max - parcour->count;
+					n -= max - parcour->count;
 				}
 			}
-			parcour = parcour->next;
 		}
-		struct linked_item *new = malloc(sizeof(struct linked_item));
+		parcour = parcour->next;
+	}
+    while (n > 0)
+    {
+        struct linked_item *new = malloc(sizeof(struct linked_item));
+		new->count = (n > max) ? max : n;
 		strcpy(new->nom, name);
-		new->count = n;
 		new->next = NULL;
-		last->next = new;
-		return p;
+		if (p->i_list == NULL)
+			p->i_list = new;
+		else
+		{
+			struct linked_item *last = p->i_list;
+			while (last->next != NULL)
+				last = last->next;
+			last->next = new; 
+		}
+		n -= new->count;
 	}
 }
-
 
 struct linked_item *del(struct linked_item *root, struct linked_item *to_del)
 {

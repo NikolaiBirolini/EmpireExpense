@@ -407,7 +407,7 @@ void parse_order(char *line)
                             }
                             tmpC[j] = 0;
                             i++;
-                            p->i_list = append_in_inventory(tmpC, p->i_list, n);
+                            append_in_inventory(tmpC, p, n);
                         }
                         else
                         {

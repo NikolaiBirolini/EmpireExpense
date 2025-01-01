@@ -46,7 +46,6 @@ void actualise_building_altitude(void)
     {     
         if (parcour->a_bouger != 0)
         {
-            printf ("%d\n", parcour->a_bouger);
             if (strcmp(parcour->skin, "111") == 0)
             {
                 building_altitude[(int)(parcour->y) * max_x + (int)(parcour->x)][0] = 101;
@@ -213,7 +212,6 @@ void actualise_building_altitude(void)
                 else if (parcour->a_bouger == 7) // b
                 {
                     // Front SUD
-                    printf ("b\n");
                     building_id[(int)(parcour->y+3) * max_x + (int)(parcour->x+2)] = -1;
                     building_id[(int)(parcour->y+3) * max_x + (int)(parcour->x+1)] = -1;
                     building_id[(int)(parcour->y+3) * max_x + (int)(parcour->x)] = -1;

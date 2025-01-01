@@ -58,7 +58,7 @@ int parse_new(struct personnages *p, char *line)
                 j++;
             }
             tmpI[j] = 0;
-            p->i_list = append_in_inventory(tmpN, p->i_list, atoi(tmpI));
+            append_in_inventory(tmpN, p, atoi(tmpI));
         }
     }
     i += 2;
