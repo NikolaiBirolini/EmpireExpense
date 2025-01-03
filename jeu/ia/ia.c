@@ -411,10 +411,180 @@ void ia_ship(struct building *ship)
             else if (ship->angle == 'e')
             {
                 sprintf (ordre + strlen(ordre), "%d 03 a %d 04 0 ", ship->id, ship->id);
+                for (struct linked_list *p = list; p != NULL; p = p->next)
+                {
+                    if ((int)p->p->x == ship->x+4 && (int)p->p->y == ship->y)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y+4);
+                    
+                    else if ((int)p->p->x == ship->x+3 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y+3);
+                    else if ((int)p->p->x == ship->x+3 && (int)p->p->y == ship->y)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y+3);
+                    else if ((int)p->p->x == ship->x+3 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y+3);
+
+                    else if ((int)p->p->x == ship->x+2 && (int)p->p->y == ship->y - 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+2, p->p->id,ship->y+2);
+                    else if ((int)p->p->x == ship->x+2 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y+2);
+                    else if ((int)p->p->x == ship->x+2 && (int)p->p->y == ship->y )
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y+2);
+                    else if ((int)p->p->x == ship->x+2 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y+2);
+                    else if ((int)p->p->x == ship->x+2 && (int)p->p->y == ship->y + 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-2, p->p->id,ship->y+2);
+
+                    else if ((int)p->p->x == ship->x+1 && (int)p->p->y == ship->y - 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+2, p->p->id,ship->y+1);
+                    else if ((int)p->p->x == ship->x+1 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y+1);
+                    else if ((int)p->p->x == ship->x+1 && (int)p->p->y == ship->y)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y+1);
+                    else if ((int)p->p->x == ship->x+1 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y+1);
+                    else if ((int)p->p->x == ship->x+1 && (int)p->p->y == ship->y + 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-2, p->p->id,ship->y+1);
+
+                    else if ((int)p->p->x == ship->x && (int)p->p->y == ship->y-2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+2, p->p->id,ship->y);
+                    else if ((int)p->p->x == ship->x && (int)p->p->y == ship->y-1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y);
+                    else if ((int)p->p->x == ship->x && (int)p->p->y == ship->y)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y);
+                    else if ((int)p->p->x == ship->x && (int)p->p->y == ship->y+1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y);
+                    else if ((int)p->p->x == ship->x && (int)p->p->y == ship->y+2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-2, p->p->id,ship->y);
+
+                    else if ((int)p->p->x == ship->x-1 && (int)p->p->y == ship->y - 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+2, p->p->id,ship->y-1);
+                    else if ((int)p->p->x == ship->x-1 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y-1);
+                    else if ((int)p->p->x == ship->x && (int)p->p->y == ship->y )
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y-1);
+                    else if ((int)p->p->x == ship->x-1 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y-1);
+                    else if ((int)p->p->x == ship->x-1 && (int)p->p->y == ship->y + 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-2, p->p->id,ship->y-1);
+
+                    else if ((int)p->p->x == ship->x-2 && (int)p->p->y == ship->y - 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+2, p->p->id,ship->y-2);
+                    else if ((int)p->p->x == ship->x-2 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y-2);
+                    else if ((int)p->p->x == ship->x-2 && (int)p->p->y == ship->y )
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y-2);
+                    else if ((int)p->p->x == ship->x-2 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y-2);
+                    else if ((int)p->p->x == ship->x-2 && (int)p->p->y == ship->y + 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-2, p->p->id,ship->y-2);
+
+                    else if ((int)p->p->x == ship->x-3 && (int)p->p->y == ship->y - 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+2, p->p->id,ship->y-3);
+                    else if ((int)p->p->x == ship->x-3 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y-3);
+                    else if ((int)p->p->x == ship->x-3 && (int)p->p->y == ship->y )
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y-3);
+                    else if ((int)p->p->x == ship->x-3 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y-3);
+                    else if ((int)p->p->x == ship->x-3 && (int)p->p->y == ship->y + 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-2, p->p->id,ship->y-3);
+
+                    else if ((int)p->p->x == ship->x-4 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y-4);
+                    else if ((int)p->p->x == ship->x-4 && (int)p->p->y == ship->y )
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y-4);
+                    else if ((int)p->p->x == ship->x-4 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y-4);
+                }
             }
             else if (ship->angle == 'k')
             {
                 sprintf (ordre + strlen(ordre), "%d 03 b %d 04 0 ", ship->id, ship->id);
+                for (struct linked_list *p = list; p != NULL; p = p->next)
+                {
+                    if ((int)p->p->x == ship->x-4 && (int)p->p->y == ship->y)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y-4);
+                    
+                    else if ((int)p->p->x == ship->x-3 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y-3);
+                    else if ((int)p->p->x == ship->x-3 && (int)p->p->y == ship->y)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y-3);
+                    else if ((int)p->p->x == ship->x-3 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y-3);
+
+                    else if ((int)p->p->x == ship->x-2 && (int)p->p->y == ship->y - 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-2, p->p->id,ship->y-2);
+                    else if ((int)p->p->x == ship->x-2 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y-2);
+                    else if ((int)p->p->x == ship->x-2 && (int)p->p->y == ship->y )
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y-2);
+                    else if ((int)p->p->x == ship->x-2 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y-2);
+                    else if ((int)p->p->x == ship->x-2 && (int)p->p->y == ship->y + 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+2, p->p->id,ship->y-2);
+
+                    else if ((int)p->p->x == ship->x-1 && (int)p->p->y == ship->y - 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-2, p->p->id,ship->y-1);
+                    else if ((int)p->p->x == ship->x-1 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y-1);
+                    else if ((int)p->p->x == ship->x-1 && (int)p->p->y == ship->y)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y-1);
+                    else if ((int)p->p->x == ship->x-1 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y-1);
+                    else if ((int)p->p->x == ship->x-1 && (int)p->p->y == ship->y + 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+2, p->p->id,ship->y-1);
+
+                    else if ((int)p->p->x == ship->x && (int)p->p->y == ship->y-2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-2, p->p->id,ship->y);
+                    else if ((int)p->p->x == ship->x && (int)p->p->y == ship->y-1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y);
+                    else if ((int)p->p->x == ship->x && (int)p->p->y == ship->y)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y);
+                    else if ((int)p->p->x == ship->x && (int)p->p->y == ship->y+1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y);
+                    else if ((int)p->p->x == ship->x && (int)p->p->y == ship->y+2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+2, p->p->id,ship->y);
+
+                    else if ((int)p->p->x == ship->x+1 && (int)p->p->y == ship->y - 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-2, p->p->id,ship->y+1);
+                    else if ((int)p->p->x == ship->x+1 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y+1);
+                    else if ((int)p->p->x == ship->x+1 && (int)p->p->y == ship->y )
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y+1);
+                    else if ((int)p->p->x == ship->x+1 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y+1);
+                    else if ((int)p->p->x == ship->x+1 && (int)p->p->y == ship->y + 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+2, p->p->id,ship->y+1);
+
+                    else if ((int)p->p->x == ship->x+2 && (int)p->p->y == ship->y - 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-2, p->p->id,ship->y+2);
+                    else if ((int)p->p->x == ship->x+2 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y+2);
+                    else if ((int)p->p->x == ship->x+2 && (int)p->p->y == ship->y )
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y+2);
+                    else if ((int)p->p->x == ship->x+2 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y+2);
+                    else if ((int)p->p->x == ship->x+2 && (int)p->p->y == ship->y + 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+2, p->p->id,ship->y+2);
+
+                    else if ((int)p->p->x == ship->x+3 && (int)p->p->y == ship->y - 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-2, p->p->id,ship->y+3);
+                    else if ((int)p->p->x == ship->x+3 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y+3);
+                    else if ((int)p->p->x == ship->x+3 && (int)p->p->y == ship->y )
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y+3);
+                    else if ((int)p->p->x == ship->x+3 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y+3);
+                    else if ((int)p->p->x == ship->x+3 && (int)p->p->y == ship->y + 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+2, p->p->id,ship->y+3);
+
+                    else if ((int)p->p->x == ship->x+4 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y+4);
+                    else if ((int)p->p->x == ship->x+4 && (int)p->p->y == ship->y )
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y+4);
+                    else if ((int)p->p->x == ship->x+4 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y+4);
+                } 
             }
         }
         else if (ship->state == '3')
@@ -600,10 +770,180 @@ void ia_ship(struct building *ship)
             else if (ship->angle == 'e')
             {
                 sprintf (ordre + strlen(ordre), "%d 03 b %d 04 0 ", ship->id, ship->id);
+                for (struct linked_list *p = list; p != NULL; p = p->next)
+                {
+                    if ((int)p->p->x == ship->x+4 && (int)p->p->y == ship->y)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y-4);
+                    
+                    else if ((int)p->p->x == ship->x+3 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y-3);
+                    else if ((int)p->p->x == ship->x+3 && (int)p->p->y == ship->y)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y-3);
+                    else if ((int)p->p->x == ship->x+3 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y-3);
+
+                    else if ((int)p->p->x == ship->x+2 && (int)p->p->y == ship->y - 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+2, p->p->id,ship->y-2);
+                    else if ((int)p->p->x == ship->x+2 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y-2);
+                    else if ((int)p->p->x == ship->x+2 && (int)p->p->y == ship->y )
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y-2);
+                    else if ((int)p->p->x == ship->x+2 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y-2);
+                    else if ((int)p->p->x == ship->x+2 && (int)p->p->y == ship->y + 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-2, p->p->id,ship->y-2);
+
+                    else if ((int)p->p->x == ship->x+1 && (int)p->p->y == ship->y - 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+2, p->p->id,ship->y-1);
+                    else if ((int)p->p->x == ship->x+1 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y-1);
+                    else if ((int)p->p->x == ship->x+1 && (int)p->p->y == ship->y)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y-1);
+                    else if ((int)p->p->x == ship->x+1 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y-1);
+                    else if ((int)p->p->x == ship->x+1 && (int)p->p->y == ship->y + 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-2, p->p->id,ship->y-1);
+
+                    else if ((int)p->p->x == ship->x && (int)p->p->y == ship->y-2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+2, p->p->id,ship->y);
+                    else if ((int)p->p->x == ship->x && (int)p->p->y == ship->y-1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y);
+                    else if ((int)p->p->x == ship->x && (int)p->p->y == ship->y)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y);
+                    else if ((int)p->p->x == ship->x && (int)p->p->y == ship->y+1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y);
+                    else if ((int)p->p->x == ship->x && (int)p->p->y == ship->y+2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-2, p->p->id,ship->y);
+
+                    else if ((int)p->p->x == ship->x-1 && (int)p->p->y == ship->y - 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+2, p->p->id,ship->y+1);
+                    else if ((int)p->p->x == ship->x-1 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y+1);
+                    else if ((int)p->p->x == ship->x && (int)p->p->y == ship->y )
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y+1);
+                    else if ((int)p->p->x == ship->x-1 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y+1);
+                    else if ((int)p->p->x == ship->x-1 && (int)p->p->y == ship->y + 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-2, p->p->id,ship->y+1);
+
+                    else if ((int)p->p->x == ship->x-2 && (int)p->p->y == ship->y - 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+2, p->p->id,ship->y+2);
+                    else if ((int)p->p->x == ship->x-2 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y+2);
+                    else if ((int)p->p->x == ship->x-2 && (int)p->p->y == ship->y )
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y+2);
+                    else if ((int)p->p->x == ship->x-2 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y+2);
+                    else if ((int)p->p->x == ship->x-2 && (int)p->p->y == ship->y + 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-2, p->p->id,ship->y+2);
+
+                    else if ((int)p->p->x == ship->x-3 && (int)p->p->y == ship->y - 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+2, p->p->id,ship->y+3);
+                    else if ((int)p->p->x == ship->x-3 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y+3);
+                    else if ((int)p->p->x == ship->x-3 && (int)p->p->y == ship->y )
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y+3);
+                    else if ((int)p->p->x == ship->x-3 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y+3);
+                    else if ((int)p->p->x == ship->x-3 && (int)p->p->y == ship->y + 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-2, p->p->id,ship->y+3);
+
+                    else if ((int)p->p->x == ship->x-4 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y+4);
+                    else if ((int)p->p->x == ship->x-4 && (int)p->p->y == ship->y )
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y+4);
+                    else if ((int)p->p->x == ship->x-4 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y+4);
+                }
             }
             else if (ship->angle == 'k')
             {
                 sprintf (ordre + strlen(ordre), "%d 03 a %d 04 0 ", ship->id, ship->id);
+                for (struct linked_list *p = list; p != NULL; p = p->next)
+                {
+                    if ((int)p->p->x == ship->x-4 && (int)p->p->y == ship->y)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y+4);
+                    
+                    else if ((int)p->p->x == ship->x-3 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y+3);
+                    else if ((int)p->p->x == ship->x-3 && (int)p->p->y == ship->y)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y+3);
+                    else if ((int)p->p->x == ship->x-3 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y+3);
+
+                    else if ((int)p->p->x == ship->x-2 && (int)p->p->y == ship->y - 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+2, p->p->id,ship->y+2);
+                    else if ((int)p->p->x == ship->x-2 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y+2);
+                    else if ((int)p->p->x == ship->x-2 && (int)p->p->y == ship->y )
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y+2);
+                    else if ((int)p->p->x == ship->x-2 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y+2);
+                    else if ((int)p->p->x == ship->x-2 && (int)p->p->y == ship->y + 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-2, p->p->id,ship->y+2);
+
+                    else if ((int)p->p->x == ship->x-1 && (int)p->p->y == ship->y - 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+2, p->p->id,ship->y+1);
+                    else if ((int)p->p->x == ship->x-1 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y+1);
+                    else if ((int)p->p->x == ship->x-1 && (int)p->p->y == ship->y)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y+1);
+                    else if ((int)p->p->x == ship->x-1 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y+1);
+                    else if ((int)p->p->x == ship->x-1 && (int)p->p->y == ship->y + 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-2, p->p->id,ship->y+1);
+
+                    else if ((int)p->p->x == ship->x && (int)p->p->y == ship->y-2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+2, p->p->id,ship->y);
+                    else if ((int)p->p->x == ship->x && (int)p->p->y == ship->y-1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y);
+                    else if ((int)p->p->x == ship->x && (int)p->p->y == ship->y)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y);
+                    else if ((int)p->p->x == ship->x && (int)p->p->y == ship->y+1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y);
+                    else if ((int)p->p->x == ship->x && (int)p->p->y == ship->y+2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-2, p->p->id,ship->y);
+
+                    else if ((int)p->p->x == ship->x+1 && (int)p->p->y == ship->y - 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+2, p->p->id,ship->y-1);
+                    else if ((int)p->p->x == ship->x+1 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y-1);
+                    else if ((int)p->p->x == ship->x+1 && (int)p->p->y == ship->y )
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y-1);
+                    else if ((int)p->p->x == ship->x+1 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y-1);
+                    else if ((int)p->p->x == ship->x+1 && (int)p->p->y == ship->y + 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-2, p->p->id,ship->y-1);
+
+                    else if ((int)p->p->x == ship->x+2 && (int)p->p->y == ship->y - 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+2, p->p->id,ship->y-2);
+                    else if ((int)p->p->x == ship->x+2 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y-2);
+                    else if ((int)p->p->x == ship->x+2 && (int)p->p->y == ship->y )
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y-2);
+                    else if ((int)p->p->x == ship->x+2 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y-2);
+                    else if ((int)p->p->x == ship->x+2 && (int)p->p->y == ship->y + 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-2, p->p->id,ship->y-2);
+
+                    else if ((int)p->p->x == ship->x+3 && (int)p->p->y == ship->y - 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+2, p->p->id,ship->y-3);
+                    else if ((int)p->p->x == ship->x+3 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y-3);
+                    else if ((int)p->p->x == ship->x+3 && (int)p->p->y == ship->y )
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y-3);
+                    else if ((int)p->p->x == ship->x+3 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y-3);
+                    else if ((int)p->p->x == ship->x+3 && (int)p->p->y == ship->y + 2)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-2, p->p->id,ship->y-3);
+
+                    else if ((int)p->p->x == ship->x+4 && (int)p->p->y == ship->y - 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x+1, p->p->id,ship->y-4);
+                    else if ((int)p->p->x == ship->x+4 && (int)p->p->y == ship->y )
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x, p->p->id,ship->y-4);
+                    else if ((int)p->p->x == ship->x+4 && (int)p->p->y == ship->y + 1)
+                        sprintf (ordre + strlen(ordre), "%d 01 %d %d 02 %d ", p->p->id, ship->x-1, p->p->id,ship->y-4);
+                }
             }
         }
     }
