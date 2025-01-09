@@ -41,9 +41,11 @@ void menu_inventaire(void)
             if(main_menu->menuInv->actions->selectedOption == 0)//consume
             {
                 if (strcmp(i->nom, "fruit") == 0)
-                {
                     sprintf(ordre+strlen(ordre), "%d 16 1 %s %d 07 1000", moi->id, i->nom, moi->id);
-                }
+                else if (strcmp(i->nom, "herbe") == 0)
+                    sprintf(ordre+strlen(ordre), "%d 16 1 herbe %d 13 %d he1 ", moi->id, moi->id, (int)moi->x + (int)moi->y*max_x);
+                else if (strcmp(i->nom, "sable") == 0)
+                    sprintf(ordre+strlen(ordre), "%d 16 1 sable %d 13 %d sa1 ", moi->id, moi->id, (int)moi->x + (int)moi->y*max_x);
             }
             else if (main_menu->menuInv->actions->selectedOption == 1)//equipe
             {

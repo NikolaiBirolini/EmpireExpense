@@ -340,6 +340,14 @@ void parse_order(char *line)
                         p->religion[j] = 0;
                         i++;
                         break;
+                    case 13:
+                        int index = atoi(&line[i]);
+                        while(line[i] != ' ')
+                            i++;
+                        i++;
+                        add_1_pixel(index, texture_from_string(line + i));
+                        i += 4;
+                        break;
                     case 14:
                         if (line[i] == '+')
                         {

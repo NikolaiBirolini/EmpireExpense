@@ -35,3 +35,5 @@ struct linked_ground{
 int altitude(int index);
 void create_array(char *ground_string);
 void remove_1_pixel(int index);
+void add_1_pixel(int index, enum Texture texture);
+enum Texture texture_from_string(char *str);
