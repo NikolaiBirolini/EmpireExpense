@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Création de personnage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f9;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Création de personnage</h1>
+
+    <div class="form-container">
+        <form action="#" method="POST">
+
+            <!-- Choix du nom -->
+            <div class="form-group">
+                <label for="nom">Nom du personnage</label>
+                <input type="text" id="nom" name="nom" placeholder="Entrez le nom du personnage" required>
+            </div>
+
+            <!-- Choix du sexe -->
+            <div class="form-group">
+                <label for="sexe">Sexe</label>
+                <select id="sexe" name="sexe" required>
+                    <option value="homme">Homme</option>
+                    <option value="femme">Femme</option>
+                </select>
+            </div>
+
+            <!-- Choix de la couleur de peau -->
+            <div class="form-group">
+                <label for="peau">Couleur de peau</label>
+                <select id="peau" name="peau" required>
+                    <option value="beige">Beige</option>
+                    <option value="pale">Pâle</option>
+                    <option value="noir">Noir</option>
+                    <option value="clair">Clair</option>
+                    <option value="marron">Marron</option>
+                    <option value="cuivre">Cuivre</option>
+                    <option value="rose">Rosé</option>
+                </select>
+            </div>
+
+            <!-- Choix du gabarit -->
+            <div class="form-group">
+                <label for="gabarit">Gabarit</label>
+                <select id="gabarit" name="gabarit" required>
+                    <option value="petit">Petit</option>
+                    <option value="moyen">Moyen</option>
+                    <option value="grand">Grand</option>
+                </select>
+            </div>
+
+            <!-- Bouton de soumission -->
+            <button type="submit" class="button">Créer le personnage</button>
+
+        </form>
+    </div>
+
+</body>
+</html>
+

@@ -37,8 +37,8 @@ int open_acount(char *test)
     if (test[0] == '\0' || test[0] == '\n')
         return 0;
     FILE *acount = fopen("acount.txt", "r");
-    char line[110];
-    size_t len = 110; 
+    char line[220];
+    size_t len = 220; 
     char *s = test;
     int count  = 0;
     while (*s != ' ')
@@ -53,10 +53,20 @@ int open_acount(char *test)
     free(tmp);
     while (fgets(line, len, acount))
     {
-        if (strncmp(line, test, strlen(line) - 1) == 0)
+        int i = 0;
+        uint8_t nb_space = 0;
+        while (line[i] == test[i])
         {
-            fclose(acount);
-            return 1;
+            i += 1;
+            if (line[i] == ' ')
+            {
+                nb_space += 1;
+                if (nb_space == 2)
+                {
+                    fclose(acount);
+                    return 1;
+                }
+            }
         }
     }
     fclose(acount);

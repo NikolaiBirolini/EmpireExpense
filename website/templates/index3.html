@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empire Expense - Accueil</title>
+    <style>
+        /* Styles généraux */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #fff;
+            overflow: hidden; /* Pas de scroll */
+        }
+
+        /* Bannière principale */
+        .banner {
+            background: url('votre_image_de_fond.jpg') no-repeat center center/cover;
+            height: 100vh; /* Hauteur complète de l'écran */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            color: #fff;
+            padding: 0 20px;
+        }
+
+        /* Fond semi-transparent sous le texte de la bannière pour améliorer la lisibilité */
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6); /* Fond sombre transparent */
+            z-index: -1; /* Positionne l'overlay derrière le contenu */
+        }
+
+        .banner h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6);
+            margin-bottom: 20px;
+        }
+
+        .banner p {
+            font-size: 1.4rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+            line-height: 1.7;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+        }
+
+        .cta-button {
+            background-color: #ff5733;
+            padding: 15px 30px;
+            font-size: 1.6rem;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #ff3300;
+            transform: scale(1.1);
+        }
+
+        /* Section Fonctionnalités */
+        .features {
+            background-color: #333;
+            padding: 50px 20px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        .feature-item {
+            background-color: #444;
+            width: 280px;
+            margin: 20px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            color: #fff;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: scale(1.05);
+        }
+
+        .feature-item img {
+            width: 60px;
+            margin-bottom: 15px;
+        }
+
+        .feature-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-item p {
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        /* Pied de page */
+        footer {
+            background-color: #222;
+            color: #aaa;
+            padding: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #ff5733;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsivité */
+        @media (max-width: 768px) {
+            .banner h1 {
+                font-size: 3rem;
+            }
+
+            .banner p {
+                font-size: 1.2rem;
+            }
+
+            .cta-button {
+                font-size: 1.4rem;
+                padding: 12px 25px;
+            }
+
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .feature-item {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bannière principale -->
+    <section class="banner">
+        <div>
+            <h1>Empire Expense</h1>
+            <p>Construisez votre empire, négociez des alliances et menez des batailles épiques. L’aventure commence ici.</p>
+            <p>Convainquez des PNJs de travailler pour vous, gérez vos ressources et faites prospérer votre royaume.</p>
+            <p>Participez à des combats en temps réel et explorez un monde riche en opportunités.</p>
+            <a href="formulaire_inscription.html" class="cta-button">Rejoindre l'aventure</a>
+        </div>
+        <div class="banner-overlay"></div> <!-- Ajout d'un fond sombre sous le texte -->
+    </section>
+
+    <!-- Section des fonctionnalités -->
+    <section class="features">
+        <div class="feature-item">
+            <img src="icon_construction.png" alt="Construction d'Empire">
+            <h3>Construction d'Empire</h3>
+            <p>Édifiez des villes, gérez vos ressources et développez un empire impressionnant.</p>
+        </div>
+        <div class="feature-item">
+            <img src="icon_diplomacy.png" alt="Diplomatie et Alliances">
+            <h3>Diplomatie & Alliances</h3>
+            <p>Formez des alliances stratégiques et négociez avec d'autres joueurs pour survivre et prospérer.</p>
+        </div>
+        <div class="feature-item">
+            <img src="icon_commerce.png" alt="Commerce Dynamique">
+            <h3>Commerce Dynamique</h3>
+            <p>Maximisez vos profits en commerçant et en échangeant des ressources essentielles avec vos alliés.</p>
+        </div>
+    </section>
+
+    <!-- Pied de page -->
+    <footer>
+        <div class="social-media">
+            <a href="#">Discord</a>
+            <a href="#">Twitter</a>
+            <a href="#">Facebook</a>
+        </div>
+        <div class="legal-links">
+            <a href="#">Mentions légales</a>
+            <a href="#">Politique de confidentialité</a>
+        </div>
+    </footer>
+
+</body>
+</html>
+

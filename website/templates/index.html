@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empire Expense - Accueil</title>
+    <style>
+        /* Styles généraux */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #fff;
+            overflow-x: hidden; /* Empêche le scroll horizontal */
+        }
+
+        /* Bannière principale */
+        .banner {
+            background: url('votre_image_de_fond.jpg') no-repeat center center/cover;
+            height: 90vh; /* Hauteur complète de l'écran */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            color: #000;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: #1e3d58;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        .cta-button {
+            background-color: #ff5733;
+            padding: 15px 30px;
+            font-size: 1.6rem;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #ff3300;
+            transform: scale(1.1);
+        }
+
+        /* Section Fonctionnalités */
+        .features {
+            background-color: #fff;
+            padding: 50px 20px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        .img_bottom {
+            background-color: #222;
+            padding: 50px 20px;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            display: flex;
+            text-align: center;
+        }
+
+        .img_bottom_div{
+            background-color: #444;
+            width: 80px;
+            margin: 20px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            color: #fff;
+            transition: transform 0.3s ease;
+
+        }
+        .img_bottom_div:hover {
+            transform: scale(1.05);
+        }
+
+        .img_bottom_div-item img {
+            width: 360px;
+            margin-bottom: 15px;
+        }
+
+        
+        .feature_item {
+            background-color: #444;
+            width: 280px;
+            margin: 20px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            color: #fff;
+            transition: transform 0.3s ease;
+        }
+
+        .feature_item:hover {
+            transform: scale(1.05);
+        }
+
+        .feature_item img {
+            width: 60px;
+            margin-bottom: 15px;
+        }
+
+        .feature_item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .feature_item p {
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        /* Pied de page */
+        footer {
+            background-color: #222;
+            color: #aaa;
+            padding: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #ff5733;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsivité */
+        @media (max-width: 768px) {
+            .banner h1 {
+                font-size: 3rem;
+            }
+
+            .banner p {
+                font-size: 1.2rem;
+            }
+
+            .cta-button {
+                font-size: 1.4rem;
+                padding: 12px 25px;
+            }
+
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .feature_item {
+                width: 90%;
+            }
+
+            .img_bottom_div-item
+            {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Bienvenue sur Empire Expense</h1>
+        <p>Un jeu de stratégie ou vous incarnez un personnage dans un monde ouvert et en ligne !</p>
+    </header>
+    <section class="banner">
+        <div>
+            <h2>Qu'est ce que Empire Expense ? </h2>
+            <p> c'est le premier jeu qui mélange RTS et mmorpg.</p>
+            <section class="features">
+                <div class="feature_item">
+                    <img src="icon_construction.png" alt="Construction">
+                    <h3>Construction</h3>
+                    <p>Édifiez des villes, des  routtes, remodelez des terrains et façonnez une civlisation à votre image.</p>
+                </div>
+                <div class="feature_item">
+                    <img src="icon_diplomacy.png" alt="Diplomatie et Alliances">
+                    <h3>Diplomatie & Alliances</h3>
+                    <p>Formez des alliances stratégiques et négociez avec des joueurs et des pnj pour survivre et prospérer.</p>
+                </div>
+                <div class="feature_item">
+                    <img src="icon_commerce.png" alt="Commerce Dynamique">
+                    <h3>Commerce Dynamique</h3>
+                    <p>Maximisez vos profits en commerçant et en échangeant des ressources essentielles avec vos alliés.</p>
+                </div>
+                <div class="feature_item">
+                    <img src="icon_guerre.png" alt="Conflits">
+                    <h3>Conflits</h3>
+                    <p>Protégez  votre commerce et vos ressources des pillards et civilisation prédatrices.</p>
+                </div>
+            </section>
+            <a href="register.html" class="cta-button">Rejoindre l'aventure</a>
+        </div>
+    </section>
+
+    
+    
+
+    <!-- Pied de page -->
+    <footer>
+        <section class="img_bottom">
+            <div class="img_bottom_div-item">
+                <img src="/static/img/img1.png">
+            </div>
+            <div class="img_bottom_div-item">
+                <img src="/static/img/img2.png">
+            </div>
+            <div class="img_bottom_div-item">
+                <img src="/static/img/img3.png">
+            </div>
+            <div class="img_bottom_div-item">
+                <img src="/static/img/img4.png">
+            </div>
+        </section>
+        <div class="social-media">
+            <a href="#">Discord</a>
+            <a href="#">Twitter</a>
+        </div>
+    </footer>
+
+</body>
+</html>

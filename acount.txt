@@ -1,5 +1,2 @@
-thyma a
-plomi 1234
-victi91 1234
-unwia 1234
-niko b
+thyma a thyma@gmail.com 1
+niko b niko@gmail.com 0
