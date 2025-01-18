@@ -58,4 +58,7 @@ void craft_menu(SDL_Renderer *renderer, TTF_Font *font)
         SDL_FreeSurface(textSurface);
         SDL_DestroyTexture(textTexture);
     }
+
+    if (*text->key == SDLK_ESCAPE)
+        main_menu->menuCraft->on = 0;
 }

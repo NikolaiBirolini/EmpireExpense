@@ -3,6 +3,9 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
+#include "../menu.h"
+#include "../../perso.h"
+#include "../../clavier.h"
 
 #define GRID_SIZE 3
 #define INVENTORY_SLOTS 9
