@@ -10,6 +10,7 @@ struct menu
     Selector *selector;
     struct menu_inventaire *menuInv;
     struct menu_trade* menuTrad;
+    struct menu_craft* menuCraft;
 };
 
 struct cond_menu
@@ -73,6 +74,10 @@ struct menu_diplo {
     TextBox bgDiploTextBox;
     TextBox diploTextBox;
     TextInfo errorText;
+};
+
+struct menu_craft {
+    char on;
 };
 
 struct textInput

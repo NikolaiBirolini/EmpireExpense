@@ -101,11 +101,21 @@ void speakPerso(struct personnages *moi, char* ordre)
 void menu()
 {
     if (main_menu->menuInv->on == 1)
+    {
         menu_inventaire();
+    }
     else if (main_menu->menuDip->on == 1)
+    {
         diplomatic_menu();
+    }
     else if (main_menu->menuTrad->on == 1)
+    {
         menu_trade();
+    }
+    else if (main_menu->menuCraft->on == 1)
+    {
+        craft_menu(renderer, littleFont);
+    }
     else
     {
         main_menu->menuDip->errorText.text = "\0";
@@ -124,6 +134,8 @@ void menu()
                 main_menu->menuDip->on = 1;
             else if(main_menu->selector->selectedOption == 2)
                 main_menu->menuTrad->on = 1;
+            else if(main_menu->selector->selectedOption == 7)
+                main_menu->menuCraft->on = 1;
         }
         drawSelector(renderer, main_menu->selector); 
     }

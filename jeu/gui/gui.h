@@ -21,6 +21,7 @@
 #include "inventaire_menu/inventaire_menu.h"
 #include "trade_menu/trade_menu.h"
 #include "formation_menu/formation_menu.h"
+#include "craft_menu/craft_menu.h"
 
 struct speak
 {

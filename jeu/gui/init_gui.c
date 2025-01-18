@@ -6,7 +6,8 @@ void init_main_menu(void)
     main_menu->menuDip = malloc(sizeof(struct menu_diplo));
     main_menu->menuInv = malloc(sizeof(struct menu_inventaire));
     main_menu->menuTrad = malloc(sizeof(struct menu_trade));
-    char **options = malloc(sizeof(char*)*7);
+    main_menu->menuCraft = malloc(sizeof(struct menu_craft));
+    char **options = malloc(sizeof(char*)*8);
     options[0] = malloc(11); strcpy(options[0], "Inventory");
     options[1] = malloc(11); strcpy(options[1], "Diplomacy");
     options[2] = malloc(12); strcpy(options[2], "Trade Items");
@@ -14,7 +15,13 @@ void init_main_menu(void)
     options[4] = malloc(11); strcpy(options[4], "Research");
     options[5] = malloc(11); strcpy(options[5], "Economy");
     options[6] = malloc(11); strcpy(options[6], "Religion");
-    main_menu->selector = initializeSelector(100, 50, 200, 50, (SDL_Color){75, 0, 130, 255}, (SDL_Color){221, 160, 221, 255}, (SDL_Color){255, 255, 255, 255}, littleFont, options, 7);
+    options[7] = malloc(11); strcpy(options[7], "Craft");
+    main_menu->selector = initializeSelector(100, 50, 200, 50, 
+                                             (SDL_Color){75, 0, 130, 255}, 
+                                             (SDL_Color){221, 160, 221, 255}, 
+                                             (SDL_Color){255, 255, 255, 255}, 
+                                             littleFont, 
+                                             options, 8);
     initPictureButton(&main_menu->on, 50, 50, 35, 35, img->g->main_menu_button, img->g->pressed_main_menu_button);;
 
 
@@ -82,6 +89,9 @@ void init_main_menu(void)
     options5[9] = malloc(50); 
     
     main_menu->menuTrad->selector2 = initializeSelector(550, 50, 400, 50, (SDL_Color){75, 0, 130, 255}, (SDL_Color){221, 160, 221, 255}, (SDL_Color){255, 255, 255, 255}, littleFont, options5, 10);
+
+    /// Initialise craft menu
+    main_menu->menuCraft->on = 0;
 
     ////
     menu_cond = malloc(sizeof(struct cond_menu));
