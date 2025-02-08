@@ -61,7 +61,16 @@ int parse_new(struct personnages *p, char *line)
             append_in_inventory(tmpN, p, atoi(tmpI));
         }
     }
+    i += 3;
+    j = 0;
+    while (line[i] != ']')
+    {
+        p->skill[j] = line[i];
+        i += 1;
+        j += 1;
+    }
     i += 2;
+    p->skill[j] = 0;
     j = 0;
     while (line[i] != '\n' && line[i] != 0)
     {

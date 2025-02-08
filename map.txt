@@ -1,12 +1,12 @@
-0 5 10 niko 7.00000 15.000000 2 -1.000000 908.785156 a 0 9999 -1 niko niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] []
-0 6 10 none 7.00000 13.000000 2 -1.000000 908.785156 a 0 9999 -1 babar niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] []
-0 7 10 none 7.00000 11.000000 2 -1.000000 908.785156 a 0 9999 -1 nigar niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [niko 0 thyma 0] []
-0 8 10 none 7.50000 9.500000 2 -1.000000 908.785156 a 0 9999 -1 bench_cigar niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] []
+0 5 10 thyma 67.00000 15.000000 2 -1.000000 908.785156 a 0 9999 -1 thyma thyma none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] [] [001002]
+0 6 10 none 7.00000 13.000000 2 -1.000000 908.785156 a 0 9999 -1 babar niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] [] []
+0 7 10 none 7.00000 11.000000 2 -1.000000 908.785156 a 0 9999 -1 nigar niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [thyma 0] [] []
+0 8 10 none 7.50000 9.500000 2 -1.000000 908.785156 a 0 9999 -1 bench_cigar niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] [] []
 112 4 999 33 3 a 0
-0 1 10 niko 2.000000 2.00000 2 -1.000000 908.785156 a 0 99999 -1 niko niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty test [] []
-01 9 50 none 54.00000 75.000000 0 -1.000000 908.785156 a 0 0 -1 none none none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] [fruit 9]
+0 1 10 niko 2.000000 2.00000 2 -1.000000 908.785156 a 0 99999 -1 niko niko none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty test [] [] []
+01 9 50 none 54.00000 75.000000 0 -1.000000 908.785156 a 0 0 -1 none none none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] [fruit 9] []
 111 3 999 3 43 a 0
 111 2 999 3 53 a 0
 125 11 999 2 50 a 0
-01 12 50 none 40.00000 49.00000 0 -1.000000 908.785156 a 0 0 -1 none none none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] [fruit 9]
+01 12 50 none 40.00000 49.00000 0 -1.000000 908.785156 a 0 0 -1 none none none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] [fruit 9] []
 131 18 999 69 73 b 0

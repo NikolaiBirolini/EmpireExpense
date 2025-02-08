@@ -26,6 +26,8 @@ struct building *get_building_from_id(int id)
 
 int parse_order(struct personnages *p, char *line)
 {
+    //printf ("-{%s}\n", line);
+
     int i;
     int j;
     char tmpI[10];
@@ -85,7 +87,16 @@ int parse_order(struct personnages *p, char *line)
             p->i_list = append_in_inventory(tmpN, p->i_list, atoi(tmpI));
         }
     }
+    i += 3;
+    j = 0;
+    while (line[i] != ']')
+    {
+        p->skill[j] = line[i];
+        i += 1;
+        j += 1;
+    }
     i += 2;
+    p->skill[j] = 0;
     j = 0;
     while (line[i] != '\n' && line[i] != 0)
     {

@@ -48,6 +48,7 @@ struct personnages
     char tunic[50];
     char pant[50];
     char shoes[50];
+    char skill[62];
     ///////////////////////////////////////
     float screenx;
     float screeny;

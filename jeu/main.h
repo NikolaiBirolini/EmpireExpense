@@ -18,7 +18,6 @@
 #include "tools/chiffrement.h"
 #include "ia/pathfinding.h"
 #include "sound/init_sound.h"
-#include "btree.h"
 #include "shared_var.h"
 #include "tools/arg_parse.h"
 #include <time.h>

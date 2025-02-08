@@ -7,7 +7,7 @@ int count(char *name)
 	if (strcmp(name, "fleche") == 0)
 		return 20;
 	if (strcmp(name, "herbe") == 0 || strcmp(name, "sable") == 0)
-		return 4;
+		return 10;
 	return 1;
 }
 

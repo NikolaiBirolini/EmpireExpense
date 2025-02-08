@@ -43,9 +43,37 @@ void menu_inventaire(void)
                 if (strcmp(i->nom, "fruit") == 0)
                     sprintf(ordre+strlen(ordre), "%d 16 1 %s %d 07 1000", moi->id, i->nom, moi->id);
                 else if (strcmp(i->nom, "herbe") == 0)
-                    sprintf(ordre+strlen(ordre), "%d 16 1 herbe %d 13 %d he1 ", moi->id, moi->id, (int)moi->x + (int)moi->y*max_x);
+                {
+                    uint8_t cond = 1;
+				    int j = 0;
+				    while (cond == 1)
+                    {
+                        if ((int)moi->y == j || (int)moi->x ==  j || find_building_by_id(building_id[(int)moi->x-j + ((int)moi->y-j)*max_x]) != NULL)
+						    cond = 0;
+                        else if (ground_altitude[(int)moi->x-j + ((int)moi->y-j)*max_x] < ground_altitude[(int)moi->x-j-1 + ((int)moi->y-j-1)*max_x]  + 50)
+                        {
+                            sprintf(ordre+strlen(ordre), "%d 16 1 herbe %d 13 %d he1 ", moi->id, moi->id, (int)moi->x-j + ((int)moi->y-j)*max_x);
+                            cond = 0;
+                        }
+                        j += 1;
+                    }
+                }
                 else if (strcmp(i->nom, "sable") == 0)
-                    sprintf(ordre+strlen(ordre), "%d 16 1 sable %d 13 %d sa1 ", moi->id, moi->id, (int)moi->x + (int)moi->y*max_x);
+                {
+                    uint8_t cond = 1;
+				    int j = 0;
+				    while (cond == 1)
+                    {
+                        if ((int)moi->y == j || (int)moi->x ==  j || find_building_by_id(building_id[(int)moi->x-j + ((int)moi->y-j)*max_x]) != NULL)
+						    cond = 0;
+                        else if (ground_altitude[(int)moi->x-j + ((int)moi->y-j)*max_x] < ground_altitude[(int)moi->x-j-1 + ((int)moi->y-j-1)*max_x]  + 50)
+                        {
+                            sprintf(ordre+strlen(ordre), "%d 16 1 sable %d 13 %d sa1 ", moi->id, moi->id, (int)moi->x-j + ((int)moi->y-j)*max_x);
+                            cond = 0;
+                        }
+                        j += 1;
+                    }
+                }
             }
             else if (main_menu->menuInv->actions->selectedOption == 1)//equipe
             {

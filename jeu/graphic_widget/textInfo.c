@@ -1,5 +1,21 @@
 #include "textInfo.h"
 
+void hard_initTextInfo(hard_TextInfo *textinfo, char* text, TTF_Font* font, int x, int y, int wrapWidth, SDL_Color textColor,  bool isBold, bool isItalic, bool isUnderlined)
+{
+    if (text[0] != 0)
+    {
+        TTF_SetFontStyle(font, (isBold ? TTF_STYLE_BOLD : 0) | (isItalic ? TTF_STYLE_ITALIC : 0) | (isUnderlined ? TTF_STYLE_UNDERLINE : 0));
+        SDL_Surface *surface;
+        if (wrapWidth > 0) 
+            surface = TTF_RenderText_Blended_Wrapped(font, text, textColor, wrapWidth);
+        else 
+            surface = TTF_RenderText_Blended(font, text, textColor);
+        textinfo->texture = SDL_CreateTextureFromSurface(renderer, surface);
+        textinfo->dstRect.x = x; textinfo->dstRect.y  = y, textinfo->dstRect.w = surface->w;textinfo->dstRect.h = surface->h;
+        SDL_FreeSurface(surface);
+    }
+}
+
 
 void initTextInfo(TextInfo* textinfo, char* text, TTF_Font* font, int x, int y, int wrapWidth, SDL_Color textColor,  bool isBold, bool isItalic, bool isUnderlined) 
 {

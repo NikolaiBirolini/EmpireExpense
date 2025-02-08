@@ -2,6 +2,7 @@
 #define MENU_H
 
 #include "../shared_var.h"
+#include "technology_menu/menu_technologie.h"
 
 struct menu
 {
@@ -11,6 +12,7 @@ struct menu
     struct menu_inventaire *menuInv;
     struct menu_trade* menuTrad;
     struct menu_craft* menuCraft;
+    struct menu_technologie *menuTech;
 };
 
 struct cond_menu
@@ -75,6 +77,7 @@ struct menu_diplo {
     TextBox diploTextBox;
     TextInfo errorText;
 };
+
 
 struct menu_craft {
     char on;

@@ -1,7 +1,6 @@
 #pragma once
 #include <SDL2/SDL.h>
 #include "../perso.h"
-#include "../btree.h"
 #include "../clavier.h"
 #include "../ia/ia.h"
 #include "../init_sprite.h"
@@ -22,6 +21,8 @@
 #include "trade_menu/trade_menu.h"
 #include "formation_menu/formation_menu.h"
 #include "craft_menu/craft_menu.h"
+#include "technology_menu/menu_technologie.h"
+
 
 struct speak
 {

@@ -21,6 +21,12 @@ typedef struct {
     bool isUnderlined; // Indicator for underlined text
 } TextInfo;
 
+typedef struct {
+    SDL_Texture *texture;
+    SDL_Rect dstRect;
+} hard_TextInfo;
+
+void hard_initTextInfo(hard_TextInfo *textinfo, char* text, TTF_Font* font, int x, int y, int wrapWidth, SDL_Color textColor,  bool isBold, bool isItalic, bool isUnderlined);
 void initTextInfo(TextInfo* textinfo, char* text, TTF_Font* font, int x, int y, int wrapWidth, SDL_Color textColor,  bool isBold, bool isItalic, bool isUnderlined);
 void drawTextInfo(SDL_Renderer *renderer, TextInfo *textInfo);
 void initFonts(void);

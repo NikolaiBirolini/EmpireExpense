@@ -50,8 +50,7 @@ struct personnages
     char tunic[50];
     char pant[50];
     char shoes[50];
-
-    
+    char skill[62*3];
     /////////////
 	struct personnages *next;
     float moved_x;

@@ -170,14 +170,25 @@ void deplacement(struct personnages *moi)
 		}
 		if(lettres->keystates[SDL_SCANCODE_S])
 		{
-			struct building *b = find_building_by_id(building_id[(int)moi->x + (int)moi->y*max_x]);
-			if (b == NULL && ground_altitude[(int)moi->x + (int)moi->y*max_x] > 0  && 10 > n_item(moi->i_list))
+			if (10 > n_item(moi->i_list) && ground_altitude[(int)moi->x + (int)moi->y*max_x] > 0)
 			{
-				SDL_Texture *t = ground_texture[(int)moi->x + (int)moi->y*max_x];
-				if (t == img->t->he1 || t == img->t->he2 || t == img->t->he3 || t == img->t->he4 || t == img->t->he5)
-					sprintf (ordre + strlen(ordre), "%d 16 +1 herbe %d 08 %d ", moi->id, moi->id, (int)moi->x + (int)moi->y*max_x);
-				if (t == img->t->sa1 || t == img->t->sa2 || t == img->t->sa3)
-					sprintf (ordre + strlen(ordre), "%d 16 +1 sable %d 08 %d ", moi->id, moi->id, (int)moi->x + (int)moi->y*max_x);
+				uint8_t cond = 1;
+				int j = 0;
+				while (cond == 1)
+				{
+					if ((int)moi->y + j == max_y || (int)moi->x + j == max_x || find_building_by_id(building_id[(int)moi->x+j + ((int)moi->y+j)*max_x]) != NULL)
+						cond = 0;
+					else if (ground_altitude[(int)moi->x+j + ((int)moi->y+j)*max_x] > ground_altitude[(int)moi->x+1+j + ((int)moi->y+j+1)*max_x]  - 50)
+					{
+						SDL_Texture *t = ground_texture[(int)moi->x+j + ((int)moi->y+j)*max_x];
+						if (t == img->t->he1 || t == img->t->he2 || t == img->t->he3 || t == img->t->he4 || t == img->t->he5)
+							sprintf (ordre + strlen(ordre), "%d 16 +1 herbe %d 08 %d ", moi->id, moi->id, (int)moi->x+j + ((int)moi->y+j)*max_x);
+						if (t == img->t->sa1 || t == img->t->sa2 || t == img->t->sa3)
+							sprintf (ordre + strlen(ordre), "%d 16 +1 sable %d 08 %d ", moi->id, moi->id, (int)moi->x+j + ((int)moi->y+j)*max_x);
+						cond = 0;
+					}
+					j += 1;
+				}
 			}
 		}
 

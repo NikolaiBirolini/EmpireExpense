@@ -25,8 +25,8 @@ int generate_order(char *ret)
                     sprintf (order + strlen(order), "%s %d ", p->nom, p->count);
                 else
                     sprintf (order + strlen(order), "%s %d", p->nom, p->count);
-			}   
-			sprintf(order + strlen(order),  "] %s\n", pa->speak);
+			}
+			sprintf(order + strlen(order),  "] [%s] %s\n", pa->skill, pa->speak);
 			pa->a_bouger = 0;
         }
     }
@@ -74,7 +74,7 @@ void send_map(int socket)
             else
                 sprintf (ordre + strlen(ordre), "%s %d", p->nom, p->count);
         }
-        sprintf(ordre + strlen(ordre),  "] %s", pa->speak);
+        sprintf(ordre + strlen(ordre),  "] [%s] %s", pa->skill, pa->speak);
         strcat(ordre, "\n");
     }
     for (struct building *pa = list_building; pa != NULL; pa = pa->next)

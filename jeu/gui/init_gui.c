@@ -103,6 +103,7 @@ void init_main_menu(void)
     main_menu->menuInv = malloc(sizeof(struct menu_inventaire));
     main_menu->menuTrad = malloc(sizeof(struct menu_trade));
     main_menu->menuCraft = malloc(sizeof(struct menu_craft));
+    main_menu->menuTech = malloc(sizeof(struct menu_technologie));
 
     // Initialize main menu options
     const char *main_menu_options[] = {
@@ -122,6 +123,7 @@ void init_main_menu(void)
     init_inventory_menu(main_menu->menuInv);
     init_trade_menu(main_menu->menuTrad);
     init_craft_menu(main_menu->menuCraft);
+    init_tech_menu();
 
     // Initialize condition menu
     menu_cond = malloc(sizeof(struct cond_menu));

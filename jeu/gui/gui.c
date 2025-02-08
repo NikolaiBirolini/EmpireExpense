@@ -67,11 +67,6 @@ void menu_religion(struct menu *m)
     m = m;
 }
 
-void menu_technologie(struct menu *m)
-{
-    m = m;
-}
-
 void speakPerso(struct personnages *moi, char* ordre)
 {
     drawTextBox(renderer, speakBubble->textBox, true);
@@ -116,6 +111,10 @@ void menu()
     {
         craft_menu(renderer, littleFont);
     }
+    else if (main_menu->menuTech->on == 1)
+    {
+        menu_technologie();
+    }
     else
     {
         main_menu->menuDip->errorText.text = "\0";
@@ -136,6 +135,8 @@ void menu()
                 main_menu->menuTrad->on = 1;
             else if(main_menu->selector->selectedOption == 7)
                 main_menu->menuCraft->on = 1;
+            else if(main_menu->selector->selectedOption == 4)
+                main_menu->menuTech->on = 1;
         }
         drawSelector(renderer, main_menu->selector); 
     }

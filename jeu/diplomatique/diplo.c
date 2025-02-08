@@ -77,8 +77,7 @@ int get_rang(char *nom, struct linked_enemie *l)
 	return 0;
 }
 
-
-
+/*
 struct personnages *find_first_valid_leader(struct personnages *p, struct linked_list *list)
 {
 	struct personnages *stack[10000] = {p};
@@ -107,4 +106,31 @@ struct personnages *find_first_valid_leader(struct personnages *p, struct linked
 		j = k;
 	}
 	return NULL;
+}*/
+
+int id_of_maximal_leader(struct personnages *p)
+{
+	if (strcmp(p->nom_superieur, "none") == 0|| strcmp(p->nom_superieur, p->nom) == 0)
+		return p->id;
+	else
+	for (struct linked_list *pa = list; pa != NULL; pa = pa->next)
+	{
+		if (strcmp(p->nom_superieur, pa->p->nom) == 0)
+			return id_of_maximal_leader(pa->p);
+	}
+	return p->id;
+}
+
+uint8_t p1_or_rec_leader_of_p1_is_enemi_of_p2(struct personnages *p1, struct personnages *p2)
+{
+	if (exist_in_linked_enemie(p2->e_list, p1->nom) != NULL)
+		return 1;
+	if (strcmp(p1->nom_superieur, "none") == 0|| strcmp(p1->nom_superieur, p1->nom) == 0)
+		return 0;
+	for (struct linked_list *pa = list; pa != NULL; pa = pa->next)
+	{
+		if (strcmp(p1->nom_superieur, pa->p->nom) == 0)
+			return p1_or_rec_leader_of_p1_is_enemi_of_p2(pa->p, p2);
+	}
+	return 0;
 }
