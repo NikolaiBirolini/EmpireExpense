@@ -1,7 +1,18 @@
 #include "main.h"
+#include "gui/craft_menu/init_recipe.h"
 
 int main(int argc, char *argv[])
 {
+    int recipeCount;
+    CraftRecipe *recipes = loadRecipes("crafts.txt", &recipeCount);
+
+    if (recipes) {
+        for (int i = 0; i < recipeCount; i++) {
+            printRecipe(recipes[i]);
+        }
+        freeRecipes(recipes, recipeCount);
+    }
+    
     lettres = calloc(sizeof(struct lettres), 1);
     lettres->wheel = 0;
     lettres->keystates = SDL_GetKeyboardState(NULL);

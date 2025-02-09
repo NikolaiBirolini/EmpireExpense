@@ -13,14 +13,18 @@ void craft_menu(SDL_Renderer *renderer, TTF_Font *font)
     SDL_Color gridColor = {200, 200, 200, 255};   // Light grey for grid
     SDL_Color resultColor = {255, 255, 100, 255}; // Yellow for result slot
     SDL_Color inventoryColor = {150, 150, 255, 255}; // Light blue for inventory
+    TextBox bgCraftMenu;
+    initTextBox(&bgCraftMenu, 300, 300, 800, 400, (SDL_Color){165, 132, 86, 255}, (SDL_Color){165, 132, 86, 255}, (SDL_Color){165, 132, 86, 255}, littleFont, false);
+
+    drawTextBox(renderer, &bgCraftMenu, false);
 
     // Calculate positions
-    int windowWidth = 800;
-    int windowHeight = 600;
-    int gridX = windowWidth / 4;
-    int gridY = windowHeight / 4;
-    int resultX = gridX + (GRID_SIZE * (CELL_SIZE + PADDING)) + PADDING;
-    int resultY = gridY + (CELL_SIZE + PADDING);
+    //int windowWidth = 700;
+    //int windowHeight = 400;
+    int gridX = 400;//windowWidth / 4;
+    int gridY = 400;//windowHeight / 4;
+    int resultX = 700;//gridX + (GRID_SIZE * (CELL_SIZE + PADDING)) + PADDING;
+    int resultY = 400;//gridY + (CELL_SIZE + PADDING);
 
     // Draw crafting grid (3x3)
     for (int row = 0; row < GRID_SIZE; ++row) 
@@ -47,7 +51,6 @@ void craft_menu(SDL_Renderer *renderer, TTF_Font *font)
         drawRect(renderer, &inventorySlot, inventoryColor);
     }
 
-    // Optionally, render some text (e.g., "Crafting Menu")
     if (font != NULL) 
     {
         SDL_Color textColor = {0, 0, 0, 255};
