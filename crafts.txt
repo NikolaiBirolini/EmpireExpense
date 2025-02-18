@@ -1,0 +1,27 @@
+planks
+wood,wood,wood
+. . .
+. . .
+=>
+4 planks
+
+stick
+. planks .
+. planks .
+. . .
+=>
+4 sticks
+
+wooden pickaxe
+wood,wood,wood
+. stick .
+. . .
+=>
+1 wooden pickaxe
+
+iron pickaxe
+iron,iron,iron
+. stick .
+. stick .
+=>
+1 iron pickaxe
