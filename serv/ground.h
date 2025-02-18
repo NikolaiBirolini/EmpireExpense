@@ -27,7 +27,7 @@ enum Texture {
 };   
 
 struct linked_ground{
-    uint8_t altitude;
+    uint16_t altitude;
     enum Texture texture;
     struct linked_ground *next;
 };

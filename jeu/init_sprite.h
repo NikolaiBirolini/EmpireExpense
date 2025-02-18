@@ -34,6 +34,8 @@ struct textures
     SDL_Texture *te1;
     SDL_Texture *te2;
     SDL_Texture *te3;
+    SDL_Texture *lw1;
+    SDL_Texture *rw1;
     SDL_Texture *fond;
 };
 

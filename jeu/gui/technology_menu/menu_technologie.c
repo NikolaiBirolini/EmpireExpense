@@ -12,6 +12,10 @@ int find_node_index(char *id)
 void unlock_tallent_of_civ_member(struct personnages *p)
 {
 	int this_leader = id_of_maximal_leader(p);
+    for (int i = 0; i < main_menu->menuTech->cnt; i++)
+    {
+        main_menu->menuTech->techTree[i].unlocked = 0;
+    }
 	for (struct linked_list *pa = list; pa != NULL; pa = pa->next)
 	{
 		if (id_of_maximal_leader(pa->p) == this_leader && p1_or_rec_leader_of_p1_is_enemi_of_p2(p, pa->p) == 0)
@@ -23,6 +27,12 @@ void unlock_tallent_of_civ_member(struct personnages *p)
                 i += 3;
 			}
 		}
+	}
+    int i = 0;
+	while (i < 62*3 && moi->skill[i] != 0)
+	{
+		main_menu->menuTech->techTree[find_node_index(moi->skill + i)].unlocked = 2;
+        i += 3;
 	}
 }
 
@@ -49,7 +59,7 @@ void display_tree(void)
         dstRect.y += main_menu->menuTech->y_offset;
         if (lettres->Mouse_pos_x >= dstRect.x && lettres->Mouse_pos_x <= dstRect.x + dstRect.w && lettres->Mouse_pos_y >= dstRect.y && lettres->Mouse_pos_y <= dstRect.y + dstRect.h)
         {
-            SDL_SetRenderDrawColor(renderer, 255,0,0,0);
+            SDL_SetRenderDrawColor(renderer, 0,255,0,0);
             SDL_RenderFillRect(renderer, &dstRect);
             SDL_RenderCopy(renderer, main_menu->menuTech->techTree[i].text.texture, NULL, &dstRect);
             if (main_menu->menuTech->techTree[i].requierement1_index >= 0)
@@ -71,9 +81,11 @@ void display_tree(void)
         else 
         {
             if (main_menu->menuTech->techTree[i].unlocked == 1)
-                SDL_SetRenderDrawColor(renderer, 0, 255,0,0);
-            else
+                SDL_SetRenderDrawColor(renderer, 0, 255,255,0);
+            else if (main_menu->menuTech->techTree[i].unlocked == 2)
                 SDL_SetRenderDrawColor(renderer, 0, 0,255,0);
+            else
+                SDL_SetRenderDrawColor(renderer, 255, 0,0,0);
             SDL_RenderFillRect(renderer, &dstRect);
             SDL_RenderCopy(renderer, main_menu->menuTech->techTree[i].text.texture, NULL, &dstRect);
             SDL_SetRenderDrawColor(renderer, 255, 255,255,0);
@@ -238,12 +250,12 @@ void init_tech_menu()
     append_node("085 silex arquebuse",  1600, 250,41,-1,-1);
     append_node("086 silex revolver",  2000, 200,84,-1,-1);
     append_node("087 silex rifle",  2000, 250,84,-1,-1);
-    append_node("088 percusion rifle",  2400, 250,86,-1,-1);
-    append_node("089 percusion revolver",  2400, 200,85,-1,-1);
+    append_node("088 percusion rifle",  2400, 250,86,33,-1);
+    append_node("089 percusion revolver",  2400, 200,85,33,-1);
     append_node("090 lock rifle",  2800, 250,87,-1,-1);
     append_node("091 lock revolver",  2800, 200,88,-1,-1);
-    append_node("092 repetition rifle",  3200, 250,89,33,3);
-    append_node("093 repetition revolver",  3200, 200,90,33,3);
+    append_node("092 repetition rifle",  3200, 250,89,-1,3);
+    append_node("093 repetition revolver",  3200, 200,90,-1,3);
 
     append_node("094 bombarde",  1200, 300,34,2,-1);
     append_node("095 mortar",  1600, 400,93,-1,-1);
@@ -290,6 +302,13 @@ void init_tech_menu()
     append_node("131 bronze pickaxe",  800, -450,1,129,-1);
     append_node("132 iron pickaxe",  1200, -450,2,130,-1);
     append_node("133 steel pickaxe",  1600, -450,3,131,-1);
+
+    append_node("134 wood hoe",  400, -500,0,-1,-1);
+    append_node("135 primitive plow ",  800, -500,1,133,-1);
+    append_node("136 efficient plow",  1200, -500,2,134,-1);
+    append_node("137 multi-slot plow",  1600, -500,3,135,-1);
+
+
 
 
 }

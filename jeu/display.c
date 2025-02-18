@@ -1,6 +1,7 @@
 #include "display.h"
 #include "shared_var.h"
 #include "gui/gui.h"
+#include "SDL2/SDL2_gfxPrimitives.h"
 
 /*void bubble_sort_perso()
 {
@@ -34,7 +35,7 @@ void display_ground(int x, int y, int xto, int yto)
 		yto += 1;
 		xto = 0;
 	}
-	while (x != xto || y != yto)
+	while (x < xto || y < yto)
 	{
 		if ((x  - moi->x)*(x  - moi->x) + (y  - moi->y)*(y  - moi->y) < 441)
 		{
@@ -42,6 +43,7 @@ void display_ground(int x, int y, int xto, int yto)
 			position.y = (x-moi->x + y-moi->y) * 17 + 450 - ground_altitude[x + y * max_x];
 			position.w = 68;
 			position.h = 34;
+			
 			if (ground_texture[x + y * max_x] == img->t->ea1 || ground_texture[x + y * max_x] == img->t->ea2 || ground_texture[x + y * max_x] == img->t->ea3)
 			{
 				int to_add = 38 * (x % 50 == wave_animation_counter) + 19 * (x % 50 == wave_animation_counter-1) + 19 * (x % 50 == wave_animation_counter+1);
@@ -56,13 +58,34 @@ void display_ground(int x, int y, int xto, int yto)
 			}
 			else
 			{
-				SDL_SetRenderDrawColor(renderer, 74, 71,51,0);
+				//SDL_SetRenderDrawColor(renderer, 74, 71,51,0);
 				SDL_RenderCopy(renderer, ground_texture[x + y * max_x], NULL, &position);
-				for (int i = 0; i < ground_altitude[x + y * max_x]; i++)
-				{	
-					SDL_RenderDrawLine(renderer, position.x, position.y+i+17, position.x+34, position.y+34+i);
-					SDL_RenderDrawLine(renderer, position.x+34, position.y+i+34, position.x+68, position.y+17+i);
-				}
+				position.y += 17;
+				position.w = 34;
+				position.h = 53;
+				SDL_RenderCopy(renderer, img->t->lw1, NULL, &position);
+				position.x += 34;
+				SDL_RenderCopy(renderer, img->t->rw1, NULL, &position);
+				
+				
+				//if (ground_altitude[x + y * max_x] > 5)
+				//{
+					/*Sint16 pointsx[4] = {position.x, position.x + 34, position.x + 34, position.x};
+					Sint16 pointsy[4] = {position.y+17, position.y+34, position.y + 34 + ground_altitude[x + y * max_x], position.y + 17 + ground_altitude[x + y * max_x]};
+					Sint16 pointsx2[4] = {position.x+34, position.x + 68, position.x + 68, position.x+34};
+					Sint16 pointsy2[4] = {position.y+34, position.y+17, position.y + 17 + ground_altitude[x + y * max_x], position.y + 34 + ground_altitude[x + y * max_x]};
+					
+					filledPolygonRGBA(renderer, pointsx, pointsy, 4, 74, 71, 51,255);
+					filledPolygonRGBA(renderer, pointsx2, pointsy2, 4, 74, 71, 51,255);*/
+				//}
+				//else
+				//{*/
+				//	for (int i = 0; i < ground_altitude[x + y * max_x]; i++)
+				//	{	
+				//		SDL_RenderDrawLine(renderer, position.x, position.y+i+17, position.x+34, position.y+34+i);
+				//		SDL_RenderDrawLine(renderer, position.x+34, position.y+i+34, position.x+68, position.y+17+i);
+				//	}
+				//}
 			}
 		}
 		

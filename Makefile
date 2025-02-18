@@ -33,7 +33,7 @@ jeu/%.o: jeu/%.c
 	gcc $(CFLAGS) -c $< -o $@
 
 j: $(jobjects)
-	gcc $(CFLAGS) jeu/main.c $(jobjects) -o empireExpense -lSDL2 -lm -lSDL2_mixer -lSDL2_ttf -lSDL2_image
+	gcc $(CFLAGS) jeu/main.c $(jobjects) -o empireExpense -lSDL2 -lm -lSDL2_mixer -lSDL2_ttf -lSDL2_image -lSDL2_gfx
 
 s: $(sobjects) serv/main.o
 	gcc $(CFLAGS) $(sobjects) serv/main.o -lpthread -o serveur
