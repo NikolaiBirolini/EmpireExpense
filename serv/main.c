@@ -236,24 +236,18 @@ int main(int argc, char **argv)
                             struct personnages *p = have_char(buf);
 							if (open_acount(buf) == 1 && p != NULL && p->online != '1') // good acount and password
 							{
-                                printf  ("send map and background 1\n");
 								statut[events[i].data.fd] = 1;
 								s = write (events[i].data.fd, "o", 1);
 								strcpy(c_names[events[i].data.fd], buf);
                                 p->online = '1';
                                 p->a_bouger = 1;
                                 send_background_and_map(events[i].data.fd);;
-                                printf  ("send map and background 2\n");
 							}
 							else
 								s = write (events[i].data.fd, "n", 1);
                         }
                         else
-						{
-                            printf ("parse order 1\n");
 							parse_order(buf); 
-                            printf ("parse order 2\n");
-						}
                     }
 				}
                 if (done)
@@ -282,9 +276,7 @@ int main(int argc, char **argv)
             actualise_building_altitude();
             collision();
             int size = generate_order();
-            printf ("handle altitude 1\n");
             handle_altitude();
-            printf ("handle altitude 2\n");
             idx_last_snow = index_of_snow(idx_last_snow+1);
             if (idx_last_snow != -1 && (int)elapsedTime % 10 == 5)
             {

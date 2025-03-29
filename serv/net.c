@@ -4,7 +4,7 @@ static const char *texture_string[]= { "ea1", "ea2", "ea3", "te1", "te2", "te3",
 
 int generate_order(void)
 {
-    printf ("generate_order 1\n");
+    //printf ("generate_order 1\n");
     char *order = &order_send[20];
 	order[0] = 0;
 	for (struct personnages *pa = list; pa != NULL; pa = pa->next)
@@ -33,12 +33,13 @@ int generate_order(void)
             if (1.1 * s > size_order_send)
 		    {
 			    size_order_send *= 2;
-                printf ("size_order_send %ld\n", size_order_send);
+                printf ("size_order_send %d %ld\n", s, size_order_send);
 			    order_send = realloc(order_send, size_order_send);
+                order = &order_send[20];
 		    }
         }
     }
-    printf ("generate_order 1.2\n");
+    //printf ("generate_order 1.2\n");
     for (struct building *pa = list_building; pa != NULL; pa = pa->next)
     {
         if (pa->a_bouger != 0)
@@ -47,7 +48,7 @@ int generate_order(void)
             pa->a_bouger = 0;
         }
     }
-    printf ("generate_order 1.3\n");
+    //printf ("generate_order 1.3\n");
     for (int i = 0; i < n_ground_modif; i++)
     {
         int s = strlen(order);
@@ -55,16 +56,17 @@ int generate_order(void)
 		{
 			size_order_send *= 2;
 			order_send = realloc(order_send, size_order_send);
+            order = &order_send[20];
 		}
         //printf ("index %d %d %d\n", i, index_ground_modif[i], ground[index_ground_modif[i]]->altitude);
-        printf ("%d %d\n", i, index_ground_modif[i]);
+        //printf ("%d %d\n", i, index_ground_modif[i]);
         sprintf(order + s, "g %d %d %s\n", index_ground_modif[i], altitude(index_ground_modif[i]), texture_string[ground[index_ground_modif[i]]->texture]);
         //printf ("test\n");
     }
     n_ground_modif = 0;
     int s = strlen(order);
     sprintf (order_send, "%d", s);
-    printf ("generate_order 2\n");
+    //printf ("generate_order 2\n");
     return s;
 }
 
@@ -72,7 +74,6 @@ int generate_order(void)
 
 void parse_order(char *line)
 {
-    //printf ("[%s]\n",line);
     int i = 0;
     int j;
     char tmpC[50];
