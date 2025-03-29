@@ -6,7 +6,6 @@
 #include <sys/types.h>
 #include <netinet/in.h>
 #include "main.h"
-#include "inventaire.h"
 #include "diplo.h"
 #define size_order 2000
 

@@ -64,10 +64,11 @@ int main(int argc, char **argv)
 		printf ("error 1 : serv need a port\n");
 		return 1;
 	}
-	char *ground;
-	load_file_as_string("ground.txt", &ground);
-	create_array(ground);
-    free(ground);
+	char *ground_str;
+	load_file_as_string("ground.txt", &ground_str);
+	create_array(ground_str);
+    free(ground_str);
+    int idx_last_snow = 0;
 	list = init_map();
     n_ground_modif = 0;
 	//list = croissance_pop(list);
@@ -110,7 +111,8 @@ int main(int argc, char **argv)
     /* Buffer where events are returned */
     events = calloc (MAXEVENTS, sizeof event);
 
-	char *order = calloc(10000, 1);
+	order_send = malloc(10000);
+    size_order_send = 10000;
 	
 	//debout boucle, on suppose que la carte est initialisée.
     struct timeval start;struct timeval end;
@@ -234,21 +236,23 @@ int main(int argc, char **argv)
                             struct personnages *p = have_char(buf);
 							if (open_acount(buf) == 1 && p != NULL && p->online != '1') // good acount and password
 							{
+                                printf  ("send map and background 1\n");
 								statut[events[i].data.fd] = 1;
 								s = write (events[i].data.fd, "o", 1);
 								strcpy(c_names[events[i].data.fd], buf);
                                 p->online = '1';
                                 p->a_bouger = 1;
-                                send_background(events[i].data.fd);
-                                send_map(events[i].data.fd);
+                                send_background_and_map(events[i].data.fd);;
+                                printf  ("send map and background 2\n");
 							}
 							else
 								s = write (events[i].data.fd, "n", 1);
                         }
                         else
 						{
-                            //printf ("[%s]\n", buf);
+                            printf ("parse order 1\n");
 							parse_order(buf); 
+                            printf ("parse order 2\n");
 						}
                     }
 				}
@@ -277,12 +281,21 @@ int main(int argc, char **argv)
         	start = end;
             actualise_building_altitude();
             collision();
-            int size = generate_order(order);
+            int size = generate_order();
+            printf ("handle altitude 1\n");
+            handle_altitude();
+            printf ("handle altitude 2\n");
+            idx_last_snow = index_of_snow(idx_last_snow+1);
+            if (idx_last_snow != -1 && (int)elapsedTime % 10 == 5)
+            {
+                remove_1_pixel(idx_last_snow);
+                add_1_pixel(idx_last_snow, ea1);
+            }
             for (int i = 4; i < MAXEVENTS + 5;i++)
             	if (statut[i] == 1)
 				{
 				//	printf("%d : [%s %s]\n", i, order, order + 20);
-                	send(i, order, size + 20, MSG_NOSIGNAL);
+                	send(i, order_send, size + 20, MSG_NOSIGNAL);
 				}
             remove_perso();
             

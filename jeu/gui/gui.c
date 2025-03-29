@@ -47,7 +47,10 @@ void display_elipse_and_personal_datas()
     SDL_Rect position = {0, 0, 1800, 900};
     char energy_text[20] = "energy : ";
     TextInfo energy = {energy_text, littleFont, 50, 850, 0, (SDL_Color){0, 0, 0, 255}, 0, 0, 0};
+    char altitude_text[20] = "altitude : ";
+    TextInfo altitude = {altitude_text, littleFont, 50, 875, 0, (SDL_Color){0, 0, 0, 255}, 0, 0, 0};
     sprintf (energy_text + 9, "%d", moi->faim);
+    sprintf (altitude_text + 11, "%d", (int)moi->altitude);
     SDL_RenderCopy(renderer, img->g->elipse, NULL, &position);
     position.x = 50;
     position.y = 50;
@@ -60,6 +63,7 @@ void display_elipse_and_personal_datas()
     drawPictureButton( &main_menu->on);
     drawGauge(&my_stats_display->my_health, moi->pv, moi->max_pv);
     drawTextInfo(renderer, &energy);
+    drawTextInfo(renderer, &altitude);
 }
 
 void menu_religion(struct menu *m)

@@ -23,7 +23,8 @@ enum Texture {
   ne2,
   ne3,
   gr1,
-  gr2
+  gr2,
+  gra
 };   
 
 struct linked_ground{
@@ -37,3 +38,5 @@ void create_array(char *ground_string);
 void remove_1_pixel(int index);
 void add_1_pixel(int index, enum Texture texture);
 enum Texture texture_from_string(char *str);
+void handle_altitude(void);
+int index_of_snow(int start);

@@ -89,6 +89,7 @@ void ia(void)
     }
     for (struct building *parcour = list_building; parcour != NULL; parcour = parcour->next)
     {
+        printf ("tesddfqsdfdt\n");
         if (parcour->my_computer_work == 1)
         {
             if (parcour->skin[1] == '3')

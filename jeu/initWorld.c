@@ -94,8 +94,10 @@ int parse_single_cell(char *buffer)
 		{
 			if (buffer[i + 2] == '1')
 				ground_texture[index] = img->t->gr1;
-			if (buffer[i + 2] == '2')
+			else if (buffer[i + 2] == '2')
 				ground_texture[index] = img->t->gr2;
+			else if (buffer[i + 2] == 'a')
+				ground_texture[index] = img->t->granit;
 		}
 	}
 	ground_altitude[index] = altitude;
@@ -197,8 +199,10 @@ void create_array(char *ground_string)
 			{
 				if (ground_string[i + 2] == '1')
 					ground_texture[j] = img->t->gr1;
-				if (ground_string[i + 2] == '2')
+				else if (ground_string[i + 2] == '2')
 					ground_texture[j] = img->t->gr2;
+				else if (ground_string[i + 2] == 'a')
+					ground_texture[j] = img->t->granit;
 			}
 		}
 		//else

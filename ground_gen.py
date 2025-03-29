@@ -1,7 +1,47 @@
 import random
 from math import nan, isnan
+from sys import argv
+import numpy as np
 
-def max_alt(altitude, sizex, sizey):
+maxalt = 1200
+ 
+bioms =     [[random.randint(int(0.8*maxalt), maxalt) for i in range (6)],
+            [random.randint(int(0.7*maxalt), int(0.9*maxalt)) for i in range (6)],
+            [random.randint(int(0.6*maxalt), int(0.8*maxalt)) for i in range (6)],
+            [random.randint(int(0.5*maxalt), int(0.7*maxalt)) for i in range (6)],
+            [random.randint(int(0.4*maxalt), int(0.6*maxalt)) for i in range (6)],
+            [random.randint(int(0.3*maxalt), int(0.5*maxalt)) for i in range (6)],
+            [random.randint(int(0.2*maxalt), int(0.4*maxalt)) for i in range (6)],
+            [random.randint(int(0.1*maxalt), int(0.3*maxalt)) for i in range (6)],
+            [random.randint(0, int(0.2*maxalt)) for i in range (6)]]
+
+
+pd =  ["sa1", "sa2" ,"sa3","he1", "he2", "he3", "he4", "he5"]
+d = ["sa1", "sa2" ,"sa3"] 
+p =  ["he1", "he2", "he3", "he4", "he5"]
+
+
+texture =  [[p, p, p, p, p, p],
+            [p, p, p, p, p, p],
+            [p, p, p, p, p, p],
+            [p, p, p, p, p, p],
+            [p, p, p, p, p, p],
+            [pd, pd, pd, pd, pd, pd],
+            [pd, pd, pd, pd, pd, pd],
+            [d, d, d, d, d, d],
+            [d, d, d, d, d, d]]
+biomsize = 15
+
+sizex = len(bioms[0])* biomsize 
+sizey = len(bioms) * biomsize
+size = sizex*sizey
+
+altitude = np.array([[nan for i in range(sizex)] for i in range (sizey)])
+riverid = np.array([[nan for i in range(sizex)] for i in range (sizey)])
+
+characters = []
+
+def max_alt():
     maxaltx = -1
     maxalty = -1
     maxalt = -1
@@ -12,59 +52,6 @@ def max_alt(altitude, sizex, sizey):
                 maxaltx = x
                 maxalty = y
     return maxalt, maxaltx, maxalty
-
-def under_0_not_watter(altitude, texture, sizex, sizey):
-    for y in range(sizey):
-        for x in range(sizex):
-            if altitude[y][x] == 0 and "ea" not in texture[y][x]:
-                return True
-    return False
-
-def min_alt_close_watter(altitude, texture, sizex, sizey, minalt):
-    minaltx = -1
-    minalty = -1
-    for y in range(sizey):
-        for x in range(sizex):
-            if texture[y][x] == "ea1":
-                if x+1 < len(texture[y]) and texture[y][x+1] != "ea1" and altitude[y][x+1] <= minalt:
-                    minalt = altitude[y][x+1]
-                    minaltx = x +1 
-                    minalty = y
-                if x-1 >= 0 and texture[y][x-1] != "ea1" and altitude[y][x-1] <= minalt:
-                    minalt = altitude[y][x-1]
-                    minaltx = x - 1 
-                    minalty = y
-                if y+1 < len(texture) and texture[y+1][x] != "ea1" and altitude[y+1][x] <= minalt:
-                    minalt = altitude[y+1][x]
-                    minaltx = x 
-                    minalty = y +1
-                if y - 1>= 0 and texture[y-1][x] != "ea1" and altitude[y-1][x] <= minalt:
-                    minalt = altitude[y-1][x]
-                    minaltx = x 
-                    minalty = y - 1
-    return minalt, minaltx, minalty
-
-def create_river(altitude, texture, sizex, sizey):
-    trash, maxx, maxy = max_alt(altitude, sizex, sizey)
-    texture[maxy][maxx] = "ea1"
-    while (under_0_not_watter(altitude,texture,sizex,sizey)):
-        minalt, minaltx, minalty = min_alt_close_watter(altitude, texture, sizex, sizey, 9999)
-        texture[minalty][minaltx] = "ea1"
-    return texture
-
-
-bioms =    [[400,200,190, 180,170],
-            [350,350, 350,350,160],
-            [110,120,130, 140, 150],
-            [100,350,350, 350, 350], 
-            [90,80,0, -20, -20]]
-biomsize =21
-
-sizex = len(bioms[0])* biomsize
-sizey = len(bioms) * biomsize
-
-altitude = [[nan for i in range(sizex)] for i in range (sizey)]
-texture = [["nan" for i in range(sizex)] for i in range (sizey)]
 
 for i in range(len(bioms)):
     for j in range(len(bioms[i])):
@@ -95,29 +82,34 @@ for i in range(int(biomsize/2)):
 
 for y in range(sizey):
     for x in range(sizex):
-        altitude[y][x] += random.randint(-10, 10)
+        if bioms[y//biomsize][x//biomsize] % 10 != 7:
+            altitude[y][x] += random.randint(-10, 10)
         if 0 >  altitude[y][x]:
             altitude[y][x] = 0
 
-texture = create_river(altitude, texture, sizex, sizey)
+maxalt, mxx, mxy = max_alt()
 
-for y in range(sizey):
-    for x in range(sizex):
-        if "ea" in texture[y][x]:
-            continue
-        elif x > 0 and y > 0 and sizex - 1 > x and sizey - 1 > y and (altitude[y-1][x] == 0 or altitude[y-1][x-1] == 0 or altitude[y-1][x+1] == 0 or altitude[y][x-1] == 0 or altitude[y][x+1] == 0 or altitude[y+1][x] == 0 or altitude[y+1][x-1] == 0 or altitude[y+1][x+1] == 0): 
-            texture[y][x] = "sa" + str(random.randint(1,3))
-        elif altitude[y][x] > 200:
-            texture[y][x] = "ne" + str(random.randint(1,3))
-        else:        
-            texture[y][x] = "he" + str(random.randint(1,5))
-        
+#create_river()
 
-print(sizex, sizey)
+ground = open(argv[1], "w")
+ground.write(str(sizex) + " " + str(sizey) + "\n")
+
+to_write = ""
 for y in range(0, sizey):
-    for x in range(0, sizex-1):
-        if altitude[y][x] > 15 and "ea" not in texture[x][y]:
-            print(f"te{str(random.randint(1,3))}{altitude[y][x]-10}{texture[y][x]}10", end=" ")
+    for x in range(0, sizex):
+        tex = texture[y//biomsize][x//biomsize][random.randint(0,len(texture[y//biomsize][x//biomsize])-1)]
+        if altitude[y][x] > int(0.8*maxalt) and "sa" not in tex:
+            to_write+=("gra"+str(int(altitude[y][x]*0.7))+tex+str(int(altitude[y][x]*0.2))+"ne"+str(random.randint(1,3))+str(int(altitude[y][x]*0.1))+ " ")
         else:
-            print(f"{texture[y][x]}{altitude[y][x]}", end=" ")
-    print(f"{texture[y][x]}{altitude[y][x]}")
+            to_write+=("gra"+str(int(altitude[y][x]*0.7))+tex+str(int(altitude[y][x]*0.3))+" ")
+            if "he" in tex:
+                if random.randint(1,50) == 1:
+                    characters.append("01 " + str(len(characters)+1 )   + " 50 none " + str(x) + " " + str(y) + " " + str(altitude[y][x]) + " -1.000000 908.785156 a 0 0 -1 none none none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] [] []\n")
+    to_write = to_write[:-1] + "\n"
+
+ground.write(to_write)
+
+map = open(argv[2], "w")
+for i in characters:
+    map.write(i)
+map.write("0 0 10 thyma 3.00000 3.000000 25 -1.000000 908.785156 a 0 9999 -1 thyma thyma none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] [] [001002]\n")

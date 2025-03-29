@@ -337,6 +337,10 @@ struct textures *init_textures()
     initTextureObject(&(to_return->bl2), "img/textures/bl2.bmp");
     initTextureObject(&(to_return->bl3), "img/textures/bl3.bmp");
     initTextureObject(&(to_return->w1), "img/textures/wall.bmp");
+
+    initTextureObject(&(to_return->granit), "img/textures/granit.bmp");
+
+    
     
     initTextureObject(&(to_return->fond), "img/textures/fond.bmp");
 

@@ -2,4 +2,4 @@
 #include "perso.h"
 #include "utile.h"
 
-void send_background(int socket);
+void send_background_and_map(int socket);
