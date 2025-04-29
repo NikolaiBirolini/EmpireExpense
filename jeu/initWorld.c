@@ -63,6 +63,11 @@ int parse_single_cell(char *buffer)
 			else if (buffer[i + 2] == '3')
 				ground_texture[index] = img->t->sa3;
 		}
+		if (buffer[i + 1] == 'c')
+		{
+			if (buffer[i + 2] == 'h')
+				ground_texture[index] = img->t->schiste;
+		}
 	}
 	else if (buffer[i] == 'b')
 	{
@@ -74,7 +79,14 @@ int parse_single_cell(char *buffer)
 				ground_texture[index] = img->t->bl2;
 			else if (buffer[i + 2] == '3')
 				ground_texture[index] = img->t->bl3;
+				
 		}
+		else if (buffer[i + 1] == 'a')
+		{
+			if (buffer[i + 2] == 's')
+				ground_texture[index] = img->t->basalt;
+		}
+
 	}
 	else if (buffer[i] == 'n')
 	{
@@ -98,6 +110,14 @@ int parse_single_cell(char *buffer)
 				ground_texture[index] = img->t->gr2;
 			else if (buffer[i + 2] == 'a')
 				ground_texture[index] = img->t->granit;
+		}
+	}
+	else if (buffer[i] == 'c')
+	{
+		if (buffer[i + 1] == 'a')
+		{
+			if (buffer[i + 2] == 'l')
+				ground_texture[index] = img->t->calcaire;
 		}
 	}
 	ground_altitude[index] = altitude;
@@ -168,6 +188,11 @@ void create_array(char *ground_string)
 				else if (ground_string[i + 2] == '3')
 					ground_texture[j] = img->t->sa3;
 			}
+			if (ground_string[i + 1] == 'c')
+			{
+				if (ground_string[i + 2] == 'h')
+					ground_texture[j] = img->t->schiste;
+			}
 		}
 		else if (ground_string[i] == 'b')
 		{
@@ -179,7 +204,14 @@ void create_array(char *ground_string)
 					ground_texture[j] = img->t->bl2;
 				else if (ground_string[i + 2] == '3')
 					ground_texture[j] = img->t->bl3;
+					
 			}
+			else if (ground_string[i + 1] == 'a')
+			{
+				if (ground_string[i + 2] == 's')
+					ground_texture[j] = img->t->basalt;
+			}
+
 		}
 		else if (ground_string[i] == 'n')
 		{
@@ -203,6 +235,14 @@ void create_array(char *ground_string)
 					ground_texture[j] = img->t->gr2;
 				else if (ground_string[i + 2] == 'a')
 					ground_texture[j] = img->t->granit;
+			}
+		}
+		else if (ground_string[i] == 'c')
+		{
+			if (ground_string[i + 1] == 'a')
+			{
+				if (ground_string[i + 2] == 'l')
+					ground_texture[j] = img->t->calcaire;
 			}
 		}
 		//else

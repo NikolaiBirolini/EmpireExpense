@@ -23,4 +23,4 @@ char should_i_call_my_computer_work;
 struct personnages *moi;
 uint8_t **building_altitude;
 int *building_id;
-int wave_animation_counter;
+int counter_use_item;

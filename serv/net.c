@@ -1,6 +1,6 @@
 #include "net.h"
 
-static const char *texture_string[]= { "ea1", "ea2", "ea3", "te1", "te2", "te3","he1","he2","he3","he4","he5","sa1","sa2", "sa3", "bl1", "bl2", "bl3", "ne1", "ne2", "ne3", "gr1", "gr2", "gra"};
+static const char *texture_string[]= { "ea1", "ea2", "ea3", "te1", "te2", "te3","he1","he2","he3","he4","he5","sa1","sa2", "sa3", "bl1", "bl2", "bl3", "ne1", "ne2", "ne3", "gr1", "gr2", "gra", "bas", "cal", "sch", "gre", "mar"};
 
 int generate_order(void)
 {
@@ -11,7 +11,8 @@ int generate_order(void)
     {
         if (pa->a_bouger == 1)
         {
-            sprintf(order + strlen(order), "%s %d %d %s %f %f %f %f %f %c %d %d %d %s %s %s %s %d %s %s %d %s %d %d %d %d %c %s %s %s %s %s %s [", pa->skin, pa->id, pa->pv, pa->nom_de_compte, pa->x, pa->y, pa->altitude, pa->ordrex, pa->ordrey, pa->angle, pa->timer_dom, pa->faim, pa->inside, pa->nom, pa->nom_superieur, pa->titre, pa->religion, pa->nb_vassaux, pa->echange_player, pa->item1, pa->count_item1, pa->item2, pa->count_item2, pa->animation, pa->animation_2, pa->chemin_is_set, pa->online, pa->left_hand,pa->right_hand, pa->headgear, pa->tunic, pa->pant, pa->shoes);
+            sprintf(order + strlen(order), "%s %d %d %s %f %f %f %f %f %c %d %d %d %s %s %s %s %d %s %s %d %s %d %d %d %d %c %s %s %s %s %s %s [", pa->skin, pa->id, pa->pv, pa->nom_de_compte, pa->x, pa->y, pa->altitude
+            , pa->ordrex, pa->ordrey, pa->angle, pa->timer_dom, pa->faim, pa->inside, pa->nom, pa->nom_superieur, pa->titre, pa->religion, pa->nb_vassaux, pa->echange_player, pa->item1, pa->count_item1, pa->item2, pa->count_item2, pa->animation, pa->animation_2, pa->chemin_is_set, pa->online, pa->left_hand,pa->right_hand, pa->headgear, pa->tunic, pa->pant, pa->shoes);
 			for (struct linked_enemie *p = pa->e_list; p != NULL; p = p->next)
 			{
 				if (p->next != NULL)
@@ -556,6 +557,27 @@ void parse_order(char *line)
                             j++;
                         }
                         p->shoes[j] = 0;
+                        i++;
+                        break;
+                    case 31:
+                        printf ("test\n");
+                        if (line[i] == '+')
+                        {
+                            i++;
+                            p->altitude += atoi(&line[i]);
+                        }
+                        else if (line[i] == '-')
+                        {
+                            i++;
+                            p->altitude -= atoi(&line[i]);
+                        }
+                        else
+                        {
+                            i++;
+                            p->altitude = atoi(&line[i]);
+                        }
+                        while(line[i] != ' ')
+                            i++;
                         i++;
                         break;
                 }

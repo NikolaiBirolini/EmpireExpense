@@ -8,7 +8,7 @@ void gui_event(struct personnages *moi)
 	if (moi->ordrex != -1)
 	{
         position.x = (moi->ordrex - moi->x - moi->ordrey + moi->y) * 34 + 887.5;
-		position.y = (moi->ordrex - moi->x - moi->y  + moi->ordrey) * 17 + 437.5 - ground_altitude[(int)moi->ordrex + (int)moi->ordrey * max_x];
+		position.y = (moi->ordrex - moi->x - moi->y  + moi->ordrey) * 17 + 437.5 - ground_altitude[(int)moi->ordrex + (int)moi->ordrey * max_x] + moi->altitude*38;
         position.w = 25; position.h =  25;
 		if (powf(moi->x - moi->ordrex, 2) + powf(moi->y - moi->ordrey, 2) < 9)
         {
@@ -24,7 +24,7 @@ void gui_event(struct personnages *moi)
         {
             TextInfo bubble = {p->p->speak,  littleFont, 
             (p->p->x - moi->x - p->p->y +  moi->y) * 34 + 900, 
-            (p->p->x - moi->x + p->p->y - moi->y) * 17 + 350 - ground_altitude[(int)p->p->x + (int)p->p->y * max_x],
+            (p->p->x - moi->x + p->p->y - moi->y) * 17 + 350 - ground_altitude[(int)p->p->x + (int)p->p->y * max_x] + moi->altitude*38,
             0,{255, 255, 255, 255}, 0,0,0};
             drawTextInfo(renderer, &bubble);
         }
@@ -61,6 +61,8 @@ void display_elipse_and_personal_datas()
     if (lettres->Mouse_Lclick == 1 && lettres->Mouse_pos_x > 50 && lettres->Mouse_pos_x < 85 && lettres->Mouse_pos_y > 50 && lettres->Mouse_pos_y < 85)
         main_menu->on.isPressed = !main_menu->on.isPressed;
     drawPictureButton( &main_menu->on);
+    drawPictureButton(&menu_cond->accept_trade);
+    drawPictureButton(&menu_cond->manage_formation);
     drawGauge(&my_stats_display->my_health, moi->pv, moi->max_pv);
     drawTextInfo(renderer, &energy);
     drawTextInfo(renderer, &altitude);

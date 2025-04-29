@@ -4,7 +4,7 @@
 #include <time.h>
 #include <sys/time.h>
 
-char ordre[9999];
+char ordre[99999];
 
 int try_connect(char *ip, char *port) // Connecter
 {

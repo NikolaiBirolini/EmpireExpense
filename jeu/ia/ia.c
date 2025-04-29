@@ -80,7 +80,9 @@ void ia(void)
         if (parcour->p->my_computer_work == 1)
         {
             if (parcour->p->skin[1] == '1')
+            {
                 ia_arbre(parcour->p);
+            }
             else if (parcour->p->skin[1] == '2')
                 ia_flag(parcour);
             else
@@ -89,14 +91,12 @@ void ia(void)
     }
     for (struct building *parcour = list_building; parcour != NULL; parcour = parcour->next)
     {
-        printf ("tesddfqsdfdt\n");
         if (parcour->my_computer_work == 1)
         {
             if (parcour->skin[1] == '3')
                 ia_ship(parcour);
         }
     }
-
 }
 
 void ia_flag(struct linked_list *parcour)
@@ -106,7 +106,7 @@ void ia_flag(struct linked_list *parcour)
 
 void ia_arbre(struct personnages *p)
 {
-    p->animation += 1;    
+    p->animation += 1; 
     if (p->animation > 60)
     {
         if (p->faim > 20)
@@ -116,7 +116,7 @@ void ia_arbre(struct personnages *p)
         p->animation = 0; 
         if (count_item(p->i_list, "fruit") == 20)
         {
-        sprintf (ordre + strlen(ordre), "-1 50 none %f %f -1.0 -1.0 a 0 0 arbre1 none none none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] [] \n%d 16 -20 fruit ", p->x + 1, p->y + 1, p->id);
+            sprintf (ordre + strlen(ordre), "-1 50 none %f %f -1.0 -1.0 a 0 0 arbre1 none none none none 0 none none 0 none 0 3 0 0 empty empty empty empty empty empty [] [] \n%d 16 -20 fruit ", p->x + 1, p->y + 1, p->id);
         }
     }
     if (strcmp(p->echange_player, "none") != 0)
@@ -124,8 +124,7 @@ void ia_arbre(struct personnages *p)
         struct personnages *echange_player = find_perso_by_name(p->echange_player);
         if (echange_player != NULL && 9 > (echange_player->x - moi->x)*(echange_player->x - moi->x)+(echange_player->y - moi->y)*(echange_player->y - moi->y))
             echange_item(p, echange_player);
-    }
-    
+    }  
 }
 
 void ia_ship(struct building *ship)
@@ -139,7 +138,7 @@ void ia_ship(struct building *ship)
         {
             if (ship->angle == 'a')
             {
-                if (ship->y < 75 && 
+                if (ship->y < max_y - 5 && 
                 (ground_texture[(ship->y + 5)*max_x + ship->x] == img->t->ea1 || ground_texture[(ship->y + 5)*max_x + ship->x] == img->t->ea2 || ground_texture[(ship->y + 5)*max_x + ship->x] == img->t->ea3) &&
                 (ground_texture[(ship->y + 4)*max_x + ship->x + 1] == img->t->ea1 || ground_texture[(ship->y + 4)*max_x + ship->x + 1] == img->t->ea2 || ground_texture[(ship->y + 4)*max_x + ship->x + 1] == img->t->ea3) &&
                 (ground_texture[(ship->y + 3)*max_x + ship->x + 2] == img->t->ea1 || ground_texture[(ship->y + 3)*max_x + ship->x + 2] == img->t->ea2 || ground_texture[(ship->y + 3)*max_x + ship->x + 2] == img->t->ea3) &&
@@ -162,7 +161,7 @@ void ia_ship(struct building *ship)
             }
             else if (ship->angle == 'b')
             {
-                if (ship->y > 5 && 
+                if (ship->y > 4 && 
                 (ground_texture[(ship->y - 5)*max_x + ship->x] == img->t->ea1 || ground_texture[(ship->y - 5)*max_x + ship->x] == img->t->ea2 || ground_texture[(ship->y - 5)*max_x + ship->x] == img->t->ea3) &&
                 (ground_texture[(ship->y - 4)*max_x + ship->x + 1] == img->t->ea1 || ground_texture[(ship->y - 4)*max_x + ship->x + 1] == img->t->ea2 || ground_texture[(ship->y - 4)*max_x + ship->x + 1] == img->t->ea3) &&
                 (ground_texture[(ship->y - 3)*max_x + ship->x + 2] == img->t->ea1 || ground_texture[(ship->y - 3)*max_x + ship->x + 2] == img->t->ea2 || ground_texture[(ship->y - 3)*max_x + ship->x + 2] == img->t->ea3) &&
@@ -186,7 +185,7 @@ void ia_ship(struct building *ship)
             }
             else if (ship->angle == 'k')
             {
-                if (ship->x > 5 && 
+                if (ship->x > 4 && 
                 (ground_texture[(ship->y)*max_x + ship->x - 5] == img->t->ea1 || ground_texture[(ship->y)*max_x + ship->x - 5] == img->t->ea2 || ground_texture[(ship->y)*max_x + ship->x - 5] == img->t->ea3) &&
                 (ground_texture[(ship->y + 1)*max_x + ship->x - 4] == img->t->ea1 || ground_texture[(ship->y + 1)*max_x + ship->x - 4] == img->t->ea2 || ground_texture[(ship->y + 1)*max_x + ship->x - 4] == img->t->ea3) &&
                 (ground_texture[(ship->y + 2)*max_x + ship->x - 3] == img->t->ea1 || ground_texture[(ship->y + 2)*max_x + ship->x - 3] == img->t->ea2 || ground_texture[(ship->y + 2)*max_x + ship->x - 3] == img->t->ea3) &&
@@ -208,7 +207,7 @@ void ia_ship(struct building *ship)
             }
             else
             {
-                if (ship->x < 75 &&
+                if (ship->x < max_x-5 &&
                 (ground_texture[(ship->y)*max_x + ship->x + 5] == img->t->ea1 || ground_texture[(ship->y)*max_x + ship->x + 5] == img->t->ea2 || ground_texture[(ship->y)*max_x + ship->x + 5] == img->t->ea3) &&
                 (ground_texture[(ship->y + 1)*max_x + ship->x + 4] == img->t->ea1 || ground_texture[(ship->y + 1)*max_x + ship->x + 4] == img->t->ea2 || ground_texture[(ship->y + 1)*max_x + ship->x + 4] == img->t->ea3) &&
                 (ground_texture[(ship->y + 2)*max_x + ship->x + 3] == img->t->ea1 || ground_texture[(ship->y + 2)*max_x + ship->x + 3] == img->t->ea2 || ground_texture[(ship->y + 2)*max_x + ship->x + 3] == img->t->ea3) &&

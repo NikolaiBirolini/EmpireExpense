@@ -111,7 +111,5 @@ char conditional_menu(struct linked_list *selected)
     }
     else
         menu_cond->manage_formation.isPressed = 0;
-    drawPictureButton(&menu_cond->accept_trade);
-    drawPictureButton(&menu_cond->manage_formation);
     return to_ret;
 }

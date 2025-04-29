@@ -2,6 +2,7 @@
 
 struct linked_item *use(struct linked_item *item, struct personnages *p)
 {
+	printf ("test use\n");
 	if (item != NULL)
 	{
 		if (strcmp(item->nom, "fruit") == 0 || strcmp(item->nom, "legume") == 0)

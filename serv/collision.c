@@ -7,9 +7,9 @@ float coo_circle(struct personnages *perso)
         if (perso->skin[1] == 0)
             return 0.1;
         else if (perso->skin[1]  == '1')
-            return 1;
+            return 0.1;
     }
-    return 1;
+    return 0.1;
 }
 
 void collision(void)
@@ -44,16 +44,16 @@ void collision(void)
                 float alt = allowed_to_move(p, p->x, p->y, pp->moved_x, pp->moved_y);
                 if (alt != -1)
                 {
-                    p->x += pp->moved_x;
-                    p->y += pp->moved_y;
+                    p->x += pp->moved_x /* * pp->weight / p->weight*/;
+                    p->y += pp->moved_y /* * pp->weight / p->weight*/;
                     p->altitude = alt;
                     p->a_bouger = 1; 
                 }
                 alt = allowed_to_move(pp, pp->x, pp->y, p->moved_x, p->moved_y);
                 if (alt != -1)
                 {
-                    pp->x += p->moved_x;
-                    pp->y += p->moved_y;
+                    pp->x += p->moved_x /* * p->weight / pp->weight*/;
+                    pp->y += p->moved_y /* * p->weight / pp->weight*/;
                     pp->altitude = alt;
                     pp->a_bouger = 1;   
                 }
@@ -101,6 +101,8 @@ float allowed_to_move(struct personnages *perso, float x, float y, float mvx, fl
                 return -1;
             if (perso->altitude < (float)altitude(dst)/38- 1)
                 return -1;
+            //if (perso->altitude > (float)altitude(dst)/38)
+              //  return perso->altitude - 0.026;
             return (float)altitude(dst)/38;
         }
         if ((perso->altitude < (float)altitude(dst)/38- 2 && building_altitude[dst][0] == 1) || perso->altitude < (float)altitude(dst)/38- 1)

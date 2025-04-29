@@ -4,7 +4,7 @@ void sortedInsert(struct to_disp* new_node)
 {
     struct to_disp* current;
     /* Special case for the head end */
-    if (list_disp == NULL || list_disp->y > (int)new_node->y || (list_disp->x > new_node->x && (int)list_disp->y == (int)new_node->y)) {
+    if (list_disp == NULL || list_disp->y > (int)new_node->y || (list_disp->x > new_node->x && (int)list_disp->y == (int)new_node->y) || ((int)list_disp->x == (int)new_node->x && (int)list_disp->y == (int)new_node->y && list_disp->altitude > new_node->altitude)) {
         new_node->next = list_disp;
         list_disp = new_node;
     }
@@ -12,7 +12,7 @@ void sortedInsert(struct to_disp* new_node)
         /* Locate the node before the
  point of insertion */
         current = list_disp;
-        while (current->next != NULL && ((int)new_node->y > (int)current->next->y || (new_node->x > current->next->x && (int)new_node->y == (int)current->next->y))) {
+        while (current->next != NULL && ((int)new_node->y > (int)current->next->y || (new_node->x > current->next->x && (int)new_node->y == (int)current->next->y) || ((int)list_disp->x == (int)new_node->x && (int)list_disp->y == (int)new_node->y && list_disp->altitude < new_node->altitude))) {
             current = current->next;
         }
         new_node->next = current->next;

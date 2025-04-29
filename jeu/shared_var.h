@@ -36,5 +36,5 @@ extern char should_i_call_my_computer_work;
 extern struct personnages *moi;
 extern uint8_t **building_altitude;
 extern int *building_id;
-extern int wave_animation_counter;
+extern int counter_use_item;
 #define order_size 2000

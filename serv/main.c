@@ -161,6 +161,7 @@ int main(int argc, char **argv)
                     infd = accept (sfd, &in_addr, &in_len);
                     if (infd == -1)
                     {
+                        ground_to_string();
                         printf("errno=%d, EAGAIN=%d, EWOULDBLOCK=%d\n", errno, EAGAIN, EWOULDBLOCK);
                         if ((errno == EAGAIN) ||
                                 (errno == EWOULDBLOCK))

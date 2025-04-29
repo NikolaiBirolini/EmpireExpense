@@ -97,4 +97,3 @@ struct personnages *find_perso_by_name(char *name);
 struct personnages *find_perso_by_id(int id);
 struct linked_list *clean_selected(struct linked_list *list);
 int getSizeLinkedList(struct linked_list *list);
-void fix_some_shit(void);

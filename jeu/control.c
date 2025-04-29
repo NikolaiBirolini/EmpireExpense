@@ -4,8 +4,9 @@ extern struct lettres *lettres;
 void deplacement(struct personnages *moi)
 {
 	if (moi->faim < 0)
+	{
 		sprintf (ordre + strlen(ordre), "%d 00 -1 ", moi->id);
-
+	}
 	if (moi->animation_2 == 1)
 	{
 		if (moi->animation >= 3)
@@ -145,6 +146,8 @@ void deplacement(struct personnages *moi)
 			sprintf (ordre + strlen(ordre), "%d 01 +%f %d 05 e %d 21 %d ", moi->id, moi->vitesse_dep, moi->id, moi->id, moi->animation+1);
 		if(lettres->keystates[SDL_SCANCODE_Z])
 			sprintf (ordre + strlen(ordre), "%d 02 +%f %d 05 h %d 21 %d ", moi->id, moi->vitesse_dep, moi->id, moi->id, moi->animation+1);
+		if(lettres->keystates[SDL_SCANCODE_SPACE])
+			sprintf (ordre + strlen(ordre), "%d 31 +3 %d 21 %d ", moi->id, moi->id, moi->animation+1);
 		if(lettres->keystates[SDL_SCANCODE_V])
 		{
 			struct building *b = find_building_by_id(building_id[(int)moi->x + (int)moi->y*max_x]);
@@ -170,28 +173,21 @@ void deplacement(struct personnages *moi)
 		}
 		if(lettres->keystates[SDL_SCANCODE_S])
 		{
-			if (10 > n_item(moi->i_list) && ground_altitude[(int)moi->x + (int)moi->y*max_x] > 0)
-			{
-				uint8_t cond = 1;
-				int j = 0;
-				while (cond == 1)
-				{
-					if ((int)moi->y + j == max_y || (int)moi->x + j == max_x || find_building_by_id(building_id[(int)moi->x+j + ((int)moi->y+j)*max_x]) != NULL)
-						cond = 0;
-					else
-					{
-						SDL_Texture *t = ground_texture[(int)moi->x+j + ((int)moi->y+j)*max_x];
-						if (t == img->t->he1 || t == img->t->he2 || t == img->t->he3 || t == img->t->he4 || t == img->t->he5)
-							sprintf (ordre + strlen(ordre), "%d 16 +1 herbe %d 08 %d ", moi->id, moi->id, (int)moi->x+j + ((int)moi->y+j)*max_x);
-						if (t == img->t->sa1 || t == img->t->sa2 || t == img->t->sa3)
-							sprintf (ordre + strlen(ordre), "%d 16 +1 sable %d 08 %d ", moi->id, moi->id, (int)moi->x+j + ((int)moi->y+j)*max_x);
-						if (t == img->t->ne1 || t == img->t->ne2 || t == img->t->ne3)
-							sprintf (ordre + strlen(ordre), "%d 08 %d %d 13 %d ea1 ", moi->id, (int)moi->x+j + ((int)moi->y+j)*max_x, moi->id, (int)moi->x+j + ((int)moi->y+j)*max_x);
-						cond = 0;
-					}
-					j += 1;
+			//if (counter_use_item > 3)
+			//{
+				if (10 > n_item(moi->i_list) && ground_altitude[(int)moi->x + (int)moi->y*max_x] > 0 && find_building_by_id(building_id[(int)moi->x + ((int)moi->y)*max_x]) == NULL)
+				{	
+					SDL_Texture *t = ground_texture[(int)moi->x + ((int)moi->y)*max_x];
+					if (t == img->t->he1 || t == img->t->he2 || t == img->t->he3 || t == img->t->he4 || t == img->t->he5)
+						sprintf (ordre + strlen(ordre), "%d 16 +1 herbe %d 08 %d ", moi->id, moi->id, (int)moi->x + ((int)moi->y)*max_x);
+					if (t == img->t->sa1 || t == img->t->sa2 || t == img->t->sa3)
+						sprintf (ordre + strlen(ordre), "%d 16 +1 sable %d 08 %d ", moi->id, moi->id, (int)moi->x + ((int)moi->y)*max_x);
+					if (t == img->t->ne1 || t == img->t->ne2 || t == img->t->ne3)
+						sprintf (ordre + strlen(ordre), "%d 08 %d %d 13 %d ea1 ", moi->id, (int)moi->x + ((int)moi->y)*max_x, moi->id, (int)moi->x + ((int)moi->y)*max_x);
 				}
-			}
+				//counter_use_item = 0;
+			//}
+			//counter_use_item += 1;
 		}
 
 	}

@@ -40,18 +40,23 @@ void menu_inventaire(void)
             }
             if(main_menu->menuInv->actions->selectedOption == 0)//consume
             {
-                if (strcmp(i->nom, "fruit") == 0)
-                    sprintf(ordre+strlen(ordre), "%d 16 1 %s %d 07 1000", moi->id, i->nom, moi->id);
-                else if (strcmp(i->nom, "herbe") == 0)
-                {
-                    if (find_building_by_id(building_id[(int)moi->x + (int)moi->y*max_x]) == NULL)
+                //if (counter_use_item > 3)
+                //{
+                    if (strcmp(i->nom, "fruit") == 0)
+                        sprintf(ordre+strlen(ordre), "%d 16 1 %s %d 07 1000", moi->id, i->nom, moi->id);
+                    else if (strcmp(i->nom, "herbe") == 0)
+                    {
+                        if (find_building_by_id(building_id[(int)moi->x + (int)moi->y*max_x]) == NULL)
                             sprintf(ordre+strlen(ordre), "%d 16 1 herbe %d 13 %d he1 ", moi->id, moi->id, (int)moi->x + (int)moi->y*max_x);
-                }
-                else if (strcmp(i->nom, "sable") == 0)
-                {
-                    if (find_building_by_id(building_id[(int)moi->x + (int)moi->y*max_x]) == NULL)
-                        sprintf(ordre+strlen(ordre), "%d 16 1 sable %d 13 %d sa1 ", moi->id, moi->id, (int)moi->x + (int)moi->y*max_x);
-                }
+                    }
+                    else if (strcmp(i->nom, "sable") == 0)
+                    {
+                        if (find_building_by_id(building_id[(int)moi->x + (int)moi->y*max_x]) == NULL)
+                            sprintf(ordre+strlen(ordre), "%d 16 1 sable %d 13 %d sa1 ", moi->id, moi->id, (int)moi->x + (int)moi->y*max_x);
+                    }
+                  //  counter_use_item = 0;
+                //}
+                //counter_use_item += 1;
             }
             else if (main_menu->menuInv->actions->selectedOption == 1)//equipe
             {

@@ -35,7 +35,12 @@ struct textures
     SDL_Texture *te2;
     SDL_Texture *te3;
     SDL_Texture *w1;
-    SDL_Texture *granit;  
+    SDL_Texture *granit;
+    SDL_Texture *basalt;
+    SDL_Texture *calcaire;
+    SDL_Texture *gres;
+    SDL_Texture *marbre;
+    SDL_Texture *schiste;
     SDL_Texture *fond;
 };
 

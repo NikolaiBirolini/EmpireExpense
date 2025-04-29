@@ -1,5 +1,28 @@
 #include "ground.h"
 
+static const char *texture_string[]= { "ea1", "ea2", "ea3", "te1", "te2", "te3","he1","he2","he3","he4","he5","sa1","sa2", "sa3", "bl1", "bl2", "bl3", "ne1", "ne2", "ne3", "gr1", "gr2", "gra", "bas", "cal", "sch", "gre", "mar"};
+
+void recursive_print_ground(struct linked_ground *p)
+{
+    if (p->next != NULL)
+        recursive_print_ground(p->next);
+    printf ("%s%d", texture_string[p->texture],p->altitude);
+
+}
+
+void ground_to_string(void)
+{
+    for (int i = 0; i < max_y; i++)
+    {
+        for (int j = 0; j < max_x; j++)
+        {
+            recursive_print_ground(ground[i*max_x+j]);  
+            putchar(' ');
+        }
+        putchar('\n');
+    }
+}
+
 int altitude(int index)
 {
     int ret = 0;
@@ -14,6 +37,25 @@ void print_ground(int index)
         printf ("%d %d\n", p->texture, p->altitude);
 }
 
+int diff_alt(int index ,int index2)
+{
+    if ((ground[index]->texture == ea1 || ground[index]->texture == ea2 || ground[index]->texture == ea3) && ground[index2]->texture != ea1 && ground[index2]->texture != ea2 && ground[index2]->texture != ea3)
+    {
+        int ret = altitude(index) - altitude(index2);
+        if (ret > 1)
+            return ret;
+        return ret-ground[index]->altitude;
+    }
+    else if ((ground[index2]->texture == ea1 || ground[index2]->texture == ea2 || ground[index2]->texture == ea3) && ground[index]->texture != ea1 && ground[index]->texture != ea2 && ground[index]->texture != ea3)
+    {
+        int ret = altitude(index) - altitude(index2);
+        if (-1 > ret)
+            return ret;
+        return ret+ground[index2]->altitude;
+    }
+    return altitude(index) - altitude(index2);
+}
+
 int maximum_diff(int index)
 {
     switch (ground[index]->texture)
@@ -25,21 +67,21 @@ int maximum_diff(int index)
         case ea3:
             return 1;
         case he1:
-            return 20;
+            return 25;
         case he2:
-            return 20;
+            return 25;
         case he3:
-            return 20;
+            return 25;
         case he4:
-            return 20;
+            return 25;
         case he5:
-            return 20;
+            return 25;  
         case sa1:
-            return 4;
+            return 5;
         case sa2:
-            return 4;
+            return 5;
         case sa3:
-            return 4;
+            return 5;
         case ne1:
             return 20;
         case ne2:
@@ -49,9 +91,9 @@ int maximum_diff(int index)
         case gra:
             return 50;
         default:
-            return 10;
+            return 50;
     }
-    return 10;
+    return 50;
 }
 
 enum Texture texture_from_string(char *str)
@@ -66,6 +108,14 @@ enum Texture texture_from_string(char *str)
                 return ea2;
             else if (str[2] == '3')
                 return ea3;
+        }
+    }
+    else if (str[0] == 'c')
+    {
+        if (str[1] == 'a')
+        {
+            if (str[2] == 'l')
+                return cal;
         }
     }
     else if (str[0] == 't')
@@ -107,6 +157,19 @@ enum Texture texture_from_string(char *str)
             else if (str[2] == '3')
                 return sa3;
         }
+        else if (str[1] == 'c')
+        {
+            if (str[2] == 'h')
+                return sch;
+        }
+    }
+    else if (str[0] == 'm')
+    {
+        if (str[1] == 'a')
+        {
+            if (str[2] == 'r')
+                return mar;
+        }
     }
     else if (str[0] == 'b')
     {
@@ -119,6 +182,12 @@ enum Texture texture_from_string(char *str)
             else if (str[2] == '3')
                 return bl3;
         }
+        else if (str[1] == 'a')
+        {
+            if (str[2] == 's')
+                return bas;
+        }
+            
     }
     else if (str[0] == 'n')
     {
@@ -142,6 +211,8 @@ enum Texture texture_from_string(char *str)
                 return gr2;
             else if (str[2] == 'a')
                 return gra;
+            else if (str[2] == 'e')
+                return gre;
         }
     };
     return ea1;
@@ -235,14 +306,13 @@ void handle_altitude(void)
     int n_ground_altitudee_local = n_ground_altitude;
     n_ground_altitude = 0;
     for (int i = 0; i < n_ground_altitudee_local; i++)
-    {       
+    {
         int index = index_check_altitude_local[i];
-        int alt = altitude(index);
         int cond = 0;
         int maxdiff = 0;
-        if (index % max_x != max_x - 1)
+        if (index % max_x != max_x - 1 && (building_id[index+1] == -1 || ground[index]->texture == ea1 || ground[index]->texture == ea2 || ground[index]->texture == ea3))
         {
-            int diff1 = alt - altitude(index+1);
+            int diff1 = diff_alt(index, index+1);
             if (diff1 < 0 && maximum_diff(index+1) < -diff1 && -diff1 > maxdiff)
             {
                 maxdiff = -diff1;
@@ -254,9 +324,9 @@ void handle_altitude(void)
                 maxdiff = diff1;
             }
         }
-        if (index % max_x != 0)
+        if (index % max_x != 0 && (building_id[index-1] == -1  || ground[index]->texture == ea1 || ground[index]->texture == ea2 || ground[index]->texture == ea3))
         {
-            int diff2 = alt - altitude(index-1);
+            int diff2 = diff_alt(index, index-1);
             if (diff2 < 0 && maximum_diff(index-1) < -diff2 && -diff2 > maxdiff)
             {
                 maxdiff = -diff2;
@@ -268,9 +338,9 @@ void handle_altitude(void)
                 cond = 4;
             }
         }
-        if (index + max_x < max_x * max_y)
+        if (index + max_x < max_x * max_y && (building_id[index+max_x] == -1 || ground[index]->texture == ea1 || ground[index]->texture == ea2 || ground[index]->texture == ea3))
         {
-            int diff3 = alt - altitude(index+max_x);
+            int diff3 = diff_alt(index, index+max_x);
             if (diff3 < 0 && maximum_diff(index+max_x) < -diff3 && -diff3 > maxdiff)
             {
                 maxdiff = -diff3;
@@ -282,9 +352,9 @@ void handle_altitude(void)
                 cond = 6;
             }
         }
-        if (index - max_x > 0)
+        if (index - max_x > 0 && (building_id[index-max_x] == -1 || ground[index]->texture == ea1 || ground[index]->texture == ea2 || ground[index]->texture == ea3))
         {
-            int diff4 = alt - altitude(index-max_x);
+            int diff4 = diff_alt(index, index-max_x);
             if (diff4 < 0 && maximum_diff(index-max_x) < -diff4 && -diff4 > maxdiff)
             {
                 cond = 7;

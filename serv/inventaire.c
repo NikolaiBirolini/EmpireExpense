@@ -8,7 +8,7 @@ int count(char *name)
 		return 20;
 	if (strcmp(name, "herbe") == 0 || strcmp(name, "sable") == 0)
 		return 10;
-	return 1;
+	return 10;
 }
 
 struct linked_item *exist_in_linked_item(struct linked_item *e, char *cmp)

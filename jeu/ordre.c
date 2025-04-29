@@ -146,7 +146,7 @@ void commande(struct linked_list *selected)
 		for (int i = 0; i < 10; i++)
 		{
 			position.x = (x2 - moi->x - y2 + moi->y) * 34 + 900;
-			position.y = (x2 - moi->x - moi->y  + y2) * 17 + 450 - ground_altitude[(int)x2 + (int)y2 * max_x];
+			position.y = (x2 - moi->x - moi->y  + y2) * 17 + 450 - ground_altitude[(int)x2 + (int)y2 * max_x] + moi->altitude*38;
 			if (abs(lettres->Mouse_pos_y-position.y) < 34)
 			{ 	
 				x = x2;
@@ -164,7 +164,7 @@ void commande(struct linked_list *selected)
 			for (struct linked_list *a = selected; a != NULL; a = a->next)
 			{
 				position.x = (x - moi->x - y + moi->y) * 34 + 887.5;
-				position.y = (x - moi->x - moi->y  + y) * 17 + 437.5 - ground_altitude[(int)x + (int)y * max_x];
+				position.y = (x - moi->x - moi->y  + y) * 17 + 437.5 - ground_altitude[(int)x + (int)y * max_x] + moi->altitude*38;
 				SDL_RenderCopy(renderer, img->g->croix_inverse, NULL, &position);
 				if (lettres->Mouse_Lclick == 0 &&  lettres->Mouse_Rclick == 1)
 					sprintf (ordre + strlen(ordre), "%d 03 %f %d 04 %f ", a->p->id, x, a->p->id, y);
@@ -192,7 +192,7 @@ void commande(struct linked_list *selected)
 				while (a != NULL && nb_per_lines > n)
 				{
 					position.x = (x - moi->x - y + moi->y) * 34 + 887.5;
-					position.y = (x - moi->x - moi->y  + y) * 17 + 437.5 - ground_altitude[(int)x + (int)y * max_x];
+					position.y = (x - moi->x - moi->y  + y) * 17 + 437.5 - ground_altitude[(int)x + (int)y * max_x] + moi->altitude*38;
 					SDL_RenderCopy(renderer, img->g->croix_inverse, NULL, &position);
 					if (lettres->Mouse_Lclick == 0 &&  lettres->Mouse_Rclick == 1)
 						sprintf (ordre + strlen(ordre), "%d 03 %f %d 04 %f ", a->p->id, x, a->p->id, y);
@@ -205,7 +205,7 @@ void commande(struct linked_list *selected)
 				while (a != NULL && nb_per_lines > n)
 				{
 					position.x = (x - moi->x - y + moi->y) * 34 + 887.5;
-					position.y = (x - moi->x - moi->y  + y) * 17 + 437.5 - ground_altitude[(int)x + (int)y * max_x];
+					position.y = (x - moi->x - moi->y  + y) * 17 + 437.5 - ground_altitude[(int)x + (int)y * max_x] + moi->altitude*38;
 					SDL_RenderCopy(renderer, img->g->croix_inverse, NULL, &position);
 					if (lettres->Mouse_Lclick == 0 &&  lettres->Mouse_Rclick == 1)
 						sprintf (ordre + strlen(ordre), "%d 03 %f %d 04 %f ", a->p->id, x, a->p->id, y);
@@ -218,7 +218,7 @@ void commande(struct linked_list *selected)
 				while (a != NULL && nb_per_lines > n)
 				{
 					position.x = (x - moi->x - y + moi->y) * 34 + 887.5;
-					position.y = (x - moi->x - moi->y  + y) * 17 + 437.5 - ground_altitude[(int)x + (int)y * max_x];
+					position.y = (x - moi->x - moi->y  + y) * 17 + 437.5 - ground_altitude[(int)x + (int)y * max_x] + moi->altitude*38;
 					SDL_RenderCopy(renderer, img->g->croix_inverse, NULL, &position);
 					if (lettres->Mouse_Lclick == 0 &&  lettres->Mouse_Rclick == 1)
 						sprintf (ordre + strlen(ordre), "%d 03 %f %d 04 %f ", a->p->id, x, a->p->id, y);
@@ -231,7 +231,7 @@ void commande(struct linked_list *selected)
 				while (a != NULL && nb_per_lines > n)
 				{
 					position.x = (x - moi->x - y + moi->y) * 34 - 887.5;
-					position.y = (x - moi->x - moi->y  + y) * 17 + 437.5 - ground_altitude[(int)x + (int)y * max_x];
+					position.y = (x - moi->x - moi->y  + y) * 17 + 437.5 - ground_altitude[(int)x + (int)y * max_x] + moi->altitude*38;
 					SDL_RenderCopy(renderer, img->g->croix_inverse, NULL, &position);
 					if (lettres->Mouse_Lclick == 0 &&  lettres->Mouse_Rclick == 1)
 						sprintf (ordre + strlen(ordre), "%d 03 %f %d 04 %f ", a->p->id, x, a->p->id, y);
@@ -251,7 +251,7 @@ void commande(struct linked_list *selected)
 			for (struct linked_list *a = selected; a != NULL; a = a->next)
 			{
 				position.x = (x - moi->x - y + moi->y) * 34 + 887.5;
-				position.y = (x - moi->x - moi->y  + y) * 17 + 437.5 - ground_altitude[(int)x + (int)y * max_x];
+				position.y = (x - moi->x - moi->y  + y) * 17 + 437.5 - ground_altitude[(int)x + (int)y * max_x] + moi->altitude*38;
 				SDL_RenderCopy(renderer, img->g->croix_inverse, NULL, &position);
 				if (lettres->Mouse_Lclick == 0 &&  lettres->Mouse_Rclick == 1)
 					sprintf (ordre + strlen(ordre), "%d 03 %f %d 04 %f ", a->p->id, x, a->p->id, y);
@@ -281,7 +281,7 @@ void commande(struct linked_list *selected)
 			while (a != NULL)
 			{
 				position.x = (x - moi->x - y + moi->y) * 34 + 887.5;
-				position.y = (x - moi->x - moi->y  + y) * 17 + 437.5 - ground_altitude[(int)x + (int)y * max_x];
+				position.y = (x - moi->x - moi->y  + y) * 17 + 437.5 - ground_altitude[(int)x + (int)y * max_x] + moi->altitude*38;
 				if (n < nb_per_line/4 || n >= 3*nb_per_line/4)
 				{
 					SDL_RenderCopy(renderer, img->g->croix_inverse, NULL, &position);

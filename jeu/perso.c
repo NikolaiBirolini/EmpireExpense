@@ -151,6 +151,7 @@ struct linked_list *death(void)
 	struct linked_list *prev;
 	while (tmp != NULL && tmp->p->pv <= 0)
 	{
+		printf ("death\n");
 		list = list->next;
 		free_linked_enemie(tmp->p->e_list);
 		free_linked_item(tmp->p->i_list);
@@ -170,6 +171,7 @@ struct linked_list *death(void)
 		}
 		if (tmp == NULL)
 			return list;
+		printf ("death\n");
 		prev->next = tmp->next;
 		free_linked_enemie(tmp->p->e_list);
         free_linked_item(tmp->p->i_list);
@@ -246,18 +248,4 @@ struct linked_list *clean_selected(struct linked_list *list)
 		}
 	}
 	return ret;
-}
-
-void fix_some_shit(void)
-{
-	for (struct linked_list *parcour = list; parcour != NULL; parcour=parcour->next)
-	{
-		//faim
-		parcour->p->faim_time++;
-		if (parcour->p->faim_time > 1000 && parcour->p->faim > 0)
-		{
-			sprintf(ordre + strlen(ordre), "%d 07 %d ", parcour->p->id, parcour->p->faim - 1);
-			parcour->p->faim_time = 0;
-		}
-	}
 }

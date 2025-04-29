@@ -24,13 +24,13 @@ void display_ground(int x, int y, int xto, int yto)
 {
 	SDL_Rect position;
 	x += 1;
-	if (x == max_x)
+	if (x >= max_x)
 	{
 		y += 1;
 		x = 0;
 	}
 	xto += 1;
-	if (xto == max_x)
+	if (xto >= max_x)
 	{
 		yto += 1;
 		xto = 0;
@@ -85,9 +85,6 @@ void display_ground(int x, int y, int xto, int yto)
 
 void display_all(void)
 {
-	wave_animation_counter += 1;
-	if (wave_animation_counter > 100)
-		wave_animation_counter = 0;
 	//bubble_sort_perso();
 	SDL_Rect position;
 	int yfrom = 0;
@@ -104,11 +101,11 @@ void display_all(void)
 		}
 		xfrom = (int)parcour->x;
 		yfrom = (int)parcour->y;
-		if ((parcour->x  - moi->x)*(parcour->x  - moi->x) + (parcour->y  - moi->y)*(parcour->y  - moi->y) < 441)
+		if ((parcour->x  - moi->x)*(parcour->x  - moi->x) + (parcour->y  - moi->y)*(parcour->y  - moi->y) < 500)
 		{
 			SDL_QueryTexture(parcour->img, NULL, NULL, &position.w, &position.h);
 			position.x = (parcour->x - moi->x - parcour->y + moi->y) * 34 + parcour->offset_x - position.w/2;
-			position.y = (parcour->x - moi->x + parcour->y - moi->y) * 17 + parcour->offset_y - position.h - altitude + 38 * (ground_texture[(int)parcour->x + (int)parcour->y * max_x] == img->t->ea1) + moi->altitude*38;
+			position.y = (parcour->x - moi->x + parcour->y - moi->y) * 17 + parcour->offset_y - position.h - altitude + 38 * (ground_texture[(int)parcour->x + (int)parcour->y * max_x] == img->t->ea1 || ground_texture[(int)parcour->x + (int)parcour->y * max_x] == img->t->ea2 || ground_texture[(int)parcour->x + (int)parcour->y * max_x] == img->t->ea3) + moi->altitude*38;
 		//if (parcour->floor == 1 && moi->inside == -1)
 		//	position.y -= altitude;
 			if (parcour->p != NULL)

@@ -127,13 +127,18 @@ void boucle_jeu(int socket, char *name)
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	    SDL_RenderClear(renderer);
         //gettimeofday(&start, NULL);
-	    display_all();
+        if (main_menu->menuTech->on == 0)
+        {
+	        display_all();
+            display_selected(selected[0]);
+            display_elipse_and_personal_datas(moi);
+            gui_event(moi);
+        }
         //gettimeofday(&end, NULL);
         //double elapsedTime = (end.tv_sec - start.tv_sec) * 1000.0;      // sec to ms
         //elapsedTime += (end.tv_usec - start.tv_usec) / 1000.0;
         //printf ("%f\n",  elapsedTime);
-        display_selected(selected[0]);
-        display_elipse_and_personal_datas(moi);
+       
         if (conditional_menu(selected[0]) == 1)
             done = done;
         else if (speakBubble->on == 1)
@@ -162,8 +167,6 @@ void boucle_jeu(int socket, char *name)
             should_i_call_my_computer_work = 0;
         }
 	    ia();
-	    gui_event(moi);
-	    fix_some_shit();
         send_orders(socket);
 	    recv_order(socket);
         for (int i = 0; 11>i;i++)
